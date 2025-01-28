@@ -1,15 +1,17 @@
 using UnityEngine;
 
 public enum kind { armor, tool, weapon, cosmetic, gem, rock, bioMaterial };
+// public enum subkind { helmet, hazmatSuit, pickaxe, sledgehammer, vial, iron, copper, gold, diamond, amethyst, platinum, soil, plant };
 
 [CreateAssetMenu(menuName = "item")]
 public class item : ScriptableObject
 {
 	public int itemID;
 	public string itemName;
+	public string itemDescription;
+	public kind itemKind;
 	public Sprite itemSprite;
-	public string description;
-	public kind kind;
+	// public subkind itemSubkind;
 }
 
 // old stuff - mainly item pickup (that doesnt belong here bruh)
