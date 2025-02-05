@@ -22,8 +22,8 @@ public class debugConsole : MonoBehaviour
 
 	void Start()
 	{
-		Debug.LogWarning("console should not be active at start"); //!
-		toggleConsole(true); //!
+		// Debug.LogWarning("console should not be active at start"); //!
+		// toggleConsole(true); //!
 
 		loadCommands();
 	}
@@ -105,7 +105,7 @@ public class debugConsole : MonoBehaviour
 		{ "listinv", () => inventory.printInventory() },
 		{ "clrinv", () => inventory.clearInventory() },
 		{ "saveinv", () => inventory.saveInventory() },
-		{ "rnditem", () => inventory.addItemId(rnd.Next(20)) },
+		{ "rnditem", () => inventory.addItem(inventory.itemList[rnd.Next(inventory.itemList.Length)]) },
 		{ "clrhst", clearHistory },
 		{ "newlvl", () => gameCtrl.genAndSpawn() }
 	};

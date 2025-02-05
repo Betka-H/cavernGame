@@ -438,7 +438,6 @@ Transform:
   - {fileID: 1858803448}
   - {fileID: 1343291601}
   - {fileID: 1383847342}
-  - {fileID: 761087197}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &269427613
@@ -1603,6 +1602,7 @@ MonoBehaviour:
   cavePlayerPrefab: {fileID: 5936850974349550149, guid: 194ed91a084300440856c86b83a7e389, type: 3}
   roomControl: {fileID: 40118686}
   tabMenu: {fileID: 1811316253}
+  item1: {fileID: 0}
 --- !u!4 &699556568
 Transform:
   m_ObjectHideFlags: 0
@@ -1618,54 +1618,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 265201205}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &761087196
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 761087197}
-  - component: {fileID: 761087198}
-  m_Layer: 0
-  m_Name: itemList
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &761087197
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 761087196}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 265201205}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &761087198
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 761087196}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dde3995304af6a445bd381f7d819915e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  items:
-  - {fileID: 0}
-  item1: {fileID: 0}
-  spriteBucket: {fileID: 0}
 --- !u!1001 &785082095
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2863,6 +2815,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1343291601}
   - component: {fileID: 1343291602}
+  - component: {fileID: 1343291603}
   m_Layer: 0
   m_Name: inventory
   m_TagString: Untagged
@@ -2898,6 +2851,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotsParent: {fileID: 975357390}
+--- !u!114 &1343291603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1343291600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dde3995304af6a445bd381f7d819915e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1353880330
 GameObject:
   m_ObjectHideFlags: 0

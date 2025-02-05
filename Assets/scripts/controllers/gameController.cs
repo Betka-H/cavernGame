@@ -17,10 +17,13 @@ public class gameController : MonoBehaviour
 	public enum level { lab, cavern };
 	level currentLevel;
 
+	public ScriptableObject item1;
 	void Start()
 	{
+		Debug.LogWarning("tried instantiating item1 at player spawnpoint");
+
 		gameState.State = gameState.gameStates.playing;
-		currentLevel = level.lab; //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! lab should be first
+		currentLevel = level.cavern; //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! lab should be first
 		genAndSpawn();
 	}
 

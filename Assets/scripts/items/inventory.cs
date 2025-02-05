@@ -6,11 +6,105 @@ using UnityEngine;
 [System.Serializable]
 public class inventoryWrapper
 {
-	public List<int> itemIds;
+	public List<item> Witems;
 }
 
 public class inventory : MonoBehaviour
 {
+	[Tooltip("assorted list of all existing items by id")]
+	public static item[] itemList;
+
+	public static List<item> items;
+
+	public Transform slotsParent;
+	List<Transform> slots;
+
+	void Start()
+	{
+		items.Add(itemList[0]);
+
+		getSlots();
+		loadInventory();
+	}
+
+	void getSlots()
+	{
+		slots = slotsParent.GetComponentsInChildren<Transform>().ToList();
+		slots.Remove(slotsParent); // fuck yoy
+	}
+
+	void loadInventory()
+	{
+		clearInventory();
+
+		string readText = File.ReadAllText("inventory-save.txt");
+		inventoryWrapper loadedWrapper = JsonUtility.FromJson<inventoryWrapper>(readText);
+		items = loadedWrapper?.Witems ?? new List<item>(); // god bless chagpt i fucking guess
+
+		Debug.Log("inventory loaded");
+		printInventory();
+	}
+	public static void saveInventory()
+	{
+		File.WriteAllText("inventory-save.txt", JsonUtility.ToJson(items)); // writes the wrapped list (as json)
+
+		Debug.Log("inventory saved");
+		printInventory();
+	}
+	public static void clearInventory()
+	{
+		;
+		Debug.LogWarning("inventory cleared; remember to save!");
+	}
+	public static void printInventory()
+	{
+		if (items.Count > 0)
+		{
+			Debug.Log("items in inventory;: " + string.Join(", ", items)); // bro why dont i use string.join more often this is way easier than setting up a hugeass for loop
+		}
+		else { Debug.Log("there are no items in the inventory"); }
+	}
+
+	public static void addItem(item it)
+	{
+		items.Add(it);
+		Debug.Log($"added item {it.itemName} to inventory");
+	}
+	public static void removeItem(item it)
+	{
+		if (!items.Contains(it))
+		{
+			Debug.Log($"cannot remove item {it.itemName} cause its not there dumbass");
+		}
+		else
+		{
+			items.Remove(it);
+			Debug.Log($"removed item {it.itemName} from inventory");
+		}
+	}
+
+}
+
+/* public void displayItems()
+{
+	for (int i = 0; i < items.Count; i++)
+	{
+		// !!!!!!!!!!!!!! items are null becuase they are gettign destryoed
+		Debug.Log($"item: {items[i]}, slot: {slots[i]}");
+		// GameObject iobj = Instantiate(itemSprites[i].objPrefab, slots[i]);
+		// iobj.transform.localScale = new Vector3(3, 3, 0);
+	}
+
+	Debug.Log("items: ");
+	foreach (Sprite it in items)
+	{
+		Debug.Log(it + ", ");
+	}
+}*/
+
+/* 
+public List<item> items;
+	
 	static List<int> itemIds;
 
 	public Transform slotsParent;
@@ -74,21 +168,5 @@ public class inventory : MonoBehaviour
 		slots = slotsParent.GetComponentsInChildren<Transform>().ToList();
 		slots.Remove(slotsParent); // fuck yoy
 	}
+ */
 
-	/* public void displayItems()
-	{
-		for (int i = 0; i < items.Count; i++)
-		{
-			// !!!!!!!!!!!!!! items are null becuase they are gettign destryoed
-			Debug.Log($"item: {items[i]}, slot: {slots[i]}");
-			// GameObject iobj = Instantiate(itemSprites[i].objPrefab, slots[i]);
-			// iobj.transform.localScale = new Vector3(3, 3, 0);
-		}
-
-		Debug.Log("items: ");
-		foreach (Sprite it in items)
-		{
-			Debug.Log(it + ", ");
-		}
-	}*/
-}
