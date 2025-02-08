@@ -20,7 +20,7 @@ public class gameController : MonoBehaviour
 	public ScriptableObject item1;
 	void Start()
 	{
-		Debug.LogWarning("tried instantiating item1 at player spawnpoint");
+		// Debug.LogWarning("tried instantiating item1 at player spawnpoint");
 
 		gameState.State = gameState.gameStates.playing;
 		currentLevel = level.cavern; //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! lab should be first

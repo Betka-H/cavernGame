@@ -2815,7 +2815,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1343291601}
   - component: {fileID: 1343291602}
-  - component: {fileID: 1343291603}
   m_Layer: 0
   m_Name: inventory
   m_TagString: Untagged
@@ -2851,18 +2850,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotsParent: {fileID: 975357390}
---- !u!114 &1343291603
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1343291600}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dde3995304af6a445bd381f7d819915e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  slotLimit: 7
+  inventoryIds: 
+  allItemList:
+  - {fileID: 11400000, guid: 102a3dc01694da341a0f4faa84e7897d, type: 2}
+  - {fileID: 11400000, guid: 2f3bdd2f73b85ce4a9e4a35cd8810335, type: 2}
+  - {fileID: 11400000, guid: b49f14e2efb33a6418c95d0d7961971d, type: 2}
 --- !u!1 &1353880330
 GameObject:
   m_ObjectHideFlags: 0

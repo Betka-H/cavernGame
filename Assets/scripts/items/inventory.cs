@@ -3,6 +3,113 @@ using System.IO;
 using System.Linq;
 using UnityEngine;
 
+public class inventory : MonoBehaviour
+{
+	public Transform slotsParent;
+	List<Transform> slots;
+
+	[Range(1, 8)]
+	public int slotLimit;
+
+	[HideInInspector]
+	public List<int> inventoryIds;
+
+	[Header("assorted list of all existing items by id")]
+	public item[] allItemList;
+
+	private string savePath = "inventory-save.txt";
+
+	void Start()
+	{
+		loadInventory();
+		getSlots();
+	}
+
+	void getSlots()
+	{
+		slots = slotsParent.GetComponentsInChildren<Transform>().ToList();
+		slots.Remove(slotsParent); // fuck yoy
+	}
+
+	public void sortInventory()
+	{
+		inventoryIds.Sort();
+	}
+
+	public void saveInventory()
+	{
+		sortInventory();
+
+		// save inv);
+		File.WriteAllText(savePath, string.Join(",", inventoryIds));
+
+		Debug.Log("inventory saved");
+		printInventory();
+	}
+	void loadInventory()
+	{
+		clearInventory();
+
+		// load inv
+		string[] invRead = File.ReadAllText(savePath).ToString().Split(',');
+		foreach (string s in invRead)
+		{
+			inventoryIds.Add(int.Parse(s));
+		}
+
+		Debug.Log("inventory loaded");
+		printInventory();
+	}
+	public void clearInventory()
+	{
+		// clear inv
+		inventoryIds.Clear();
+
+		Debug.LogWarning("inventory cleared; remember to save!");
+	}
+	public void printInventory()
+	{
+		sortInventory();
+
+		if (inventoryIds.Count > 0)
+		{
+			Debug.Log("items in inventory: " + string.Join(", ", inventoryIds)); // bro why dont i use string.join more often this is way easier than setting up a hugeass for loop
+		}
+		else { Debug.Log("there are no items in the inventory"); }
+	}
+
+	public void addItem(int id)
+	{
+		// add item
+		inventoryIds.Add(id);
+
+		Debug.Log($"added item with id {id} ({allItemList[id].itemName}) to inventory");
+	}
+	public void removeItem(int id)
+	{
+		// remove item
+		if (!inventoryIds.Contains(id))
+		{
+			Debug.Log($"cannot remove id {id} cause its not there dumbass");
+		}
+		else
+		{
+			inventoryIds.Remove(id);
+			Debug.Log($"removed id {id} from inventory");
+		}
+	}
+
+}
+
+
+
+
+
+/* using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using UnityEngine;
+
 [System.Serializable]
 public class inventoryWrapper
 {
@@ -11,8 +118,8 @@ public class inventoryWrapper
 
 public class inventory : MonoBehaviour
 {
-	[Tooltip("assorted list of all existing items by id")]
-	public static item[] itemList;
+	[Header("assorted list of all existing items by id")]
+	public item[] itemList;
 
 	public static List<item> items;
 
@@ -83,7 +190,7 @@ public class inventory : MonoBehaviour
 		}
 	}
 
-}
+} */
 
 /* public void displayItems()
 {

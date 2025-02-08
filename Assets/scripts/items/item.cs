@@ -1,10 +1,11 @@
 using UnityEngine;
 
 //? all items. further divided into loot and gear
-public enum itemKind { loot, gear };
+public enum itemKind { empty, loot, gear };
 public class item : ScriptableObject
 {
 	[Header("item")]
+	[Range(1, 100)]
 	public int itemID;
 	public string itemName;
 	[TextArea]
@@ -13,6 +14,16 @@ public class item : ScriptableObject
 }
 
 //*=========================================================================
+//? EMPTY: empty item
+public class empty : item
+{
+	[HideInInspector]
+	public itemKind itemKind = itemKind.empty;
+
+	[Header("empty")]
+	public int TMP_emptyBehavior;
+}
+
 //? LOOT: shit you can find in the cave
 public enum lootKind { mineral, biomaterial, scrap };
 public class loot : item

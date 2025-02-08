@@ -100,15 +100,15 @@ public class debugConsole : MonoBehaviour
 	void loadCommands() // chatgpt
 	{
 		commands = new Dictionary<string, System.Action>
-	{
-		{ "help", listCommands },
-		{ "listinv", () => inventory.printInventory() },
-		{ "clrinv", () => inventory.clearInventory() },
-		{ "saveinv", () => inventory.saveInventory() },
-		{ "rnditem", () => inventory.addItem(inventory.itemList[rnd.Next(inventory.itemList.Length)]) },
-		{ "clrhst", clearHistory },
-		{ "newlvl", () => gameCtrl.genAndSpawn() }
-	};
+		{
+			/* { "help", listCommands },
+			{ "listinv", () => inventory.printInventory() },
+			{ "clrinv", () => inventory.clearInventory() },
+			{ "saveinv", () => inventory.saveInventory() },
+			{ "rnditem", () => inventory.addItem(inventory.itemList[rnd.Next(inventory.itemList.Length)]) },
+			{ "clrhst", clearHistory },
+			{ "newlvl", () => gameCtrl.genAndSpawn() } */
+		};
 	}
 
 	void clearHistory() //*
