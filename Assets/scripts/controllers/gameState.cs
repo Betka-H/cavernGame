@@ -16,4 +16,16 @@ public class gameState : MonoBehaviour
 			// Debug.Log($"game state: {state}");
 		}
 	}
+
+	void Update()
+	{
+		if (State == gameStates.paused)
+		{
+			// Time.timeScale = 0;
+		}
+		else
+		{
+			Time.timeScale = 1;
+		}
+	}
 }

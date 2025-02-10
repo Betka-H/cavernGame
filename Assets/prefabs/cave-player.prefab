@@ -226,6 +226,7 @@ GameObject:
   - component: {fileID: 2453926673175596032}
   - component: {fileID: 2041706101789367381}
   - component: {fileID: 464341278159563756}
+  - component: {fileID: 5545355411232185608}
   m_Layer: 0
   m_Name: cave-player
   m_TagString: player
@@ -269,7 +270,7 @@ MonoBehaviour:
   wall:
     serializedVersion: 2
     m_Bits: 128
-  speed: 4
+  speed: 8
   bounciness: 10
   agility: 2
   feet: {fileID: 1965521005522208259}
@@ -348,6 +349,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.75, y: 1.5}
   m_EdgeRadius: 0
+--- !u!114 &5545355411232185608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5936850974349550149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c9ba01c54e5ef84ebc3e44d118f9c35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7335901606450030131
 GameObject:
   m_ObjectHideFlags: 0

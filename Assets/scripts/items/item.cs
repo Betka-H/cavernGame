@@ -5,8 +5,8 @@ public enum itemKind { empty, loot, gear };
 public class item : ScriptableObject
 {
 	[Header("item")]
-	[Range(1, 100)]
-	public int itemID;
+	// [Range(1, 100)]
+	// public int itemID;
 	public string itemName;
 	[TextArea]
 	public string itemDescription;

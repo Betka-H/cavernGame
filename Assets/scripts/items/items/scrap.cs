@@ -2,7 +2,7 @@ using UnityEngine;
 
 public enum scrapKind
 {
-	light = headEqKind.flashlight,
+	// light = headEqKind.flashlight,
 	goggles = headEqKind.NVgoggles,
 	pick = handEqKind.pickaxe,
 	hammer = handEqKind.sledgehammer,

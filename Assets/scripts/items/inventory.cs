@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class inventory : MonoBehaviour
 {
-	public Transform slotsParent;
-	List<Transform> slots;
+	// public Transform slotsParent;
+	// List<Transform> slots;
 
 	[Range(1, 8)]
 	public int slotLimit;
@@ -22,14 +22,14 @@ public class inventory : MonoBehaviour
 	void Start()
 	{
 		loadInventory();
-		getSlots();
+		// getSlots();
 	}
 
-	void getSlots()
+	/* void getSlots()
 	{
 		slots = slotsParent.GetComponentsInChildren<Transform>().ToList();
 		slots.Remove(slotsParent); // fuck yoy
-	}
+	} */
 
 	public void sortInventory()
 	{
@@ -43,8 +43,8 @@ public class inventory : MonoBehaviour
 		// save inv);
 		File.WriteAllText(savePath, string.Join(",", inventoryIds));
 
-		Debug.Log("inventory saved");
-		printInventory();
+		// Debug.Log("inventory saved");
+		// printInventory();
 	}
 	void loadInventory()
 	{
@@ -57,15 +57,15 @@ public class inventory : MonoBehaviour
 			inventoryIds.Add(int.Parse(s));
 		}
 
-		Debug.Log("inventory loaded");
-		printInventory();
+		// Debug.Log("inventory loaded");
+		// printInventory();
 	}
 	public void clearInventory()
 	{
 		// clear inv
 		inventoryIds.Clear();
 
-		Debug.LogWarning("inventory cleared; remember to save!");
+		// Debug.LogWarning("inventory cleared; remember to save!");
 	}
 	public void printInventory()
 	{

@@ -6,6 +6,8 @@ public class invItem : MonoBehaviour
 	[HideInInspector]
 	public item item;
 
+	public itemMenu itemMenu;
+
 	SpriteRenderer spriteRenderer;
 
 	void Start()
@@ -14,37 +16,13 @@ public class invItem : MonoBehaviour
 		spriteRenderer.sprite = item.itemSprite;
 	}
 
-	void OnMouseEnter()
+	void OnMouseDown()
 	{
-		tooltipToggle(1);
-	}
-	void OnMouseExit()
-	{
-		tooltipToggle(0);
+		setTootip();
 	}
 
-	void tooltipToggle(int onOff)
+	void setTootip()
 	{
-		switch (onOff)
-		{
-			case 0:
-				tooltipDisable();
-				break;
-			case 1:
-				tooltipEnable();
-				break;
-			default:
-				Debug.Log("invalid input");
-				break;
-		}
-	}
-
-	void tooltipEnable()
-	{
-
-	}
-	void tooltipDisable()
-	{
-
+		// itemMenu.showTooltip(item.name, item.itemSprite, item.itemDescription);
 	}
 }

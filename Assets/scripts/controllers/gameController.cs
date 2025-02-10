@@ -1,3 +1,4 @@
+using UnityEditor.SearchService;
 using UnityEngine;
 
 public class gameController : MonoBehaviour
@@ -8,45 +9,41 @@ public class gameController : MonoBehaviour
 	public GameObject labPlayerPrefab;
 	public GameObject cavePlayerPrefab;
 
-	[Header("room controller")]
-	public roomController roomControl;
-
-	[Header("inventory menu")]
-	public tabMenu tabMenu;
+	private roomController roomController;
+	private itemMenu itemMenu;
 
 	public enum level { lab, cavern };
 	level currentLevel;
 
-	public ScriptableObject item1;
+	// public ScriptableObject item1;
 	void Start()
 	{
-		// Debug.LogWarning("tried instantiating item1 at player spawnpoint");
+		roomController = FindObjectOfType<roomController>();
+		roomController.hasNightVision = false;
+		itemMenu = FindObjectOfType<itemMenu>(true);
 
 		gameState.State = gameState.gameStates.playing;
-		currentLevel = level.cavern; //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! lab should be first
+		//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! lab should be first
+		currentLevel = level.cavern;
 		genAndSpawn();
 	}
 
 	void Update()
 	{
-		if (gameState.State != gameState.gameStates.paused)
+		if (Input.GetKeyDown(KeyCode.Q))
 		{
-			Time.timeScale = 1;
-			currentLevel = level.cavern;
-			if (Input.GetKeyDown(KeyCode.Q))
-			{
-				toggleTabMenu();
-			}
+			toggleTabMenu();
 		}
-		else
+		if (Input.GetKeyDown(KeyCode.R))
 		{
-			Time.timeScale = 0;
+			genAndSpawn();
 		}
 	}
 
 	public void genAndSpawn()
 	{
-		roomControl.generateLevel(currentLevel);
+		roomController.chooseDarkness();
+		roomController.generateLevel(currentLevel);
 		spawnPlayer(currentLevel);
 	}
 
@@ -80,8 +77,9 @@ public class gameController : MonoBehaviour
 
 	void toggleTabMenu()
 	{
-		tabMenu.gameObject.SetActive(!tabMenu.gameObject.activeSelf);
-		switch (tabMenu.gameObject.activeSelf)
+		Debug.Log($"menu: {itemMenu.gameObject.activeSelf}");
+		itemMenu.gameObject.SetActive(!itemMenu.gameObject.activeSelf);
+		switch (itemMenu.gameObject.activeSelf)
 		{
 			case true:
 				gameState.State = gameState.gameStates.paused;
@@ -90,11 +88,19 @@ public class gameController : MonoBehaviour
 				gameState.State = gameState.gameStates.playing;
 				break;
 		}
+		Debug.LogWarning($"menu: {itemMenu.gameObject.activeSelf}");
 	}
 
 	void OnApplicationQuit()
 	{
 		Debug.Log("quitting");
+		todo();
+	}
+
+	void todo()
+	{
+		Debug.LogWarning("todo:");
+		Debug.Log("have an unlockable npc which gives u a \"weather forecast\" for the next run depending on the darkness level");
 	}
 }
 

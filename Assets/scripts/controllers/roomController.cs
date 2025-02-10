@@ -1,10 +1,21 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class roomController : MonoBehaviour
 {
+	private darknessOL darknessOverlay;
+	private Transform chosenDarkness;
+	public bool hasNightVision;
+	private int darknessChance; // % out of 100
+	[HideInInspector]
+	public darknessLevel darknessLvl; // mainly for weather forecast
+
+	private playerEquipment playerEquipment;
+
+	[Space]
 	public Transform roomParent;
 	public Transform enclosureParent;
 	[Header("doorway blocks")]
@@ -14,17 +25,29 @@ public class roomController : MonoBehaviour
 	public GameObject enclosure_walls_lab;
 	public GameObject enclosure_walls_cave;
 
+	[Space]
+	public int minCavernRoomsNr;
+	public int maxCavernRoomsNr;
 	[Header("rooms // cavern 0 is entry room")]
-	public GameObject[] labRooms;
-	public GameObject[] cavernRooms;
-	private GameObject[] selectedRooms;
-	private int minRoomsNr = 3; // 3
-	private int maxRoomsNr = 5; // 7
-	private GameObject entranceRoom;
+	public roomSO[] labRooms;
+	public roomSO[] cavernRooms;
+	private roomSO[] selectedRooms;
+	private roomSO entranceRoom;
 
 	private int currentRoom;
 	private int roomLeft;
 	private int roomRight;
+
+	void Start()
+	{
+		//! temp value. revisit later
+		maxCavernRoomsNr = cavernRooms.Length;
+		entranceRoom = cavernRooms[0]; // determines entrance room
+
+		darknessOverlay = FindObjectOfType<darknessOL>();
+		playerEquipment = FindObjectOfType<playerEquipment>();
+		// chooseDarkness();
+	}
 
 	public void generateLevel(gameController.level lvl)
 	{
@@ -40,16 +63,32 @@ public class roomController : MonoBehaviour
 				break;
 		}
 
+		// hideDarkness();
+
 		insEntranceR();
 		getBlock();
 
-		//* log
+		toggleDarkness();
+
+		logRooms();
+	}
+
+	void logRooms()
+	{
 		string debug = "";
-		foreach (GameObject obj in selectedRooms)
+		foreach (roomSO room in selectedRooms)
 		{
-			debug += obj.name + ", ";
+			if (room == entranceRoom)
+				debug += "ENTRANCE ROOM";
+			else debug += room.name;
+
+			if (room.isDark == true)
+			{
+				debug += " (dark)";
+			}
+			debug += ", ";
 		}
-		Debug.Log("level rooms: " + debug);
+		Debug.Log($"({darknessLvl}) level rooms: {debug}");
 	}
 
 	void generateLab()
@@ -60,29 +99,130 @@ public class roomController : MonoBehaviour
 	void generateCavern()
 	{
 		// generates array of unique rooms in random order
-		entranceRoom = cavernRooms[0];
 
-		List<GameObject> roomPool = cavernRooms.ToList();
+		List<roomSO> roomPool = cavernRooms.ToList();
 
-		System.Random rnd = new System.Random();
-		int roomsNr = rnd.Next(minRoomsNr, maxRoomsNr + 1); // choose a random amount of rooms (+1 to include maxRNr)
-		selectedRooms = new GameObject[roomsNr]; // new empty array for that amount
+		System.Random rndForRoom = new System.Random();
+		int roomsNr = rndForRoom.Next(minCavernRoomsNr, maxCavernRoomsNr + 1); // choose a random amount of rooms (+1 to include maxRNr)
+		selectedRooms = new roomSO[roomsNr]; // new empty array for that amount
 
 		for (int i = 0; i < roomsNr; i++)
 		{
-			GameObject randomRoom = roomPool[rnd.Next(roomPool.Count())]; // choose random room from all
+			roomSO randomRoom = roomPool[rndForRoom.Next(roomPool.Count())]; // choose random room from all
 			selectedRooms[i] = randomRoom; // add the room
 			roomPool.Remove(randomRoom); // remove the room from the pool
 		}
 
+		// fix missing entrance
 		if (!selectedRooms.Contains(entranceRoom)) // if the entrance room isnt there already
-			selectedRooms[rnd.Next(selectedRooms.Length)] = entranceRoom; // insert entrance room instead of one random room
+			selectedRooms[rndForRoom.Next(selectedRooms.Length)] = entranceRoom; // insert entrance room instead of one random room
+
+		chooseItemSpawnLocations();
+		chooseTraderSpawnLocation();
+		chooseDarkRooms();
+	}
+
+	void chooseItemSpawnLocations()
+	{
+		foreach (roomSO room in selectedRooms)
+		{
+			room.setItemSpawnLocations();
+		}
+	}
+	private void chooseTraderSpawnLocation()
+	{
+		System.Random rnd = new System.Random();
+
+		foreach (roomSO room in selectedRooms)
+		{
+			room.getTraderSpawnLocation();
+		}
+	}
+
+	void hideDarkness()
+	{
+		darknessOverlay.darknessOverlayNormal.gameObject.SetActive(false);
+		darknessOverlay.darknessOverlayNV.gameObject.SetActive(false);
+	}
+	public void chooseDarkness()
+	{
+		if (playerEquipment.checkEquipment(1)) // nv goggles
+		{
+			chosenDarkness = darknessOverlay.darknessOverlayNV;
+			// chosenDarkness = darknessOverlay.darknessOverlayNormal;
+		}
+		else
+		{
+			chosenDarkness = darknessOverlay.darknessOverlayNormal;
+		}
+		// Debug.Log("darkness chosen: " + darknessOverlay);
+	}
+	public enum darknessLevel { light, midLight, midDark, dark };
+	void setDarkness()
+	{
+		// chooseDarkness();
+
+		System.Random rnd = new System.Random();
+		int n = rnd.Next(100);
+		if (n <= 10)
+		{
+			darknessLvl = darknessLevel.light;
+			darknessChance = 0;
+			// Debug.Log("light shines through the dungeon (light)");
+		}
+		else if (n <= 20)
+		{
+			darknessLvl = darknessLevel.dark;
+			darknessChance = 100;
+			// Debug.Log("dungeon is drowning in darkness (dark)");
+		}
+		else if (n <= 50)
+		{
+			darknessLvl = darknessLevel.midDark;
+			darknessChance = 69;
+			// Debug.Log("its kinda dark in the dungeon (midDark)");
+		}
+		else
+		{
+			darknessLvl = darknessLevel.midLight;
+			darknessChance = 21;
+			// Debug.Log("its kinda light in the dungeon (midLight)");
+		}
+	}
+	void chooseDarkRooms()
+	{
+		setDarkness();
+
+		System.Random rnd = new System.Random();
+		foreach (roomSO room in selectedRooms)
+		{
+			room.isDark = false;
+			if (room != entranceRoom || darknessLvl == darknessLevel.dark) // for every room except the entrance room (cant be dark there) (except for when dl is dark)
+			{
+				if (rnd.Next(100) <= darknessChance)
+					room.isDark = true;
+			}
+		}
+	}
+	void toggleDarkness()
+	{
+		// Debug.Log(darknessOverlay);
+		if (selectedRooms[currentRoom].isDark)
+		{
+			darknessOverlay.gameObject.SetActive(true);
+			chosenDarkness.gameObject.SetActive(true);
+		}
+		else
+		{
+			darknessOverlay.gameObject.SetActive(false);
+			chosenDarkness.gameObject.SetActive(false);
+		}
 	}
 
 	void insEntranceR()
 	{
 		destroyRoom();
-		Instantiate(entranceRoom, roomParent);
+		Instantiate(entranceRoom.roomPrefab, roomParent);
 		currentRoom = Array.IndexOf(selectedRooms, entranceRoom);
 	}
 
@@ -105,7 +245,7 @@ public class roomController : MonoBehaviour
 		}
 	}
 
-	GameObject getRoom(bool lr)
+	roomSO getRoom(bool lr)
 	{
 		switch (lr)
 		{
@@ -143,183 +283,8 @@ public class roomController : MonoBehaviour
 	{
 		setLR();
 		destroyRoom();
-		Instantiate(getRoom(isLeft).transform, roomParent);
+		Instantiate(getRoom(isLeft).roomPrefab.transform, roomParent);
 		getBlock();
+		toggleDarkness();
 	}
 }
-
-/* 
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
-
-public class roomController : MonoBehaviour
-{
-	public Transform roomParent;
-	public Transform enclosureParent;
-	[Header("doorway blocks")]
-	public GameObject blockL;
-	public GameObject blockR;
-	[Header("doorway height")]
-	public GameObject enclosure_walls_lab;
-	public GameObject enclosure_walls_cave;
-
-	[Header("rooms // cavern 0 is entry room")]
-	public GameObject[] labRooms;
-	public GameObject[] cavernRooms;
-	private GameObject[] selectedRooms;
-	private int minRoomsNr = 3; // 3
-	private int maxRoomsNr = 5; // 7
-	private GameObject entranceRoom;
-
-	private int currentRoom;
-	private int roomLeft;
-	private int roomRight;
-
-	public void generateLevel(gameController.level lvl)
-	{
-		switch (lvl)
-		{
-			case gameController.level.lab:
-				Instantiate(enclosure_walls_lab, enclosureParent);
-				generateLab();
-				break;
-			case gameController.level.cavern:
-				Instantiate(enclosure_walls_cave, enclosureParent);
-				generateCavern();
-				break;
-		}
-
-		destroyRoom();
-		spawnRooms();
-		insEntranceR();
-		getBlock();
-
-		//* log
-		string debug = "";
-		foreach (GameObject obj in selectedRooms)
-		{
-			debug += obj.name + ", ";
-		}
-		Debug.Log("level rooms: " + debug);
-	}
-
-	void generateLab()
-	{
-		entranceRoom = labRooms[2];
-		selectedRooms = labRooms;
-	}
-	void generateCavern()
-	{
-		// generates array of unique rooms in random order
-		entranceRoom = cavernRooms[0];
-
-		List<GameObject> roomPool = cavernRooms.ToList();
-
-		System.Random rnd = new System.Random();
-		int roomsNr = rnd.Next(minRoomsNr, maxRoomsNr + 1); // choose a random amount of rooms (+1 to include maxRNr)
-		selectedRooms = new GameObject[roomsNr]; // new empty array for that amount
-
-		for (int i = 0; i < roomsNr; i++)
-		{
-			GameObject randomRoom = roomPool[rnd.Next(roomPool.Count())]; // choose random room from all
-			selectedRooms[i] = randomRoom; // add the room
-			roomPool.Remove(randomRoom); // remove the room from the pool
-		}
-
-		if (!selectedRooms.Contains(entranceRoom)) // if the entrance room isnt there already
-			selectedRooms[rnd.Next(selectedRooms.Length)] = entranceRoom; // insert entrance room instead of one random room
-	}
-
-	void insEntranceR()
-	{
-		entranceRoom.SetActive(true);
-		// Instantiate(entranceRoom, roomParent);
-		// spawnRooms();
-		currentRoom = Array.IndexOf(selectedRooms, entranceRoom);
-	}
-
-	void setLR()
-	{
-		if (currentRoom == 0) // room is first
-		{
-			// roomLeft = emptyRoom;
-			roomRight = currentRoom + 1;
-		}
-		else if (currentRoom == selectedRooms.Length - 1) // room is last
-		{
-			roomLeft = currentRoom - 1;
-			// roomRight = emptyRoom;
-		}
-		else // room is mid
-		{
-			roomLeft = currentRoom - 1;
-			roomRight = currentRoom + 1;
-		}
-	}
-
-	int getRoom(bool lr)
-	{
-		switch (lr)
-		{
-			case true:
-				currentRoom--;
-				return roomLeft;
-			case false:
-				currentRoom++;
-				return roomRight;
-		}
-	}
-
-	void getBlock()
-	{
-		if (currentRoom == 0)
-		{
-			Instantiate(blockL, roomParent);
-		}
-		if (currentRoom == selectedRooms.Length - 1)
-		{
-			Instantiate(blockR, roomParent);
-		}
-	}
-
-	void destroyRoom()
-	{
-		foreach (Transform child in roomParent.gameObject.GetComponentInChildren<Transform>())
-		//! the thing is also considered a child so only delete the children on the children if that makes sense (no it does not. fucj the naming on this one)
-		{
-			Destroy(child.gameObject); // destroy current room
-		}
-	}
-	void hideRoom()
-	{
-		foreach (Transform child in roomParent.gameObject.GetComponentInChildren<Transform>())
-		//! the thing is also considered a child so only delete the children on the children if that makes sense (no it does not. fucj the naming on this one)
-		{
-			child.gameObject.SetActive(false);
-		}
-	}
-	void spawnRooms()
-	{
-		for (int i = 0; i < selectedRooms.Length; i++)
-		{
-			Transform inst = Instantiate(selectedRooms[i].transform, roomParent);
-			inst.gameObject.SetActive(false);
-		}
-	}
-
-	public void changeRoom(bool isLeft)
-	{
-		Debug.Log("current room: " + currentRoom);
-		setLR();
-		hideRoom();
-		selectedRooms[getRoom(isLeft)].gameObject.SetActive(true);
-		//		getRoom(isLeft).gameObject.SetActive(true);
-		getBlock();
-	}
-}
-
-
- */
