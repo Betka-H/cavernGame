@@ -77,7 +77,7 @@ public class gameController : MonoBehaviour
 
 	void toggleTabMenu()
 	{
-		Debug.Log($"menu: {itemMenu.gameObject.activeSelf}");
+		// Debug.Log($"menu: {itemMenu.gameObject.activeSelf}");
 		itemMenu.gameObject.SetActive(!itemMenu.gameObject.activeSelf);
 		switch (itemMenu.gameObject.activeSelf)
 		{
@@ -88,7 +88,7 @@ public class gameController : MonoBehaviour
 				gameState.State = gameState.gameStates.playing;
 				break;
 		}
-		Debug.LogWarning($"menu: {itemMenu.gameObject.activeSelf}");
+		// Debug.LogWarning($"menu: {itemMenu.gameObject.activeSelf}");
 	}
 
 	void OnApplicationQuit()

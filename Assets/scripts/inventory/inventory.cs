@@ -8,8 +8,8 @@ public class inventory : MonoBehaviour
 	// public Transform slotsParent;
 	// List<Transform> slots;
 
-	[Range(1, 8)]
-	public int slotLimit;
+	// [Range(1, 8)]
+	// public int slotLimit;
 
 	[HideInInspector]
 	public List<int> inventoryIds;
@@ -58,7 +58,7 @@ public class inventory : MonoBehaviour
 		}
 
 		// Debug.Log("inventory loaded");
-		// printInventory();
+		printInventory();
 	}
 	public void clearInventory()
 	{

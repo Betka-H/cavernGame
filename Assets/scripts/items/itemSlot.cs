@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class itemSlot : MonoBehaviour
 {
-	SpriteRenderer sr;
+	/* SpriteRenderer sr;
 	[SerializeField]
 	private bool isEnabled = true;
 	private bool IsEnabled
@@ -52,5 +52,5 @@ public class itemSlot : MonoBehaviour
 	void OnMouseExit()
 	{
 		sr.color = cDefault;
-	}
+	} */
 }
