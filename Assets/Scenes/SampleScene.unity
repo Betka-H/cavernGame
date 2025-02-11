@@ -282,7 +282,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 13900ab4f13e972408585fa31d522783, type: 2}
   - {fileID: 11400000, guid: dcc111c05e78c6d4b9044282e50d786b, type: 2}
   traderSpawnChance: 0
-  traderPrefab: {fileID: 0}
+  traderParent: {fileID: 1203028562}
+  traderPrefab: {fileID: 2371283748658875608, guid: ca18b40640066974b8a56ea24c543e97, type: 3}
 --- !u!4 &40118687
 Transform:
   m_ObjectHideFlags: 0
@@ -847,6 +848,43 @@ Transform:
   - {fileID: 493109989}
   m_Father: {fileID: 857848534}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &337461473
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 337461474}
+  m_Layer: 5
+  m_Name: room contents
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &337461474
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 337461473}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1837799390}
+  - {fileID: 1203028562}
+  m_Father: {fileID: 1513249485}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &463949456
 GameObject:
   m_ObjectHideFlags: 0
@@ -3135,6 +3173,54 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7785486099413518755, guid: 246c9ade3a91d5d4d8f0cbab10863c8e, type: 3}
   m_PrefabInstance: {fileID: 1183543961}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1203028561
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1203028562}
+  - component: {fileID: 1203028563}
+  m_Layer: 0
+  m_Name: trader
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1203028562
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1203028561}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 337461474}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!210 &1203028563
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1203028561}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortAtRoot: 0
 --- !u!1001 &1207681567
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4267,7 +4353,7 @@ RectTransform:
   m_Children:
   - {fileID: 1811316252}
   - {fileID: 1021697124}
-  - {fileID: 1837799390}
+  - {fileID: 337461474}
   - {fileID: 1735347852}
   - {fileID: 857848534}
   - {fileID: 625201214}
@@ -4777,7 +4863,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1735347852}
   - component: {fileID: 1735347853}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4980,7 +5066,7 @@ GameObject:
   - component: {fileID: 1823140161}
   - component: {fileID: 1823140163}
   - component: {fileID: 1823140162}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: spawnpoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5101,12 +5187,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1837799389}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1513249485}
+  m_Father: {fileID: 337461474}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1837799391
 MonoBehaviour:
@@ -5144,6 +5230,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3bb10b7994a1d9741adada90ad77a0c2, type: 2}
   - {fileID: 11400000, guid: a4cb051909aeb4348ae2e17baff76771, type: 2}
   traderSpawnChance: 0
+  traderParent: {fileID: 0}
   traderPrefab: {fileID: 0}
 --- !u!210 &1837799392
 SortingGroup:

@@ -15,7 +15,13 @@ public class roomSO : ScriptableObject
 	public int[] itemsThatSpawn;
 	[HideInInspector]
 	public bool isDark;
+	[HideInInspector]
+	public bool hasTrader;
+	[HideInInspector]
+	public Transform chosenTraderSpawn;
 
+	/* [HideInInspector]
+	public int orderOnMap; */
 
 	public void setItemSpawnLocations()
 	{
@@ -26,13 +32,13 @@ public class roomSO : ScriptableObject
 	}
 	public Transform getTraderSpawnLocation()
 	{
-		if (traderSpawnLocations.Length > 0)
+		traderSpawnLocations = roomPrefab.GetComponent<roomObj>().getTraderSpawnpoints().ToArray();
+		if (traderSpawnLocations.Count() > 0)
 		{
-			traderSpawnLocations = roomPrefab.GetComponent<roomObj>().getTraderSpawnpoints().ToArray();
-
+			// Debug.Log($"trader spawn locations for {name}: {string.Join(", ", traderSpawnLocations.)}");
 			System.Random rndForTrader = new System.Random();
 			// Debug.LogWarning($"0-{traderSpawnLocations.Length}");
-			return traderSpawnLocations[rndForTrader.Next(0, traderSpawnLocations.Length - 1)];
+			return traderSpawnLocations[rndForTrader.Next(traderSpawnLocations.Length)];
 		}
 		else return null;
 	}
