@@ -15,10 +15,16 @@ public class itemMenu : MonoBehaviour
 	[HideInInspector]
 	public item selectedItem;
 
+	public Sprite placeholderItemSprite;
+	public string placeholderItemName;
+	[TextArea]
+	public string placeholderItemDescription;
+
 	void Start()
 	{
 		gameObject.SetActive(false);
 		getSlots();
+		showTooltip(null);
 	}
 
 	void getSlots()
@@ -49,8 +55,17 @@ public class itemMenu : MonoBehaviour
 
 	public void showTooltip(item item)
 	{
-		invTxt_itemName.SetText(item.itemName);
-		invSprite_itemSprite.sprite = item.itemSprite;
-		invTxt_itemDescription.SetText(item.itemDescription);
+		if (item != null)
+		{
+			invTxt_itemName.SetText(item.itemName);
+			invSprite_itemSprite.sprite = item.itemSprite;
+			invTxt_itemDescription.SetText(item.itemDescription);
+		}
+		else
+		{
+			invTxt_itemName.SetText(placeholderItemName);
+			invSprite_itemSprite.sprite = placeholderItemSprite;
+			invTxt_itemDescription.SetText(placeholderItemDescription);
+		}
 	}
 }

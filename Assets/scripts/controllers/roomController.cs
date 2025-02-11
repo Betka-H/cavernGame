@@ -34,6 +34,11 @@ public class roomController : MonoBehaviour
 	private roomSO[] selectedRooms;
 	private roomSO entranceRoom;
 
+	[Space]
+	[HideInInspector]
+	public int traderSpawnChance;
+	public GameObject traderPrefab;
+
 	private int currentRoom;
 	private int roomLeft;
 	private int roomRight;
@@ -117,9 +122,9 @@ public class roomController : MonoBehaviour
 		if (!selectedRooms.Contains(entranceRoom)) // if the entrance room isnt there already
 			selectedRooms[rndForRoom.Next(selectedRooms.Length)] = entranceRoom; // insert entrance room instead of one random room
 
-		chooseItemSpawnLocations();
-		chooseTraderSpawnLocation();
 		chooseDarkRooms();
+		chooseItemSpawnLocations();
+		spawnTrader();
 	}
 
 	void chooseItemSpawnLocations()
@@ -129,14 +134,30 @@ public class roomController : MonoBehaviour
 			room.setItemSpawnLocations();
 		}
 	}
-	private void chooseTraderSpawnLocation()
+	private Transform chooseTraderSpawnLocation()
 	{
 		System.Random rnd = new System.Random();
-
-		foreach (roomSO room in selectedRooms)
+		if (traderSpawnChance < rnd.Next(100))
 		{
-			room.getTraderSpawnLocation();
+			List<Transform> traderSpawnpoints = new List<Transform>();
+			foreach (roomSO room in selectedRooms) // will have list of all possible spawnpoints
+			{
+				if (room.isDark) // only spawn trader in dark rooms! thats like his thing
+					traderSpawnpoints.Add(room.getTraderSpawnLocation());
+			}
+			return traderSpawnpoints[rnd.Next(traderSpawnpoints.Count())];
 		}
+		else return null; // otherwise dont spawn it
+	}
+	void spawnTrader()
+	{
+		Transform spawnLoc = chooseTraderSpawnLocation();
+		if (spawnLoc != null)
+		{
+			Instantiate(traderPrefab, spawnLoc);
+			Debug.Log($"spawned trader at room {spawnLoc.parent.name}");
+		}
+		else Debug.Log("didnt spawn trader");
 	}
 
 	void hideDarkness()

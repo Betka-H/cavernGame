@@ -10,10 +10,13 @@ public class invItem : MonoBehaviour
 	private SpriteRenderer spriteRenderer;
 	// public BoxCollider2D boxCol;
 
-	void Start()
+	private Vector3 normalScaleTransform;
+
+	void Awake()
 	{
 		itemMenu = FindObjectOfType<itemMenu>();
 		spriteRenderer = GetComponent<SpriteRenderer>();
+		setNormalScale();
 	}
 
 	void OnMouseDown()
@@ -21,13 +24,42 @@ public class invItem : MonoBehaviour
 		setTootip();
 	}
 
+	void OnEnable()
+	{
+		scaleNormal();
+	}
+	void OnDisable()
+	{
+		scaleNormal();
+	}
+
 	void OnMouseEnter()
 	{
-		transform.localScale += new Vector3(0.25f, 0.25f, 0);
+		scaleUp();
 	}
 	void OnMouseExit()
 	{
-		transform.localScale -= new Vector3(0.25f, 0.25f, 0);
+		scaleNormal();
+	}
+
+	void logScale()
+	{
+		Debug.Log($"scale: {normalScaleTransform.x}, {normalScaleTransform.y}");
+	}
+
+	void setNormalScale()
+	{
+		normalScaleTransform = transform.localScale;
+		// logScale();
+	}
+	void scaleUp()
+	{
+		transform.localScale = normalScaleTransform + new Vector3(0.25f, 0.25f, 0);
+	}
+	void scaleNormal()
+	{
+		transform.localScale = normalScaleTransform;
+		// logScale();
 	}
 
 	void setTootip()

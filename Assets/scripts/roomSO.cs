@@ -26,7 +26,7 @@ public class roomSO : ScriptableObject
 	}
 	public Transform getTraderSpawnLocation()
 	{
-		if (traderSpawnLocations.Length != 0)
+		if (traderSpawnLocations.Length > 0)
 		{
 			traderSpawnLocations = roomPrefab.GetComponent<roomObj>().getTraderSpawnpoints().ToArray();
 
