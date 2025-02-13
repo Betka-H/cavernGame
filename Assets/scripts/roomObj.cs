@@ -7,8 +7,8 @@ public class roomObj : MonoBehaviour
 	public Transform itemSpawnpointParent;
 	public Transform traderSpawnpointParent;
 
-	[HideInInspector]
-	public int orderOnMap;
+	/* [HideInInspector]
+	public int orderOnMap; */
 
 	public List<Transform> getItemSpawnpoints()
 	{

@@ -34,6 +34,7 @@ public class itemMenu : MonoBehaviour
 
 	void OnEnable()
 	{
+		showTooltip(null);
 		refreshItems();
 	}
 
