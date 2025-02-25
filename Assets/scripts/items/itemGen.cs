@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class itemGen : MonoBehaviour
 {
-	public Transform spawnpointObj;
+	/* public Transform spawnpointObj;
 	private List<Transform> spawnpoints;
 	public item[] itemPool;
 
@@ -30,5 +30,5 @@ public class itemGen : MonoBehaviour
 		// Debug.Log($"pi: {pointIndex}, ii: {itemIndex} ({itemPool[itemIndex].name})");
 
 		Instantiate(itemPool[itemIndex], spawnpoints[pointIndex]);
-	}
+	} */
 }

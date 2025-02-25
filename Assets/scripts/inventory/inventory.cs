@@ -27,10 +27,15 @@ public class inventory : MonoBehaviour
 	{
 		loadInventory();
 
+		// tempInventory();
+		// getSlots();
+	}
+
+	void tempInventory()
+	{
 		inventoryItems = allItemList.ToList();
 		inventoryItems.Remove(allItemList[8]);
 		equippedItems = new List<item> { allItemList[8] };
-		// getSlots();
 	}
 
 	/* void getSlots()

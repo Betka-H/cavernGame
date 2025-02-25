@@ -72,27 +72,29 @@ public class roomSO : ScriptableObject
 	}
 
 	[HideInInspector]
-	public item[] indexedItemsForThisRoom;
+	public List<item> itemsForThisRoom;
 	void assignItems()
 	{
 		Debug.Log("assigning items to room spawn locations");
 
-		indexedItemsForThisRoom = new item[chosenItemSpawnLocations.Count()];
+		// indexedItemsForThisRoom = new item[chosenItemSpawnLocations.Count()];
+		itemsForThisRoom.Clear();
 		// Debug.Log($"locations: {chosenItemSpawnLocations.Count()}, items: {indexedItemsForThisRoom.Count()}");
 
-		System.Random rndForitems = new System.Random();
+		System.Random rndForItems = new System.Random();
 
 		string debug = "";
 		for (int i = 0; i < chosenItemSpawnLocations.Count(); i++) // for each location
 		{
 			if (itemsThatCanSpawnInThisRoom.Count() > 0)
 			{
-				indexedItemsForThisRoom[i] = itemsThatCanSpawnInThisRoom[rndForitems.Next(itemsThatCanSpawnInThisRoom.Count())];
-				debug += $"{indexedItemsForThisRoom[i]} ({chosenItemSpawnLocations[i]}), ";
+				// indexedItemsForThisRoom[i] = itemsThatCanSpawnInThisRoom[rndForitems.Next(itemsThatCanSpawnInThisRoom.Count())];
+				itemsForThisRoom.Add(itemsThatCanSpawnInThisRoom[rndForItems.Next(itemsThatCanSpawnInThisRoom.Count())]);
+				debug += $"{itemsForThisRoom[i]} ({chosenItemSpawnLocations[i]}), ";
 			}
 			else
 			{
-				indexedItemsForThisRoom[i] = null;
+				itemsForThisRoom[i] = null;
 				debug += $"null, ";
 			}
 		}

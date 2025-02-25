@@ -187,11 +187,17 @@ public class roomController : MonoBehaviour
 		{
 			for (int i = 0; i < room.chosenItemSpawnLocations.Count(); i++)
 			{
-				GameObject spawnedItem = Instantiate(itemPrefab, itemParent);
-				spawnedItem.transform.localPosition = room.chosenItemSpawnLocations[i].position;
-				// Debug.Log($"locations: {room.chosenItemSpawnLocations.Count()}, items: {room.indexedItemsForThisRoom.Count()}");
-				spawnedItem.GetComponent<worldItem>().updateItem(room.indexedItemsForThisRoom[i]);
-				Debug.Log($"spawned item");
+				worldItem spawnedItem = Instantiate(itemPrefab, itemParent).GetComponent<worldItem>();
+				spawnedItem.roomSO = room;
+				spawnedItem.updateItem(room.itemsForThisRoom[i]);
+				spawnedItem.assignedTransform = room.chosenItemSpawnLocations[i];
+				if (spawnedItem.assignedItem != null)
+				{
+					spawnedItem.gameObject.transform.localPosition = spawnedItem.assignedTransform.position;
+					// Debug.Log($"locations: {room.chosenItemSpawnLocations.Count()}, items: {room.indexedItemsForThisRoom.Count()}");
+					// Debug.Log($"spawned item");
+				}
+				else Destroy(spawnedItem);
 			}
 		}
 	}
@@ -219,7 +225,7 @@ public class roomController : MonoBehaviour
 
 
 			//
-			/* //! TEMP FOR TESTING. force trader to spawn in entrance room
+			/* //! TEMP FOR TESTING. forces trader to spawn in entrance room
 			Debug.LogWarning("trader should be spawned elsewhere");
 			traderSpawnRooms.Clear();
 			entranceRoom.getTraderSpawnLocation();
@@ -295,7 +301,7 @@ public class roomController : MonoBehaviour
 		}
 		else
 		{
-			chosenDarkness = darknessOverlay.darknessOverlayNormal;
+			//* just gets rid of the warning. this stays. ==> chosenDarkness = darknessOverlay.darknessOverlayNormal;
 		}
 		// Debug.Log("darkness chosen: " + darknessOverlay);
 	}
@@ -450,9 +456,10 @@ public class roomController : MonoBehaviour
 
 		// items
 		destroyItems();
-		if (selectedRooms[currentRoom].indexedItemsForThisRoom.Length > 0)
+		// if (selectedRooms[currentRoom].indexedItemsForThisRoom.Length > 0)
+		if (selectedRooms[currentRoom].itemsForThisRoom.Count() > 0)
 		{
-			Debug.Log($"items for this room: {string.Join<item>(", ", selectedRooms[currentRoom].indexedItemsForThisRoom)}");
+			Debug.Log($"items for this room: {string.Join<item>(", ", selectedRooms[currentRoom].itemsForThisRoom)}");
 			spawnItems(selectedRooms[currentRoom]);
 		}
 

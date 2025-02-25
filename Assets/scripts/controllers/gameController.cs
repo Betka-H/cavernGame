@@ -12,6 +12,7 @@ public class gameController : MonoBehaviour
 
 	private roomController roomController;
 	private itemMenu itemMenu;
+	private inventory inventory;
 
 	public enum level { lab, cavern };
 	level currentLevel;
@@ -22,6 +23,7 @@ public class gameController : MonoBehaviour
 		roomController = FindObjectOfType<roomController>();
 		roomController.hasNightVision = false;
 		itemMenu = FindObjectOfType<itemMenu>(true);
+		inventory = FindObjectOfType<inventory>();
 
 		// gameState.State = gameState.gameStates.playing;
 		//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! lab should be first
@@ -39,6 +41,7 @@ public class gameController : MonoBehaviour
 		{
 			genAndSpawn();
 			clearMenus();
+			inventory.clearInventory();
 		}
 	}
 
@@ -110,8 +113,9 @@ public class gameController : MonoBehaviour
 	void todo()
 	{
 		Debug.LogError("dont forget to upload to github!");
+		Debug.LogWarning("=========================================================================");
 		Debug.LogWarning("todo:");
-		Debug.Log("have an unlockable npc which gives u a \"weather forecast\" for the next run depending on the darkness level");
+		Debug.LogWarning("have an unlockable npc which gives u a \"weather forecast\" for the next run depending on the darkness level");
 	}
 
 	public void death()
