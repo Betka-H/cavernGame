@@ -13,14 +13,21 @@ public class gameState : MonoBehaviour
 		set
 		{
 			state = value;
-			// Debug.Log($"game state: {state}");
+			Debug.Log($"game state: {state}");
+			Debug.Log($"time scale: {Time.timeScale}");
 		}
+	}
+
+	void Start()
+	{
+		// state = gameStates.playing;
 	}
 
 	void Update()
 	{
 		if (State == gameStates.paused)
 		{
+			// Debug.LogWarning("paused?!?!?");
 			// Time.timeScale = 0;
 		}
 		else

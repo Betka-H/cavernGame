@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7da829a7d78d4d44b93ae60e078e0d1b, type: 3}
-  m_Name: 002_gem_clear
+  m_Name: gem_red
   m_EditorClassIdentifier: 
-  itemName: clear gem
-  itemDescription: Gem that is clear.
-  itemSprite: {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
+  itemName: red gem
+  itemDescription: Gem that is red.
+  itemSprite: {fileID: 139969388, guid: 6204d8d4992cf9f42a02ed66e489639a, type: 3}
   itemKind: 1
   TMP_lootBehavior: 0
   lootKind: 0
-  gemColor: 7
+  gemColor: 0

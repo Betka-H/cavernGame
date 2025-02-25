@@ -16,7 +16,7 @@ public class playerAnimator : MonoBehaviour
 
 	void FixedUpdate()
 	{
-		if (gameState.State == gameState.gameStates.playing)
+		// if (gameState.State == gameState.gameStates.playing)
 		{
 			getDir();
 			animations();

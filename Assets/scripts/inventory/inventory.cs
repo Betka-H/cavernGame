@@ -14,6 +14,8 @@ public class inventory : MonoBehaviour
 
 	[HideInInspector]
 	public List<item> inventoryItems;
+	[HideInInspector]
+	public List<item> equippedItems;
 	// List<int> inventoryIds;
 
 	[Header("assorted list of all existing items by id")]
@@ -24,6 +26,10 @@ public class inventory : MonoBehaviour
 	void Start()
 	{
 		loadInventory();
+
+		inventoryItems = allItemList.ToList();
+		inventoryItems.Remove(allItemList[8]);
+		equippedItems = new List<item> { allItemList[8] };
 		// getSlots();
 	}
 
@@ -32,6 +38,14 @@ public class inventory : MonoBehaviour
 		slots = slotsParent.GetComponentsInChildren<Transform>().ToList();
 		slots.Remove(slotsParent); // fuck yoy
 	} */
+
+	public bool checkEquipment(item it)
+	{
+		// equippedItems.Any(item => inventory.allGearList[item].itemKind == itemKind.gear);
+		if (equippedItems.Contains(it))
+			return true;
+		else return false;
+	}
 
 	public void sortInventory()
 	{

@@ -126,10 +126,10 @@ TextureImporter:
       name: placeholder_gems_red
       rect:
         serializedVersion: 2
-        x: 23
-        y: 33
-        width: 135
-        height: 142
+        x: 14
+        y: 21
+        width: 89
+        height: 93
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,8 +137,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5b79c3fbda57f9f469572236c6bb18b5
-      internalID: -1856383778
+      spriteID: 9803702d0cc6d0642972b5a9b22dbe73
+      internalID: 139969388
       vertices: []
       indices: 
       edges: []
@@ -147,10 +147,10 @@ TextureImporter:
       name: placeholder_gems_orange
       rect:
         serializedVersion: 2
-        x: 195
-        y: 33
-        width: 135
-        height: 142
+        x: 126
+        y: 21
+        width: 88
+        height: 93
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -158,8 +158,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 73b724a799df7b248b9a3c8c8dd34fd5
-      internalID: -1534980302
+      spriteID: 784458164aeacb341ac0ac4f22e3c70a
+      internalID: 1549073800
       vertices: []
       indices: 
       edges: []
@@ -168,10 +168,10 @@ TextureImporter:
       name: placeholder_gems_yellow
       rect:
         serializedVersion: 2
-        x: 372
-        y: 33
-        width: 135
-        height: 142
+        x: 240
+        y: 21
+        width: 88
+        height: 93
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -179,8 +179,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 55b5323a3ec8bf444804d134da92e47c
-      internalID: -1729809125
+      spriteID: e5b60bab21348a34090c3307a7603d1f
+      internalID: -905338050
       vertices: []
       indices: 
       edges: []
@@ -189,10 +189,10 @@ TextureImporter:
       name: placeholder_gems_green
       rect:
         serializedVersion: 2
-        x: 540
-        y: 22
-        width: 135
-        height: 142
+        x: 348
+        y: 14
+        width: 89
+        height: 93
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -200,8 +200,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c360d20e60f651d4c9bc4f60fa116ffa
-      internalID: 236930857
+      spriteID: 88d54ff1c4bd9304b93b2d28aca325df
+      internalID: 916119753
       vertices: []
       indices: 
       edges: []
@@ -210,10 +210,10 @@ TextureImporter:
       name: placeholder_gems_blue
       rect:
         serializedVersion: 2
-        x: 705
-        y: 22
-        width: 135
-        height: 142
+        x: 455
+        y: 14
+        width: 88
+        height: 93
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -221,8 +221,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d6dc2dd211c7968488166916a4602ce0
-      internalID: -1483299654
+      spriteID: 44d53e3f021030d4b88f4ae00e0c2128
+      internalID: -630817053
       vertices: []
       indices: 
       edges: []
@@ -231,10 +231,10 @@ TextureImporter:
       name: placeholder_gems_purple
       rect:
         serializedVersion: 2
-        x: 863
-        y: 22
-        width: 135
-        height: 142
+        x: 557
+        y: 14
+        width: 88
+        height: 93
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -242,8 +242,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 741e6d63fee64b745828c8033a3e7275
-      internalID: -1506471346
+      spriteID: a8442ed020252b249b412548ddc88aa7
+      internalID: -1530210760
       vertices: []
       indices: 
       edges: []
@@ -252,10 +252,10 @@ TextureImporter:
       name: placeholder_gems_pink
       rect:
         serializedVersion: 2
-        x: 1033
-        y: 22
-        width: 135
-        height: 142
+        x: 667
+        y: 14
+        width: 88
+        height: 93
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -263,8 +263,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 66fc9b86f5dd7bf42983db97a06b6c1c
-      internalID: 1376370793
+      spriteID: 5392703777e0a4b4cb5c016657871c9c
+      internalID: 1327167999
       vertices: []
       indices: 
       edges: []
@@ -273,10 +273,10 @@ TextureImporter:
       name: placeholder_gems_clear
       rect:
         serializedVersion: 2
-        x: 1201
-        y: 22
-        width: 135
-        height: 142
+        x: 776
+        y: 14
+        width: 88
+        height: 93
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -284,8 +284,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4c5f947041e23b34fab339b1dd96eab5
-      internalID: 1243810526
+      spriteID: 9f5890c8f8016694c97d3bfcdf8872c5
+      internalID: 1967209947
       vertices: []
       indices: 
       edges: []
@@ -301,14 +301,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      placeholder_gems_blue: -1483299654
-      placeholder_gems_clear: 1243810526
-      placeholder_gems_green: 236930857
-      placeholder_gems_orange: -1534980302
-      placeholder_gems_pink: 1376370793
-      placeholder_gems_purple: -1506471346
-      placeholder_gems_red: -1856383778
-      placeholder_gems_yellow: -1729809125
+      placeholder_gems_blue: -630817053
+      placeholder_gems_clear: 1967209947
+      placeholder_gems_green: 916119753
+      placeholder_gems_orange: 1549073800
+      placeholder_gems_pink: 1327167999
+      placeholder_gems_purple: -1530210760
+      placeholder_gems_red: 139969388
+      placeholder_gems_yellow: -905338050
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -109,6 +109,7 @@ public class gameController : MonoBehaviour
 
 	void todo()
 	{
+		Debug.LogError("dont forget to upload to github!");
 		Debug.LogWarning("todo:");
 		Debug.Log("have an unlockable npc which gives u a \"weather forecast\" for the next run depending on the darkness level");
 	}

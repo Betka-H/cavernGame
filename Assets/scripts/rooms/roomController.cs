@@ -1,5 +1,4 @@
 using System;
-using System.Reflection;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -19,7 +18,8 @@ public class roomController : MonoBehaviour
 	public darknessLevel darknessLvl; // mainly for weather forecast
 	public bool hasNightVision;
 
-	private playerEquipment playerEquipment;
+	// private playerEquipment playerEquipment;
+	private inventory inventory;
 
 	[Space]
 	public Transform roomParent;
@@ -49,6 +49,10 @@ public class roomController : MonoBehaviour
 	private roomSO traderSpawnRoom;
 	private npcTrader npcTrader;
 
+	private int itemSpawnRate;
+	public GameObject itemPrefab;
+	public Transform itemParent;
+
 	private int currentRoom;
 	private int roomLeft;
 	private int roomRight;
@@ -56,20 +60,26 @@ public class roomController : MonoBehaviour
 	void Start()
 	{
 		//! temp value
-		traderSpawnChance = 100;
+		Debug.LogWarning("temp trader spawn chance");
+		traderSpawnChance = 50;
+		//! temp value
+		Debug.LogWarning("temp item spawn rate");
+		itemSpawnRate = 100;
 
 		//! temp value. revisit later
+		Debug.LogWarning("temp max room amount");
 		maxCavernRoomsNr = cavernRooms.Length;
 		entranceRoom = cavernRooms[0]; // determines entrance room
 
 		darknessOverlay = FindObjectOfType<darknessOL>();
-		playerEquipment = FindObjectOfType<playerEquipment>();
+		// playerEquipment = FindObjectOfType<playerEquipment>();
+		inventory = FindObjectOfType<inventory>();
 		// chooseDarkness();
 	}
 
 	public void generateLevel(gameController.level lvl)
 	{
-		Debug.Log("====================================================================");
+		Debug.Log("=============================... generating new level ...=======================================");
 
 		switch (lvl)
 		{
@@ -85,9 +95,9 @@ public class roomController : MonoBehaviour
 
 		// hideDarkness();
 
-		insEntranceR();
 		chooseDarkness();
-		toggleDarkness();
+		insEntranceR();
+		// toggleDarkness();
 
 		// logRooms();
 	}
@@ -166,9 +176,26 @@ public class roomController : MonoBehaviour
 	{
 		foreach (roomSO room in selectedRooms)
 		{
-			room.setItemSpawnLocations();
+			room.setItemsAndTheirSpawnLocations(itemSpawnRate);
+			// room.assignItems();
+			// spawnItems();
 		}
 	}
+	void spawnItems(roomSO room)
+	{
+		if (room.chosenItemSpawnLocations.Count() > 0)
+		{
+			for (int i = 0; i < room.chosenItemSpawnLocations.Count(); i++)
+			{
+				GameObject spawnedItem = Instantiate(itemPrefab, itemParent);
+				spawnedItem.transform.localPosition = room.chosenItemSpawnLocations[i].position;
+				// Debug.Log($"locations: {room.chosenItemSpawnLocations.Count()}, items: {room.indexedItemsForThisRoom.Count()}");
+				spawnedItem.GetComponent<worldItem>().updateItem(room.indexedItemsForThisRoom[i]);
+				Debug.Log($"spawned item");
+			}
+		}
+	}
+
 	private void chooseTraderSpawnLocation()
 	{
 		killTrader();
@@ -184,16 +211,22 @@ public class roomController : MonoBehaviour
 				if (room.isDark) // only spawn trader in dark rooms! thats like its thing AND NOT THE ENTRANCE ROOM. ITS FORBIDDEN THERE. IT ATE THE ELEVATOR CABLES THE LAST TIME
 				{
 					// rnd = new System.Random();
-					room.getTraderSpawnLocation();
+					room.setTraderSpawnLocation();
 					traderSpawnRooms.Add(room);
 					// Debug.Log($"adding point {traderSpawnpoints[traderSpawnpoints.Count - 1]} to trader spawn pool");
 				}
 			}
 
-			//! TEMP FOR TESTING. force trader to spawn in entrance room
+
+			//
+			/* //! TEMP FOR TESTING. force trader to spawn in entrance room
+			Debug.LogWarning("trader should be spawned elsewhere");
 			traderSpawnRooms.Clear();
 			entranceRoom.getTraderSpawnLocation();
-			traderSpawnRooms.Add(entranceRoom);
+			traderSpawnRooms.Add(entranceRoom); */
+			//
+
+
 
 			if (traderSpawnRooms.Count > 0)
 			{
@@ -249,7 +282,13 @@ public class roomController : MonoBehaviour
 	}
 	public void chooseDarkness()
 	{
-		if (playerEquipment.checkEquipment(1)) // nv goggles
+		// Debug.LogWarning("choosing darkness");
+		// if (playerEquipment.checkEquipment(1)) // nv goggles
+		// Debug.LogWarning("temp item lookup");
+		Debug.LogWarning("item lookup?");
+		// if (inventory.equippedItems.Count > 0 && inventory.checkEquipment(inventory.inventoryItems
+		// [8])) // nv goggles
+		if (true)
 		{
 			chosenDarkness = darknessOverlay.darknessOverlayNV;
 			// chosenDarkness = darknessOverlay.darknessOverlayNormal;
@@ -261,7 +300,7 @@ public class roomController : MonoBehaviour
 		// Debug.Log("darkness chosen: " + darknessOverlay);
 	}
 	public enum darknessLevel { light, midLight, midDark, dark };
-	void setDarkness()
+	void setDarknessChance()
 	{
 		// chooseDarkness();
 
@@ -294,7 +333,7 @@ public class roomController : MonoBehaviour
 	}
 	void chooseDarkRooms()
 	{
-		setDarkness();
+		setDarknessChance();
 
 		System.Random rnd = new System.Random();
 		foreach (roomSO room in selectedRooms)
@@ -312,17 +351,18 @@ public class roomController : MonoBehaviour
 		// Debug.Log(darknessOverlay);
 		if (selectedRooms[currentRoom].isDark)
 		{
-			darknessOverlay.gameObject.SetActive(true);
+			// darknessOverlay.gameObject.SetActive(true);
 			chosenDarkness.gameObject.SetActive(true);
 		}
 		else
 		{
-			darknessOverlay.gameObject.SetActive(false);
+			// darknessOverlay.gameObject.SetActive(false);
 			chosenDarkness.gameObject.SetActive(false);
 		}
+		// Debug.Log($"chosen darkness: {chosenDarkness}");
 	}
 
-	void setLR()
+	void setLeftAndRightRoomNumbers()
 	{
 		if (currentRoom == 0) // room is first
 		{
@@ -359,7 +399,7 @@ public class roomController : MonoBehaviour
 		}
 	}
 
-	void getBlock()
+	void placeDoorwayBlock()
 	{
 		if (currentRoom == 0)
 		{
@@ -379,6 +419,14 @@ public class roomController : MonoBehaviour
 			Destroy(child.gameObject); // destroy current room
 		}
 	}
+	void destroyItems()
+	{
+		foreach (Transform child in itemParent.gameObject.GetComponentInChildren<Transform>())
+		//! the thing is also considered a child so only delete the children on the children if that makes sense (no it does not. fucj the naming on this one)
+		{
+			Destroy(child.gameObject); // destroy current room
+		}
+	}
 
 	void insEntranceR()
 	{
@@ -392,12 +440,23 @@ public class roomController : MonoBehaviour
 	}
 	public void changeRoom(leftRight isLeft)
 	{
-		setLR();
+		setLeftAndRightRoomNumbers();
 		destroyRoom();
 		Instantiate(getRoom(isLeft).roomPrefab.transform, roomParent);
 		roomNumberTMP.text = $"room {currentRoom} / {selectedRooms.Length - 1}";
-		getBlock();
+		placeDoorwayBlock();
+
 		toggleDarkness();
+
+		// items
+		destroyItems();
+		if (selectedRooms[currentRoom].indexedItemsForThisRoom.Length > 0)
+		{
+			Debug.Log($"items for this room: {string.Join<item>(", ", selectedRooms[currentRoom].indexedItemsForThisRoom)}");
+			spawnItems(selectedRooms[currentRoom]);
+		}
+
+		// trader
 		if (selectedRooms[currentRoom].hasTrader)
 			spawnTrader();
 		else if (npcTrader != null)

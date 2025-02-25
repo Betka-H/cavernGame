@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class playerEquipment : MonoBehaviour
 {
-	public inventory inventory;
+	/* public inventory inventory;
 	public int[] equippedItems;
 
 	public roomController roomController;
@@ -15,5 +15,5 @@ public class playerEquipment : MonoBehaviour
 		if (equippedItems.Contains(itemId))
 			return true;
 		else return false;
-	}
+	} */
 }

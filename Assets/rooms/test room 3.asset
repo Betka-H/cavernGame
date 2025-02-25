@@ -13,6 +13,13 @@ MonoBehaviour:
   m_Name: test room 3
   m_EditorClassIdentifier: 
   roomPrefab: {fileID: 3782841008488286717, guid: 14a70259a4cec754196034958237c31a, type: 3}
-  chosenItemSpawnLocations: 
-  itemsThatSpawn: 
-  isDark: 0
+  isDark: 1
+  itemsThatCanSpawnInThisRoom:
+  - {fileID: 11400000, guid: 6560b8855f517934f97db97f620e3012, type: 2}
+  - {fileID: 11400000, guid: 7705a7d977a1dfa489f08bfc3434e33f, type: 2}
+  - {fileID: 11400000, guid: 49dce66d476ee774d9ad491cfded72a9, type: 2}
+  chosenItemSpawnLocations: []
+  hasTrader: 0
+  chosenTraderSpawn: {fileID: 3264906912150508020, guid: 14a70259a4cec754196034958237c31a, type: 3}
+  orderOnMap: 1
+  indexedItemsForThisRoom: []
