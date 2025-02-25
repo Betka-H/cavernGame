@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -12,7 +13,8 @@ public class inventory : MonoBehaviour
 	// public int slotLimit;
 
 	[HideInInspector]
-	public List<int> inventoryIds;
+	public List<item> inventoryItems;
+	// List<int> inventoryIds;
 
 	[Header("assorted list of all existing items by id")]
 	public item[] allItemList;
@@ -33,15 +35,17 @@ public class inventory : MonoBehaviour
 
 	public void sortInventory()
 	{
-		inventoryIds.Sort();
+		// inventoryIds.Sort();
+		Debug.LogWarning("sort the inventory!");
 	}
 
 	public void saveInventory()
 	{
+		Debug.LogWarning("sav the inventory!");
 		sortInventory();
 
 		// save inv);
-		File.WriteAllText(savePath, string.Join(",", inventoryIds));
+		//* File.WriteAllText(savePath, string.Join(",", inventoryIds));
 
 		// Debug.Log("inventory saved");
 		// printInventory();
@@ -51,10 +55,10 @@ public class inventory : MonoBehaviour
 		clearInventory();
 
 		// load inv
-		string[] invRead = File.ReadAllText(savePath).ToString().Split(',');
-		foreach (string s in invRead)
+		//* string[] invRead = File.ReadAllText(savePath).ToString().Split(',');
+		//* foreach (string s in invRead)
 		{
-			inventoryIds.Add(int.Parse(s));
+			//* inventoryIds.Add(int.Parse(s));
 		}
 
 		// Debug.Log("inventory loaded");
@@ -63,7 +67,8 @@ public class inventory : MonoBehaviour
 	public void clearInventory()
 	{
 		// clear inv
-		inventoryIds.Clear();
+		// inventoryIds.Clear();
+		inventoryItems.Clear();
 
 		// Debug.LogWarning("inventory cleared; remember to save!");
 	}
@@ -71,34 +76,34 @@ public class inventory : MonoBehaviour
 	{
 		sortInventory();
 
-		if (inventoryIds.Count > 0)
+		if (inventoryItems.Count > 0)
 		{
-			Debug.Log("items in inventory: " + string.Join(", ", inventoryIds)); // bro why dont i use string.join more often this is way easier than setting up a hugeass for loop
+			// Debug.Log("items in inventory: " + string.Join(", ", inventoryIds)); // bro why dont i use string.join more often this is way easier than setting up a hugeass for loop
 		}
 		else { Debug.Log("there are no items in the inventory"); }
 	}
 
-	public void addItem(int id)
+	public void addItem(item it)
 	{
 		// add item
-		inventoryIds.Add(id);
+		inventoryItems.Add(it);
 
-		Debug.Log($"added item with id {id} ({allItemList[id].itemName}) to inventory");
+		Debug.Log($"added item {it} to inventory");
 	}
-	public void removeItem(int id)
+
+	public void removeItem(item it)
 	{
 		// remove item
-		if (!inventoryIds.Contains(id))
+		if (!inventoryItems.Contains(it))
 		{
-			Debug.Log($"cannot remove id {id} cause its not there dumbass");
+			Debug.Log($"cannot remove item {it} cause its not in the inventory"); // dumbass
 		}
 		else
 		{
-			inventoryIds.Remove(id);
-			Debug.Log($"removed id {id} from inventory");
+			inventoryItems.Remove(it);
+			Debug.Log($"removed item {it} from inventory");
 		}
 	}
-
 }
 
 

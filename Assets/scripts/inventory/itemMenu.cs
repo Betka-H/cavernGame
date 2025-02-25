@@ -38,16 +38,19 @@ public class itemMenu : MonoBehaviour
 		refreshItems();
 	}
 
-	void refreshItems()
+	public void refreshItems()
 	{
+		inventoryScript.sortInventory();
+
 		if (invScreenItemSlots != null)
 		{
 			for (int i = 0; i < invScreenItemSlots.Length; i++)
 			{
 				invItem currentItem = invScreenItemSlots[i]; // current item slot
-				if (i < inventoryScript.inventoryIds.Count) // only if there are itemids left
+				if (i < inventoryScript.inventoryItems.Count) // only if there are itemids left
 				{
-					currentItem.assignItem(inventoryScript.allItemList[inventoryScript.inventoryIds[i]]); // assign ith item
+					// currentItem.assignItem(inventoryScript.allItemList[inventoryScript.inventoryIds[i]]); // assign ith item
+					currentItem.assignItem(inventoryScript.inventoryItems[i]); // assign ith item
 				}
 				else currentItem.assignItem(null); // if there are no more itemids, assign null
 			}
@@ -69,4 +72,14 @@ public class itemMenu : MonoBehaviour
 			invTxt_itemDescription.SetText(placeholderItemDescription);
 		}
 	}
+
+	/* public void remItem(item it)
+	{
+		inventoryScript.removeItem(it);
+	} */
+
+	/* public void addItem(item it)
+	{
+		inventoryScript.addItem(it);
+	} */
 }

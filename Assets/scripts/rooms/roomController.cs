@@ -6,6 +6,8 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
+public enum leftRight { left, right, entrance };
+
 public class roomController : MonoBehaviour
 {
 	public TMP_Text roomNumberTMP;
@@ -53,6 +55,7 @@ public class roomController : MonoBehaviour
 
 	void Start()
 	{
+		//! temp value
 		traderSpawnChance = 100;
 
 		//! temp value. revisit later
@@ -83,7 +86,7 @@ public class roomController : MonoBehaviour
 		// hideDarkness();
 
 		insEntranceR();
-
+		chooseDarkness();
 		toggleDarkness();
 
 		// logRooms();
@@ -121,7 +124,6 @@ public class roomController : MonoBehaviour
 	}
 	void generateCavern()
 	{
-		//!===============================================================
 		// clear console :bwomp:
 
 		// generates array of unique rooms in random order
@@ -174,7 +176,7 @@ public class roomController : MonoBehaviour
 		System.Random rnd = new System.Random();
 		if (traderSpawnChance >= rnd.Next(100))
 		{
-			Debug.Log("trader will appear (chance)");
+			// Debug.Log("trader will appear (chance)");
 			// Debug.Log("attempting to spawn trader");
 			List<roomSO> traderSpawnRooms = new List<roomSO>();
 			foreach (roomSO room in selectedRooms) // will have list of all possible spawnpoints
@@ -188,9 +190,14 @@ public class roomController : MonoBehaviour
 				}
 			}
 
+			//! TEMP FOR TESTING. force trader to spawn in entrance room
+			traderSpawnRooms.Clear();
+			entranceRoom.getTraderSpawnLocation();
+			traderSpawnRooms.Add(entranceRoom);
+
 			if (traderSpawnRooms.Count > 0)
 			{
-				// Debug.Log($"the spawnpoint pool is: {string.Join(", ", traderSpawnpoints)}");
+				// Debug.Log($"the spawnpoint pool is: {string.Join(", ", traderSpawnRooms)}");
 
 				// choose 1 random place to spawn it at
 				traderSpawnRoom = traderSpawnRooms[rnd.Next(traderSpawnRooms.Count())];
@@ -217,7 +224,7 @@ public class roomController : MonoBehaviour
 	}
 	void spawnTrader()
 	{
-		Debug.Log("this room has the trader");
+		// Debug.Log("this room has the trader");
 		npcTrader.transform.localPosition = traderSpawnRoom.chosenTraderSpawn.position;
 		npcTrader.gameObject.SetActive(true);
 	}
@@ -315,15 +322,6 @@ public class roomController : MonoBehaviour
 		}
 	}
 
-	void insEntranceR()
-	{
-		destroyRoom();
-		Instantiate(entranceRoom.roomPrefab, roomParent);
-		currentRoom = Array.IndexOf(selectedRooms, entranceRoom);
-		getBlock();
-		roomNumberTMP.text = $"room {currentRoom} / {selectedRooms.Length - 1} (ENTRANCE)";
-	}
-
 	void setLR()
 	{
 		if (currentRoom == 0) // room is first
@@ -343,16 +341,21 @@ public class roomController : MonoBehaviour
 		}
 	}
 
-	roomSO getRoom(bool lr)
+	roomSO getRoom(leftRight lr)
 	{
 		switch (lr)
 		{
-			case true:
+			case leftRight.left:
 				currentRoom--;
 				return selectedRooms[roomLeft];
-			case false:
+			case leftRight.right:
 				currentRoom++;
 				return selectedRooms[roomRight];
+			case leftRight.entrance:
+				return entranceRoom;
+			default:
+				Debug.LogError("wrong lr");
+				return null;
 		}
 	}
 
@@ -377,7 +380,17 @@ public class roomController : MonoBehaviour
 		}
 	}
 
-	public void changeRoom(bool isLeft)
+	void insEntranceR()
+	{
+		// destroyRoom();
+		// Instantiate(entranceRoom.roomPrefab, roomParent);
+		// getBlock();
+		currentRoom = Array.IndexOf(selectedRooms, entranceRoom);
+		roomNumberTMP.text = $"room {currentRoom} / {selectedRooms.Length - 1} (ENTRANCE)";
+
+		changeRoom(leftRight.entrance);
+	}
+	public void changeRoom(leftRight isLeft)
 	{
 		setLR();
 		destroyRoom();

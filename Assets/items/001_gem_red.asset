@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: red gem
   itemDescription: Gem that is red.
-  itemSprite: {fileID: -225499093, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
+  itemSprite: {fileID: -1856383778, guid: 6204d8d4992cf9f42a02ed66e489639a, type: 3}
   itemKind: 1
   TMP_lootBehavior: 0
   lootKind: 0

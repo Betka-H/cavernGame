@@ -272,7 +272,7 @@ MonoBehaviour:
     m_Bits: 128
   speed: 8
   bounciness: 10
-  agility: 2
+  agility: 0
   feet: {fileID: 1965521005522208259}
   feetSize: 0.3
   arms: {fileID: 9163591151191938081}
@@ -361,6 +361,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c9ba01c54e5ef84ebc3e44d118f9c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hasNightVision: 0
 --- !u!1 &7335901606450030131
 GameObject:
   m_ObjectHideFlags: 0

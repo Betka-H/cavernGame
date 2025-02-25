@@ -4,7 +4,8 @@ public class roomWarp : MonoBehaviour
 {
 	public Transform destination;
 	public roomController rController;
-	public bool isLeft;
+	[Tooltip("is left")]
+	public leftRight lr;
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
@@ -21,7 +22,7 @@ public class roomWarp : MonoBehaviour
 
 	void changeRoom()
 	{
-		rController.changeRoom(isLeft);
+		rController.changeRoom(lr);
 	}
 
 	//* fade

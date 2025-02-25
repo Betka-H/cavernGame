@@ -6,6 +6,7 @@ public class invItem : MonoBehaviour
 	public item assignedItem;
 
 	private itemMenu itemMenu;
+	traderMenu traderMenu;
 
 	private SpriteRenderer spriteRenderer;
 	// public BoxCollider2D boxCol;
@@ -21,7 +22,15 @@ public class invItem : MonoBehaviour
 
 	void OnMouseDown()
 	{
-		setTootip();
+		setTooltip();
+
+		Debug.Log("temporary"); // v v v v v
+		traderMenu = FindObjectOfType<traderMenu>();
+
+		if (traderMenu.gameObject.activeSelf)
+		{
+			traderMenu.offer();
+		}
 	}
 
 	void OnEnable()
@@ -62,9 +71,10 @@ public class invItem : MonoBehaviour
 		// logScale();
 	}
 
-	void setTootip()
+	void setTooltip()
 	{
 		// Debug.Log(assignedItem);
+		itemMenu.selectedItem = assignedItem;
 		itemMenu.showTooltip(assignedItem);
 	}
 

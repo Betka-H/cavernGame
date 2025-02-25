@@ -32,6 +32,11 @@ public class playerMovement : MonoBehaviour
 		hasJumped = false;
 		wallJumps = 0;
 	}
+	void FixedUpdate()
+	{
+		// movement();
+		// Debug.LogWarning("player movement changed to fixedupdate. beware of weird shit");
+	}
 	void Update()
 	{
 		movement();

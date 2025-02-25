@@ -1,3 +1,4 @@
+using System;
 using UnityEditor.SearchService;
 using UnityEngine;
 
@@ -22,7 +23,7 @@ public class gameController : MonoBehaviour
 		roomController.hasNightVision = false;
 		itemMenu = FindObjectOfType<itemMenu>(true);
 
-		gameState.State = gameState.gameStates.playing;
+		// gameState.State = gameState.gameStates.playing;
 		//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! lab should be first
 		currentLevel = level.cavern;
 		genAndSpawn();
@@ -37,14 +38,23 @@ public class gameController : MonoBehaviour
 		if (Input.GetKeyDown(KeyCode.R))
 		{
 			genAndSpawn();
+			clearMenus();
 		}
 	}
 
 	public void genAndSpawn()
 	{
-		roomController.chooseDarkness();
+		// roomController.chooseDarkness();
 		roomController.generateLevel(currentLevel);
 		spawnPlayer(currentLevel);
+	}
+	public Transform[] menusToDisable;
+	void clearMenus()
+	{
+		foreach (Transform menu in menusToDisable)
+		{
+			menu.gameObject.SetActive(false);
+		}
 	}
 
 	GameObject playerPrefab;
@@ -101,6 +111,11 @@ public class gameController : MonoBehaviour
 	{
 		Debug.LogWarning("todo:");
 		Debug.Log("have an unlockable npc which gives u a \"weather forecast\" for the next run depending on the darkness level");
+	}
+
+	public void death()
+	{
+		Debug.Log("death");
 	}
 }
 
