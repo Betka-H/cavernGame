@@ -2,7 +2,7 @@ using UnityEngine;
 
 public enum bodyEqKind { hazmatSuit };
 
-[CreateAssetMenu(menuName = "itemE_BodyEq")]
+/* [CreateAssetMenu(menuName = "itemE_BodyEq")]
 public class bodyEquip : gear
 {
 	[HideInInspector]
@@ -10,4 +10,4 @@ public class bodyEquip : gear
 
 	[Header("body equip")]
 	public bodyEqKind bodyEqKind;
-}
+} */

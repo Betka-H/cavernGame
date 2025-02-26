@@ -41,10 +41,14 @@ public class playerMovement : MonoBehaviour
 	void Update()
 	{
 		if (alive)
+		{
 			movement();
+			Time.timeScale = 1;
+		}
 		else
 		{
-			rb.velocity = Vector3.zero;
+			// rb.velocity = Vector3.zero;
+			Time.timeScale = 0;
 		}
 	}
 

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public enum biomatKind { soil, plant, liquid, animal }
 
-[CreateAssetMenu(menuName = "itemL_BioMat")]
+/* [CreateAssetMenu(menuName = "itemL_BioMat")]
 public class bioMat : loot
 {
 	[HideInInspector]
@@ -10,4 +10,4 @@ public class bioMat : loot
 
 	[Header("biomaterial")]
 	public biomatKind biomatKind;
-}
+} */

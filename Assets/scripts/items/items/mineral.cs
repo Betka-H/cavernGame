@@ -9,6 +9,6 @@ public class mineral : loot
 	public lootKind lootKind = lootKind.mineral;
 
 	[Header("mineral")]
-	[Tooltip("red gem - ruby, orange gem - , yellow gem - , green gem - emerald, blue gem - , purple gem - amethyst, pink gem - , clear gem - diamond")]
+	[Tooltip("red gem - ruby, orange gem - gold, yellow gem - sulphur, green gem - emerald, blue gem - lazurite, purple gem - amethyst, pink gem - , clear gem - diamond")]
 	public gemColor gemColor;
 }

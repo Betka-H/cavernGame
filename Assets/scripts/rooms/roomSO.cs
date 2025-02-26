@@ -54,7 +54,7 @@ public class roomSO : ScriptableObject
 			// Debug.Log($"all spawn locs: {string.Join<Transform>(", ", allItemSpawnLocations)}");
 			System.Random rnd = new System.Random();
 
-			if (rnd.Next(100) <= chance) // chance that any items will generate
+			// if (rnd.Next(100) <= chance) // chance that any items will generate
 			{
 				foreach (Transform lootLocation in allLootSpawnLocations)
 				{

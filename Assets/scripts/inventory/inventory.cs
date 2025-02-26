@@ -18,14 +18,18 @@ public class inventory : MonoBehaviour
 	public List<item> equippedItems;
 	// List<int> inventoryIds;
 
-	[Header("assorted list of all existing items by id")]
-	public item[] allItemList;
+	[HideInInspector]
+	public inventoryContents inventoryContents;
+
+	// [Header("assorted list of all existing items by id")]
+	// public item[] allItemList;
 
 	private string savePath = "inventory-save.txt";
 
 	void Start()
 	{
 		loadInventory();
+		inventoryContents = FindObjectOfType<inventoryContents>();
 
 		// tempInventory();
 		// getSlots();
@@ -33,9 +37,9 @@ public class inventory : MonoBehaviour
 
 	void tempInventory()
 	{
-		inventoryItems = allItemList.ToList();
-		inventoryItems.Remove(allItemList[8]);
-		equippedItems = new List<item> { allItemList[8] };
+		inventoryItems = inventoryContents.allItemList.ToList();
+		inventoryItems.Remove(inventoryContents.allItemList[8]);
+		equippedItems = new List<item> { inventoryContents.allItemList[8] };
 	}
 
 	/* void getSlots()

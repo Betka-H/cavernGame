@@ -2,7 +2,7 @@ using UnityEngine;
 
 public enum handEqKind { pickaxe, sledgehammer, vial };
 
-[CreateAssetMenu(menuName = "itemE_HandEq")]
+/* [CreateAssetMenu(menuName = "itemE_HandEq")]
 public class handEquip : gear
 {
 	[HideInInspector]
@@ -10,4 +10,4 @@ public class handEquip : gear
 
 	[Header("hand equip")]
 	public handEqKind handEqKind;
-}
+} */

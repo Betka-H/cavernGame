@@ -109,7 +109,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6560b8855f517934f97db97f620e3012, type: 2}
   - {fileID: 11400000, guid: 7705a7d977a1dfa489f08bfc3434e33f, type: 2}
   traderScrapPool:
-  - {fileID: 11400000, guid: d9435f25ba1720049aacd6b7230c58f5, type: 2}
+  - {fileID: 11400000, guid: 2eacc2c6f1934ce41a7f83a454297fc0, type: 2}
   scrapChance: 100
 --- !u!114 &1011795411703474659
 MonoBehaviour:

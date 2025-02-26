@@ -35,7 +35,7 @@ public class gameController : MonoBehaviour
 	{
 		if (Input.GetKeyDown(KeyCode.Q))
 		{
-			toggleTabMenu();
+			toggleQMenu();
 		}
 		if (Input.GetKeyDown(KeyCode.R))
 		{
@@ -91,10 +91,13 @@ public class gameController : MonoBehaviour
 		}
 	}
 
-	void toggleTabMenu()
+	public missionMenu missionMenu;
+	void toggleQMenu()
 	{
 		// Debug.Log($"menu: {itemMenu.gameObject.activeSelf}");
 		itemMenu.gameObject.SetActive(!itemMenu.gameObject.activeSelf);
+		missionMenu.gameObject.SetActive(itemMenu.gameObject.activeSelf);
+
 		switch (itemMenu.gameObject.activeSelf)
 		{
 			case true:

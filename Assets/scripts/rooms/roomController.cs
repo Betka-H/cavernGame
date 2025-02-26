@@ -294,14 +294,15 @@ public class roomController : MonoBehaviour
 		Debug.LogWarning("item lookup?");
 		// if (inventory.equippedItems.Count > 0 && inventory.checkEquipment(inventory.inventoryItems
 		// [8])) // nv goggles
-		if (true)
+		if (inventory.checkEquipment(inventory.inventoryContents.nightVisionGoggles))
 		{
 			chosenDarkness = darknessOverlay.darknessOverlayNV;
 			// chosenDarkness = darknessOverlay.darknessOverlayNormal;
 		}
 		else
 		{
-			//* just gets rid of the warning. this stays. ==> chosenDarkness = darknessOverlay.darknessOverlayNormal;
+			//* just gets rid of the warning. this stays. ==> 
+			chosenDarkness = darknessOverlay.darknessOverlayNormal;
 		}
 		// Debug.Log("darkness chosen: " + darknessOverlay);
 	}

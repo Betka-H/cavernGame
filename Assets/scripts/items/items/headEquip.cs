@@ -2,7 +2,7 @@ using UnityEngine;
 
 public enum headEqKind { NVgoggles };
 
-[CreateAssetMenu(menuName = "itemE_HeadEq")]
+/* [CreateAssetMenu(menuName = "itemE_HeadEq")]
 public class headEquip : gear
 {
 	[HideInInspector]
@@ -10,4 +10,4 @@ public class headEquip : gear
 
 	[Header("head equip")]
 	public headEqKind headEqKind;
-}
+} */

@@ -61,9 +61,9 @@ public class worldItem : MonoBehaviour
 	{
 		// Debug.Log($"ie length: {roomSO.itemsForThisRoom.Count()}, index: {Array.IndexOf(roomSO.itemsForThisRoom.ToArray(), assignedItem)}");
 		// roomSO.indexedItemsForThisRoom[Array.IndexOf(roomSO.indexedItemsForThisRoom.ToArray(), assignedItem)] = null;
-		Debug.Log($"items in room: {string.Join(", ", roomSO.lootForThisRoom)}, assigned item:{assignedItem}");
+		// Debug.Log($"items in room: {string.Join(", ", roomSO.lootForThisRoom)}, assigned item:{assignedItem}");
 		roomSO.lootForThisRoom.Remove(assignedItem);
-		Debug.Log($"items now in room: {string.Join(", ", roomSO.lootForThisRoom)}, assigned item:{assignedItem}");
+		// Debug.Log($"items now in room: {string.Join(", ", roomSO.lootForThisRoom)}, assigned item:{assignedItem}");
 		roomSO.chosenLootSpawnLocations.Remove(assignedTransform);
 	}
 }
