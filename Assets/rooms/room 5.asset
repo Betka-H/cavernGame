@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomPrefab: {fileID: 3782841008488286717, guid: 71ee1621f066f334095f29c631d8d890, type: 3}
   isDark: 1
-  itemsThatCanSpawnInThisRoom:
+  lootThatCanSpawnInThisRoom:
+  - {fileID: 11400000, guid: 7705a7d977a1dfa489f08bfc3434e33f, type: 2}
+  - {fileID: 11400000, guid: 175234859b1b8a641a8cafa6b1fdac75, type: 2}
   - {fileID: 11400000, guid: f8d3aae295ec25e4eb343b76e68759fb, type: 2}
-  - {fileID: 11400000, guid: 6560b8855f517934f97db97f620e3012, type: 2}
-  - {fileID: 11400000, guid: 49dce66d476ee774d9ad491cfded72a9, type: 2}
-  chosenItemSpawnLocations: []
+  chosenLootSpawnLocations: []
   hasTrader: 0
   chosenTraderSpawn: {fileID: 3626858878294524511, guid: 71ee1621f066f334095f29c631d8d890, type: 3}
   orderOnMap: 3
-  indexedItemsForThisRoom: []
+  lootForThisRoom: []

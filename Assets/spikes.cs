@@ -2,7 +2,12 @@ using UnityEngine;
 
 public class spikes : MonoBehaviour
 {
-	public gameController gameController;
+	private gameController gameController;
+
+	void Start()
+	{
+		gameController = FindObjectOfType<gameController>();
+	}
 
 	void OnTriggerEnter2D(Collider2D other)
 	{

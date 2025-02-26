@@ -16,6 +16,6 @@ MonoBehaviour:
   itemDescription: Gem that is clear.
   itemSprite: {fileID: 1967209947, guid: 6204d8d4992cf9f42a02ed66e489639a, type: 3}
   itemKind: 1
-  TMP_lootBehavior: 0
+  rarity: 68
   lootKind: 0
   gemColor: 7

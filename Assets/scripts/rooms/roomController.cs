@@ -64,7 +64,7 @@ public class roomController : MonoBehaviour
 		traderSpawnChance = 50;
 		//! temp value
 		Debug.LogWarning("temp item spawn rate");
-		itemSpawnRate = 100;
+		itemSpawnRate = 50;
 
 		//! temp value. revisit later
 		Debug.LogWarning("temp max room amount");
@@ -176,21 +176,21 @@ public class roomController : MonoBehaviour
 	{
 		foreach (roomSO room in selectedRooms)
 		{
-			room.setItemsAndTheirSpawnLocations(itemSpawnRate);
+			room.setLootAndTheirSpawnLocations(itemSpawnRate);
 			// room.assignItems();
 			// spawnItems();
 		}
 	}
 	void spawnItems(roomSO room)
 	{
-		if (room.chosenItemSpawnLocations.Count() > 0)
+		if (room.chosenLootSpawnLocations.Count() > 0)
 		{
-			for (int i = 0; i < room.chosenItemSpawnLocations.Count(); i++)
+			for (int i = 0; i < room.chosenLootSpawnLocations.Count(); i++)
 			{
 				worldItem spawnedItem = Instantiate(itemPrefab, itemParent).GetComponent<worldItem>();
 				spawnedItem.roomSO = room;
-				spawnedItem.updateItem(room.itemsForThisRoom[i]);
-				spawnedItem.assignedTransform = room.chosenItemSpawnLocations[i];
+				spawnedItem.updateItem(room.lootForThisRoom[i]);
+				spawnedItem.assignedTransform = room.chosenLootSpawnLocations[i];
 				if (spawnedItem.assignedItem != null)
 				{
 					spawnedItem.gameObject.transform.localPosition = spawnedItem.assignedTransform.position;
@@ -457,9 +457,9 @@ public class roomController : MonoBehaviour
 		// items
 		destroyItems();
 		// if (selectedRooms[currentRoom].indexedItemsForThisRoom.Length > 0)
-		if (selectedRooms[currentRoom].itemsForThisRoom.Count() > 0)
+		if (selectedRooms[currentRoom].lootForThisRoom.Count() > 0)
 		{
-			Debug.Log($"items for this room: {string.Join<item>(", ", selectedRooms[currentRoom].itemsForThisRoom)}");
+			// Debug.Log($"items for this room: {string.Join<item>(", ", selectedRooms[currentRoom].itemsForThisRoom)}");
 			spawnItems(selectedRooms[currentRoom]);
 		}
 

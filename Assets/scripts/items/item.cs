@@ -32,7 +32,9 @@ public class loot : item
 	public itemKind itemKind = itemKind.loot;
 
 	[Header("loot")]
-	public int TMP_lootBehavior;
+	[Tooltip("the larger the number, the more common the item is")]
+	[Range(1, 100)]
+	public int rarity;
 }
 
 //? GEAR: equipable. cannot be found as loot in the cave

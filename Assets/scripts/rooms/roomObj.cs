@@ -10,7 +10,7 @@ public class roomObj : MonoBehaviour
 	/* [HideInInspector]
 	public int orderOnMap; */
 
-	public List<Transform> getItemSpawnpoints()
+	public List<Transform> getLootSpawnpoints()
 	{
 		List<Transform> sps = itemSpawnpointParent.GetComponentsInChildren<Transform>().ToList();
 		sps.Remove(itemSpawnpointParent);

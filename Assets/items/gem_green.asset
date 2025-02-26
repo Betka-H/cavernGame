@@ -16,6 +16,6 @@ MonoBehaviour:
   itemDescription: Gem that is green.
   itemSprite: {fileID: 916119753, guid: 6204d8d4992cf9f42a02ed66e489639a, type: 3}
   itemKind: 1
-  TMP_lootBehavior: 0
+  rarity: 36
   lootKind: 0
   gemColor: 3

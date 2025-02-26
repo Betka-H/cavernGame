@@ -16,10 +16,11 @@ public class roomSO : ScriptableObject
 
 	private roomController roomController;
 
-	public List<item> itemsThatCanSpawnInThisRoom;
-	private Transform[] allItemSpawnLocations;
+	public List<loot> lootThatCanSpawnInThisRoom;
+	private List<loot> lootThatCanSpawnInThisRoomAssortedByRarity;
+	private Transform[] allLootSpawnLocations;
 	[HideInInspector]
-	public List<Transform> chosenItemSpawnLocations;
+	public List<Transform> chosenLootSpawnLocations;
 
 	[HideInInspector]
 	public bool hasTrader;
@@ -35,7 +36,7 @@ public class roomSO : ScriptableObject
 		// roomController = FindObjectOfType<roomController>();
 	}
 
-	public void setItemsAndTheirSpawnLocations(int chance)
+	public void setLootAndTheirSpawnLocations(int chance)
 	{
 		/* allSpawnLocations = roomPrefab.GetComponent<roomObj>().getItemSpawnpoints().ToArray();
 		// Debug.LogWarning($"{roomPrefab.name} has {allSpawnLocations.Count()} item spawn locations");
@@ -43,23 +44,23 @@ public class roomSO : ScriptableObject
 
 		// Debug.Log("-----------------------");
 
-		allItemSpawnLocations = roomPrefab.GetComponent<roomObj>().getItemSpawnpoints().ToArray();
+		allLootSpawnLocations = roomPrefab.GetComponent<roomObj>().getLootSpawnpoints().ToArray();
 
-		chosenItemSpawnLocations.Clear();
+		chosenLootSpawnLocations.Clear();
 
-		Debug.Log($"all spawn locs: {allItemSpawnLocations.Count()}, all items: {itemsThatCanSpawnInThisRoom.Count()}");
-		if (allItemSpawnLocations.Count() > 0 && itemsThatCanSpawnInThisRoom.Count() > 0)
+		// Debug.Log($"all spawn locs: {allItemSpawnLocations.Count()}, all items: {itemsThatCanSpawnInThisRoom.Count()}");
+		if (allLootSpawnLocations.Count() > 0 && lootThatCanSpawnInThisRoom.Count() > 0)
 		{
 			// Debug.Log($"all spawn locs: {string.Join<Transform>(", ", allItemSpawnLocations)}");
 			System.Random rnd = new System.Random();
 
 			if (rnd.Next(100) <= chance) // chance that any items will generate
 			{
-				foreach (Transform itemLocation in allItemSpawnLocations)
+				foreach (Transform lootLocation in allLootSpawnLocations)
 				{
 					if (rnd.Next(100) <= chance) // choose locations
 					{
-						chosenItemSpawnLocations.Add(itemLocation);
+						chosenLootSpawnLocations.Add(lootLocation);
 						// Debug.Log($"adding {itemLocation} to loc list");
 					}
 				}
@@ -68,37 +69,54 @@ public class roomSO : ScriptableObject
 		}
 
 		// if (itemsThatCanSpawnInThisRoom.Count() > 0 && chosenItemSpawnLocations.Count() > 0)
-		assignItems();
+		organiseLootByRarity();
+		assignLoot();
 	}
-
-	[HideInInspector]
-	public List<item> itemsForThisRoom;
-	void assignItems()
+	void organiseLootByRarity()
 	{
-		Debug.Log("assigning items to room spawn locations");
+		// Debug.Log($"loot that can spawn: {string.Join(", ", lootThatCanSpawnInThisRoom)}");
+		lootThatCanSpawnInThisRoomAssortedByRarity.Clear();
+		foreach (loot loot in lootThatCanSpawnInThisRoom)
+		{
+			// Debug.Log($"rarity thing?????");
+			for (int i = 1; i <= loot.rarity; i++)
+			{
+				// adds the loot as many times as it is rare
+				lootThatCanSpawnInThisRoomAssortedByRarity.Add(loot);
+
+				// Debug.Log($"rarity thing {i}");
+			}
+		}
+	}
+	[HideInInspector]
+	public List<loot> lootForThisRoom;
+	void assignLoot()
+	{
+		// Debug.Log("assigning items to room spawn locations");
 
 		// indexedItemsForThisRoom = new item[chosenItemSpawnLocations.Count()];
-		itemsForThisRoom.Clear();
+		lootForThisRoom.Clear();
 		// Debug.Log($"locations: {chosenItemSpawnLocations.Count()}, items: {indexedItemsForThisRoom.Count()}");
 
-		System.Random rndForItems = new System.Random();
+		System.Random rndForLoot = new System.Random();
 
 		string debug = "";
-		for (int i = 0; i < chosenItemSpawnLocations.Count(); i++) // for each location
+		for (int i = 0; i < chosenLootSpawnLocations.Count(); i++) // for each location
 		{
-			if (itemsThatCanSpawnInThisRoom.Count() > 0)
+			if (lootThatCanSpawnInThisRoomAssortedByRarity.Count() > 0)
 			{
 				// indexedItemsForThisRoom[i] = itemsThatCanSpawnInThisRoom[rndForitems.Next(itemsThatCanSpawnInThisRoom.Count())];
-				itemsForThisRoom.Add(itemsThatCanSpawnInThisRoom[rndForItems.Next(itemsThatCanSpawnInThisRoom.Count())]);
-				debug += $"{itemsForThisRoom[i]} ({chosenItemSpawnLocations[i]}), ";
+				loot randomLoot = lootThatCanSpawnInThisRoomAssortedByRarity[rndForLoot.Next(lootThatCanSpawnInThisRoomAssortedByRarity.Count())];
+				lootForThisRoom.Add(randomLoot);
+				debug += $"{lootForThisRoom[i]} ({chosenLootSpawnLocations[i]}), ";
 			}
 			else
 			{
-				itemsForThisRoom[i] = null;
+				// lootForThisRoom[i] = null;
 				debug += $"null, ";
 			}
 		}
-		Debug.Log($"room {name} assigned items: {debug}");
+		// Debug.Log($"room {name} assigned items: {debug}");
 	}/* 
 	public void spawnItems()
 	{
@@ -114,10 +132,10 @@ public class roomSO : ScriptableObject
 			Debug.Log($"spawned item: {spawnedItem}");
 		}
 	} */
-	public void spawnItems()
+	/* public void spawnItems()
 	{
 
-	}
+	} */
 
 	public void setTraderSpawnLocation()
 	{

@@ -5,7 +5,7 @@ using UnityEngine;
 public class worldItem : MonoBehaviour
 {
 	[HideInInspector]
-	public item assignedItem;
+	public loot assignedItem;
 	[HideInInspector]
 	public Transform assignedTransform;
 	public SpriteRenderer spriteRenderer;
@@ -18,7 +18,7 @@ public class worldItem : MonoBehaviour
 		inventory = FindObjectOfType<inventory>();
 	}
 
-	public void updateItem(item it)
+	public void updateItem(loot it)
 	{
 		assignedItem = it;
 		if (it != null)
@@ -61,9 +61,9 @@ public class worldItem : MonoBehaviour
 	{
 		// Debug.Log($"ie length: {roomSO.itemsForThisRoom.Count()}, index: {Array.IndexOf(roomSO.itemsForThisRoom.ToArray(), assignedItem)}");
 		// roomSO.indexedItemsForThisRoom[Array.IndexOf(roomSO.indexedItemsForThisRoom.ToArray(), assignedItem)] = null;
-		Debug.Log($"items in room: {string.Join(", ", roomSO.itemsForThisRoom)}, assigned item:{assignedItem}");
-		roomSO.itemsForThisRoom.Remove(assignedItem);
-		Debug.Log($"items now in room: {string.Join(", ", roomSO.itemsForThisRoom)}, assigned item:{assignedItem}");
-		roomSO.chosenItemSpawnLocations.Remove(assignedTransform);
+		Debug.Log($"items in room: {string.Join(", ", roomSO.lootForThisRoom)}, assigned item:{assignedItem}");
+		roomSO.lootForThisRoom.Remove(assignedItem);
+		Debug.Log($"items now in room: {string.Join(", ", roomSO.lootForThisRoom)}, assigned item:{assignedItem}");
+		roomSO.chosenLootSpawnLocations.Remove(assignedTransform);
 	}
 }
