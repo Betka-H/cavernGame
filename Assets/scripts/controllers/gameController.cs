@@ -42,6 +42,7 @@ public class gameController : MonoBehaviour
 			genAndSpawn();
 			clearMenus();
 			inventory.clearInventory();
+			deathScreen.SetActive(false);
 		}
 	}
 
@@ -61,6 +62,7 @@ public class gameController : MonoBehaviour
 	}
 
 	GameObject playerPrefab;
+	GameObject player;
 	void spawnPlayer(level lvl)
 	{
 		destroyPlayer();
@@ -73,8 +75,9 @@ public class gameController : MonoBehaviour
 				playerPrefab = cavePlayerPrefab;
 				break;
 		}
-		GameObject player = Instantiate(playerPrefab, playerParent.transform);
+		player = Instantiate(playerPrefab, playerParent.transform);
 		player.transform.position = spawnPoint.position;
+		player.GetComponent<playerMovement>().alive = true;
 	}
 	void destroyPlayer()
 	{
@@ -118,9 +121,13 @@ public class gameController : MonoBehaviour
 		Debug.LogWarning("have an unlockable npc which gives u a \"weather forecast\" for the next run depending on the darkness level");
 	}
 
+	public GameObject deathScreen;
 	public void death()
 	{
 		Debug.Log("death");
+		deathScreen.SetActive(true);
+		// destroyPlayer();
+		player.GetComponent<playerMovement>().alive = false;
 	}
 }
 

@@ -3,6 +3,7 @@ using UnityEngine;
 public class playerMovement : MonoBehaviour
 {
 	private Rigidbody2D rb;
+	public bool alive;
 
 	[Header("collision types or smthing")]
 	public LayerMask ground;
@@ -39,7 +40,12 @@ public class playerMovement : MonoBehaviour
 	}
 	void Update()
 	{
-		movement();
+		if (alive)
+			movement();
+		else
+		{
+			rb.velocity = Vector3.zero;
+		}
 	}
 
 	// if feet are within a distance from ground (or wall) layer

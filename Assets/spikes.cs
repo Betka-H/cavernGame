@@ -11,6 +11,13 @@ public class spikes : MonoBehaviour
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
+		/* if (other.gameObject.CompareTag("player"))
+		{
+			die();
+		} */
+	}
+	void OnCollisionEnter2D(Collision2D other)
+	{
 		if (other.gameObject.CompareTag("player"))
 		{
 			die();

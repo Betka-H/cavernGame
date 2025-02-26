@@ -5,7 +5,7 @@ public class playerAnimator : MonoBehaviour
 	private Rigidbody2D rb;
 	private Animator animator;
 
-	private enum direction { idle, up, down, right, left };
+	private enum direction { idle, up, down, right, left, dead };
 	private direction dir;
 
 	void Start()
@@ -25,7 +25,11 @@ public class playerAnimator : MonoBehaviour
 
 	void getDir()
 	{
-		if (rb.velocity.x == 0 && rb.velocity.y == 0)
+		if (!GetComponentInParent<playerMovement>().alive)
+		{
+			dir = direction.dead;
+		}
+		else if (rb.velocity.x == 0 && rb.velocity.y == 0)
 		{
 			dir = direction.idle;
 		}
@@ -67,6 +71,9 @@ public class playerAnimator : MonoBehaviour
 			case direction.left:
 				animator.SetBool("left", true);
 				break;
+			case direction.dead:
+				animator.SetBool("dead", true);
+				break;
 		}
 		void stop()
 		{
@@ -75,6 +82,7 @@ public class playerAnimator : MonoBehaviour
 			animator.SetBool("right", false);
 			animator.SetBool("up", false);
 			animator.SetBool("down", false);
+			animator.SetBool("dead", false);
 		}
 	}
 }

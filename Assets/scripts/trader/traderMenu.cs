@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -103,6 +104,7 @@ public class traderMenu : MonoBehaviour
 				// chance stuff
 
 				updateHands();
+				clearTooltip();
 			}
 			else Debug.Log("cannot trade the same item");
 		}
@@ -112,6 +114,12 @@ public class traderMenu : MonoBehaviour
 			// chance stuff? make it more agitated when you offer nothing
 		}
 	}
+
+	private void clearTooltip()
+	{
+		itemMenu.showTooltip(null);
+	}
+
 	void showTradeCount()
 	{
 		timesTradedInfoDisp.text = $"times traded: {timesTraded}";
