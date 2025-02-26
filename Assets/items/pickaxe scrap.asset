@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9da6ac93b011a0343a2181077a0d1e9b, type: 3}
+  m_Name: pickaxe scrap
+  m_EditorClassIdentifier: 
+  itemName: pickaxe scrap
+  itemDescription: piece of pickaxe
+  itemSprite: {fileID: 21300000, guid: fcc60970415a3c14488325aae3a17acd, type: 3}
+  wholeGear: {fileID: 11400000, guid: 6a62c3feb9724e34a929076bbb422ac8, type: 2}

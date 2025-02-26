@@ -214,7 +214,7 @@ public class roomController : MonoBehaviour
 			List<roomSO> traderSpawnRooms = new List<roomSO>();
 			foreach (roomSO room in selectedRooms) // will have list of all possible spawnpoints
 			{
-				if (room.isDark) // only spawn trader in dark rooms! thats like its thing AND NOT THE ENTRANCE ROOM. ITS FORBIDDEN THERE. IT ATE THE ELEVATOR CABLES THE LAST TIME
+				if (room.isDark && room != entranceRoom) // only spawn trader in dark rooms! thats like its thing AND NOT THE ENTRANCE ROOM. ITS FORBIDDEN THERE. IT ATE THE ELEVATOR CABLES THE LAST TIME
 				{
 					// rnd = new System.Random();
 					room.setTraderSpawnLocation();

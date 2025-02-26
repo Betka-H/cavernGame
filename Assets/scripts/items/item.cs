@@ -1,7 +1,7 @@
 using UnityEngine;
 
 //? all items. further divided into loot and gear
-public enum itemKind { empty, loot, gear };
+// public enum itemKind { empty, loot, gear };
 public class item : ScriptableObject
 {
 	[Header("item")]
@@ -14,7 +14,7 @@ public class item : ScriptableObject
 }
 
 //*=========================================================================
-//? EMPTY: empty item
+/* //? EMPTY: empty item
 public class empty : item
 {
 	[HideInInspector]
@@ -22,33 +22,35 @@ public class empty : item
 
 	[Header("empty")]
 	public int TMP_emptyBehavior;
-}
+} */
 
 //? LOOT: shit you can find in the cave
-public enum lootKind { mineral, biomaterial, scrap };
-public class loot : item
+// public enum lootKind { mineral, biomaterial, scrap };
+/* public class loot : item
 {
 	[HideInInspector]
-	public itemKind itemKind = itemKind.loot;
+	// public itemKind itemKind = itemKind.loot;
 
 	[Header("loot")]
 	[Tooltip("the larger the number, the more common the item is")]
 	[Range(1, 100)]
 	public int rarity;
-}
+} */
 
 //? GEAR: equipable. cannot be found as loot in the cave
-public enum equipSlot { headEquip, handEquip, bodyEquip }
+// public enum equipSlot { headEquip, handEquip, bodyEquip }
 
-public class gear : item
+/* public class gear : item
 {
-	[HideInInspector]
-	public itemKind itemKind = itemKind.gear;
+	// [HideInInspector]
+	// public itemKind itemKind = itemKind.gear;
+
+	// [Range(1, 5)]
+	// public int level;
 
 	[Header("gear")]
-	[Range(1, 5)]
-	public int level;
-}
+
+} */
 
 /* //*-------------------------------------
 //? minerals

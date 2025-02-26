@@ -10,12 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9da6ac93b011a0343a2181077a0d1e9b, type: 3}
-  m_Name: goggle scrap
+  m_Name: vial scrap
   m_EditorClassIdentifier: 
-  itemName: goggle scrap
-  itemDescription: piece of night vision goggles
-  itemSprite: {fileID: 21300000, guid: 3200daa516fd32a4ab702ecb9f9a0b32, type: 3}
-  itemKind: 1
-  rarity: 0
-  lootKind: 2
-  scrapKind: 0
+  itemName: vial scrap
+  itemDescription: piece of vial
+  itemSprite: {fileID: 21300000, guid: fd19c22a83a043040aee5bdb557934e4, type: 3}
+  wholeGear: {fileID: 11400000, guid: 52be5335aea4bdd48b51b5037bc35f4c, type: 2}

@@ -15,9 +15,9 @@ MonoBehaviour:
   roomPrefab: {fileID: 3782841008488286717, guid: 14a70259a4cec754196034958237c31a, type: 3}
   isDark: 1
   lootThatCanSpawnInThisRoom:
-  - {fileID: 11400000, guid: 175234859b1b8a641a8cafa6b1fdac75, type: 2}
-  - {fileID: 11400000, guid: 05a827454b4e00843902c0553172bdb5, type: 2}
-  - {fileID: 11400000, guid: 9f82837abb8008c428f3b42c74ddbb73, type: 2}
+  - {fileID: 11400000, guid: 339f8e52414bc414c943c6f213a335fb, type: 2}
+  - {fileID: 11400000, guid: 93f8c0fb24728db45ae7422c4e692dfa, type: 2}
+  - {fileID: 11400000, guid: ab0e1471363c9ab42a2e91281c3e9a2c, type: 2}
   chosenLootSpawnLocations: []
   hasTrader: 0
   chosenTraderSpawn: {fileID: 3264906912150508020, guid: 14a70259a4cec754196034958237c31a, type: 3}

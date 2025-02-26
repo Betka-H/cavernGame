@@ -2,11 +2,26 @@ using UnityEngine;
 
 public class inventoryContents : MonoBehaviour
 {
-    [Header("assorted list of all existing items by id")]
-    public item[] allItemList;
+    // [Header("assorted list of all existing items by id")]
+    // public item[] allItemList;
 
-    [Header("specific gear")]
-    public gear nightVisionGoggles;
-    public gear vial;
-    public gear pickaxe;
+    [Header("gems")]
+    public item gemRed;
+    public item gemOrange;
+    public item gemYellow;
+    public item gemGreen;
+    public item gemBlue;
+    public item gemPurple;
+    public item gemPink;
+    public item gemClear;
+
+    [Header("gear")]
+    public item nightVisionGoggles;
+    public item vial;
+    public item pickaxe;
+
+    [Header("scrap")]
+    public scrap scrapGoggles;
+    public scrap scrapVial;
+    public scrap scrapPickaxe;
 }

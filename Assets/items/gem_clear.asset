@@ -9,13 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7da829a7d78d4d44b93ae60e078e0d1b, type: 3}
+  m_Script: {fileID: 11500000, guid: fd786c94297a415458506c7336163eb2, type: 3}
   m_Name: gem_clear
   m_EditorClassIdentifier: 
   itemName: clear gem
-  itemDescription: Gem that is clear.
+  itemDescription: gem that is clear
   itemSprite: {fileID: 1967209947, guid: 6204d8d4992cf9f42a02ed66e489639a, type: 3}
-  itemKind: 1
-  rarity: 68
-  lootKind: 0
-  gemColor: 7
+  rarity: 30

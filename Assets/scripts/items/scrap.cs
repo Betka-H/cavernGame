@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public enum scrapKind
+/* public enum scrapKind
 {
 	// light = headEqKind.flashlight,
 	goggles = headEqKind.NVgoggles,
@@ -8,14 +8,15 @@ public enum scrapKind
 	hammer = handEqKind.sledgehammer,
 	vial = handEqKind.vial,
 	armor = bodyEqKind.hazmatSuit
-}
+} */
 
-[CreateAssetMenu(menuName = "itemL_Scrap")]
-public class scrap : loot
+[CreateAssetMenu(menuName = "item_scrap")]
+public class scrap : item
 {
-	[HideInInspector]
-	public lootKind lootKind = lootKind.scrap;
+	// [HideInInspector]
+	// public lootKind lootKind = lootKind.scrap;
 
 	[Header("scrap")]
-	public scrapKind scrapKind;
+	//public scrapKind scrapKind;
+	public gear wholeGear;
 }

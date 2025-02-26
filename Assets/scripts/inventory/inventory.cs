@@ -35,12 +35,12 @@ public class inventory : MonoBehaviour
 		// getSlots();
 	}
 
-	void tempInventory()
+	/* void tempInventory()
 	{
 		inventoryItems = inventoryContents.allItemList.ToList();
 		inventoryItems.Remove(inventoryContents.allItemList[8]);
 		equippedItems = new List<item> { inventoryContents.allItemList[8] };
-	}
+	} */
 
 	/* void getSlots()
 	{
@@ -111,7 +111,7 @@ public class inventory : MonoBehaviour
 		// add item
 		inventoryItems.Add(it);
 
-		Debug.Log($"added item {it} to inventory");
+		// Debug.Log($"added item {it} to inventory");
 	}
 
 	public void removeItem(item it)
