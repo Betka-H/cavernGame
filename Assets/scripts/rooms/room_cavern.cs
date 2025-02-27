@@ -9,7 +9,7 @@ public class room_cavern : roomSO
     public bool isDark;
 
     public List<loot> lootThatCanSpawnInThisRoom;
-    private List<loot> lootThatCanSpawnInThisRoomAssortedByRarity;
+    private List<loot> lootThatCanSpawnInThisRoomAssortedByRarity = new List<loot>();
     private Transform[] allLootSpawnLocations;
     [HideInInspector]
     public List<Transform> chosenLootSpawnLocations;
