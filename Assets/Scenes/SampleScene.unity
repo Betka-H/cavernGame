@@ -344,7 +344,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomNumberTMP: {fileID: 439360304}
   darknessLvl: 0
-  hasNightVision: 1
   roomParent: {fileID: 1837799390}
   enclosureParent: {fileID: 1689111313}
   blockL: {fileID: 5893898122074834562, guid: 4b7803ff778149d4d921600b472f0a8e, type: 3}
@@ -354,22 +353,19 @@ MonoBehaviour:
   minCavernRoomsNr: 5
   maxCavernRoomsNr: 8
   labRooms:
-  - {fileID: 8808382117235541118, guid: c8184944df914bc48a199ea3d0aa72d6, type: 3}
-  - {fileID: 5817899321417327079, guid: c6599e965667b7e4fa487d7278d0d190, type: 3}
-  - {fileID: 8808382117235541118, guid: 1a33e0d8964230a41b0513e6bc214053, type: 3}
-  - {fileID: 8808382117235541118, guid: fa888df7ba1456543b71c28a8f81234b, type: 3}
-  - {fileID: 8808382117235541118, guid: c5c8cfda654eb3346a2fd7f8714f5e5d, type: 3}
-  - {fileID: 8808382117235541118, guid: c958f2b2b1b44e6418b67f19f5bbd89d, type: 3}
+  - {fileID: 11400000, guid: a9577a00b93bbad4f90b190332000b6d, type: 2}
+  - {fileID: 11400000, guid: 661a44c915d001c4dacb6dd66cb48d2d, type: 2}
+  - {fileID: 11400000, guid: a057e912c1b72414ca6ee51612aaa06f, type: 2}
   cavernRooms:
   - {fileID: 11400000, guid: 971d6478ef7a22946aa186eee9c51d92, type: 2}
-  - {fileID: 11400000, guid: 5ce2c653e0350f049b7808c370383f11, type: 2}
-  - {fileID: 11400000, guid: bb61f9e707eccf24fa361110b5193ad4, type: 2}
-  - {fileID: 11400000, guid: 3bb10b7994a1d9741adada90ad77a0c2, type: 2}
-  - {fileID: 11400000, guid: a4cb051909aeb4348ae2e17baff76771, type: 2}
-  - {fileID: 11400000, guid: 0d0d2a5572e8f9e458f77bf01b396cc9, type: 2}
-  - {fileID: 11400000, guid: e106c067f332b0147801811e7e5614cb, type: 2}
-  - {fileID: 11400000, guid: 13900ab4f13e972408585fa31d522783, type: 2}
-  - {fileID: 11400000, guid: dcc111c05e78c6d4b9044282e50d786b, type: 2}
+  - {fileID: 11400000, guid: 1df159999703f5643968a918662a0aed, type: 2}
+  - {fileID: 11400000, guid: 276fd7e2378289d458e67476122f2ef2, type: 2}
+  - {fileID: 11400000, guid: 28ad824afde2ddf4fae6e3f256d0914c, type: 2}
+  - {fileID: 11400000, guid: aaffa9f45afc31f4ba1fa23f32da022c, type: 2}
+  - {fileID: 11400000, guid: 700acd2df85d6da48b99c8a553ce2ebc, type: 2}
+  - {fileID: 11400000, guid: 4c35e6d66c78fd44ca068ca8d424a965, type: 2}
+  - {fileID: 11400000, guid: 1856c56655d8f924bb8a94b25bf1e795, type: 2}
+  - {fileID: 11400000, guid: fe57e40318cb61a47b3cc7767561003b, type: 2}
   traderSpawnChance: 0
   traderParent: {fileID: 1700384801}
   traderPrefab: {fileID: 2371283748658875608, guid: ca18b40640066974b8a56ea24c543e97, type: 3}
@@ -9512,6 +9508,6 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 519420032}
-  - {fileID: 1513249485}
   - {fileID: 1315864802}
+  - {fileID: 1513249485}
   - {fileID: 265201205}

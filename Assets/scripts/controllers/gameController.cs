@@ -15,20 +15,21 @@ public class gameController : MonoBehaviour
 	private inventory inventory;
 
 	public enum level { lab, cavern };
-	level currentLevel;
+	// level currentLevel;
 
 	// public ScriptableObject item1;
 	void Start()
 	{
 		roomController = FindObjectOfType<roomController>();
-		roomController.hasNightVision = false;
+		// roomController.hasNightVision = false;
 		itemMenu = FindObjectOfType<itemMenu>(true);
 		inventory = FindObjectOfType<inventory>();
 
 		// gameState.State = gameState.gameStates.playing;
 		//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! lab should be first
-		currentLevel = level.cavern;
-		genAndSpawn();
+		// currentLevel = level.cavern;
+		genAndSpawn(level.lab);
+		// genAndSpawn(level.cavern);
 	}
 
 	void Update()
@@ -39,18 +40,23 @@ public class gameController : MonoBehaviour
 		}
 		if (Input.GetKeyDown(KeyCode.R))
 		{
-			genAndSpawn();
-			clearMenus();
-			inventory.clearInventory();
-			deathScreen.SetActive(false);
+			restart();
 		}
 	}
 
-	public void genAndSpawn()
+	void restart()
+	{
+		// genAndSpawn(level.lab);
+		genAndSpawn(level.cavern);
+		clearMenus();
+		inventory.clearInventory();
+	}
+
+	public void genAndSpawn(level lvl)
 	{
 		// roomController.chooseDarkness();
-		roomController.generateLevel(currentLevel);
-		spawnPlayer(currentLevel);
+		roomController.generateLevel(lvl);
+		spawnPlayer(lvl);
 	}
 	public Transform[] menusToDisable;
 	void clearMenus()
@@ -59,6 +65,8 @@ public class gameController : MonoBehaviour
 		{
 			menu.gameObject.SetActive(false);
 		}
+
+		deathScreen.SetActive(false);
 	}
 
 	GameObject playerPrefab;

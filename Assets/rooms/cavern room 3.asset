@@ -9,17 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8aa4a6b6f9d5d2448fbf3105b7956b1, type: 3}
-  m_Name: test room 1
+  m_Script: {fileID: 11500000, guid: 90cac53c1cd19994caba37e4c121d803, type: 3}
+  m_Name: cavern room 3
   m_EditorClassIdentifier: 
-  roomPrefab: {fileID: 3875458914276311728, guid: ea0783e863433874aa3d5a270c46e9e7, type: 3}
-  isDark: 1
+  roomPrefab: {fileID: 3782841008488286717, guid: 71ee1621f066f334095f29c631d8d890, type: 3}
+  orderOnMap: 0
+  isDark: 0
   lootThatCanSpawnInThisRoom:
-  - {fileID: 11400000, guid: efe3ff3737876564f8c0aa7130051258, type: 2}
+  - {fileID: 11400000, guid: 93f8c0fb24728db45ae7422c4e692dfa, type: 2}
   - {fileID: 11400000, guid: 4f151ca1cf2d4f04ca332d49694124e6, type: 2}
-  - {fileID: 11400000, guid: 09beaca968880f7449e06c9b67e05643, type: 2}
   chosenLootSpawnLocations: []
   hasTrader: 0
-  chosenTraderSpawn: {fileID: 2703330527953416532, guid: ea0783e863433874aa3d5a270c46e9e7, type: 3}
-  orderOnMap: 8
+  chosenTraderSpawn: {fileID: 0}
   lootForThisRoom: []

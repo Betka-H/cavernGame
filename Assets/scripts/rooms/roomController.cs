@@ -16,10 +16,12 @@ public class roomController : MonoBehaviour
 	private int darknessChance; // % out of 100
 	[HideInInspector]
 	public darknessLevel darknessLvl; // mainly for weather forecast
-	public bool hasNightVision;
+									  // public bool hasNightVision;
 
 	// private playerEquipment playerEquipment;
 	private inventory inventory;
+
+	private gameController.level currentLevel;
 
 	[Space]
 	public Transform roomParent;
@@ -36,7 +38,7 @@ public class roomController : MonoBehaviour
 	public int maxCavernRoomsNr;
 	[Header("rooms // cavern 0 is entry room")]
 	public roomSO[] labRooms;
-	public roomSO[] cavernRooms;
+	public room_cavern[] cavernRooms;
 	private roomSO[] selectedRooms;
 	private roomSO entranceRoom;
 
@@ -46,14 +48,14 @@ public class roomController : MonoBehaviour
 	public Transform traderParent;
 	public GameObject traderPrefab;
 	// private Transform traderSpawnPoint;
-	private roomSO traderSpawnRoom;
+	private room_cavern traderSpawnRoom;
 	private npcTrader npcTrader;
 
 	private int itemSpawnRate;
 	public GameObject itemPrefab;
 	public Transform itemParent;
 
-	private int currentRoom;
+	private int currentRoomNr;
 	private int roomLeft;
 	private int roomRight;
 
@@ -69,7 +71,6 @@ public class roomController : MonoBehaviour
 		//! temp value. revisit later
 		Debug.LogWarning("temp max room amount");
 		maxCavernRoomsNr = cavernRooms.Length;
-		entranceRoom = cavernRooms[0]; // determines entrance room
 
 		darknessOverlay = FindObjectOfType<darknessOL>();
 		// playerEquipment = FindObjectOfType<playerEquipment>();
@@ -81,7 +82,9 @@ public class roomController : MonoBehaviour
 	{
 		Debug.Log("=============================... generating new level ...=======================================");
 
-		switch (lvl)
+		currentLevel = lvl;
+
+		switch (currentLevel)
 		{
 			case gameController.level.lab:
 				Instantiate(enclosure_walls_lab, enclosureParent);
@@ -102,11 +105,11 @@ public class roomController : MonoBehaviour
 		// logRooms();
 	}
 
-	void logRooms()
+	void logCavernRooms()
 	{
 		int i = 0;
 		string debug = "";
-		foreach (roomSO room in selectedRooms)
+		foreach (room_cavern room in selectedRooms)
 		{
 			debug += $"{room.orderOnMap}: ";
 			if (room == entranceRoom)
@@ -138,16 +141,18 @@ public class roomController : MonoBehaviour
 
 		// generates array of unique rooms in random order
 
-		List<roomSO> roomPool = cavernRooms.ToList();
+		entranceRoom = cavernRooms[0]; // determines entrance room
+
+		List<room_cavern> roomPool = cavernRooms.ToList();
 
 		System.Random rndForRoom = new System.Random();
 		int roomsNr = rndForRoom.Next(minCavernRoomsNr, maxCavernRoomsNr + 1); // choose a random amount of rooms (+1 to include maxRNr)
-		selectedRooms = new roomSO[roomsNr]; // new empty array for that amount
+		selectedRooms = new room_cavern[roomsNr]; // new empty array for that amount
 
 		for (int i = 0; i < roomsNr; i++)
 		{
-			roomSO randomRoom = roomPool[rndForRoom.Next(roomPool.Count())]; // choose random room from all
-																			 // randomRoom.roomPrefab.GetComponent<roomObj>().orderOnMap = i;
+			room_cavern randomRoom = roomPool[rndForRoom.Next(roomPool.Count())]; // choose random room from all
+																				  // randomRoom.roomPrefab.GetComponent<roomObj>().orderOnMap = i;
 			selectedRooms[i] = randomRoom; // add the room
 			roomPool.Remove(randomRoom); // remove the room from the pool
 		}
@@ -166,7 +171,7 @@ public class roomController : MonoBehaviour
 
 		chooseDarkRooms();
 
-		logRooms();
+		logCavernRooms();
 
 		chooseItemSpawnLocations();
 		chooseTraderSpawnLocation();
@@ -174,14 +179,14 @@ public class roomController : MonoBehaviour
 
 	void chooseItemSpawnLocations()
 	{
-		foreach (roomSO room in selectedRooms)
+		foreach (room_cavern room in selectedRooms)
 		{
 			room.setLootAndTheirSpawnLocations(itemSpawnRate);
 			// room.assignItems();
 			// spawnItems();
 		}
 	}
-	void spawnItems(roomSO room)
+	void spawnItems(room_cavern room)
 	{
 		if (room.chosenLootSpawnLocations.Count() > 0)
 		{
@@ -211,8 +216,8 @@ public class roomController : MonoBehaviour
 		{
 			// Debug.Log("trader will appear (chance)");
 			// Debug.Log("attempting to spawn trader");
-			List<roomSO> traderSpawnRooms = new List<roomSO>();
-			foreach (roomSO room in selectedRooms) // will have list of all possible spawnpoints
+			List<room_cavern> traderSpawnRooms = new List<room_cavern>();
+			foreach (room_cavern room in selectedRooms) // will have list of all possible spawnpoints
 			{
 				if (room.isDark && room != entranceRoom) // only spawn trader in dark rooms! thats like its thing AND NOT THE ENTRANCE ROOM. ITS FORBIDDEN THERE. IT ATE THE ELEVATOR CABLES THE LAST TIME
 				{
@@ -242,7 +247,9 @@ public class roomController : MonoBehaviour
 				traderSpawnRoom = traderSpawnRooms[rnd.Next(traderSpawnRooms.Count())];
 
 				int traderSpawnOrderOnMap = traderSpawnRoom.orderOnMap;
-				selectedRooms[traderSpawnOrderOnMap].hasTrader = true;
+
+				room_cavern rc = selectedRooms[traderSpawnOrderOnMap] as room_cavern;
+				rc.hasTrader = true;
 
 				//create trader
 				npcTrader = Instantiate(traderPrefab, traderParent).GetComponent<npcTrader>();
@@ -275,7 +282,7 @@ public class roomController : MonoBehaviour
 			Destroy(child.gameObject);
 		}
 
-		foreach (roomSO room in selectedRooms)
+		foreach (room_cavern room in selectedRooms)
 		{
 			room.hasTrader = false;
 		}
@@ -291,7 +298,7 @@ public class roomController : MonoBehaviour
 		// Debug.LogWarning("choosing darkness");
 		// if (playerEquipment.checkEquipment(1)) // nv goggles
 		// Debug.LogWarning("temp item lookup");
-		Debug.LogWarning("item lookup?");
+		// Debug.LogWarning("item lookup?");
 		// if (inventory.equippedItems.Count > 0 && inventory.checkEquipment(inventory.inventoryItems
 		// [8])) // nv goggles
 		if (inventory.checkEquipment(inventory.inventoryContents.nightVisionGoggles))
@@ -343,7 +350,7 @@ public class roomController : MonoBehaviour
 		setDarknessChance();
 
 		System.Random rnd = new System.Random();
-		foreach (roomSO room in selectedRooms)
+		foreach (room_cavern room in selectedRooms)
 		{
 			room.isDark = false;
 			if (room != entranceRoom || darknessLvl == darknessLevel.dark) // for every room except the entrance room (cant be dark there) (except for when dl is dark)
@@ -353,10 +360,10 @@ public class roomController : MonoBehaviour
 			}
 		}
 	}
-	void toggleDarkness()
+	void toggleDarkness(room_cavern cr)
 	{
 		// Debug.Log(darknessOverlay);
-		if (selectedRooms[currentRoom].isDark)
+		if (cr.isDark)
 		{
 			// darknessOverlay.gameObject.SetActive(true);
 			chosenDarkness.gameObject.SetActive(true);
@@ -371,20 +378,20 @@ public class roomController : MonoBehaviour
 
 	void setLeftAndRightRoomNumbers()
 	{
-		if (currentRoom == 0) // room is first
+		if (currentRoomNr == 0) // room is first
 		{
 			// roomLeft = emptyRoom;
-			roomRight = currentRoom + 1;
+			roomRight = currentRoomNr + 1;
 		}
-		else if (currentRoom == selectedRooms.Length - 1) // room is last
+		else if (currentRoomNr == selectedRooms.Length - 1) // room is last
 		{
-			roomLeft = currentRoom - 1;
+			roomLeft = currentRoomNr - 1;
 			// roomRight = emptyRoom;
 		}
 		else // room is mid
 		{
-			roomLeft = currentRoom - 1;
-			roomRight = currentRoom + 1;
+			roomLeft = currentRoomNr - 1;
+			roomRight = currentRoomNr + 1;
 		}
 	}
 
@@ -393,10 +400,10 @@ public class roomController : MonoBehaviour
 		switch (lr)
 		{
 			case leftRight.left:
-				currentRoom--;
+				currentRoomNr--;
 				return selectedRooms[roomLeft];
 			case leftRight.right:
-				currentRoom++;
+				currentRoomNr++;
 				return selectedRooms[roomRight];
 			case leftRight.entrance:
 				return entranceRoom;
@@ -408,11 +415,11 @@ public class roomController : MonoBehaviour
 
 	void placeDoorwayBlock()
 	{
-		if (currentRoom == 0)
+		if (currentRoomNr == 0)
 		{
 			Instantiate(blockL, roomParent);
 		}
-		if (currentRoom == selectedRooms.Length - 1)
+		if (currentRoomNr == selectedRooms.Length - 1)
 		{
 			Instantiate(blockR, roomParent);
 		}
@@ -440,8 +447,8 @@ public class roomController : MonoBehaviour
 		// destroyRoom();
 		// Instantiate(entranceRoom.roomPrefab, roomParent);
 		// getBlock();
-		currentRoom = Array.IndexOf(selectedRooms, entranceRoom);
-		roomNumberTMP.text = $"room {currentRoom} / {selectedRooms.Length - 1} (ENTRANCE)";
+		currentRoomNr = Array.IndexOf(selectedRooms, entranceRoom);
+		roomNumberTMP.text = $"room {currentRoomNr} / {selectedRooms.Length - 1} (ENTRANCE)";
 
 		changeRoom(leftRight.entrance);
 	}
@@ -450,24 +457,27 @@ public class roomController : MonoBehaviour
 		setLeftAndRightRoomNumbers();
 		destroyRoom();
 		Instantiate(getRoom(isLeft).roomPrefab.transform, roomParent);
-		roomNumberTMP.text = $"room {currentRoom} / {selectedRooms.Length - 1}";
+		roomNumberTMP.text = $"room {currentRoomNr} / {selectedRooms.Length - 1}";
 		placeDoorwayBlock();
 
-		toggleDarkness();
-
-		// items
-		destroyItems();
-		// if (selectedRooms[currentRoom].indexedItemsForThisRoom.Length > 0)
-		if (selectedRooms[currentRoom].lootForThisRoom.Count() > 0)
+		if (selectedRooms[currentRoomNr] is room_cavern cr)
 		{
-			// Debug.Log($"items for this room: {string.Join<item>(", ", selectedRooms[currentRoom].itemsForThisRoom)}");
-			spawnItems(selectedRooms[currentRoom]);
-		}
+			toggleDarkness(cr);
 
-		// trader
-		if (selectedRooms[currentRoom].hasTrader)
-			spawnTrader();
-		else if (npcTrader != null)
-			npcTrader.gameObject.SetActive(false);
+			// items
+			destroyItems();
+			// if (selectedRooms[currentRoom].indexedItemsForThisRoom.Length > 0)
+			if (cr.lootForThisRoom.Count() > 0)
+			{
+				// Debug.Log($"items for this room: {string.Join<item>(", ", selectedRooms[currentRoom].itemsForThisRoom)}");
+				spawnItems(cr);
+			}
+
+			// trader
+			if (cr.hasTrader)
+				spawnTrader();
+			else if (npcTrader != null)
+				npcTrader.gameObject.SetActive(false);
+		}
 	}
 }

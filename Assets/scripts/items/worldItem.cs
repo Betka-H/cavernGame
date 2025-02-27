@@ -11,7 +11,7 @@ public class worldItem : MonoBehaviour
 	public SpriteRenderer spriteRenderer;
 	private inventory inventory;
 	[HideInInspector]
-	public roomSO roomSO;
+	public room_cavern roomSO;
 
 	void Start()
 	{
@@ -59,11 +59,11 @@ public class worldItem : MonoBehaviour
 	}
 	void removeItemFromSpawnPool()
 	{
-		// Debug.Log($"ie length: {roomSO.itemsForThisRoom.Count()}, index: {Array.IndexOf(roomSO.itemsForThisRoom.ToArray(), assignedItem)}");
-		// roomSO.indexedItemsForThisRoom[Array.IndexOf(roomSO.indexedItemsForThisRoom.ToArray(), assignedItem)] = null;
-		// Debug.Log($"items in room: {string.Join(", ", roomSO.lootForThisRoom)}, assigned item:{assignedItem}");
+		// Debug.Log($"ie length: {room_cavern.itemsForThisRoom.Count()}, index: {Array.IndexOf(room_cavern.itemsForThisRoom.ToArray(), assignedItem)}");
+		// room_cavern.indexedItemsForThisRoom[Array.IndexOf(room_cavern.indexedItemsForThisRoom.ToArray(), assignedItem)] = null;
+		// Debug.Log($"items in room: {string.Join(", ", room_cavern.lootForThisRoom)}, assigned item:{assignedItem}");
 		roomSO.lootForThisRoom.Remove(assignedItem);
-		// Debug.Log($"items now in room: {string.Join(", ", roomSO.lootForThisRoom)}, assigned item:{assignedItem}");
+		// Debug.Log($"items now in room: {string.Join(", ", room_cavern.lootForThisRoom)}, assigned item:{assignedItem}");
 		roomSO.chosenLootSpawnLocations.Remove(assignedTransform);
 	}
 }
