@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class traderMenu : MonoBehaviour
 {
-	public Transform menuContents;
+	// public Transform menuContents;
 
 	public traderHand handL;
 	public traderHand handR;
@@ -31,8 +31,8 @@ public class traderMenu : MonoBehaviour
 		// bool menuEnabled = menuContents.gameObject.activeSelf;
 		// toggleItemMenu(menuEnabled);
 		// Debug.Log($"contents {menuContents.gameObject.activeSelf}");
-		menuContents.gameObject.SetActive(!menuContents.gameObject.activeSelf);
-		if (!menuContents.gameObject.activeSelf)
+		gameObject.SetActive(!gameObject.activeSelf);
+		if (!gameObject.activeSelf)
 			clearLHand();
 		// Debug.Log($"contents now {menuContents.gameObject.activeSelf}");
 		toggleItemMenu();
@@ -41,7 +41,7 @@ public class traderMenu : MonoBehaviour
 	void toggleItemMenu()
 	{
 		// Debug.Log($"item menu is {itemMenu.gameObject.activeSelf}");
-		itemMenu.gameObject.SetActive(menuContents.gameObject.activeSelf);
+		itemMenu.gameObject.SetActive(gameObject.activeSelf);
 		// Debug.Log($"item menu is now {itemMenu.gameObject.activeSelf}");
 	}
 

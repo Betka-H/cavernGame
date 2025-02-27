@@ -132,7 +132,8 @@ public class roomController : MonoBehaviour
 
 	void generateLab()
 	{
-		entranceRoom = labRooms[2];
+		Debug.LogWarning("pick right lab entrance!");
+		entranceRoom = labRooms[1];
 		selectedRooms = labRooms;
 	}
 	void generateCavern()
@@ -452,6 +453,8 @@ public class roomController : MonoBehaviour
 
 		changeRoom(leftRight.entrance);
 	}
+
+
 	public void changeRoom(leftRight isLeft)
 	{
 		setLeftAndRightRoomNumbers();
