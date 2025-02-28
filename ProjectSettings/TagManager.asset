@@ -43,8 +43,8 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: canvas
-    uniqueID: 2930791893
+  - name: gameplay
+    uniqueID: 3158076301
     locked: 0
   - name: menu
     uniqueID: 2494286049
