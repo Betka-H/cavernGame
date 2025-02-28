@@ -47,7 +47,7 @@ public class playerMovement : MonoBehaviour
 		}
 		else
 		{
-			// rb.velocity = Vector3.zero;
+			rb.velocity = Vector3.zero;
 			Time.timeScale = 0;
 		}
 	}

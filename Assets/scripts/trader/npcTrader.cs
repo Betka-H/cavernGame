@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class npcTrader : MonoBehaviour
+public class npcTrader : NPC
 {
 	traderMenu traderMenu;
 	// tooltipCaller tooltipCaller;
@@ -69,11 +69,11 @@ public class npcTrader : MonoBehaviour
 		Debug.Log($"the trader inventory contains {string.Join(", ", msg)}");
 	}
 
-	public void toggleMenu()
+	/* public void toggleMenu()
 	{
 		traderMenu.toggleTraderMenu();
 		// Debug.Log("opening trader menu");
-	}
+	} */
 
 	/* public item[] getInventory()
 	{

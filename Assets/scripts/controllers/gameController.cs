@@ -13,6 +13,10 @@ public class gameController : MonoBehaviour
 	private itemMenu itemMenu;
 	private inventory inventory;
 
+	menuManager menuManager;
+
+	interactionTooltip interactionTooltip;
+
 	public enum level { lab, cavern };
 	// level currentLevel;
 
@@ -23,19 +27,23 @@ public class gameController : MonoBehaviour
 		// roomController.hasNightVision = false;
 		itemMenu = FindObjectOfType<itemMenu>(true);
 		inventory = FindObjectOfType<inventory>();
+		interactionTooltip = FindObjectOfType<interactionTooltip>();
+		menuManager = FindObjectOfType<menuManager>();
 
 		// gameState.State = gameState.gameStates.playing;
 		//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! lab should be first
 		// currentLevel = level.cavern;
 		genAndSpawn(level.lab);
 		// genAndSpawn(level.cavern);
+
+		clearMenus();
 	}
 
 	void Update()
 	{
 		if (Input.GetKeyDown(KeyCode.Q))
 		{
-			toggleQMenu();
+			toggleGameplayMenu();
 		}
 		if (Input.GetKeyDown(KeyCode.R))
 		{
@@ -57,14 +65,15 @@ public class gameController : MonoBehaviour
 		roomController.generateLevel(lvl);
 		spawnPlayer(lvl);
 	}
-	public Transform[] menusToDisable;
+	// public Transform[] menusToDisable;
 	void clearMenus()
 	{
-		foreach (Transform menu in menusToDisable)
+		/* foreach (Transform menu in menusToDisable)
 		{
 			menu.gameObject.SetActive(false);
-		}
-
+		} */
+		menuManager.hideMenus();
+		interactionTooltip.hideTooltip();
 		deathScreen.SetActive(false);
 	}
 
@@ -98,14 +107,16 @@ public class gameController : MonoBehaviour
 		}
 	}
 
-	public missionMenu missionMenu;
-	void toggleQMenu()
+	// public missionMenu missionMenu;
+	void toggleGameplayMenu()
 	{
 		// Debug.Log($"menu: {itemMenu.gameObject.activeSelf}");
-		itemMenu.gameObject.SetActive(!itemMenu.gameObject.activeSelf);
-		missionMenu.gameObject.SetActive(itemMenu.gameObject.activeSelf);
+		/* itemMenu.gameObject.SetActive(!itemMenu.gameObject.activeSelf);
+		missionMenu.gameObject.SetActive(itemMenu.gameObject.activeSelf); */
 
-		switch (itemMenu.gameObject.activeSelf)
+		menuManager.toggleGameplayMenuScreen();
+
+		/* switch (itemMenu.gameObject.activeSelf)
 		{
 			case true:
 				gameState.State = gameState.gameStates.paused;
@@ -113,7 +124,7 @@ public class gameController : MonoBehaviour
 			case false:
 				gameState.State = gameState.gameStates.playing;
 				break;
-		}
+		} */
 		// Debug.LogWarning($"menu: {itemMenu.gameObject.activeSelf}");
 	}
 

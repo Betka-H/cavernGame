@@ -20,9 +20,14 @@ public class itemMenu : MonoBehaviour
 	[TextArea]
 	public string placeholderItemDescription;
 
-	void Start()
+	/* void Start()
 	{
-		gameObject.SetActive(false);
+		// gameObject.SetActive(false);
+		getSlots();
+		showTooltip(null);
+	} */
+	void Awake()
+	{
 		getSlots();
 		showTooltip(null);
 	}

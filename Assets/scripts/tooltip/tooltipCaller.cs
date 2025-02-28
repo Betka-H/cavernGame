@@ -6,11 +6,14 @@ public class tooltipCaller : MonoBehaviour
 	public tooltipKind tooltipKind;
 	public KeyCode keyToInteract;
 
+	menuManager menuManager;
+
 	public bool isEnabled;
 
 	void Start()
 	{
 		tooltipObj = FindObjectOfType<interactionTooltip>(true);
+		menuManager = FindObjectOfType<menuManager>();
 		// Debug.Log($"tooltip obj is set to {tooltipObj}");
 	}
 
@@ -23,12 +26,15 @@ public class tooltipCaller : MonoBehaviour
 				case tooltipKind.trader:
 					// Debug.Log("interacting with trader");
 					// Debug.LogWarning("find better way to find tooltip interaction object");
-					Debug.Log("temporary");
-					npcTrader traderNpc;
+					// Debug.Log("temporary");
+					/* npcTrader traderNpc;
 					traderNpc = FindObjectOfType<npcTrader>(true);
-					traderNpc.toggleMenu();
+					traderNpc.toggleMenu(); */
+
+					menuManager.toggleTradingScreen();
 					break;
 			}
+			hideTooltip();
 		}
 	}
 
@@ -49,6 +55,12 @@ public class tooltipCaller : MonoBehaviour
 
 	void OnTriggerExit2D(Collider2D other)
 	{
+		hideTooltip();
+	}
+
+	void hideTooltip()
+	{
+		Debug.Log("hiding tooltip");
 		tooltipObj.hideTooltip();
 		isEnabled = false;
 	}

@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f5309f8cb5eea34097624f78e0c3d36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  menuScreenToOpen: 0
   traderItemPool:
   - {fileID: 11400000, guid: 09beaca968880f7449e06c9b67e05643, type: 2}
   - {fileID: 11400000, guid: efe3ff3737876564f8c0aa7130051258, type: 2}
