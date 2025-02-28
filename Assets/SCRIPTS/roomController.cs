@@ -63,7 +63,7 @@ public class roomController : MonoBehaviour
 	{
 		//! temp value
 		Debug.LogWarning("temp trader spawn chance");
-		traderSpawnChance = 50;
+		traderSpawnChance = 100;
 		//! temp value
 		Debug.LogWarning("temp item spawn rate");
 		itemSpawnRate = 50;
@@ -80,7 +80,7 @@ public class roomController : MonoBehaviour
 
 	public void generateLevel(gameController.level lvl)
 	{
-		Debug.Log("=============================... generating new level ...=======================================");
+		Debug.LogWarning("=============================... generating new level ...=======================================");
 
 		currentLevel = lvl;
 
@@ -230,11 +230,14 @@ public class roomController : MonoBehaviour
 
 
 			//
-			/* //! TEMP FOR TESTING. forces trader to spawn in entrance room
+			//! TEMP FOR TESTING. forces trader to spawn in entrance room
 			Debug.LogWarning("trader should be spawned elsewhere");
-			traderSpawnRooms.Clear();
-			entranceRoom.getTraderSpawnLocation();
-			traderSpawnRooms.Add(entranceRoom); */
+			if (entranceRoom is room_cavern traderEntrRoom)
+			{
+				traderSpawnRooms.Clear();
+				traderEntrRoom.setTraderSpawn();
+				traderSpawnRooms.Add(traderEntrRoom);
+			}
 			//
 
 
@@ -253,18 +256,18 @@ public class roomController : MonoBehaviour
 
 				//create trader
 				npcTrader = Instantiate(traderPrefab, traderParent).GetComponent<npcTrader>();
-				Debug.LogWarning($"spawned trader at room {traderSpawnOrderOnMap}");
+				Debug.Log($"spawned trader at room {traderSpawnOrderOnMap}");
 				npcTrader.gameObject.SetActive(false);
 			}
 			else
 			{
-				Debug.LogWarning("viable room pool empty. trader will not appear");
+				// Debug.LogWarning("viable room pool empty. trader will not appear");
 				traderSpawnRoom = null;
 			}
 		}
 		else
 		{
-			Debug.Log("trader will not appear (chance)");
+			// Debug.Log("trader will not appear (chance)");
 			traderSpawnRoom = null; // otherwise dont spawn it
 		}
 	}

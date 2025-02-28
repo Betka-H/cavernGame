@@ -2,9 +2,6 @@ using UnityEngine;
 
 public class inventoryContents : MonoBehaviour
 {
-    // [Header("assorted list of all existing items by id")]
-    // public item[] allItemList;
-
     [Header("gems")]
     public item gemRed;
     public item gemOrange;

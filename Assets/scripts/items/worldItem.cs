@@ -45,7 +45,6 @@ public class worldItem : MonoBehaviour
 			pickUp();
 		}
 	}
-
 	void pickUp()
 	{
 		inventory.addItem(assignedItem);

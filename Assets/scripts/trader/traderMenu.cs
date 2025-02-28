@@ -6,12 +6,8 @@ using UnityEngine;
 
 public class traderMenu : MonoBehaviour
 {
-	// public Transform menuContents;
-
 	public traderHand handL;
 	public traderHand handR;
-
-	// private item offeredItem;
 
 	public itemMenu itemMenu;
 	public inventory inventory;
@@ -19,35 +15,10 @@ public class traderMenu : MonoBehaviour
 
 	public TMP_Text timesTradedInfoDisp;
 
-	/* void Start()
-	{
-		handSlotL = FindObjectOfType<traderHandLeft>(true);
-		handSlotR = FindObjectOfType<traderHandRight>(true);
-		Debug.Log($"slot l: {handSlotL}, slot r: {handSlotR}");
-	} */
-
-	public void toggleTraderMenu()
-	{
-		// bool menuEnabled = menuContents.gameObject.activeSelf;
-		// toggleItemMenu(menuEnabled);
-		// Debug.Log($"contents {menuContents.gameObject.activeSelf}");
-		gameObject.SetActive(!gameObject.activeSelf);
-		if (!gameObject.activeSelf)
-			clearLHand();
-		// Debug.Log($"contents now {menuContents.gameObject.activeSelf}");
-		toggleItemMenu();
-		updateHands();
-	}
-	void toggleItemMenu()
-	{
-		// Debug.Log($"item menu is {itemMenu.gameObject.activeSelf}");
-		itemMenu.gameObject.SetActive(gameObject.activeSelf);
-		// Debug.Log($"item menu is now {itemMenu.gameObject.activeSelf}");
-	}
-
 	void OnEnable()
 	{
-		// updateHands();
+		updateHands();
+		clearLHand();
 	}
 
 	void updateHands()
@@ -117,7 +88,8 @@ public class traderMenu : MonoBehaviour
 
 	private void clearTooltip()
 	{
-		itemMenu.showTooltip(null);
+		itemMenu.selectedItem = null;
+		itemMenu.showInfo();
 	}
 
 	void showTradeCount()

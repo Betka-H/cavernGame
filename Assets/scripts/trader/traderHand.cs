@@ -10,11 +10,12 @@ public class traderHand : MonoBehaviour
 	{
 		if (assignedItem != null)
 		{
-			// Debug.Log($"{name}'s item is: {assignedItem.name} ({assignedItem})");
+			Debug.Log($"{name}'s item is: {assignedItem.name} ({assignedItem})");
 			slotSpriteRenderer.sprite = assignedItem.itemSprite;
 		}
 		else
 		{
+			Debug.Log($"{name}'s item is null");
 			slotSpriteRenderer.sprite = null;
 		}
 	}

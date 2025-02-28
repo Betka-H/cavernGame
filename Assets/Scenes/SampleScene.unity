@@ -3469,14 +3469,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &719104659
-Transform:
+--- !u!224 &719104659
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 719104658}
-  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -3486,6 +3485,11 @@ Transform:
   - {fileID: 741634507}
   m_Father: {fileID: 1252296503}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -123.00001, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &719104660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3509,7 +3513,7 @@ SortingGroup:
   m_Enabled: 1
   m_SortingLayerID: -1136890995
   m_SortingLayer: -2
-  m_SortingOrder: 2
+  m_SortingOrder: 0
   m_SortAtRoot: 0
 --- !u!1 &741634506
 GameObject:
@@ -5141,6 +5145,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f0364d3f1e17144eb8e6bc9dc7cdcd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemMenu: {fileID: 0}
+  missionMenu: {fileID: 0}
+  traderMenu: {fileID: 0}
 --- !u!1001 &1272647281
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5612,16 +5619,16 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_SortingOrder: 2
+  m_Sprite: {fileID: 1854333662, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.28, y: 1.28}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1337222302
@@ -6293,14 +6300,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryScript: {fileID: 1343291602}
-  inventoryScreenContent: {fileID: 1000994814}
-  invTxt_itemName: {fileID: 2099471848}
   invSprite_itemSprite: {fileID: 69681121}
+  invTxt_itemName: {fileID: 2099471848}
   invTxt_itemDescription: {fileID: 498894887}
-  selectedItem: {fileID: 0}
   placeholderItemSprite: {fileID: 21300000, guid: 04c8458c586a9cf4281f8f74951d1439, type: 3}
   placeholderItemName: lorem ipsum
   placeholderItemDescription: lorem ipsum dolor sit amet
+  selectedItem: {fileID: 0}
 --- !u!4 &1621603477
 Transform:
   m_ObjectHideFlags: 0
@@ -8101,7 +8107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d55ea01f69f49145892a5b7574e80c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  traderMenu: {fileID: 0}
+  menuManager: {fileID: 0}
 --- !u!61 &2035486529
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8248,16 +8254,16 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_SortingOrder: 2
+  m_Sprite: {fileID: -225499093, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.28, y: 1.28}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &2069665893
@@ -8270,7 +8276,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.01, y: 0.42513028, z: 0}
-  m_LocalScale: {x: 1.2054503, y: 1.2054503, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 264148723}

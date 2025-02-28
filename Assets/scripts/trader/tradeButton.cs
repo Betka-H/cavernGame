@@ -2,10 +2,15 @@ using UnityEngine;
 
 public class tradeButton : MonoBehaviour
 {
-	public traderMenu traderMenu;
+	public menuManager menuManager;
+
+	void Start()
+	{
+		menuManager = FindObjectOfType<menuManager>();
+	}
 
 	void OnMouseDown()
 	{
-		traderMenu.trade();
+		menuManager.traderMenu.trade();
 	}
 }

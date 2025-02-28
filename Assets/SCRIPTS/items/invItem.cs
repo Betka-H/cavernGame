@@ -5,31 +5,27 @@ public class invItem : MonoBehaviour
 	[HideInInspector]
 	public item assignedItem;
 
-	private itemMenu itemMenu;
-	traderMenu traderMenu;
+	menuManager menuManager;
 
 	private SpriteRenderer spriteRenderer;
-	// public BoxCollider2D boxCol;
 
 	private Vector3 normalScaleTransform;
 
 	void Awake()
 	{
-		itemMenu = FindObjectOfType<itemMenu>();
+		menuManager = FindObjectOfType<menuManager>();
 		spriteRenderer = GetComponent<SpriteRenderer>();
 		setNormalScale();
 	}
 
 	void OnMouseDown()
 	{
-		setTooltip();
+		menuManager.itemMenu.selectedItem = assignedItem;
+		menuManager.itemMenu.showInfo();
 
-		Debug.Log("temporary"); // v v v v v
-		traderMenu = FindObjectOfType<traderMenu>();
-
-		if (traderMenu.gameObject.activeSelf)
+		if (menuManager.traderMenu.gameObject.activeSelf)
 		{
-			traderMenu.offer();
+			menuManager.traderMenu.offer();
 		}
 	}
 
@@ -51,15 +47,9 @@ public class invItem : MonoBehaviour
 		scaleNormal();
 	}
 
-	void logScale()
-	{
-		Debug.Log($"scale: {normalScaleTransform.x}, {normalScaleTransform.y}");
-	}
-
 	void setNormalScale()
 	{
 		normalScaleTransform = transform.localScale;
-		// logScale();
 	}
 	void scaleUp()
 	{
@@ -68,19 +58,10 @@ public class invItem : MonoBehaviour
 	void scaleNormal()
 	{
 		transform.localScale = normalScaleTransform;
-		// logScale();
-	}
-
-	void setTooltip()
-	{
-		// Debug.Log(assignedItem);
-		itemMenu.selectedItem = assignedItem;
-		itemMenu.showTooltip(assignedItem);
 	}
 
 	public void assignItem(item it)
 	{
-		// Debug.Log(it);
 		if (it != null)
 		{
 			assignedItem = it;

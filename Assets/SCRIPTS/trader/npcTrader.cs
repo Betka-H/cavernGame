@@ -49,7 +49,6 @@ public class npcTrader : NPC
 		if (scrapChance > rnd.Next(100))
 		{
 			int scrapPosition = rnd.Next(traderInventory.Length);
-			// traderInventory[scrapPosition] = traderScrapPool[rnd.Next(traderItemPool.Length - 1)];
 			traderInventory[scrapPosition] = traderScrapPool[rnd.Next(traderScrapPool.Length - 1)];
 			Debug.Log($"trader sells scrap ({scrapPosition})");
 		}
@@ -68,15 +67,4 @@ public class npcTrader : NPC
 		}
 		Debug.Log($"the trader inventory contains {string.Join(", ", msg)}");
 	}
-
-	/* public void toggleMenu()
-	{
-		traderMenu.toggleTraderMenu();
-		// Debug.Log("opening trader menu");
-	} */
-
-	/* public item[] getInventory()
-	{
-		return traderInventory;
-	} */
 }

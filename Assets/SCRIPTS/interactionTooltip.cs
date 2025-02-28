@@ -23,7 +23,6 @@ public class interactionTooltip : MonoBehaviour
 		textDisplay.text = $"press {key} to {action}";
 
 		transform.localPosition = pos;
-		// Debug.Log($"{transform.position.x}, {transform.position.y}, {transform.position.z}");
 
 		gameObject.SetActive(true);
 	}

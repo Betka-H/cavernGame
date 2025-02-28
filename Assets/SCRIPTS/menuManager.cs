@@ -5,9 +5,12 @@ public class menuManager : MonoBehaviour
 {
     deathScreen deathScreen;
 
-    itemMenu itemMenu;
-    missionMenu missionMenu;
-    traderMenu traderMenu;
+    [HideInInspector]
+    public itemMenu itemMenu;
+    [HideInInspector]
+    public missionMenu missionMenu;
+    [HideInInspector]
+    public traderMenu traderMenu;
 
     void Awake()
     {

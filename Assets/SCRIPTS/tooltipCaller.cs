@@ -34,7 +34,7 @@ public class tooltipCaller : MonoBehaviour
 					menuManager.toggleTradingScreen();
 					break;
 			}
-			hideTooltip();
+			// hideTooltip();
 		}
 	}
 

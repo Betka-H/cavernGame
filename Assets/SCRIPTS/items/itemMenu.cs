@@ -1,45 +1,39 @@
-using System;
-using JetBrains.Annotations;
 using TMPro;
 using UnityEngine;
 
 public class itemMenu : MonoBehaviour
 {
 	public inventory inventoryScript;
-	public GameObject inventoryScreenContent;
-	private invItem[] invScreenItemSlots;
-	[Space]
-	public TMP_Text invTxt_itemName;
+
+	private invItem[] gridSlots;
+
+	[Header("item info section")]
 	public SpriteRenderer invSprite_itemSprite;
+	public TMP_Text invTxt_itemName;
 	public TMP_Text invTxt_itemDescription;
-	[HideInInspector]
-	public item selectedItem;
 
 	public Sprite placeholderItemSprite;
 	public string placeholderItemName;
 	[TextArea]
 	public string placeholderItemDescription;
 
-	/* void Start()
-	{
-		// gameObject.SetActive(false);
-		getSlots();
-		showTooltip(null);
-	} */
+	[HideInInspector]
+	public item selectedItem;
+
 	void Awake()
 	{
 		getSlots();
-		showTooltip(null);
 	}
 
 	void getSlots()
 	{
-		invScreenItemSlots = inventoryScreenContent.GetComponentsInChildren<invItem>();
+		gridSlots = GetComponentsInChildren<invItem>();
 	}
 
 	void OnEnable()
 	{
-		showTooltip(null);
+		selectedItem = null;
+		showInfo();
 		refreshItems();
 	}
 
@@ -47,44 +41,33 @@ public class itemMenu : MonoBehaviour
 	{
 		inventoryScript.sortInventory();
 
-		if (invScreenItemSlots != null)
+		if (gridSlots != null)
 		{
-			for (int i = 0; i < invScreenItemSlots.Length; i++)
+			for (int i = 0; i < gridSlots.Length; i++)
 			{
-				invItem currentItem = invScreenItemSlots[i]; // current item slot
-				if (i < inventoryScript.inventoryItems.Count) // only if there are itemids left
+				invItem currentItem = gridSlots[i];
+				if (i < inventoryScript.inventoryItems.Count)
 				{
-					// currentItem.assignItem(inventoryScript.allItemList[inventoryScript.inventoryIds[i]]); // assign ith item
-					currentItem.assignItem(inventoryScript.inventoryItems[i]); // assign ith item
+					currentItem.assignItem(inventoryScript.inventoryItems[i]);
 				}
-				else currentItem.assignItem(null); // if there are no more itemids, assign null
+				else currentItem.assignItem(null);
 			}
 		}
 	}
 
-	public void showTooltip(item item)
+	public void showInfo()
 	{
-		if (item != null)
+		if (selectedItem != null)
 		{
-			invTxt_itemName.SetText(item.itemName);
-			invSprite_itemSprite.sprite = item.itemSprite;
-			invTxt_itemDescription.SetText(item.itemDescription);
+			invSprite_itemSprite.sprite = selectedItem.itemSprite;
+			invTxt_itemName.SetText(selectedItem.itemName);
+			invTxt_itemDescription.SetText(selectedItem.itemDescription);
 		}
 		else
 		{
-			invTxt_itemName.SetText(placeholderItemName);
 			invSprite_itemSprite.sprite = placeholderItemSprite;
+			invTxt_itemName.SetText(placeholderItemName);
 			invTxt_itemDescription.SetText(placeholderItemDescription);
 		}
 	}
-
-	/* public void remItem(item it)
-	{
-		inventoryScript.removeItem(it);
-	} */
-
-	/* public void addItem(item it)
-	{
-		inventoryScript.addItem(it);
-	} */
 }
