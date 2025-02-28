@@ -24,7 +24,7 @@ public class inventory : MonoBehaviour
 	// [Header("assorted list of all existing items by id")]
 	// public item[] allItemList;
 
-	private string savePath = "inventory-save.txt";
+	// private string savePath = "inventory-save.txt";
 
 	void Start()
 	{

@@ -12,11 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8aa4a6b6f9d5d2448fbf3105b7956b1, type: 3}
   m_Name: lab entry room
   m_EditorClassIdentifier: 
-  roomPrefab: {fileID: 8808382117235541118, guid: c8184944df914bc48a199ea3d0aa72d6, type: 3}
-  isDark: 1
-  lootThatCanSpawnInThisRoom: []
-  chosenLootSpawnLocations: []
-  hasTrader: 0
-  chosenTraderSpawn: {fileID: 0}
+  roomPrefab: {fileID: 8950177509809473929, guid: c8184944df914bc48a199ea3d0aa72d6, type: 3}
   orderOnMap: 0
-  lootForThisRoom: []

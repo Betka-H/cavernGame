@@ -9,7 +9,7 @@ public enum roomBiome { };
 // [CreateAssetMenu(menuName = "room")]
 public class roomSO : ScriptableObject
 {
-	public GameObject roomPrefab;
+	public Transform roomPrefab;
 
 	[HideInInspector]
 	public int orderOnMap;

@@ -179,8 +179,8 @@ MonoBehaviour:
   traderSpawnChance: 0
   traderParent: {fileID: 1700384801}
   traderPrefab: {fileID: 2371283748658875608, guid: ca18b40640066974b8a56ea24c543e97, type: 3}
-  itemPrefab: {fileID: 4990905397584942865, guid: dc0dd59358eccea4994f4d139ac2ea02, type: 3}
   itemParent: {fileID: 879594647}
+  itemPrefab: {fileID: 4990905397584942865, guid: dc0dd59358eccea4994f4d139ac2ea02, type: 3}
 --- !u!4 &40118687
 Transform:
   m_ObjectHideFlags: 0

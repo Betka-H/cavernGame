@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8aa4a6b6f9d5d2448fbf3105b7956b1, type: 3}
   m_Name: lab room 2
   m_EditorClassIdentifier: 
-  roomPrefab: {fileID: 8808382117235541118, guid: fa888df7ba1456543b71c28a8f81234b, type: 3}
+  roomPrefab: {fileID: 8950177509809473929, guid: fa888df7ba1456543b71c28a8f81234b, type: 3}
   orderOnMap: 0

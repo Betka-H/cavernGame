@@ -51,9 +51,9 @@ public class roomController : MonoBehaviour
 	private room_cavern traderSpawnRoom;
 	private npcTrader npcTrader;
 
-	private int itemSpawnRate;
-	public GameObject itemPrefab;
 	public Transform itemParent;
+	public GameObject itemPrefab;
+	private int itemSpawnRate;
 
 	private int currentRoomNr;
 	private int roomLeft;
@@ -181,31 +181,31 @@ public class roomController : MonoBehaviour
 	{
 		foreach (room_cavern room in selectedRooms)
 		{
-			room.setLootAndTheirSpawnLocations(itemSpawnRate);
-			// room.assignItems();
-			// spawnItems();
+			room.setLoot(itemSpawnRate);
 		}
 	}
-	void spawnItems(room_cavern room)
+	/* void spawnItems(room_cavern room)
 	{
 		if (room.chosenLootSpawnLocations.Count() > 0)
 		{
 			for (int i = 0; i < room.chosenLootSpawnLocations.Count(); i++)
 			{
-				worldItem spawnedItem = Instantiate(itemPrefab, itemParent).GetComponent<worldItem>();
-				spawnedItem.roomSO = room;
-				spawnedItem.updateItem(room.lootForThisRoom[i]);
-				spawnedItem.assignedTransform = room.chosenLootSpawnLocations[i];
-				if (spawnedItem.assignedItem != null)
-				{
-					spawnedItem.gameObject.transform.localPosition = spawnedItem.assignedTransform.position;
-					// Debug.Log($"locations: {room.chosenItemSpawnLocations.Count()}, items: {room.indexedItemsForThisRoom.Count()}");
-					// Debug.Log($"spawned item");
-				}
-				else Destroy(spawnedItem);
+				spawnItem();
 			}
 		}
 	}
+	void spawnItem()
+	{
+		worldItem spawnedItem = Instantiate(itemPrefab, itemParent).GetComponent<worldItem>();
+		spawnedItem.assignedRoomSO = room;
+		spawnedItem.updateItem(room.chosenLoot[i]);
+		spawnedItem.assignedSpawnTransform = room.chosenLootSpawnLocations[i];
+		if (spawnedItem.checkItem() != null)
+		{
+			spawnedItem.gameObject.transform.localPosition = spawnedItem.assignedSpawnTransform.position;
+		}
+		else Destroy(spawnedItem);
+	} */
 
 	private void chooseTraderSpawnLocation()
 	{
@@ -222,7 +222,7 @@ public class roomController : MonoBehaviour
 				if (room.isDark && room != entranceRoom) // only spawn trader in dark rooms! thats like its thing AND NOT THE ENTRANCE ROOM. ITS FORBIDDEN THERE. IT ATE THE ELEVATOR CABLES THE LAST TIME
 				{
 					// rnd = new System.Random();
-					room.setTraderSpawnLocation();
+					room.setTraderSpawn();
 					traderSpawnRooms.Add(room);
 					// Debug.Log($"adding point {traderSpawnpoints[traderSpawnpoints.Count - 1]} to trader spawn pool");
 				}
@@ -466,12 +466,7 @@ public class roomController : MonoBehaviour
 
 			// items
 			destroyItems();
-			// if (selectedRooms[currentRoom].indexedItemsForThisRoom.Length > 0)
-			if (cr.lootForThisRoom.Count() > 0)
-			{
-				// Debug.Log($"items for this room: {string.Join<item>(", ", selectedRooms[currentRoom].itemsForThisRoom)}");
-				spawnItems(cr);
-			}
+			cr.spawnItems(itemPrefab, itemParent);
 
 			// trader
 			if (cr.hasTrader)

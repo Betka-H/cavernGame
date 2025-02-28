@@ -12,11 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90cac53c1cd19994caba37e4c121d803, type: 3}
   m_Name: cavern entry room
   m_EditorClassIdentifier: 
-  roomPrefab: {fileID: 3875458914276311728, guid: f400c5277f52cf048a1669b52ca8c09d, type: 3}
+  roomPrefab: {fileID: 7932632238650256314, guid: f400c5277f52cf048a1669b52ca8c09d, type: 3}
   orderOnMap: 0
   isDark: 0
   lootThatCanSpawnInThisRoom: []
-  chosenLootSpawnLocations: []
   hasTrader: 0
   chosenTraderSpawn: {fileID: 0}
-  lootForThisRoom: []
