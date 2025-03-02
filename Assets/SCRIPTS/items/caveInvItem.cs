@@ -1,9 +1,8 @@
 using UnityEngine;
 
-public class invItem : MonoBehaviour
+public class caveInvItem : MonoBehaviour
 {
-	[HideInInspector]
-	public item assignedItem;
+	[HideInInspector] public item assignedItem;
 
 	menuManager menuManager;
 

@@ -18,5 +18,6 @@ MonoBehaviour:
   lootThatCanSpawnInThisRoom:
   - {fileID: 11400000, guid: 93f8c0fb24728db45ae7422c4e692dfa, type: 2}
   - {fileID: 11400000, guid: 4f151ca1cf2d4f04ca332d49694124e6, type: 2}
+  - {fileID: 11400000, guid: ab0e1471363c9ab42a2e91281c3e9a2c, type: 2}
   hasTrader: 0
-  chosenTraderSpawn: {fileID: 0}
+  chosenTraderSpawn: {fileID: 2703330527953416532, guid: ea0783e863433874aa3d5a270c46e9e7, type: 3}

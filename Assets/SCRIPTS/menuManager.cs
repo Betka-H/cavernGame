@@ -3,6 +3,8 @@ using UnityEngine;
 public enum menuScreen { gameplay, trading };
 public class menuManager : MonoBehaviour
 {
+    public GameObject menuBg;
+
     deathScreen deathScreen;
 
     [HideInInspector]
@@ -11,6 +13,8 @@ public class menuManager : MonoBehaviour
     public missionMenu missionMenu;
     [HideInInspector]
     public traderMenu traderMenu;
+    [HideInInspector]
+    public labItemMenu labItemMenu;
 
     void Awake()
     {
@@ -18,20 +22,28 @@ public class menuManager : MonoBehaviour
         itemMenu = FindObjectOfType<itemMenu>(true);
         missionMenu = FindObjectOfType<missionMenu>(true);
         traderMenu = FindObjectOfType<traderMenu>(true);
+        labItemMenu = FindObjectOfType<labItemMenu>(true);
         hideMenus();
     }
 
     public void hideMenus()
     {
         toggleItemMenu(false);
+        toggleLabItemMenu(false);
         toggleMissionMenu(false);
         toggleTraderMenu(false);
         deathScreen.gameObject.SetActive(false);
+
+        menuBg.SetActive(false);
     }
 
     void toggleItemMenu(bool onOff)
     {
         itemMenu.gameObject.SetActive(onOff);
+    }
+    void toggleLabItemMenu(bool onOff)
+    {
+        labItemMenu.gameObject.SetActive(onOff);
     }
     void toggleTraderMenu(bool onOff)
     {
@@ -44,18 +56,31 @@ public class menuManager : MonoBehaviour
 
     public void toggleGameplayMenuScreen()
     {
-        bool onOff = !missionMenu.gameObject.activeSelf;
-        hideMenus();
+        bool onOff = toggleMenu(missionMenu.gameObject);
 
         toggleItemMenu(onOff);
         toggleMissionMenu(onOff);
     }
     public void toggleTradingScreen()
     {
-        bool onOff = !traderMenu.gameObject.activeSelf;
-        hideMenus();
+        bool onOff = toggleMenu(traderMenu.gameObject);
 
         toggleItemMenu(onOff);
         toggleTraderMenu(onOff);
+    }
+    // temp name?
+    public void toggleLabMenu()
+    {
+        bool onOff = !labItemMenu.gameObject.activeSelf;
+
+        toggleLabItemMenu(onOff);
+    }
+
+    bool toggleMenu(GameObject menu)
+    {
+        bool onOff = !menu.activeSelf;
+        hideMenus();
+        menuBg.SetActive(onOff);
+        return onOff;
     }
 }

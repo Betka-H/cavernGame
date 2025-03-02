@@ -14,50 +14,52 @@ public class roomController : MonoBehaviour
 	private darknessOL darknessOverlay;
 	private Transform chosenDarkness;
 	private int darknessChance; // % out of 100
-	[HideInInspector]
-	public darknessLevel darknessLvl; // mainly for weather forecast
-									  // public bool hasNightVision;
+	[HideInInspector] public darknessLevel darknessLvl; // mainly for weather forecast
 
-	// private playerEquipment playerEquipment;
-	private inventory inventory;
+	private inventoryManager inventory;
 
-	private gameController.level currentLevel;
+	public gameController.level currentLevel;
 
+	// enclosure
 	[Space]
 	public Transform roomParent;
 	public Transform enclosureParent;
 	[Header("doorway blocks")]
 	public GameObject blockL;
 	public GameObject blockR;
-	[Header("doorway height")]
+	[Header("doorway heights")]
 	public GameObject enclosure_walls_lab;
 	public GameObject enclosure_walls_cave;
 
-	[Space]
+	// rooms
+	[Header("rooms")]
 	public int minCavernRoomsNr;
 	public int maxCavernRoomsNr;
-	[Header("rooms // cavern 0 is entry room")]
+	[Header("rooms // cavern 0 is entry room, lab is already assorted: assign starting room at //choose lab entrance")]
 	public roomSO[] labRooms;
 	public room_cavern[] cavernRooms;
-	private roomSO[] selectedRooms;
 	private roomSO entranceRoom;
-
-	[Space]
-	[HideInInspector]
-	public int traderSpawnChance;
-	public Transform traderParent;
-	public GameObject traderPrefab;
-	// private Transform traderSpawnPoint;
-	private room_cavern traderSpawnRoom;
-	private npcTrader npcTrader;
-
-	public Transform itemParent;
-	public GameObject itemPrefab;
-	private int itemSpawnRate;
+	private roomSO[] selectedRooms;
 
 	private int currentRoomNr;
 	private int roomLeft;
 	private int roomRight;
+
+	// trader
+	[Header("trader")]
+	[HideInInspector] public int traderSpawnChance;
+	public Transform traderParent;
+	public GameObject traderPrefab;
+	private room_cavern traderSpawnRoom;
+	private npcTrader npcTrader;
+
+	// items
+	[Header("items")]
+	public Transform itemParent;
+	public GameObject itemPrefab;
+	private int itemSpawnRate;
+
+	[HideInInspector] public Transform player;
 
 	void Start()
 	{
@@ -66,43 +68,57 @@ public class roomController : MonoBehaviour
 		traderSpawnChance = 100;
 		//! temp value
 		Debug.LogWarning("temp item spawn rate");
-		itemSpawnRate = 50;
+		itemSpawnRate = 100;
 
 		//! temp value. revisit later
 		Debug.LogWarning("temp max room amount");
 		maxCavernRoomsNr = cavernRooms.Length;
 
 		darknessOverlay = FindObjectOfType<darknessOL>();
-		// playerEquipment = FindObjectOfType<playerEquipment>();
-		inventory = FindObjectOfType<inventory>();
-		// chooseDarkness();
+		inventory = FindObjectOfType<inventoryManager>();
 	}
 
 	public void generateLevel(gameController.level lvl)
 	{
-		Debug.LogWarning("=============================... generating new level ...=======================================");
+		Debug.LogWarning($"=============================... generating new level ({lvl})...=======================================");
 
 		currentLevel = lvl;
-
 		switch (currentLevel)
 		{
 			case gameController.level.lab:
+				clearParent(enclosureParent);
 				Instantiate(enclosure_walls_lab, enclosureParent);
 				generateLab();
 				break;
 			case gameController.level.cavern:
 				Instantiate(enclosure_walls_cave, enclosureParent);
 				generateCavern();
+				chooseDarkness();
+				darknessOverlay.setPlayer();
 				break;
 		}
 
-		// hideDarkness();
-
-		chooseDarkness();
 		insEntranceR();
-		// toggleDarkness();
+	}
 
-		// logRooms();
+	public void chooseDarkness()
+	{
+		if (inventory.checkEquipment(inventory.inventoryContents.nightVisionGoggles))
+		{
+			chosenDarkness = darknessOverlay.darknessOverlayNV;
+		}
+		else
+		{
+			chosenDarkness = darknessOverlay.darknessOverlayNormal;
+		}
+		// Debug.Log($"darkness chosen: {darknessOverlay}");
+	}
+
+	public void clearRoom()
+	{
+		clearParent(itemParent);
+		killTrader();
+		chosenDarkness.gameObject.SetActive(false);
 	}
 
 	void logCavernRooms()
@@ -122,7 +138,7 @@ public class roomController : MonoBehaviour
 			}
 			if (room.hasTrader)
 			{
-				// debug += " (T)";
+				debug += " (trader)";
 			}
 			debug += ", ";
 			i++;
@@ -132,16 +148,16 @@ public class roomController : MonoBehaviour
 
 	void generateLab()
 	{
-		entranceRoom = labRooms[2];
+		// choose lab entrance
+		entranceRoom = labRooms[1];
 		selectedRooms = labRooms;
 	}
+	//* generate cavern
 	void generateCavern()
 	{
-		// clear console :bwomp:
-
 		// generates array of unique rooms in random order
 
-		entranceRoom = cavernRooms[0]; // determines entrance room
+		entranceRoom = cavernRooms[0];
 
 		List<room_cavern> roomPool = cavernRooms.ToList();
 
@@ -152,7 +168,6 @@ public class roomController : MonoBehaviour
 		for (int i = 0; i < roomsNr; i++)
 		{
 			room_cavern randomRoom = roomPool[rndForRoom.Next(roomPool.Count())]; // choose random room from all
-																				  // randomRoom.roomPrefab.GetComponent<roomObj>().orderOnMap = i;
 			selectedRooms[i] = randomRoom; // add the room
 			roomPool.Remove(randomRoom); // remove the room from the pool
 		}
@@ -160,8 +175,8 @@ public class roomController : MonoBehaviour
 		// fix missing entrance
 		if (!selectedRooms.Contains(entranceRoom)) // if the entrance room isnt there already
 		{
+			// Debug.LogWarning("the impostorrr");
 			selectedRooms[rndForRoom.Next(selectedRooms.Length)] = entranceRoom; // insert entrance room instead of one random room
-																				 // Debug.LogWarning("the impostorrr");
 		}
 
 		for (int i = 0; i < selectedRooms.Length; i++)
@@ -169,158 +184,31 @@ public class roomController : MonoBehaviour
 			selectedRooms[i].orderOnMap = i;
 		}
 
-		chooseDarkRooms();
-
-		logCavernRooms();
+		setDarkRooms();
 
 		chooseItemSpawnLocations();
 		chooseTraderSpawnLocation();
+
+		logCavernRooms();
 	}
 
-	void chooseItemSpawnLocations()
+	void setDarkRooms()
 	{
-		foreach (room_cavern room in selectedRooms)
-		{
-			room.setLoot(itemSpawnRate);
-		}
-	}
-	/* void spawnItems(room_cavern room)
-	{
-		if (room.chosenLootSpawnLocations.Count() > 0)
-		{
-			for (int i = 0; i < room.chosenLootSpawnLocations.Count(); i++)
-			{
-				spawnItem();
-			}
-		}
-	}
-	void spawnItem()
-	{
-		worldItem spawnedItem = Instantiate(itemPrefab, itemParent).GetComponent<worldItem>();
-		spawnedItem.assignedRoomSO = room;
-		spawnedItem.updateItem(room.chosenLoot[i]);
-		spawnedItem.assignedSpawnTransform = room.chosenLootSpawnLocations[i];
-		if (spawnedItem.checkItem() != null)
-		{
-			spawnedItem.gameObject.transform.localPosition = spawnedItem.assignedSpawnTransform.position;
-		}
-		else Destroy(spawnedItem);
-	} */
-
-	private void chooseTraderSpawnLocation()
-	{
-		killTrader();
+		setDarknessChance();
 
 		System.Random rnd = new System.Random();
-		if (traderSpawnChance >= rnd.Next(100))
-		{
-			// Debug.Log("trader will appear (chance)");
-			// Debug.Log("attempting to spawn trader");
-			List<room_cavern> traderSpawnRooms = new List<room_cavern>();
-			foreach (room_cavern room in selectedRooms) // will have list of all possible spawnpoints
-			{
-				if (room.isDark && room != entranceRoom) // only spawn trader in dark rooms! thats like its thing AND NOT THE ENTRANCE ROOM. ITS FORBIDDEN THERE. IT ATE THE ELEVATOR CABLES THE LAST TIME
-				{
-					// rnd = new System.Random();
-					room.setTraderSpawn();
-					traderSpawnRooms.Add(room);
-					// Debug.Log($"adding point {traderSpawnpoints[traderSpawnpoints.Count - 1]} to trader spawn pool");
-				}
-			}
-
-
-			//
-			//! TEMP FOR TESTING. forces trader to spawn in entrance room
-			Debug.LogWarning("trader should be spawned elsewhere");
-			if (entranceRoom is room_cavern traderEntrRoom)
-			{
-				traderSpawnRooms.Clear();
-				traderEntrRoom.setTraderSpawn();
-				traderSpawnRooms.Add(traderEntrRoom);
-			}
-			//
-
-
-
-			if (traderSpawnRooms.Count > 0)
-			{
-				// Debug.Log($"the spawnpoint pool is: {string.Join(", ", traderSpawnRooms)}");
-
-				// choose 1 random place to spawn it at
-				traderSpawnRoom = traderSpawnRooms[rnd.Next(traderSpawnRooms.Count())];
-
-				int traderSpawnOrderOnMap = traderSpawnRoom.orderOnMap;
-
-				room_cavern rc = selectedRooms[traderSpawnOrderOnMap] as room_cavern;
-				rc.hasTrader = true;
-
-				//create trader
-				npcTrader = Instantiate(traderPrefab, traderParent).GetComponent<npcTrader>();
-				Debug.Log($"spawned trader at room {traderSpawnOrderOnMap}");
-				npcTrader.gameObject.SetActive(false);
-			}
-			else
-			{
-				// Debug.LogWarning("viable room pool empty. trader will not appear");
-				traderSpawnRoom = null;
-			}
-		}
-		else
-		{
-			// Debug.Log("trader will not appear (chance)");
-			traderSpawnRoom = null; // otherwise dont spawn it
-		}
-	}
-	void spawnTrader()
-	{
-		// Debug.Log("this room has the trader");
-		npcTrader.transform.localPosition = traderSpawnRoom.chosenTraderSpawn.position;
-		npcTrader.gameObject.SetActive(true);
-	}
-	void killTrader()
-	{
-		foreach (Transform child in traderParent.gameObject.GetComponentInChildren<Transform>())
-		//! the thing is also considered a child so only delete the children on the children if that makes sense (no it does not. fucj the naming on this one)
-		{
-			Destroy(child.gameObject);
-		}
-
 		foreach (room_cavern room in selectedRooms)
 		{
-			room.hasTrader = false;
+			room.isDark = false;
+			if (room != entranceRoom || darknessLvl == darknessLevel.dark) // for every room except the entrance room (cant be dark there) (except for when dl is dark)
+			{
+				if (rnd.Next(100) <= darknessChance)
+					room.isDark = true;
+			}
 		}
 	}
-
-	void hideDarkness()
-	{
-		darknessOverlay.darknessOverlayNormal.gameObject.SetActive(false);
-		darknessOverlay.darknessOverlayNV.gameObject.SetActive(false);
-	}
-	public void chooseDarkness()
-	{
-		// Debug.LogWarning("choosing darkness");
-		// if (playerEquipment.checkEquipment(1)) // nv goggles
-		// Debug.LogWarning("temp item lookup");
-		// Debug.LogWarning("item lookup?");
-		// if (inventory.equippedItems.Count > 0 && inventory.checkEquipment(inventory.inventoryItems
-		// [8])) // nv goggles
-		if (inventory.checkEquipment(inventory.inventoryContents.nightVisionGoggles))
-		{
-			chosenDarkness = darknessOverlay.darknessOverlayNV;
-			// chosenDarkness = darknessOverlay.darknessOverlayNormal;
-		}
-		else
-		{
-			//* just gets rid of the warning. this stays. ==> 
-			chosenDarkness = darknessOverlay.darknessOverlayNormal;
-		}
-		// Debug.Log("darkness chosen: " + darknessOverlay);
-	}
-	public enum darknessLevel { light, midLight, midDark, dark };
 	void setDarknessChance()
 	{
-		// chooseDarkness();
-
 		System.Random rnd = new System.Random();
 		int n = rnd.Next(100);
 		if (n <= 10)
@@ -348,43 +236,107 @@ public class roomController : MonoBehaviour
 			// Debug.Log("its kinda light in the dungeon (midLight)");
 		}
 	}
-	void chooseDarkRooms()
-	{
-		setDarknessChance();
 
-		System.Random rnd = new System.Random();
+	void chooseItemSpawnLocations()
+	{
 		foreach (room_cavern room in selectedRooms)
 		{
-			room.isDark = false;
-			if (room != entranceRoom || darknessLvl == darknessLevel.dark) // for every room except the entrance room (cant be dark there) (except for when dl is dark)
-			{
-				if (rnd.Next(100) <= darknessChance)
-					room.isDark = true;
-			}
+			room.setLoot(itemSpawnRate);
 		}
 	}
+
+	private void chooseTraderSpawnLocation()
+	{
+		killTrader();
+
+		System.Random rnd = new System.Random();
+		if (traderSpawnChance >= rnd.Next(100))
+		{
+			// Debug.Log("trader will appear (chance)");
+			List<room_cavern> traderSpawnRoomPool = new List<room_cavern>();
+			foreach (room_cavern room in selectedRooms) // will have list of all possible spawnpoints
+			{
+				if (room.isDark && room != entranceRoom) // only spawn trader in dark rooms! thats like its thing AND NOT THE ENTRANCE ROOM. ITS FORBIDDEN THERE. IT ATE THE ELEVATOR CABLES THE LAST TIME
+				{
+					room.setTraderSpawn();
+					traderSpawnRoomPool.Add(room);
+				}
+			}
+
+
+			//
+			//! TEMP FOR TESTING. forces trader to spawn in entrance room
+			Debug.LogWarning("trader should spawn elsewhere");
+			if (entranceRoom is room_cavern traderEntrRoom)
+			{
+				traderSpawnRoomPool.Clear();
+				traderEntrRoom.setTraderSpawn();
+				traderSpawnRoomPool.Add(traderEntrRoom);
+			}
+			//
+
+
+
+			if (traderSpawnRoomPool.Count > 0)
+			{
+				// choose 1 random place to spawn it at
+				traderSpawnRoom = traderSpawnRoomPool[rnd.Next(traderSpawnRoomPool.Count())];
+				int traderSpawnOrderOnMap = traderSpawnRoom.orderOnMap;
+
+				room_cavern rc = selectedRooms[traderSpawnOrderOnMap] as room_cavern;
+				rc.hasTrader = true;
+
+				//create trader
+				npcTrader = Instantiate(traderPrefab, traderParent).GetComponent<npcTrader>();
+				Debug.Log($"spawned trader at room {traderSpawnOrderOnMap}");
+				npcTrader.gameObject.SetActive(false);
+			}
+			else
+			{
+				// Debug.LogWarning("viable room pool empty. trader will not appear");
+				traderSpawnRoom = null;
+			}
+		}
+		else
+		{
+			// Debug.Log("trader will not appear (chance)");
+			traderSpawnRoom = null; // otherwise dont spawn it
+		}
+	}
+	void killTrader()
+	{
+		clearParent(traderParent);
+
+		foreach (room_cavern room in selectedRooms)
+		{
+			room.hasTrader = false;
+		}
+	}
+	void summonTrader()
+	{
+		npcTrader.transform.localPosition = traderSpawnRoom.chosenTraderSpawn.position;
+		npcTrader.gameObject.SetActive(true);
+	}
+
+	public enum darknessLevel { light, midLight, midDark, dark };
 	void toggleDarkness(room_cavern cr)
 	{
-		// Debug.Log(darknessOverlay);
 		if (cr.isDark)
 		{
-			// darknessOverlay.gameObject.SetActive(true);
 			chosenDarkness.gameObject.SetActive(true);
 		}
 		else
 		{
-			// darknessOverlay.gameObject.SetActive(false);
 			chosenDarkness.gameObject.SetActive(false);
 		}
-		// Debug.Log($"chosen darkness: {chosenDarkness}");
 	}
 
 	void setLeftAndRightRoomNumbers()
 	{
 		if (currentRoomNr == 0) // room is first
 		{
-			// roomLeft = emptyRoom;
 			roomRight = currentRoomNr + 1;
+			// roomLeft = emptyRoom;
 		}
 		else if (currentRoomNr == selectedRooms.Length - 1) // room is last
 		{
@@ -397,7 +349,6 @@ public class roomController : MonoBehaviour
 			roomRight = currentRoomNr + 1;
 		}
 	}
-
 	roomSO getRoom(leftRight lr)
 	{
 		switch (lr)
@@ -428,17 +379,9 @@ public class roomController : MonoBehaviour
 		}
 	}
 
-	void destroyRoom()
+	void clearParent(Transform parent)
 	{
-		foreach (Transform child in roomParent.gameObject.GetComponentInChildren<Transform>())
-		//! the thing is also considered a child so only delete the children on the children if that makes sense (no it does not. fucj the naming on this one)
-		{
-			Destroy(child.gameObject); // destroy current room
-		}
-	}
-	void destroyItems()
-	{
-		foreach (Transform child in itemParent.gameObject.GetComponentInChildren<Transform>())
+		foreach (Transform child in parent.gameObject.GetComponentInChildren<Transform>())
 		//! the thing is also considered a child so only delete the children on the children if that makes sense (no it does not. fucj the naming on this one)
 		{
 			Destroy(child.gameObject); // destroy current room
@@ -447,18 +390,15 @@ public class roomController : MonoBehaviour
 
 	void insEntranceR()
 	{
-		// destroyRoom();
-		// Instantiate(entranceRoom.roomPrefab, roomParent);
-		// getBlock();
 		currentRoomNr = Array.IndexOf(selectedRooms, entranceRoom);
-		roomNumberTMP.text = $"room {currentRoomNr} / {selectedRooms.Length - 1} (ENTRANCE)";
-
 		changeRoom(leftRight.entrance);
+		// roomNumberTMP.text = $"room {currentRoomNr} / {selectedRooms.Length - 1} (ENTRANCE)";
 	}
+	//* change room
 	public void changeRoom(leftRight isLeft)
 	{
 		setLeftAndRightRoomNumbers();
-		destroyRoom();
+		clearParent(roomParent);
 		Instantiate(getRoom(isLeft).roomPrefab.transform, roomParent);
 		roomNumberTMP.text = $"room {currentRoomNr} / {selectedRooms.Length - 1}";
 		placeDoorwayBlock();
@@ -468,12 +408,12 @@ public class roomController : MonoBehaviour
 			toggleDarkness(cr);
 
 			// items
-			destroyItems();
+			clearParent(itemParent);
 			cr.spawnItems(itemPrefab, itemParent);
 
 			// trader
 			if (cr.hasTrader)
-				spawnTrader();
+				summonTrader();
 			else if (npcTrader != null)
 				npcTrader.gameObject.SetActive(false);
 		}

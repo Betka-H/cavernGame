@@ -2,7 +2,9 @@ using UnityEngine;
 
 public class playerMovement : MonoBehaviour
 {
-	private Rigidbody2D rb;
+	[HideInInspector]
+	public Rigidbody2D rb;
+	[HideInInspector]
 	public bool alive;
 
 	[Header("collision types or smthing")]
@@ -27,11 +29,12 @@ public class playerMovement : MonoBehaviour
 	private float coyoteTimeElapsed;
 	private int wallJumps;
 
-	void Start()
+	void Awake()
 	{
 		rb = GetComponent<Rigidbody2D>();
 		hasJumped = false;
 		wallJumps = 0;
+		alive = true;
 	}
 	void FixedUpdate()
 	{
@@ -43,12 +46,11 @@ public class playerMovement : MonoBehaviour
 		if (alive)
 		{
 			movement();
-			Time.timeScale = 1;
+			// Time.timeScale = 1;
 		}
 		else
 		{
-			rb.velocity = Vector3.zero;
-			Time.timeScale = 0;
+			// Time.timeScale = 0;
 		}
 	}
 

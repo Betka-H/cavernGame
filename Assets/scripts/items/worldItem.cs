@@ -3,18 +3,16 @@ using UnityEngine;
 public class worldItem : MonoBehaviour
 {
 	SpriteRenderer spriteRenderer;
-	private inventory inventory;
+	private inventoryManager inventory;
 
 	loot assignedItem;
-	[HideInInspector]
-	public Transform assignedSpawnTransform;
-	[HideInInspector]
-	public room_cavern assignedRoomSO;
+	[HideInInspector] public Transform assignedSpawnTransform;
+	[HideInInspector] public room_cavern assignedRoomSO;
 
 	void Awake()
 	{
 		spriteRenderer = GetComponent<SpriteRenderer>();
-		inventory = FindObjectOfType<inventory>();
+		inventory = FindObjectOfType<inventoryManager>();
 	}
 
 	public loot checkItem()
@@ -47,7 +45,7 @@ public class worldItem : MonoBehaviour
 	}
 	void pickUp()
 	{
-		inventory.addItem(assignedItem);
+		inventory.addCaveItem(assignedItem);
 		assignedRoomSO.removeItemSpawn(assignedItem, assignedSpawnTransform);
 		updateItem(null);
 	}

@@ -10,7 +10,7 @@ public class traderMenu : MonoBehaviour
 	public traderHand handR;
 
 	public itemMenu itemMenu;
-	public inventory inventory;
+	public inventoryManager inventory;
 	private List<item> traderInv;
 
 	public TMP_Text timesTradedInfoDisp;
@@ -54,14 +54,14 @@ public class traderMenu : MonoBehaviour
 				Debug.Log("attempting trade");
 
 				// itemMenu.remItem(itemMenu.selectedItem);
-				inventory.removeItem(offeredItem);
+				inventory.removeCaveItem(offeredItem);
 
 				// offerMade = false;
 				offeredItem = null;
 				handL.assignItem(offeredItem);
 
 				// itemMenu.addItem(tradedItem);
-				inventory.addItem(tradedItem);
+				inventory.addCaveItem(tradedItem);
 				itemMenu.refreshItems();
 				traderInv.RemoveAt(0);
 				if (traderInv.Count() > 0)

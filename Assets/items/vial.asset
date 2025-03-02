@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b40565017206895419412b5f600eb496, type: 3}
   m_Name: vial
   m_EditorClassIdentifier: 
+  itemId: 4
   itemName: vial
   itemDescription: allowas you to pick up dungeon goop
   itemSprite: {fileID: 21300000, guid: fd19c22a83a043040aee5bdb557934e4, type: 3}
+  tmp_gearBehavior: 0

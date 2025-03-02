@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b40565017206895419412b5f600eb496, type: 3}
   m_Name: night_vision_goggles
   m_EditorClassIdentifier: 
+  itemId: 2
   itemName: night vision goggles
   itemDescription: you can see in the dark
   itemSprite: {fileID: 21300000, guid: 3200daa516fd32a4ab702ecb9f9a0b32, type: 3}
+  tmp_gearBehavior: 0

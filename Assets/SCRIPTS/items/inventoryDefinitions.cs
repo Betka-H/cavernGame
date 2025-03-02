@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class inventoryContents : MonoBehaviour
+public class inventoryDefinitions : MonoBehaviour
 {
     [Header("gems")]
     public item gemRed;
@@ -13,9 +13,9 @@ public class inventoryContents : MonoBehaviour
     public item gemClear;
 
     [Header("gear")]
-    public item nightVisionGoggles;
-    public item vial;
-    public item pickaxe;
+    public gear nightVisionGoggles;
+    public gear vial;
+    public gear pickaxe;
 
     [Header("scrap")]
     public scrap scrapGoggles;

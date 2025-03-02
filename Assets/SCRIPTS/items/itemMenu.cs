@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class itemMenu : MonoBehaviour
 {
-	public inventory inventoryScript;
+	public inventoryManager inventoryScript;
 
-	private invItem[] gridSlots;
+	private caveInvItem[] gridSlots;
 
 	[Header("item info section")]
 	public SpriteRenderer invSprite_itemSprite;
@@ -22,12 +22,7 @@ public class itemMenu : MonoBehaviour
 
 	void Awake()
 	{
-		getSlots();
-	}
-
-	void getSlots()
-	{
-		gridSlots = GetComponentsInChildren<invItem>();
+		gridSlots = GetComponentsInChildren<caveInvItem>();
 	}
 
 	void OnEnable()
@@ -39,16 +34,16 @@ public class itemMenu : MonoBehaviour
 
 	public void refreshItems()
 	{
-		inventoryScript.sortInventory();
+		inventoryScript.sortInventory(ref inventoryScript.caveInventory);
 
 		if (gridSlots != null)
 		{
 			for (int i = 0; i < gridSlots.Length; i++)
 			{
-				invItem currentItem = gridSlots[i];
-				if (i < inventoryScript.inventoryItems.Count)
+				caveInvItem currentItem = gridSlots[i];
+				if (i < inventoryScript.caveInventory.Count)
 				{
-					currentItem.assignItem(inventoryScript.inventoryItems[i]);
+					currentItem.assignItem(inventoryScript.caveInventory[i]);
 				}
 				else currentItem.assignItem(null);
 			}

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd786c94297a415458506c7336163eb2, type: 3}
   m_Name: gem_red
   m_EditorClassIdentifier: 
+  itemId: 1.1
   itemName: red gem
   itemDescription: gem that is red
   itemSprite: {fileID: 139969388, guid: 6204d8d4992cf9f42a02ed66e489639a, type: 3}

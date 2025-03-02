@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class gameController : MonoBehaviour
@@ -10,31 +9,22 @@ public class gameController : MonoBehaviour
 	public GameObject cavePlayerPrefab;
 
 	private roomController roomController;
-	private itemMenu itemMenu;
-	private inventory inventory;
+	private inventoryManager inventory;
 
 	menuManager menuManager;
 
 	interactionTooltip interactionTooltip;
 
 	public enum level { lab, cavern };
-	// level currentLevel;
 
-	// public ScriptableObject item1;
 	void Start()
 	{
 		roomController = FindObjectOfType<roomController>();
-		// roomController.hasNightVision = false;
-		itemMenu = FindObjectOfType<itemMenu>(true);
-		inventory = FindObjectOfType<inventory>();
+		inventory = FindObjectOfType<inventoryManager>();
 		interactionTooltip = FindObjectOfType<interactionTooltip>();
 		menuManager = FindObjectOfType<menuManager>();
 
-		// gameState.State = gameState.gameStates.playing;
-		//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! lab should be first
-		// currentLevel = level.cavern;
 		genAndSpawn(level.lab);
-		// genAndSpawn(level.cavern);
 
 		clearMenus();
 	}
@@ -43,35 +33,37 @@ public class gameController : MonoBehaviour
 	{
 		if (Input.GetKeyDown(KeyCode.Q))
 		{
-			toggleGameplayMenu();
+			switch (roomController.currentLevel)
+			{
+				case level.lab:
+					toggleLabMenu();
+					break;
+				case level.cavern:
+					toggleCavernMenu();
+					break;
+			}
 		}
+		//! temp
 		if (Input.GetKeyDown(KeyCode.R))
 		{
-			restart();
+			respawnCavern();
 		}
 	}
 
-	void restart()
+	void respawnCavern()
 	{
-		// genAndSpawn(level.lab);
 		genAndSpawn(level.cavern);
 		clearMenus();
-		inventory.clearInventory();
+		inventory.caveInventory.Clear();
 	}
 
 	public void genAndSpawn(level lvl)
 	{
-		// roomController.chooseDarkness();
-		roomController.generateLevel(lvl);
 		spawnPlayer(lvl);
+		roomController.generateLevel(lvl);
 	}
-	// public Transform[] menusToDisable;
 	void clearMenus()
 	{
-		/* foreach (Transform menu in menusToDisable)
-		{
-			menu.gameObject.SetActive(false);
-		} */
 		menuManager.hideMenus();
 		interactionTooltip.hideTooltip();
 		deathScreen.SetActive(false);
@@ -94,6 +86,9 @@ public class gameController : MonoBehaviour
 		player = Instantiate(playerPrefab, playerParent.transform);
 		player.transform.position = spawnPoint.position;
 		player.GetComponent<playerMovement>().alive = true;
+		player.GetComponent<playerMovement>().rb.velocity = Vector3.zero;
+
+		roomController.player = player.GetComponent<Transform>();
 	}
 	void destroyPlayer()
 	{
@@ -108,7 +103,7 @@ public class gameController : MonoBehaviour
 	}
 
 	// public missionMenu missionMenu;
-	void toggleGameplayMenu()
+	void toggleCavernMenu()
 	{
 		// Debug.Log($"menu: {itemMenu.gameObject.activeSelf}");
 		/* itemMenu.gameObject.SetActive(!itemMenu.gameObject.activeSelf);
@@ -126,6 +121,10 @@ public class gameController : MonoBehaviour
 				break;
 		} */
 		// Debug.LogWarning($"menu: {itemMenu.gameObject.activeSelf}");
+	}
+	void toggleLabMenu()
+	{
+		menuManager.toggleLabMenu();
 	}
 
 	void OnApplicationQuit()
@@ -149,110 +148,28 @@ public class gameController : MonoBehaviour
 		deathScreen.SetActive(true);
 		// destroyPlayer();
 		player.GetComponent<playerMovement>().alive = false;
+		player.GetComponent<playerMovement>().rb.velocity = Vector3.zero;
+	}
+
+	public void leaveCavern()
+	{
+		Debug.Log("byyye deadly cavern");
+		roomController.clearRoom();
+		transferInventory();
+		genAndSpawn(level.lab);
+	}
+	public void transferInventory()
+	{
+		/* foreach (item it in inventory.caveInventory)
+        {
+            inventory.addCaveItem(it);
+        } // lmao what*/
+		inventory.labInventory.AddRange(inventory.caveInventory);
+		inventory.caveInventory.Clear();
+	}
+	public void enterCavern()
+	{
+		Debug.Log("helloooo deadly cavern");
+		genAndSpawn(level.cavern);
 	}
 }
-
-
-/* 
-
-using UnityEngine;
-
-public class gameController : MonoBehaviour
-{
-	[Header("player")]
-	public GameObject playerParent;
-	public Transform spawnPoint;
-	public GameObject labPlayerPrefab;
-	public GameObject cavePlayerPrefab;
-
-	[Header("room controller")]
-	public roomController roomControl;
-
-	[Header("inventory menu")]
-	public tabMenu tabMenu;
-
-	public enum level { lab, cavern };
-	level currentLevel;
-
-	void Start()
-	{
-		gameState.State = gameState.gameStates.playing;
-		currentLevel = level.cavern; //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! lab should be first
-		genAndSpawn();
-	}
-
-	void Update()
-	{
-		getPlayerInput();
-	}
-
-	void getPlayerInput()
-	{
-		// currentLevel = level.cavern;
-		if (Input.GetKeyDown(KeyCode.R)) //! remove this lol
-		{
-			genAndSpawn();
-		}
-		if (Input.GetKeyDown(KeyCode.Q))
-		{
-			toggleTabMenu();
-		}
-		if (gameState.State == gameState.gameStates.paused)
-		{
-			Time.timeScale = 0;
-		}
-		else
-			Time.timeScale = 1;
-	}
-
-	void genAndSpawn()
-	{
-		roomControl.generateLevel(currentLevel);
-		spawnPlayer(currentLevel);
-	}
-
-	GameObject playerPrefab;
-	void spawnPlayer(level lvl)
-	{
-		destroyPlayer();
-		switch (lvl)
-		{
-			case level.lab:
-				playerPrefab = labPlayerPrefab;
-				break;
-			case level.cavern:
-				playerPrefab = cavePlayerPrefab;
-				break;
-		}
-		GameObject player = Instantiate(playerPrefab, playerParent.transform);
-		player.transform.position = spawnPoint.position;
-	}
-	void destroyPlayer()
-	{
-		foreach (Transform child in playerParent.gameObject.GetComponentsInChildren<Transform>())
-		//! the thing is also considered a child so only delete the children on the children if that makes sense (no it does not. fucj the naming on this one)
-		{
-			if (child.CompareTag("player"))
-			{
-				Destroy(child.gameObject);
-			}
-		}
-	}
-
-	void toggleTabMenu()
-	{
-		tabMenu.gameObject.SetActive(!tabMenu.gameObject.activeSelf);
-		switch (tabMenu.gameObject.activeSelf)
-		{
-			case true:
-				gameState.State = gameState.gameStates.paused;
-				break;
-			case false:
-				gameState.State = gameState.gameStates.playing;
-				break;
-		}
-	}
-}
-
-
- */
