@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class toolWorkstationMenu : MonoBehaviour
 {
@@ -32,11 +31,13 @@ public class toolWorkstationMenu : MonoBehaviour
         {
             scrapSpriteRenderer.sprite = assignedScrap.itemSprite;
             resultSpriteRenderer.sprite = assignedScrap.wholeGear.itemSprite;
+            menuManager.labItemMenu.refreshItems(assignedScrap.wholeGear.cost.ToList(), menuManager.labItemMenu.recipeGridSlots);
         }
         else
         {
             scrapSpriteRenderer.sprite = placeholderScrapItemSprite;
             resultSpriteRenderer.sprite = placeholderResultItemSprite;
+            menuManager.labItemMenu.refreshItems(new List<item>(), menuManager.labItemMenu.recipeGridSlots);
         }
     }
 
@@ -53,7 +54,7 @@ public class toolWorkstationMenu : MonoBehaviour
             assignScrap(null);
         }
         else Debug.Log("no offer or enough resources");
-        menuManager.labItemMenu.refreshItems();
+        menuManager.labItemMenu.refreshItems(inventoryManager.labInventory, menuManager.labItemMenu.regularGridSlots);
     }
     bool checkResources()
     {

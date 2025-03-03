@@ -8,13 +8,16 @@ public enum itemDispType { all, loot, scrap, gear };
 public class labItemMenu : MonoBehaviour
 {
     inventoryManager inventoryScript;
-    private labInvItem[] gridSlots;
+    [HideInInspector] public labInvItem[] regularGridSlots;
+    [HideInInspector] public labInvItem[] recipeGridSlots;
+    public Transform recipeGridTransform;
     [HideInInspector] public item selectedItem;
     [HideInInspector] public itemDispType itemDispType;
 
     void Awake()
     {
-        gridSlots = GetComponentsInChildren<labInvItem>();
+        regularGridSlots = GetComponentsInChildren<labInvItem>();
+        recipeGridSlots = recipeGridTransform.GetComponentsInChildren<labInvItem>();
         inventoryScript = FindObjectOfType<inventoryManager>();
     }
 
@@ -22,26 +25,28 @@ public class labItemMenu : MonoBehaviour
     {
         selectedItem = null;
         showInfo();
-        refreshItems();
+        refreshItems(inventoryScript.labInventory, regularGridSlots);
     }
 
-    public void refreshItems()
+    public void refreshItems(List<item> itemList, labInvItem[] slots)
     {
 
         // inventoryScript.sortInventory(ref inventoryScript.labInventory);
         // List<item> cullingInv = new List<item>(inventoryScript.labInventory);
-        List<item> cullingInv = groupItems(itemDispType);
+        List<item> cullingInv = groupItems(itemList, itemDispType);
         // Debug.Log("item refresh: ");
         // inventoryScript.printInventory(cullingInv);
 
-        if (gridSlots != null)
+        Debug.Log("ci count: " + cullingInv.Count);
+
+        if (slots != null)
         {
-            for (int i = 0; i < gridSlots.Length; i++) // for each slot
+            for (int i = 0; i < slots.Length; i++) // for each slot
             {
                 // Debug.Log("culling inv below v v v ");
                 // inventoryScript.printInventory(cullingInv);
 
-                labInvItem currentItemSlot = gridSlots[i];
+                labInvItem currentItemSlot = slots[i];
 
                 if (cullingInv.Count > 0) // as long as there are items left
                 {
@@ -63,10 +68,10 @@ public class labItemMenu : MonoBehaviour
         }
     }
 
-    private List<item> groupItems(itemDispType dt)
+    private List<item> groupItems(List<item> itemList, itemDispType dt)
     {
-        inventoryScript.sortInventory(ref inventoryScript.labInventory);
-        List<item> groupingInv = new List<item>(inventoryScript.labInventory);
+        inventoryScript.sortInventory(ref itemList);
+        List<item> groupingInv = new List<item>(itemList);
         // Debug.Log("before grouped");
         // inventoryScript.printInventory(groupingInv);
 
