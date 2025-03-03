@@ -14,8 +14,7 @@ public class itemMenu : MonoBehaviour
 
 	public Sprite placeholderItemSprite;
 	public string placeholderItemName;
-	[TextArea]
-	public string placeholderItemDescription;
+	[TextArea] public string placeholderItemDescription;
 
 	[HideInInspector]
 	public item selectedItem;

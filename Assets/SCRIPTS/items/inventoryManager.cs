@@ -25,6 +25,35 @@ public class inventoryManager : MonoBehaviour
 	{
 		inventoryContents = FindObjectOfType<inventoryDefinitions>();
 		sortInventory(ref allItems);
+
+		tempInv();
+		printInventory(labInventory);
+	}
+
+	void tempInv()
+	{
+		labInventory = new List<item>
+{
+	inventoryContents.gemBlue,
+	inventoryContents.gemBlue,
+	inventoryContents.gemBlue,
+	inventoryContents.gemYellow,
+	inventoryContents.gemYellow,
+	inventoryContents.gemOrange,
+	inventoryContents.gemOrange,
+	inventoryContents.gemClear,
+	inventoryContents.gemClear,
+	inventoryContents.gemClear,
+	inventoryContents.gemClear,
+	inventoryContents.gemClear,
+	inventoryContents.gemClear,
+	inventoryContents.gemClear,
+	inventoryContents.scrapGoggles,
+	inventoryContents.scrapGoggles,
+	inventoryContents.scrapGoggles,
+	inventoryContents.scrapPickaxe,
+	inventoryContents.scrapPickaxe,
+};
 	}
 
 	public bool checkEquipment(item it)
@@ -68,7 +97,7 @@ public class inventoryManager : MonoBehaviour
 		else
 		{
 			inventory.Remove(it);
-			Debug.Log($"removed item {it} from inventory");
+			// Debug.Log($"removed item {it} from inventory");
 		}
 	}
 

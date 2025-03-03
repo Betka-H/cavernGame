@@ -21,13 +21,18 @@ public class labInvItem : MonoBehaviour
 
 	void OnMouseDown()
 	{
-		/* menuManager.itemMenu.selectedItem = assignedItem;
-		menuManager.itemMenu.showInfo();
-
-		if (menuManager.traderMenu.gameObject.activeSelf)
+		select();
+		if (menuManager.toolWorkstationMenu.gameObject.activeSelf)
 		{
-			menuManager.traderMenu.offer();
-		} */
+			if (assignedItem is scrap scrap)
+				menuManager.toolWorkstationMenu.assignScrap(scrap);
+		}
+	}
+
+	void select()
+	{
+		menuManager.labItemMenu.selectedItem = assignedItem;
+		menuManager.labItemMenu.showInfo();
 	}
 
 	void OnEnable()
@@ -63,23 +68,26 @@ public class labInvItem : MonoBehaviour
 
 	public void assignItem(item it, int amount)
 	{
-		if (it != null)
-		{
-			assignedItem = it;
-			setSprite();
-			assignedAmount = amount;
-			setAmount();
-			gameObject.SetActive(true);
-		}
-		else gameObject.SetActive(false);
+		assignedItem = it;
+		displaySprite();
+		assignedAmount = amount;
+		displayAmount();
+		;
 	}
 
-	void setSprite()
+	void displaySprite()
 	{
-		spriteRenderer.sprite = assignedItem.itemSprite;
+		if (assignedItem != null)
+			spriteRenderer.sprite = assignedItem.itemSprite;
+		else
+			spriteRenderer.sprite = null;
 	}
-	void setAmount()
+	void displayAmount()
 	{
+		if (assignedItem != null)
+			spriteRenderer.sprite = assignedItem.itemSprite;
+		else
+			spriteRenderer.sprite = null;
 		amountTextDisp.text = assignedAmount.ToString();
 	}
 }

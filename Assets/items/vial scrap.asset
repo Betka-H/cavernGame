@@ -15,5 +15,5 @@ MonoBehaviour:
   itemId: 4.1
   itemName: vial scrap
   itemDescription: piece of vial
-  itemSprite: {fileID: 21300000, guid: fd19c22a83a043040aee5bdb557934e4, type: 3}
+  itemSprite: {fileID: 21300000, guid: bd39555295f4f4542810faac2d9bad93, type: 3}
   wholeGear: {fileID: 11400000, guid: 52be5335aea4bdd48b51b5037bc35f4c, type: 2}

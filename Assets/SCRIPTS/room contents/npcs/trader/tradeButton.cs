@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class tradeButton : MonoBehaviour
 {
-	public menuManager menuManager;
+	/* public menuManager menuManager;
 
 	void Start()
 	{
@@ -12,5 +12,5 @@ public class tradeButton : MonoBehaviour
 	void OnMouseDown()
 	{
 		menuManager.traderMenu.trade();
-	}
+	} */
 }

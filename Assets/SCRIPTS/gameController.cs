@@ -124,7 +124,7 @@ public class gameController : MonoBehaviour
 	}
 	void toggleLabMenu()
 	{
-		menuManager.toggleLabMenu();
+		menuManager.toggleLabMenuScreen();
 	}
 
 	void OnApplicationQuit()

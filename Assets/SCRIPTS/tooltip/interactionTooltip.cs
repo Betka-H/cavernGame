@@ -2,7 +2,7 @@ using UnityEngine.Events;
 using TMPro;
 using UnityEngine;
 
-public enum tooltipKind { item, trader, enter, exit };
+public enum tooltipKind { enter, exit, item, trader, toolWorkshop };
 
 public class interactionTooltip : MonoBehaviour
 {
@@ -12,6 +12,7 @@ public class interactionTooltip : MonoBehaviour
 	[Header("trader event")][SerializeField] private UnityEvent traderEvent;
 	[Header("cavern enter event")][SerializeField] private UnityEvent enterEvent;
 	[Header("cavern exit event")][SerializeField] private UnityEvent exitEvent;
+	[Header("tool workshop event")][SerializeField] private UnityEvent toolWorkshopEvent;
 
 	public void showTooltip(KeyCode key, tooltipKind tk, Vector3 pos)
 	{
@@ -29,6 +30,9 @@ public class interactionTooltip : MonoBehaviour
 				break;
 			case tooltipKind.exit:
 				action = "exit the cavern";
+				break;
+			case tooltipKind.toolWorkshop:
+				action = "craft tools";
 				break;
 		}
 
@@ -51,6 +55,9 @@ public class interactionTooltip : MonoBehaviour
 				break;
 			case tooltipKind.exit:
 				exitEvent.Invoke();
+				break;
+			case tooltipKind.toolWorkshop:
+				toolWorkshopEvent.Invoke();
 				break;
 		}
 	}

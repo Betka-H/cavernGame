@@ -7,14 +7,11 @@ public class menuManager : MonoBehaviour
 
     deathScreen deathScreen;
 
-    [HideInInspector]
-    public itemMenu itemMenu;
-    [HideInInspector]
-    public missionMenu missionMenu;
-    [HideInInspector]
-    public traderMenu traderMenu;
-    [HideInInspector]
-    public labItemMenu labItemMenu;
+    [HideInInspector] public itemMenu itemMenu;
+    [HideInInspector] public missionMenu missionMenu;
+    [HideInInspector] public traderMenu traderMenu;
+    [HideInInspector] public labItemMenu labItemMenu;
+    [HideInInspector] public toolWorkstationMenu toolWorkstationMenu;
 
     void Awake()
     {
@@ -23,6 +20,7 @@ public class menuManager : MonoBehaviour
         missionMenu = FindObjectOfType<missionMenu>(true);
         traderMenu = FindObjectOfType<traderMenu>(true);
         labItemMenu = FindObjectOfType<labItemMenu>(true);
+        toolWorkstationMenu = FindObjectOfType<toolWorkstationMenu>(true);
         hideMenus();
     }
 
@@ -32,6 +30,7 @@ public class menuManager : MonoBehaviour
         toggleLabItemMenu(false);
         toggleMissionMenu(false);
         toggleTraderMenu(false);
+        toggleToolWorkstationMenu(false);
         deathScreen.gameObject.SetActive(false);
 
         menuBg.SetActive(false);
@@ -53,6 +52,10 @@ public class menuManager : MonoBehaviour
     {
         missionMenu.gameObject.SetActive(onOff);
     }
+    void toggleToolWorkstationMenu(bool onOff)
+    {
+        toolWorkstationMenu.gameObject.SetActive(onOff);
+    }
 
     public void toggleGameplayMenuScreen()
     {
@@ -69,11 +72,20 @@ public class menuManager : MonoBehaviour
         toggleTraderMenu(onOff);
     }
     // temp name?
-    public void toggleLabMenu()
+    public void toggleLabMenuScreen()
     {
-        bool onOff = !labItemMenu.gameObject.activeSelf;
+        bool onOff = toggleMenu(labItemMenu.gameObject);
 
+        labItemMenu.itemDispType = itemDispType.all;
         toggleLabItemMenu(onOff);
+    }
+    public void toggleToggletoolWorkstationMenuScreen()
+    {
+        bool onOff = toggleMenu(toolWorkstationMenu.gameObject);
+
+        labItemMenu.itemDispType = itemDispType.scrap;
+        toggleLabItemMenu(onOff);
+        toggleToolWorkstationMenu(onOff);
     }
 
     bool toggleMenu(GameObject menu)

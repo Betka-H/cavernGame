@@ -4,5 +4,5 @@ using UnityEngine;
 public class gear : item
 {
     [Header("gear")]
-    public int tmp_gearBehavior;
+    public item[] cost;
 }

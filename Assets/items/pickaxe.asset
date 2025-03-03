@@ -15,5 +15,8 @@ MonoBehaviour:
   itemId: 3
   itemName: pickaxe
   itemDescription: mine shit
-  itemSprite: {fileID: 21300000, guid: 8209bbc294f8d604995cd0563f8c4caa, type: 3}
-  tmp_gearBehavior: 0
+  itemSprite: {fileID: 21300000, guid: fcc60970415a3c14488325aae3a17acd, type: 3}
+  cost:
+  - {fileID: 11400000, guid: 855f72286b24ad8488e6984db26b4f9f, type: 2}
+  - {fileID: 11400000, guid: 855f72286b24ad8488e6984db26b4f9f, type: 2}
+  - {fileID: 11400000, guid: ab0e1471363c9ab42a2e91281c3e9a2c, type: 2}

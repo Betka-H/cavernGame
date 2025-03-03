@@ -365,7 +365,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2dadf55b00b36b42ace012f34ffcb6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tooltipKind: 3
+  tooltipKind: 1
   keyToInteract: 101
 --- !u!1 &7875710032728244850
 GameObject:

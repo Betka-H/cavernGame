@@ -15,5 +15,5 @@ MonoBehaviour:
   itemId: 3.1
   itemName: pickaxe scrap
   itemDescription: piece of pickaxe
-  itemSprite: {fileID: 21300000, guid: fcc60970415a3c14488325aae3a17acd, type: 3}
+  itemSprite: {fileID: 21300000, guid: 7c924f767e2cb3e468fb0742f27129f0, type: 3}
   wholeGear: {fileID: 11400000, guid: 6a62c3feb9724e34a929076bbb422ac8, type: 2}

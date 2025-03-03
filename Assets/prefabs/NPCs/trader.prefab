@@ -126,9 +126,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2dadf55b00b36b42ace012f34ffcb6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tooltipKind: 1
+  tooltipKind: 3
   keyToInteract: 116
-  isEnabled: 0
 --- !u!61 &9008060062607203274
 BoxCollider2D:
   m_ObjectHideFlags: 0
