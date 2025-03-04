@@ -3,6 +3,34 @@ using UnityEngine;
 
 public class caveItemMenu : itemMenu
 {
+	private bool _hasAllSlots;
+	public bool hasAllSlots
+	{
+		get { return _hasAllSlots; }
+		set
+		{
+			// if (_hasAllSlots != value)
+			{
+				_hasAllSlots = value;
+
+				//! temp slot values
+				if (hasAllSlots)
+				{
+					slotLimit = 20;
+					slotCover.gameObject.SetActive(false);
+				}
+				else
+				{
+					slotLimit = 12;
+					slotCover.gameObject.SetActive(true);
+				}
+				Debug.Log($"sl: {slotLimit}");
+			}
+		}
+	}
+	[HideInInspector] public int slotLimit;
+	public Transform slotCover;
+
 	void OnEnable()
 	{
 		refreshItems(regularSlots, inventoryScript.caveInventory);

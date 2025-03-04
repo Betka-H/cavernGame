@@ -7,7 +7,7 @@ public class button : MonoBehaviour
 
     void OnMouseDown()
     {
-        Debug.Log("invoke?");
+        // Debug.Log("invoke?");
         buttonEvent.Invoke();
     }
 }

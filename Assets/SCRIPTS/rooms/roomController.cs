@@ -64,14 +64,11 @@ public class roomController : MonoBehaviour
 	void Start()
 	{
 		//! temp value
-		Debug.LogWarning("temp trader spawn chance");
 		traderSpawnChance = 100;
 		//! temp value
-		Debug.LogWarning("temp item spawn rate");
 		itemSpawnRate = 100;
 
-		//! temp value. revisit later
-		Debug.LogWarning("temp max room amount");
+		//! temp value
 		maxCavernRoomsNr = cavernRooms.Length;
 
 		darknessOverlay = FindObjectOfType<darknessOL>();
@@ -103,7 +100,7 @@ public class roomController : MonoBehaviour
 
 	public void chooseDarkness()
 	{
-		if (inventory.checkEquipment(inventory.inventoryContents.nightVisionGoggles))
+		if (inventory.checkEquipment(inventory.inventoryDefinitions.nightVisionGoggles))
 		{
 			chosenDarkness = darknessOverlay.darknessOverlayNV;
 		}

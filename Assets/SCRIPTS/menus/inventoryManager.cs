@@ -8,7 +8,7 @@ public class inventoryManager : MonoBehaviour
 	[HideInInspector] public List<item> caveInventory;
 	[HideInInspector] public List<item> equippedItems;
 
-	[HideInInspector] public inventoryDefinitions inventoryContents;
+	[HideInInspector] public inventoryDefinitions inventoryDefinitions;
 	public List<item> allItems;
 
 	/*//* private string savePath = "inventory-save.txt";
@@ -21,39 +21,38 @@ public class inventoryManager : MonoBehaviour
 
 	void Start()
 	{
-		inventoryContents = FindObjectOfType<inventoryDefinitions>();
+		inventoryDefinitions = FindObjectOfType<inventoryDefinitions>();
 		orderInventory(ref allItems);
 
 		tempInv();
-		printInventory(labInventory);
 	}
 
 	void tempInv()
 	{
 		labInventory = new List<item>
 	{
-	inventoryContents.gemBlue,
-	inventoryContents.gemBlue,
-	inventoryContents.gemBlue,
-	inventoryContents.gemBlue,
-	inventoryContents.gemBlue,
-	inventoryContents.gemBlue,
-	inventoryContents.gemYellow,
-	inventoryContents.gemYellow,
-	inventoryContents.gemOrange,
-	inventoryContents.gemOrange,
-	inventoryContents.gemClear,
-	inventoryContents.gemClear,
-	inventoryContents.gemClear,
-	inventoryContents.gemClear,
-	inventoryContents.gemClear,
-	inventoryContents.gemClear,
-	inventoryContents.gemClear,
-	inventoryContents.scrapGoggles,
-	inventoryContents.scrapGoggles,
-	inventoryContents.scrapGoggles,
-	inventoryContents.scrapPickaxe,
-	inventoryContents.scrapPickaxe,
+	inventoryDefinitions.gemBlue,
+	inventoryDefinitions.gemBlue,
+	inventoryDefinitions.gemBlue,
+	inventoryDefinitions.gemBlue,
+	inventoryDefinitions.gemBlue,
+	inventoryDefinitions.gemBlue,
+	inventoryDefinitions.gemYellow,
+	inventoryDefinitions.gemYellow,
+	inventoryDefinitions.gemOrange,
+	inventoryDefinitions.gemOrange,
+	inventoryDefinitions.gemClear,
+	inventoryDefinitions.gemClear,
+	inventoryDefinitions.gemClear,
+	inventoryDefinitions.gemClear,
+	inventoryDefinitions.gemClear,
+	inventoryDefinitions.gemClear,
+	inventoryDefinitions.gemClear,
+	inventoryDefinitions.scrapGoggles,
+	inventoryDefinitions.scrapGoggles,
+	inventoryDefinitions.scrapGoggles,
+	inventoryDefinitions.scrapPickaxe,
+	inventoryDefinitions.scrapPickaxe,
 	};
 	}
 

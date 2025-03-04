@@ -138,7 +138,8 @@ public class gameController : MonoBehaviour
 		Debug.LogError("dont forget to upload to github!");
 		Debug.LogWarning("=========================================================================");
 		Debug.LogWarning("todo:");
-		Debug.LogWarning("have an unlockable npc which gives u a \"weather forecast\" for the next run depending on the darkness level");
+		// Debug.LogWarning("have an unlockable npc which gives u a \"weather forecast\" for the next run depending on the darkness level");
+		Debug.LogWarning("search temp");
 	}
 
 	public GameObject deathScreen;

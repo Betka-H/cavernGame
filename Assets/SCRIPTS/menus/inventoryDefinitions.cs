@@ -16,6 +16,7 @@ public class inventoryDefinitions : MonoBehaviour
     public gear nightVisionGoggles;
     public gear vial;
     public gear pickaxe;
+    public gear backpack;
 
     [Header("scrap")]
     public scrap scrapGoggles;

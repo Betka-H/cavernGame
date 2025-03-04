@@ -45,12 +45,12 @@ public class npcTrader : NPC
 		{
 			int scrapPosition = rnd.Next(traderInventory.Length);
 			traderInventory[scrapPosition] = traderScrapPool[rnd.Next(traderScrapPool.Length - 1)];
-			Debug.Log($"trader sells scrap (as {scrapPosition})");
+			// Debug.Log($"trader sells scrap (as {scrapPosition})");
 		}
 
 		logTraderInventory();
 
-		Debug.Log($"mm: {menuManager}");
+		// Debug.Log($"mm: {menuManager}");
 		menuManager.traderMenu.setInventory(traderInventory, mainItem);
 	}
 
