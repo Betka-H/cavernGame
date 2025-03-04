@@ -56,6 +56,9 @@ public class toolWorkstationMenu : MonoBehaviour
         }
         else Debug.Log("no offer or enough resources");
         menuManager.labItemMenu.refreshItems(inventoryManager.labInventory, menuManager.labItemMenu.regularGridSlots, itemDispType.all);
+
+        menuManager.labItemMenu.selectedItem = null;
+        menuManager.labItemMenu.showInfo();
     }
     bool checkResources()
     {

@@ -59,7 +59,8 @@ public class inventoryManager : MonoBehaviour
 	public bool checkEquipment(item it)
 	{
 		//! tmp lol
-		if (new System.Random().Next(1) == 0) return true;
+		int rnd = new System.Random().Next(2);
+		if (rnd == 0) return true;
 		else return false;
 
 		/* if (equippedItems.Contains(it))
