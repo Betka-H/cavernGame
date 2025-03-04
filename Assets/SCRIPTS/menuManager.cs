@@ -12,6 +12,7 @@ public class menuManager : MonoBehaviour
     public traderMenu traderMenu;
     public labItemMenu labItemMenu;
     public toolWorkstationMenu toolWorkstationMenu;
+    public itemInfoDisplay itemInfoDisplay;
 
     void Awake()
     {
@@ -22,6 +23,7 @@ public class menuManager : MonoBehaviour
     {
         toggleItemMenu(false);
         toggleLabItemMenu(false);
+        toggleitemInfoDisplay(false);
         toggleMissionMenu(false);
         toggleTraderMenu(false);
         toggleToolWorkstationMenu(false);
@@ -33,10 +35,16 @@ public class menuManager : MonoBehaviour
     void toggleItemMenu(bool onOff)
     {
         caveItemMenu.gameObject.SetActive(onOff);
+        toggleitemInfoDisplay(onOff);
     }
     void toggleLabItemMenu(bool onOff)
     {
         labItemMenu.gameObject.SetActive(onOff);
+        toggleitemInfoDisplay(onOff);
+    }
+    void toggleitemInfoDisplay(bool onOff)
+    {
+        itemInfoDisplay.gameObject.SetActive(onOff);
     }
     void toggleTraderMenu(bool onOff)
     {
@@ -69,14 +77,14 @@ public class menuManager : MonoBehaviour
     {
         bool onOff = toggleMenu(labItemMenu.gameObject);
 
-        labItemMenu.itemDispType = itemDispType.all;
+        // labItemMenu.itemDispType = itemDispType.all;
         toggleLabItemMenu(onOff);
     }
     public void toggleToggletoolWorkstationMenuScreen()
     {
         bool onOff = toggleMenu(toolWorkstationMenu.gameObject);
 
-        labItemMenu.itemDispType = itemDispType.scrap;
+        // labItemMenu.itemDispType = itemDispType.scrap;
         toggleLabItemMenu(onOff);
         toggleToolWorkstationMenu(onOff);
     }

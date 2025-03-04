@@ -62,7 +62,7 @@ public class traderMenu : MonoBehaviour
 
 				// itemMenu.addItem(tradedItem);
 				inventory.addItem(tradedItem, inventory.caveInventory);
-				itemMenu.refreshItems();
+				itemMenu.refreshItems(itemMenu.regularSlots, inventory.caveInventory);
 				traderInv.RemoveAt(0);
 				if (traderInv.Count() > 0)
 				{
@@ -89,7 +89,7 @@ public class traderMenu : MonoBehaviour
 	private void clearTooltip()
 	{
 		itemMenu.selectedItem = null;
-		itemMenu.showInfo();
+		Debug.Log("clear item tooltip");
 	}
 
 	void showTradeCount()

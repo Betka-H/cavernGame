@@ -21,7 +21,6 @@ public class toolWorkstationMenu : MonoBehaviour
     void OnEnable()
     {
         assignScrap(null);
-        menuManager.labItemMenu.refreshItems(new List<item>(), menuManager.labItemMenu.recipeGridSlots, itemDispType.all);
     }
 
     public void assignScrap(scrap scrap)
@@ -31,13 +30,13 @@ public class toolWorkstationMenu : MonoBehaviour
         {
             scrapSpriteRenderer.sprite = assignedScrap.itemSprite;
             resultSpriteRenderer.sprite = assignedScrap.wholeGear.itemSprite;
-            menuManager.labItemMenu.refreshItems(assignedScrap.wholeGear.cost.ToList(), menuManager.labItemMenu.recipeGridSlots, itemDispType.all);
+            menuManager.labItemMenu.refreshItems(menuManager.labItemMenu.recipeGridSlots, assignedScrap.wholeGear.cost.ToList());
         }
         else
         {
             scrapSpriteRenderer.sprite = placeholderScrapItemSprite;
             resultSpriteRenderer.sprite = placeholderResultItemSprite;
-            menuManager.labItemMenu.refreshItems(new List<item>(), menuManager.labItemMenu.recipeGridSlots, itemDispType.all);
+            menuManager.labItemMenu.refreshItems(menuManager.labItemMenu.recipeGridSlots, new List<item>());
         }
     }
 
@@ -57,12 +56,11 @@ public class toolWorkstationMenu : MonoBehaviour
 
             // clear scrap and recipe displays
             assignScrap(null);
+            menuManager.labItemMenu.refreshItems(menuManager.labItemMenu.regularSlots, inventoryManager.labInventory);
+            menuManager.labItemMenu.refreshItems(menuManager.labItemMenu.recipeGridSlots, null);
+            menuManager.itemInfoDisplay.showInfo(null);
         }
-        else Debug.Log("no offer or enough resources");
-        menuManager.labItemMenu.refreshItems(inventoryManager.labInventory, menuManager.labItemMenu.regularGridSlots, itemDispType.all);
-
-        menuManager.labItemMenu.selectedItem = null;
-        menuManager.labItemMenu.showInfo();
+        else Debug.Log("no offer or not enough resources");
     }
     bool checkResources()
     {

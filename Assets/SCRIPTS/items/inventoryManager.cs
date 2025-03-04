@@ -71,7 +71,8 @@ public class inventoryManager : MonoBehaviour
 
 	public void orderInventory(ref List<item> inv)
 	{
-		inv = inv.OrderBy(i => i.itemId).ToList();
+		if (inv != null)
+			inv = inv.OrderBy(i => i.itemId).ToList();
 	}
 
 	public void printInventory(List<item> inv)

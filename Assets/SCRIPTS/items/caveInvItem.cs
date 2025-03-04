@@ -1,78 +1,20 @@
 using UnityEngine;
 
-public class caveInvItem : MonoBehaviour
+public class caveInvItem : invItem
 {
-	[HideInInspector] public item assignedItem;
-
-	menuManager menuManager;
-
-	private SpriteRenderer spriteRenderer;
-
-	private Vector3 normalScaleTransform;
-
-	void Awake()
+	new void OnMouseDown()
 	{
-		menuManager = FindObjectOfType<menuManager>();
-		spriteRenderer = GetComponent<SpriteRenderer>();
-		setNormalScale();
-	}
+		base.OnMouseDown();
 
-	void OnMouseDown()
-	{
-		menuManager.caveItemMenu.selectedItem = assignedItem;
-		menuManager.caveItemMenu.showInfo();
-
+		Debug.LogWarning("weird code alert");
 		if (menuManager.traderMenu.gameObject.activeSelf)
 		{
 			menuManager.traderMenu.offer();
 		}
 	}
 
-	void OnEnable()
+	new public void assignItem(item it)
 	{
-		scaleNormal();
-	}
-	void OnDisable()
-	{
-		scaleNormal();
-	}
-
-	void OnMouseEnter()
-	{
-		scaleUp();
-	}
-	void OnMouseExit()
-	{
-		scaleNormal();
-	}
-
-	void setNormalScale()
-	{
-		normalScaleTransform = transform.localScale;
-	}
-	void scaleUp()
-	{
-		transform.localScale = normalScaleTransform + new Vector3(0.25f, 0.25f, 0);
-	}
-	void scaleNormal()
-	{
-		transform.localScale = normalScaleTransform;
-	}
-
-	public void assignItem(item it)
-	{
-		if (it != null)
-		{
-			assignedItem = it;
-			setSprite();
-			gameObject.SetActive(true);
-		}
-		else gameObject.SetActive(false);
-
-	}
-
-	void setSprite()
-	{
-		spriteRenderer.sprite = assignedItem.itemSprite;
+		base.assignItem(it);
 	}
 }

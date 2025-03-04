@@ -293,7 +293,7 @@ GameObject:
   - component: {fileID: 349968072139000890}
   - component: {fileID: 8204868990504581300}
   m_Layer: 28
-  m_Name: gem
+  m_Name: lab item slot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -379,8 +379,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   assignedItem: {fileID: 0}
-  assignedAmount: 0
   spriteRenderer: {fileID: 1477110734376679192}
+  assignedAmount: 0
   amountTextDisp: {fileID: 4828896304336169553}
 --- !u!61 &8204868990504581300
 BoxCollider2D:

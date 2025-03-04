@@ -292,7 +292,7 @@ GameObject:
   - component: {fileID: 1477110734376679192}
   - component: {fileID: 349968072139000890}
   m_Layer: 28
-  m_Name: gem
+  m_Name: recipe grid slot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -378,6 +378,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   assignedItem: {fileID: 0}
-  assignedAmount: 0
   spriteRenderer: {fileID: 1477110734376679192}
+  assignedAmount: 0
   amountTextDisp: {fileID: 4828896304336169553}

@@ -1,67 +1,28 @@
-using TMPro;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class caveItemMenu : MonoBehaviour
+public class caveItemMenu : itemMenu
 {
-	public inventoryManager inventoryScript;
-
-	private caveInvItem[] gridSlots;
-
-	[Header("item info section")]
-	public SpriteRenderer invSprite_itemSprite;
-	public TMP_Text invTxt_itemName;
-	public TMP_Text invTxt_itemDescription;
-
-	public Sprite placeholderItemSprite;
-	public string placeholderItemName;
-	[TextArea] public string placeholderItemDescription;
-
-	[HideInInspector]
-	public item selectedItem;
-
-	void Awake()
-	{
-		gridSlots = GetComponentsInChildren<caveInvItem>();
-	}
-
 	void OnEnable()
 	{
-		selectedItem = null;
-		showInfo();
-		refreshItems();
+		refreshItems(regularSlots, inventoryScript.caveInventory);
 	}
 
-	public void refreshItems()
+	public override void refreshItems(invItem[] slots, List<item> itemList)
 	{
-		inventoryScript.orderInventory(ref inventoryScript.caveInventory);
+		inventoryScript.orderInventory(ref itemList);
 
-		if (gridSlots != null)
+		if (regularSlots != null)
 		{
-			for (int i = 0; i < gridSlots.Length; i++)
+			for (int i = 0; i < regularSlots.Length; i++) // for each slot
 			{
-				caveInvItem currentItem = gridSlots[i];
-				if (i < inventoryScript.caveInventory.Count)
+				caveInvItem currentItem = regularSlots[i] as caveInvItem;
+				if (i < itemList.Count)
 				{
-					currentItem.assignItem(inventoryScript.caveInventory[i]);
+					currentItem.assignItem(itemList[i]);
 				}
 				else currentItem.assignItem(null);
 			}
-		}
-	}
-
-	public void showInfo()
-	{
-		if (selectedItem != null)
-		{
-			invSprite_itemSprite.sprite = selectedItem.itemSprite;
-			invTxt_itemName.SetText(selectedItem.itemName);
-			invTxt_itemDescription.SetText(selectedItem.itemDescription);
-		}
-		else
-		{
-			invSprite_itemSprite.sprite = placeholderItemSprite;
-			invTxt_itemName.SetText(placeholderItemName);
-			invTxt_itemDescription.SetText(placeholderItemDescription);
 		}
 	}
 }
