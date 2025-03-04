@@ -19,8 +19,8 @@ public class caveInvItem : MonoBehaviour
 
 	void OnMouseDown()
 	{
-		menuManager.itemMenu.selectedItem = assignedItem;
-		menuManager.itemMenu.showInfo();
+		menuManager.caveItemMenu.selectedItem = assignedItem;
+		menuManager.caveItemMenu.showInfo();
 
 		if (menuManager.traderMenu.gameObject.activeSelf)
 		{

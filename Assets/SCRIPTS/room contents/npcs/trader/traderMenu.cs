@@ -9,7 +9,7 @@ public class traderMenu : MonoBehaviour
 	public traderHand handL;
 	public traderHand handR;
 
-	public itemMenu itemMenu;
+	public caveItemMenu itemMenu;
 	public inventoryManager inventory;
 	private List<item> traderInv;
 

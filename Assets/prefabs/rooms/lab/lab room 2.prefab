@@ -311,4 +311,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipKind: 4
-  keyToInteract: 101
+  keyToInteract: 99

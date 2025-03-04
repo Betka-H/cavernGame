@@ -64,7 +64,7 @@ public class interactionTooltip : MonoBehaviour
 
 	public void hideTooltip()
 	{
-		if (gameObject != null)
+		if (this != null)
 			gameObject.SetActive(false);
 	}
 }

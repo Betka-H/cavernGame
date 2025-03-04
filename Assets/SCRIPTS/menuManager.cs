@@ -5,22 +5,22 @@ public class menuManager : MonoBehaviour
 {
     public GameObject menuBg;
 
-    deathScreen deathScreen;
+    public deathScreen deathScreen;
 
-    [HideInInspector] public itemMenu itemMenu;
-    [HideInInspector] public missionMenu missionMenu;
-    [HideInInspector] public traderMenu traderMenu;
-    [HideInInspector] public labItemMenu labItemMenu;
-    [HideInInspector] public toolWorkstationMenu toolWorkstationMenu;
+    public caveItemMenu caveItemMenu;
+    public missionMenu missionMenu;
+    public traderMenu traderMenu;
+    public labItemMenu labItemMenu;
+    public toolWorkstationMenu toolWorkstationMenu;
 
     void Awake()
     {
-        deathScreen = FindObjectOfType<deathScreen>(true);
+        /* deathScreen = FindObjectOfType<deathScreen>(true);
         itemMenu = FindObjectOfType<itemMenu>(true);
         missionMenu = FindObjectOfType<missionMenu>(true);
         traderMenu = FindObjectOfType<traderMenu>(true);
         labItemMenu = FindObjectOfType<labItemMenu>(true);
-        toolWorkstationMenu = FindObjectOfType<toolWorkstationMenu>(true);
+        toolWorkstationMenu = FindObjectOfType<toolWorkstationMenu>(true); */
         hideMenus();
     }
 
@@ -38,7 +38,7 @@ public class menuManager : MonoBehaviour
 
     void toggleItemMenu(bool onOff)
     {
-        itemMenu.gameObject.SetActive(onOff);
+        caveItemMenu.gameObject.SetActive(onOff);
     }
     void toggleLabItemMenu(bool onOff)
     {

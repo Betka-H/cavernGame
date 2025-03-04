@@ -13,7 +13,7 @@ public class toolWorkstationMenu : MonoBehaviour
     public Sprite placeholderScrapItemSprite;
     public Sprite placeholderResultItemSprite;
 
-    void Start()
+    void Awake()
     {
         inventoryManager = FindObjectOfType<inventoryManager>();
         menuManager = FindObjectOfType<menuManager>();
@@ -22,6 +22,7 @@ public class toolWorkstationMenu : MonoBehaviour
     void OnEnable()
     {
         assignScrap(null);
+        menuManager.labItemMenu.refreshItems(new List<item>(), menuManager.labItemMenu.recipeGridSlots, itemDispType.all);
     }
 
     public void assignScrap(scrap scrap)
@@ -31,13 +32,12 @@ public class toolWorkstationMenu : MonoBehaviour
         {
             scrapSpriteRenderer.sprite = assignedScrap.itemSprite;
             resultSpriteRenderer.sprite = assignedScrap.wholeGear.itemSprite;
-            menuManager.labItemMenu.refreshItems(assignedScrap.wholeGear.cost.ToList(), menuManager.labItemMenu.recipeGridSlots);
+            menuManager.labItemMenu.refreshItems(assignedScrap.wholeGear.cost.ToList(), menuManager.labItemMenu.recipeGridSlots, itemDispType.all);
         }
         else
         {
             scrapSpriteRenderer.sprite = placeholderScrapItemSprite;
             resultSpriteRenderer.sprite = placeholderResultItemSprite;
-            menuManager.labItemMenu.refreshItems(new List<item>(), menuManager.labItemMenu.recipeGridSlots);
         }
     }
 
@@ -51,10 +51,11 @@ public class toolWorkstationMenu : MonoBehaviour
             {
                 inventoryManager.removeLabItem(it);
             }
+            menuManager.labItemMenu.refreshItems(new List<item>(), menuManager.labItemMenu.recipeGridSlots, itemDispType.all);
             assignScrap(null);
         }
         else Debug.Log("no offer or enough resources");
-        menuManager.labItemMenu.refreshItems(inventoryManager.labInventory, menuManager.labItemMenu.regularGridSlots);
+        menuManager.labItemMenu.refreshItems(inventoryManager.labInventory, menuManager.labItemMenu.regularGridSlots, itemDispType.all);
     }
     bool checkResources()
     {

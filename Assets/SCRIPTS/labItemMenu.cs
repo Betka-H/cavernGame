@@ -25,45 +25,38 @@ public class labItemMenu : MonoBehaviour
     {
         selectedItem = null;
         showInfo();
-        refreshItems(inventoryScript.labInventory, regularGridSlots);
+        refreshItems(inventoryScript.labInventory, regularGridSlots, itemDispType.all);
     }
 
-    public void refreshItems(List<item> itemList, labInvItem[] slots)
+    public void refreshItems(List<item> itemList, labInvItem[] slots, itemDispType dt)
     {
-
-        // inventoryScript.sortInventory(ref inventoryScript.labInventory);
-        // List<item> cullingInv = new List<item>(inventoryScript.labInventory);
-        List<item> cullingInv = groupItems(itemList, itemDispType);
-        // Debug.Log("item refresh: ");
-        // inventoryScript.printInventory(cullingInv);
-
-        Debug.Log("ci count: " + cullingInv.Count);
+        List<item> tempInv = groupItems(itemList, dt);
 
         if (slots != null)
         {
             for (int i = 0; i < slots.Length; i++) // for each slot
             {
-                // Debug.Log("culling inv below v v v ");
-                // inventoryScript.printInventory(cullingInv);
+                labInvItem currentSlot = slots[i];
 
-                labInvItem currentItemSlot = slots[i];
-
-                if (cullingInv.Count > 0) // as long as there are items left
+                if (tempInv.Count > 0) // as long as there are items left
                 {
-                    item currentItem = cullingInv[0];
+                    item currentItem = tempInv[0];
 
                     // count how many of the item there is in the inventory
-                    int amount = cullingInv.Count(item => item == currentItem);
+                    int amount = tempInv.Count(item => item == currentItem);
                     // Debug.Log($"there is {amount} of {currentItem} in the inventory");
 
-                    // remove all instances of the item
-                    cullingInv.RemoveAll(item => item == currentItem);
-
                     // for the current slot, assign the item & how much of it there was
-                    currentItemSlot.assignItem(currentItem, amount);
-                    // Debug.Log($"ci: {currentItem}");
+                    currentSlot.assignItem(currentItem, amount);
+
+                    // remove all instances of the item in the temp inv
+                    tempInv.RemoveAll(item => item == currentItem);
                 }
-                else currentItemSlot.assignItem(null, 0);
+                else
+                {
+                    currentSlot.assignItem(null, 0);
+                    // Debug.Log("empty");
+                }
             }
         }
     }
@@ -82,17 +75,15 @@ public class labItemMenu : MonoBehaviour
                 type = typeof(item);
                 break;
             case itemDispType.loot:
-                type = typeof(item);
-                // type = typeof(loot);
+                // type = typeof(item);
+                type = typeof(loot);
                 break;
             case itemDispType.scrap:
-                type = typeof(item);
-                // type = typeof(scrap);
+                // type = typeof(item);
+                type = typeof(scrap);
                 break;
         }
         groupingInv = groupingInv.Where(it => type.IsAssignableFrom(it.GetType())).ToList();
-        // Debug.Log("grouped");
-        // inventoryScript.printInventory(groupingInv);
         return groupingInv;
     }
 

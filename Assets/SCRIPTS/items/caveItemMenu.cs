@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public class itemMenu : MonoBehaviour
+public class caveItemMenu : MonoBehaviour
 {
 	public inventoryManager inventoryScript;
 

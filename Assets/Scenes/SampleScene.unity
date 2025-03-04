@@ -7162,11 +7162,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuBg: {fileID: 2102197490}
-  itemMenu: {fileID: 0}
-  missionMenu: {fileID: 0}
-  traderMenu: {fileID: 0}
-  labItemMenu: {fileID: 0}
-  toolWorkstationMenu: {fileID: 0}
+  deathScreen: {fileID: 1246856626}
+  caveItemMenu: {fileID: 1621603476}
+  missionMenu: {fileID: 310504277}
+  traderMenu: {fileID: 829627198}
+  labItemMenu: {fileID: 106371185}
+  toolWorkstationMenu: {fileID: 157139070}
 --- !u!1001 &1272647281
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9279,7 +9280,7 @@ GameObject:
   - component: {fileID: 1621603476}
   - component: {fileID: 1621603478}
   m_Layer: 28
-  m_Name: item menu
+  m_Name: cave item menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
