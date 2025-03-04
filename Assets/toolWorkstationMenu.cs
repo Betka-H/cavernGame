@@ -14,7 +14,7 @@ public class toolWorkstationMenu : MonoBehaviour
 
     void Awake()
     {
-        inventoryManager = FindObjectOfType<inventoryManager>();
+        inventoryManager = FindObjectOfType<inventoryManager>(true);
         menuManager = FindObjectOfType<menuManager>();
     }
 

@@ -21,7 +21,7 @@ public class gameController : MonoBehaviour
 	{
 		roomController = FindObjectOfType<roomController>();
 		inventory = FindObjectOfType<inventoryManager>();
-		interactionTooltip = FindObjectOfType<interactionTooltip>();
+		interactionTooltip = FindObjectOfType<interactionTooltip>(true);
 		menuManager = FindObjectOfType<menuManager>();
 
 		genAndSpawn(level.lab);

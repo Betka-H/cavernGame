@@ -3,9 +3,6 @@ using UnityEngine;
 
 public class npcTrader : NPC
 {
-	traderMenu traderMenu;
-	// tooltipCaller tooltipCaller;
-
 	[Space]
 	public item[] traderItemPool;
 	public item[] traderScrapPool;
@@ -19,9 +16,6 @@ public class npcTrader : NPC
 
 	void Start()
 	{
-		traderMenu = FindObjectOfType<traderMenu>(true);
-		// Debug.Log($"the trader menu is {traderMenu}");
-		// tooltipCaller = gameObject.GetComponent<tooltipCaller>();
 		rollTraderInventory();
 	}
 
@@ -34,28 +28,30 @@ public class npcTrader : NPC
 		}
 	} */
 
+	item mainItem;
 	void rollTraderInventory()
 	{
 		System.Random rnd = new System.Random();
 
 		traderInventory = new item[5];
 
-		item tradedItem = traderItemPool[rnd.Next(traderItemPool.Length)];
+		mainItem = traderItemPool[rnd.Next(traderItemPool.Length)];
 		for (int i = 0; i < traderInventory.Length; i++)
 		{
-			traderInventory[i] = tradedItem;
+			traderInventory[i] = mainItem;
 		}
 
 		if (scrapChance > rnd.Next(100))
 		{
 			int scrapPosition = rnd.Next(traderInventory.Length);
 			traderInventory[scrapPosition] = traderScrapPool[rnd.Next(traderScrapPool.Length - 1)];
-			Debug.Log($"trader sells scrap ({scrapPosition})");
+			Debug.Log($"trader sells scrap (as {scrapPosition})");
 		}
 
 		logTraderInventory();
 
-		traderMenu.setInventory(traderInventory);
+		Debug.Log($"mm: {menuManager}");
+		menuManager.traderMenu.setInventory(traderInventory, mainItem);
 	}
 
 	void logTraderInventory()

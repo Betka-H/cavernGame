@@ -10,7 +10,7 @@ public class labItemMenu : itemMenu
     new void Awake()
     {
         base.Awake();
-        recipeGridSlots = recipeGridTransform.GetComponentsInChildren<labInvItem>();
+        recipeGridSlots = recipeGridTransform.GetComponentsInChildren<labInvItem>(true);
         inventoryScript = FindObjectOfType<inventoryManager>();
     }
 

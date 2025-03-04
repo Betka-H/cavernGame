@@ -6,7 +6,6 @@ public class caveInvItem : invItem
 	{
 		base.OnMouseDown();
 
-		Debug.LogWarning("weird code alert");
 		if (menuManager.traderMenu.gameObject.activeSelf)
 		{
 			menuManager.traderMenu.offer();

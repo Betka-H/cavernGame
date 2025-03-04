@@ -61,8 +61,6 @@ public class invItem : MonoBehaviour
         if (it != null)
         {
             assignedItem = it;
-            Debug.Log($"sr: {spriteRenderer},");
-            Debug.Log($"assitem: {assignedItem},");
             spriteRenderer.sprite = assignedItem.itemSprite;
             gameObject.SetActive(true);
         }

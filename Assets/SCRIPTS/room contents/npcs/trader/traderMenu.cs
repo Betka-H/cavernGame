@@ -9,16 +9,23 @@ public class traderMenu : MonoBehaviour
 	public traderHand handL;
 	public traderHand handR;
 
-	public caveItemMenu itemMenu;
-	public inventoryManager inventory;
+	menuManager menuManager;
+	inventoryManager inventoryManager;
 	private List<item> traderInv;
+	item mainItem;
 
 	public TMP_Text timesTradedInfoDisp;
 
+	void Awake()
+	{
+		menuManager = FindObjectOfType<menuManager>();
+		inventoryManager = FindObjectOfType<inventoryManager>();
+	}
+
 	void OnEnable()
 	{
-		updateHands();
 		clearLHand();
+		updateHands();
 	}
 
 	void updateHands()
@@ -36,7 +43,7 @@ public class traderMenu : MonoBehaviour
 	public void offer()
 	{
 		// offerMade = true;
-		offeredItem = itemMenu.selectedItem;
+		offeredItem = menuManager.caveItemMenu.selectedItem;
 		handL.assignItem(offeredItem);
 		updateHands();
 	}
@@ -45,8 +52,8 @@ public class traderMenu : MonoBehaviour
 	{
 		if (offeredItem != null && traderInv.Count() > 0)
 		{
-			item tradedItem = traderInv[0];
-			if (offeredItem != tradedItem)
+			item currentlyTradedItem = traderInv[0];
+			if (offeredItem != mainItem)
 			{
 				timesTraded++;
 				showTradeCount();
@@ -54,20 +61,20 @@ public class traderMenu : MonoBehaviour
 				Debug.Log("attempting trade");
 
 				// itemMenu.remItem(itemMenu.selectedItem);
-				inventory.removeItem(offeredItem, inventory.caveInventory);
+				inventoryManager.removeItem(offeredItem, inventoryManager.caveInventory);
 
 				// offerMade = false;
 				offeredItem = null;
 				handL.assignItem(offeredItem);
 
 				// itemMenu.addItem(tradedItem);
-				inventory.addItem(tradedItem, inventory.caveInventory);
-				itemMenu.refreshItems(itemMenu.regularSlots, inventory.caveInventory);
+				inventoryManager.addItem(currentlyTradedItem, inventoryManager.caveInventory);
+				menuManager.caveItemMenu.refreshItems(menuManager.caveItemMenu.regularSlots, inventoryManager.caveInventory);
 				traderInv.RemoveAt(0);
 				if (traderInv.Count() > 0)
 				{
-					tradedItem = traderInv[0];
-					handR.assignItem(tradedItem);
+					currentlyTradedItem = traderInv[0];
+					handR.assignItem(currentlyTradedItem);
 				}
 				else
 					handR.assignItem(null);
@@ -77,7 +84,7 @@ public class traderMenu : MonoBehaviour
 				updateHands();
 				clearTooltip();
 			}
-			else Debug.Log("cannot trade the same item");
+			else Debug.Log("cannot trade the main item");
 		}
 		else
 		{
@@ -88,8 +95,8 @@ public class traderMenu : MonoBehaviour
 
 	private void clearTooltip()
 	{
-		itemMenu.selectedItem = null;
-		Debug.Log("clear item tooltip");
+		// menuManager.caveItemMenu.selectedItem = null;
+		menuManager.itemInfoDisplay.showInfo(null);
 	}
 
 	void showTradeCount()
@@ -97,9 +104,10 @@ public class traderMenu : MonoBehaviour
 		timesTradedInfoDisp.text = $"times traded: {timesTraded}";
 	}
 
-	public void setInventory(item[] inv)
+	public void setInventory(item[] inv, item mainItem)
 	{
 		timesTraded = 0;
+		this.mainItem = mainItem;
 		showTradeCount();
 		traderInv = inv.ToList();
 		handR.assignItem(traderInv[0]);

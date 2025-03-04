@@ -5,7 +5,7 @@ public class NPC : MonoBehaviour
     protected menuManager menuManager;
     public menuScreen menuScreenToOpen;
 
-    void Start()
+    void Awake()
     {
         menuManager = FindObjectOfType<menuManager>();
     }
