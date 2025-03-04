@@ -15,12 +15,6 @@ public class menuManager : MonoBehaviour
 
     void Awake()
     {
-        /* deathScreen = FindObjectOfType<deathScreen>(true);
-        itemMenu = FindObjectOfType<itemMenu>(true);
-        missionMenu = FindObjectOfType<missionMenu>(true);
-        traderMenu = FindObjectOfType<traderMenu>(true);
-        labItemMenu = FindObjectOfType<labItemMenu>(true);
-        toolWorkstationMenu = FindObjectOfType<toolWorkstationMenu>(true); */
         hideMenus();
     }
 
@@ -71,7 +65,6 @@ public class menuManager : MonoBehaviour
         toggleItemMenu(onOff);
         toggleTraderMenu(onOff);
     }
-    // temp name?
     public void toggleLabMenuScreen()
     {
         bool onOff = toggleMenu(labItemMenu.gameObject);

@@ -33,7 +33,7 @@ public class caveItemMenu : MonoBehaviour
 
 	public void refreshItems()
 	{
-		inventoryScript.sortInventory(ref inventoryScript.caveInventory);
+		inventoryScript.orderInventory(ref inventoryScript.caveInventory);
 
 		if (gridSlots != null)
 		{

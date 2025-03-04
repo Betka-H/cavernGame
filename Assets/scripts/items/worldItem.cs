@@ -45,7 +45,7 @@ public class worldItem : MonoBehaviour
 	}
 	void pickUp()
 	{
-		inventory.addCaveItem(assignedItem);
+		inventory.addItem(assignedItem,inventory.caveInventory);
 		assignedRoomSO.removeItemSpawn(assignedItem, assignedSpawnTransform);
 		updateItem(null);
 	}

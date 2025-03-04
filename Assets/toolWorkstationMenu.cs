@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class toolWorkstationMenu : MonoBehaviour
@@ -38,6 +37,7 @@ public class toolWorkstationMenu : MonoBehaviour
         {
             scrapSpriteRenderer.sprite = placeholderScrapItemSprite;
             resultSpriteRenderer.sprite = placeholderResultItemSprite;
+            menuManager.labItemMenu.refreshItems(new List<item>(), menuManager.labItemMenu.recipeGridSlots, itemDispType.all);
         }
     }
 
@@ -45,13 +45,17 @@ public class toolWorkstationMenu : MonoBehaviour
     {
         if (assignedScrap != null && checkResources())
         {
-            inventoryManager.addLabItem(assignedScrap.wholeGear);
-            inventoryManager.removeLabItem(assignedScrap);
+            // add crafted item
+            inventoryManager.addItem(assignedScrap.wholeGear, inventoryManager.labInventory);
+            // remove scrap item
+            inventoryManager.removeItem(assignedScrap, inventoryManager.labInventory);
+            // remove all recipe resources
             foreach (item it in assignedScrap.wholeGear.cost)
             {
-                inventoryManager.removeLabItem(it);
+                inventoryManager.removeItem(it, inventoryManager.labInventory);
             }
-            menuManager.labItemMenu.refreshItems(new List<item>(), menuManager.labItemMenu.recipeGridSlots, itemDispType.all);
+
+            // clear scrap and recipe displays
             assignScrap(null);
         }
         else Debug.Log("no offer or enough resources");

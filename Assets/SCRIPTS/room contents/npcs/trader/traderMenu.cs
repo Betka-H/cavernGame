@@ -54,14 +54,14 @@ public class traderMenu : MonoBehaviour
 				Debug.Log("attempting trade");
 
 				// itemMenu.remItem(itemMenu.selectedItem);
-				inventory.removeCaveItem(offeredItem);
+				inventory.removeItem(offeredItem, inventory.caveInventory);
 
 				// offerMade = false;
 				offeredItem = null;
 				handL.assignItem(offeredItem);
 
 				// itemMenu.addItem(tradedItem);
-				inventory.addCaveItem(tradedItem);
+				inventory.addItem(tradedItem, inventory.caveInventory);
 				itemMenu.refreshItems();
 				traderInv.RemoveAt(0);
 				if (traderInv.Count() > 0)

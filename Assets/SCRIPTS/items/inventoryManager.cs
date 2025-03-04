@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using UnityEngine;
 
@@ -24,7 +22,7 @@ public class inventoryManager : MonoBehaviour
 	void Start()
 	{
 		inventoryContents = FindObjectOfType<inventoryDefinitions>();
-		sortInventory(ref allItems);
+		orderInventory(ref allItems);
 
 		tempInv();
 		printInventory(labInventory);
@@ -33,7 +31,10 @@ public class inventoryManager : MonoBehaviour
 	void tempInv()
 	{
 		labInventory = new List<item>
-{
+	{
+	inventoryContents.gemBlue,
+	inventoryContents.gemBlue,
+	inventoryContents.gemBlue,
 	inventoryContents.gemBlue,
 	inventoryContents.gemBlue,
 	inventoryContents.gemBlue,
@@ -53,43 +54,38 @@ public class inventoryManager : MonoBehaviour
 	inventoryContents.scrapGoggles,
 	inventoryContents.scrapPickaxe,
 	inventoryContents.scrapPickaxe,
-};
+	};
 	}
 
 	public bool checkEquipment(item it)
 	{
-		//! tmp lol
+		/* //! tmp lol
 		int rnd = new System.Random().Next(2);
 		if (rnd == 0) return true;
-		else return false;
-
-		/* if (equippedItems.Contains(it))
-			return true;
 		else return false; */
+
+		if (equippedItems.Contains(it))
+			return true;
+		else return false;
 	}
 
-	public void sortInventory(ref List<item> inv)
+	public void orderInventory(ref List<item> inv)
 	{
 		inv = inv.OrderBy(i => i.itemId).ToList();
 	}
 
 	public void printInventory(List<item> inv)
 	{
-		// sortInventory(inv);
-
 		if (inv.Count > 0)
-		{
 			Debug.Log("items in inventory: " + string.Join(", ", inv));
-			//// bro why dont i use string.join more often this is way easier than setting up a hugeass for loop
-		}
 		else Debug.Log("there are no items in the inventory");
 	}
 
-	void addItem(item it, List<item> inventory)
+	public void addItem(item it, List<item> inventory)
 	{
 		inventory.Add(it);
 	}
-	void removeItem(item it, List<item> inventory)
+	public void removeItem(item it, List<item> inventory)
 	{
 		if (!inventory.Contains(it))
 		{
@@ -100,23 +96,5 @@ public class inventoryManager : MonoBehaviour
 			inventory.Remove(it);
 			// Debug.Log($"removed item {it} from inventory");
 		}
-	}
-
-	public void addCaveItem(item it)
-	{
-		addItem(it, caveInventory);
-	}
-	public void addLabItem(item it)
-	{
-		addItem(it, labInventory);
-	}
-
-	public void removeCaveItem(item it)
-	{
-		removeItem(it, caveInventory);
-	}
-	public void removeLabItem(item it)
-	{
-		removeItem(it, labInventory);
 	}
 }

@@ -63,7 +63,7 @@ public class labItemMenu : MonoBehaviour
 
     private List<item> groupItems(List<item> itemList, itemDispType dt)
     {
-        inventoryScript.sortInventory(ref itemList);
+        inventoryScript.orderInventory(ref itemList);
         List<item> groupingInv = new List<item>(itemList);
         // Debug.Log("before grouped");
         // inventoryScript.printInventory(groupingInv);
