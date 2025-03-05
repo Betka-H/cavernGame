@@ -1,7 +1,10 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class inventoryDefinitions : MonoBehaviour
 {
+    public List<item> allItems;
+
     [Header("gems")]
     public item gemRed;
     public item gemOrange;

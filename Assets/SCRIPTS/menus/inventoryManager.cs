@@ -22,7 +22,7 @@ public class inventoryManager : MonoBehaviour
 	{
 		inventoryDefinitions = FindObjectOfType<inventoryDefinitions>();
 
-		tempInv();
+		// tempInv();
 	}
 
 	void tempInv()

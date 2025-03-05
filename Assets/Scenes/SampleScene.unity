@@ -2088,6 +2088,7 @@ Transform:
   - {fileID: 1858803448}
   - {fileID: 1343291601}
   - {fileID: 2105942178}
+  - {fileID: 572282410}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &310504275
@@ -3738,6 +3739,52 @@ MonoBehaviour:
   announcerField: {fileID: 652697786}
   inputField: {fileID: 1952540946}
   gameCtrl: {fileID: 699556567}
+--- !u!1 &572282409
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 572282410}
+  - component: {fileID: 572282411}
+  m_Layer: 0
+  m_Name: saveManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &572282410
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 572282409}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 265201205}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &572282411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 572282409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21402695e2e04bb4caff25e016f6cad3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryManager: {fileID: 1343291602}
+  inventoryDefinitions: {fileID: 2105942179}
 --- !u!1001 &572599124
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14068,6 +14115,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8204ea9e65eb69945953c210d1d54337, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  allItems:
+  - {fileID: 11400000, guid: 7f0d007b8c9ac0446bf8e387971f3f7e, type: 2}
+  - {fileID: 11400000, guid: e3bac1d0fab6ab240b32c5e17c66450b, type: 2}
+  - {fileID: 11400000, guid: 855f72286b24ad8488e6984db26b4f9f, type: 2}
+  - {fileID: 11400000, guid: 339f8e52414bc414c943c6f213a335fb, type: 2}
+  - {fileID: 11400000, guid: 93f8c0fb24728db45ae7422c4e692dfa, type: 2}
+  - {fileID: 11400000, guid: efe3ff3737876564f8c0aa7130051258, type: 2}
+  - {fileID: 11400000, guid: 4f151ca1cf2d4f04ca332d49694124e6, type: 2}
+  - {fileID: 11400000, guid: 7f25d53e75e5d964da68252c81eca281, type: 2}
+  - {fileID: 11400000, guid: 09beaca968880f7449e06c9b67e05643, type: 2}
+  - {fileID: 11400000, guid: ab0e1471363c9ab42a2e91281c3e9a2c, type: 2}
+  - {fileID: 11400000, guid: 2eacc2c6f1934ce41a7f83a454297fc0, type: 2}
+  - {fileID: 11400000, guid: e4277719df81ea04c95be8a3b56f4a66, type: 2}
+  - {fileID: 11400000, guid: 6a62c3feb9724e34a929076bbb422ac8, type: 2}
+  - {fileID: 11400000, guid: 0468bc431e18a904a89870f3ede71e9a, type: 2}
+  - {fileID: 11400000, guid: 52be5335aea4bdd48b51b5037bc35f4c, type: 2}
+  - {fileID: 11400000, guid: 7a6870589bd37954787b04dd67bec750, type: 2}
   gemRed: {fileID: 11400000, guid: 09beaca968880f7449e06c9b67e05643, type: 2}
   gemOrange: {fileID: 11400000, guid: efe3ff3737876564f8c0aa7130051258, type: 2}
   gemYellow: {fileID: 11400000, guid: ab0e1471363c9ab42a2e91281c3e9a2c, type: 2}
