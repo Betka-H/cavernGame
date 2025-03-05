@@ -98,4 +98,10 @@ public class inventoryManager : MonoBehaviour
 			Debug.Log($"removed item {it} from {nameof(inventory)}");
 		}
 	}
+
+	public void resetInventories()
+	{
+		labInventory.Clear();
+		equippedItems.Clear();
+	}
 }

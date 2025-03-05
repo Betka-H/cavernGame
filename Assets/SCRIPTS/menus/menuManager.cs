@@ -13,6 +13,7 @@ public class menuManager : MonoBehaviour
     public labItemMenu labItemMenu;
     public toolWorkstationMenu toolWorkstationMenu;
     public equipWorkstation equipWorkstation;
+    public Transform escMenu;
 
     public itemInfoDisplay itemInfoDisplay;
 
@@ -31,10 +32,15 @@ public class menuManager : MonoBehaviour
         toggleToolWorkstationMenu(false);
         toggleEquipmentWorkstationMenu(false);
         deathScreen.gameObject.SetActive(false);
+        escMenu.gameObject.SetActive(false);
 
         menuBg.SetActive(false);
     }
 
+    public void toggleEscapeMenu(bool onOff)
+    {
+        escMenu.gameObject.SetActive(onOff);
+    }
     void toggleItemMenu(bool onOff)
     {
         caveItemMenu.gameObject.SetActive(onOff);

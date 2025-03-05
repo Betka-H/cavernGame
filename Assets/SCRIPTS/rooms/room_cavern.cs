@@ -8,9 +8,9 @@ public class room_cavern : roomSO
     [HideInInspector]
     public bool isDark;
 
-    public List<loot> lootThatCanSpawnInThisRoom;
-    List<Transform> chosenLootSpawnLocations;
-    List<loot> chosenLoot;
+    public List<loot> lootThatCanSpawnInThisRoom = new List<loot>();
+    List<Transform> chosenLootSpawnLocations = new List<Transform>();
+    List<loot> chosenLoot = new List<loot>();
 
     [HideInInspector]
     public bool hasTrader;
@@ -27,7 +27,7 @@ public class room_cavern : roomSO
         Transform[] allLootSpawnLocations = roomPrefab.GetComponent<caveRoomObj>().getLootSpawnpoints();
         chosenLootSpawnLocations.Clear();
 
-        if (allLootSpawnLocations.Count() > 0 && lootThatCanSpawnInThisRoom.Count() > 0)
+        if (allLootSpawnLocations.Length > 0 && lootThatCanSpawnInThisRoom.Count > 0)
         {
             System.Random rnd = new System.Random();
             foreach (Transform loc in allLootSpawnLocations)
@@ -45,7 +45,7 @@ public class room_cavern : roomSO
 
         System.Random rnd = new System.Random();
 
-        for (int i = 0; i < chosenLootSpawnLocations.Count(); i++) // for each location
+        for (int i = 0; i < chosenLootSpawnLocations.Count; i++) // for each location
         {
             if (lootByRarity().Length > 0)
             {
@@ -71,9 +71,9 @@ public class room_cavern : roomSO
 
     public void spawnItems(GameObject prefab, Transform parent)
     {
-        if (chosenLootSpawnLocations.Count() > 0 && chosenLoot.Count() > 0)
+        if (chosenLootSpawnLocations.Count > 0 && chosenLoot.Count > 0)
         {
-            for (int i = 0; i < chosenLootSpawnLocations.Count(); i++)
+            for (int i = 0; i < chosenLootSpawnLocations.Count; i++)
             {
                 spawnItem(prefab, parent, i);
             }
@@ -95,7 +95,7 @@ public class room_cavern : roomSO
     public void setTraderSpawn()
     {
         Transform[] allTraderSpawnLocations = roomPrefab.GetComponent<caveRoomObj>().getTraderSpawnpoints();
-        if (allTraderSpawnLocations.Count() > 0)
+        if (allTraderSpawnLocations.Length > 0)
         {
             System.Random rnd = new System.Random();
             chosenTraderSpawn = allTraderSpawnLocations[rnd.Next(allTraderSpawnLocations.Length)];

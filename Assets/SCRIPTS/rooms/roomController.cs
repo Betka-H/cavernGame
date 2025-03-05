@@ -66,12 +66,13 @@ public class roomController : MonoBehaviour
 	void Start()
 	{
 		//! temp trader spawn value
-		traderSpawnChance = 50;
+		traderSpawnChance = 100;
 		//! temp item spawn value
-		itemSpawnRate = 25;
+		itemSpawnRate = 100;
 
 		//! temp room amount value
-		maxCavernRoomsNr = cavernRooms.Length;
+		// maxCavernRoomsNr = cavernRooms.Length;
+		maxCavernRoomsNr = 5;
 
 		darknessOverlay = FindObjectOfType<darknessOL>();
 		inventory = FindObjectOfType<inventoryManager>();
@@ -168,7 +169,7 @@ public class roomController : MonoBehaviour
 
 		for (int i = 0; i < roomsNr; i++)
 		{
-			room_cavern randomRoom = roomPool[rndForRoom.Next(roomPool.Count())]; // choose random room from all
+			room_cavern randomRoom = roomPool[rndForRoom.Next(roomPool.Count)]; // choose random room from all
 			selectedRooms[i] = randomRoom; // add the room
 			roomPool.Remove(randomRoom); // remove the room from the pool
 		}
@@ -281,7 +282,7 @@ public class roomController : MonoBehaviour
 			if (traderSpawnRoomPool.Count > 0)
 			{
 				// choose 1 random place to spawn it at
-				traderSpawnRoom = traderSpawnRoomPool[rnd.Next(traderSpawnRoomPool.Count())];
+				traderSpawnRoom = traderSpawnRoomPool[rnd.Next(traderSpawnRoomPool.Count)];
 				int traderSpawnOrderOnMap = traderSpawnRoom.orderOnMap;
 
 				room_cavern rc = selectedRooms[traderSpawnOrderOnMap] as room_cavern;

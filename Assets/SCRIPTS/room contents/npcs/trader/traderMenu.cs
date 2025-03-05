@@ -50,7 +50,7 @@ public class traderMenu : MonoBehaviour
 	int timesTraded = 0;
 	public void trade()
 	{
-		if (offeredItem != null && traderInv.Count() > 0)
+		if (offeredItem != null && traderInv.Count > 0)
 		{
 			item currentlyTradedItem = traderInv[0];
 			if (offeredItem != mainItem)
@@ -71,7 +71,7 @@ public class traderMenu : MonoBehaviour
 				inventoryManager.addItem(currentlyTradedItem, inventoryManager.caveInventory);
 				menuManager.caveItemMenu.refreshItems(menuManager.caveItemMenu.regularSlots, inventoryManager.caveInventory);
 				traderInv.RemoveAt(0);
-				if (traderInv.Count() > 0)
+				if (traderInv.Count > 0)
 				{
 					currentlyTradedItem = traderInv[0];
 					handR.assignItem(currentlyTradedItem);

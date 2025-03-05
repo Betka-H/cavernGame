@@ -46,6 +46,10 @@ public class gameController : MonoBehaviour
 			menuManager.hideMenus();
 			genAndSpawn(level.lab);
 		}
+		if (Input.GetKeyDown(KeyCode.Escape))
+		{
+			menuManager.toggleEscapeMenu(!menuManager.escMenu.gameObject.activeSelf);
+		}
 	}
 
 	public void genAndSpawn(level lvl)
