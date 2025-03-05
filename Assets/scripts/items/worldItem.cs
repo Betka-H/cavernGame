@@ -48,10 +48,10 @@ public class worldItem : MonoBehaviour
 	public void pickUp()
 	{
 		// Debug.Log($"hs: {caveItemMenu.hasAllSlots}");
-		Debug.Log("check backpack elsewhere");
-		if (inventoryManager.checkEquipment(inventoryManager.inventoryDefinitions.backpack))
+		//! temp backpack check
+		/* if (inventoryManager.checkEquipment(inventoryManager.inventoryDefinitions.backpack))
 			caveItemMenu.hasAllSlots = true;
-		else caveItemMenu.hasAllSlots = false;
+		else caveItemMenu.hasAllSlots = false; */
 
 		// Debug.Log($"{inventoryManager.caveInventory.Count}, {caveItemMenu.slotLimit}");
 		if (inventoryManager.caveInventory.Count < caveItemMenu.slotLimit)

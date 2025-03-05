@@ -170,5 +170,8 @@ public class gameController : MonoBehaviour
 	{
 		Debug.Log("helloooo deadly cavern");
 		genAndSpawn(level.cavern);
+		if (menuManager.inventoryManager.checkEquipment(menuManager.inventoryManager.inventoryDefinitions.backpack))
+			menuManager.caveItemMenu.hasAllSlots = true;
+		else menuManager.caveItemMenu.hasAllSlots = false;
 	}
 }

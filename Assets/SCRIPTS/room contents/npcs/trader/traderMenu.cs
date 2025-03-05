@@ -43,7 +43,7 @@ public class traderMenu : MonoBehaviour
 	public void offer()
 	{
 		// offerMade = true;
-		offeredItem = menuManager.caveItemMenu.selectedItem;
+		offeredItem = menuManager.itemInfoDisplay.selectedItem;
 		handL.assignItem(offeredItem);
 		updateHands();
 	}
