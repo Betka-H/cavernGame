@@ -41,7 +41,6 @@ public class gameController : MonoBehaviour
 					break;
 			}
 		}
-		//! temp cavern respawn
 		if (Input.GetKeyDown(KeyCode.R))
 		{
 			menuManager.hideMenus();

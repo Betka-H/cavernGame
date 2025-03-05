@@ -47,13 +47,6 @@ public class worldItem : MonoBehaviour
 	} */
 	public void pickUp()
 	{
-		// Debug.Log($"hs: {caveItemMenu.hasAllSlots}");
-		//! temp backpack check
-		/* if (inventoryManager.checkEquipment(inventoryManager.inventoryDefinitions.backpack))
-			caveItemMenu.hasAllSlots = true;
-		else caveItemMenu.hasAllSlots = false; */
-
-		// Debug.Log($"{inventoryManager.caveInventory.Count}, {caveItemMenu.slotLimit}");
 		if (inventoryManager.caveInventory.Count < caveItemMenu.slotLimit)
 		{
 			inventoryManager.addItem(assignedItem, inventoryManager.caveInventory);

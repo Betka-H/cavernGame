@@ -61,11 +61,6 @@ public class inventoryManager : MonoBehaviour
 
 	public bool checkEquipment(item it)
 	{
-		/* //! temp equip check
-		int rnd = new System.Random().Next(2);
-		if (rnd == 0) return true;
-		else return false; */
-
 		if (equippedItems.Contains(it))
 		{
 			Debug.Log($"{it} is equipped");

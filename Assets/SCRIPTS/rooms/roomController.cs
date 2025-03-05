@@ -66,9 +66,9 @@ public class roomController : MonoBehaviour
 	void Start()
 	{
 		//! temp trader spawn value
-		traderSpawnChance = 100;
+		traderSpawnChance = 50;
 		//! temp item spawn value
-		itemSpawnRate = 100;
+		itemSpawnRate = 25;
 
 		//! temp room amount value
 		maxCavernRoomsNr = cavernRooms.Length;
@@ -267,13 +267,13 @@ public class roomController : MonoBehaviour
 
 			//
 			//! TEMP FOR TESTING. forces trader to spawn in entrance room
-			Debug.LogWarning("trader should spawn elsewhere");
+			/* Debug.LogWarning("trader should spawn elsewhere");
 			if (entranceRoom is room_cavern traderEntrRoom)
 			{
 				traderSpawnRoomPool.Clear();
 				traderEntrRoom.setTraderSpawn();
 				traderSpawnRoomPool.Add(traderEntrRoom);
-			}
+			} */
 			//
 
 

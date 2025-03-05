@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90cac53c1cd19994caba37e4c121d803, type: 3}
+  m_Name: cavern room 17
+  m_EditorClassIdentifier: 
+  roomPrefab: {fileID: 1526769647566983870, guid: 14a70259a4cec754196034958237c31a, type: 3}
+  orderOnMap: 0
+  roomBgColor: {r: 0.39928862, g: 0.13725491, b: 0.8784314, a: 1}
+  isDark: 0
+  lootThatCanSpawnInThisRoom:
+  - {fileID: 11400000, guid: efe3ff3737876564f8c0aa7130051258, type: 2}
+  - {fileID: 11400000, guid: 855f72286b24ad8488e6984db26b4f9f, type: 2}
+  - {fileID: 11400000, guid: 339f8e52414bc414c943c6f213a335fb, type: 2}
+  hasTrader: 0
+  chosenTraderSpawn: {fileID: 3399029328771763786, guid: 14a70259a4cec754196034958237c31a, type: 3}
