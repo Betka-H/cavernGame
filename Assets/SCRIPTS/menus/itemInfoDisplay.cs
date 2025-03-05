@@ -17,10 +17,10 @@ public class itemInfoDisplay : MonoBehaviour
     void OnEnable()
     {
         // selectedItem = null;
-        showInfo(null);
+        setInfo(null);
     }
 
-    public void showInfo(item it)
+    public void setInfo(item it)
     {
         selectedItem = it;
 

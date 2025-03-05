@@ -48,12 +48,13 @@ public class inventoryManager : MonoBehaviour
 	inventoryDefinitions.gemClear,
 	inventoryDefinitions.scrapGoggles,
 	inventoryDefinitions.scrapGoggles,
-	inventoryDefinitions.scrapGoggles,
 	inventoryDefinitions.scrapPickaxe,
 	inventoryDefinitions.scrapPickaxe,
 	inventoryDefinitions.scrapBackpack,
 	inventoryDefinitions.pickaxe,
 	inventoryDefinitions.pickaxe,
+	inventoryDefinitions.nightVisionGoggles,
+	inventoryDefinitions.nightVisionGoggles,
 	inventoryDefinitions.nightVisionGoggles,
 	};
 	}
@@ -99,7 +100,7 @@ public class inventoryManager : MonoBehaviour
 		else
 		{
 			inventory.Remove(it);
-			// Debug.Log($"removed item {it} from inventory");
+			Debug.Log($"removed item {it} from {nameof(inventory)}");
 		}
 	}
 }

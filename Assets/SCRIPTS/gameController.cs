@@ -44,15 +44,9 @@ public class gameController : MonoBehaviour
 		//! temp cavern respawn
 		if (Input.GetKeyDown(KeyCode.R))
 		{
-			respawnCavern();
+			menuManager.hideMenus();
+			genAndSpawn(level.lab);
 		}
-	}
-
-	void respawnCavern()
-	{
-		genAndSpawn(level.cavern);
-		clearMenus();
-		menuManager.inventoryManager.caveInventory.Clear();
 	}
 
 	public void genAndSpawn(level lvl)
@@ -148,6 +142,11 @@ public class gameController : MonoBehaviour
 		// destroyPlayer();
 		player.GetComponent<playerMovement>().alive = false;
 		player.GetComponent<playerMovement>().rb.velocity = Vector3.zero;
+
+		// lose inventories
+		menuManager.inventoryManager.caveInventory.Clear();
+		menuManager.inventoryManager.equippedItems.Clear();
+		// menuManager.equipWorkstation.clearSlots();
 	}
 
 	public void leaveCavern()
@@ -159,10 +158,6 @@ public class gameController : MonoBehaviour
 	}
 	public void transferInventory()
 	{
-		/* foreach (item it in inventory.caveInventory)
-        {
-            inventory.addCaveItem(it);
-        } // lmao what*/
 		menuManager.inventoryManager.labInventory.AddRange(menuManager.inventoryManager.caveInventory);
 		menuManager.inventoryManager.caveInventory.Clear();
 	}

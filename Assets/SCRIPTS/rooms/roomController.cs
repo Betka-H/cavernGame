@@ -61,6 +61,8 @@ public class roomController : MonoBehaviour
 
 	[HideInInspector] public Transform player;
 
+	public SpriteRenderer colorBg;
+
 	void Start()
 	{
 		//! temp trader spawn value
@@ -78,6 +80,7 @@ public class roomController : MonoBehaviour
 	public void generateLevel(gameController.level lvl)
 	{
 		Debug.LogWarning($"=============================... generating new level ({lvl})...=======================================");
+		clearRoom();
 
 		currentLevel = lvl;
 		switch (currentLevel)
@@ -115,7 +118,8 @@ public class roomController : MonoBehaviour
 	{
 		clearParent(itemParent);
 		killTrader();
-		chosenDarkness.gameObject.SetActive(false);
+		if (chosenDarkness != null)
+			chosenDarkness.gameObject.SetActive(false);
 	}
 
 	void logCavernRooms()
@@ -304,10 +308,14 @@ public class roomController : MonoBehaviour
 	{
 		clearParent(traderParent);
 
-		foreach (room_cavern room in selectedRooms)
+		/* foreach (room_cavern room in selectedRooms)
 		{
 			room.hasTrader = false;
-		}
+		} */
+		if (selectedRooms != null)
+			foreach (roomSO room in selectedRooms)
+				if (room is room_cavern crRoom)
+					crRoom.hasTrader = false;
 	}
 	void summonTrader()
 	{
@@ -400,6 +408,8 @@ public class roomController : MonoBehaviour
 		roomNumberTMP.text = $"room {currentRoomNr} / {selectedRooms.Length - 1}";
 		placeDoorwayBlock();
 
+		colorBg.color = selectedRooms[currentRoomNr].roomBgColor;
+
 		if (selectedRooms[currentRoomNr] is room_cavern cr)
 		{
 			toggleDarkness(cr);
@@ -414,5 +424,6 @@ public class roomController : MonoBehaviour
 			else if (npcTrader != null)
 				npcTrader.gameObject.SetActive(false);
 		}
+		else if (chosenDarkness != null) chosenDarkness.gameObject.SetActive(false);
 	}
 }

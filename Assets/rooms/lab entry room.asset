@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomPrefab: {fileID: 8950177509809473929, guid: c8184944df914bc48a199ea3d0aa72d6, type: 3}
   orderOnMap: 0
+  roomBgColor: {r: 0.34117648, g: 0.52180326, b: 0.60784316, a: 1}

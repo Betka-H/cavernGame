@@ -27,6 +27,6 @@ public class spikes : MonoBehaviour
 	void die()
 	{
 		Debug.Log("patch notes 3.14: removed death");
-		// gameController.death();
+		gameController.death();
 	}
 }

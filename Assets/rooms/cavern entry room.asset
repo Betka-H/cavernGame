@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: cavern entry room
   m_EditorClassIdentifier: 
   roomPrefab: {fileID: 7932632238650256314, guid: f400c5277f52cf048a1669b52ca8c09d, type: 3}
-  orderOnMap: 0
+  orderOnMap: 5
+  roomBgColor: {r: 0.5423048, g: 0.8773585, b: 0.13656996, a: 1}
   isDark: 0
   lootThatCanSpawnInThisRoom: []
-  hasTrader: 0
-  chosenTraderSpawn: {fileID: 0}
+  hasTrader: 1
+  chosenTraderSpawn: {fileID: 8096697301996858350, guid: f400c5277f52cf048a1669b52ca8c09d, type: 3}

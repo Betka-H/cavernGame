@@ -57,7 +57,7 @@ public class toolWorkstationMenu : MonoBehaviour
             menuManager.labItemMenu.refreshItems(menuManager.labItemMenu.regularSlots, menuManager.inventoryManager.labInventory);
             menuManager.labItemMenu.refreshItems(menuManager.labItemMenu.recipeGridSlots, null);
             // menuManager.itemInfoDisplay.selectedItem = null;
-            menuManager.itemInfoDisplay.showInfo(null);
+            menuManager.itemInfoDisplay.setInfo(null);
         }
         else Debug.Log("no offer or not enough resources");
     }

@@ -96,7 +96,7 @@ public class traderMenu : MonoBehaviour
 	private void clearTooltip()
 	{
 		// menuManager.itemInfoDisplay.selectedItem = null;
-		menuManager.itemInfoDisplay.showInfo(null);
+		menuManager.itemInfoDisplay.setInfo(null);
 	}
 
 	void showTradeCount()

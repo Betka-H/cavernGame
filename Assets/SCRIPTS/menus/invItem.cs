@@ -44,14 +44,7 @@ public class invItem : MonoBehaviour
 
     protected void OnMouseDown()
     {
-        showInfo();
-    }
-
-    void showInfo()
-    {
-        // display item info in menu
-        // menuManager.itemInfoDisplay.selectedItem = assignedItem;
-        menuManager.itemInfoDisplay.showInfo(assignedItem);
+        menuManager.itemInfoDisplay.setInfo(assignedItem);
     }
 
     protected void assignItem(item it)
