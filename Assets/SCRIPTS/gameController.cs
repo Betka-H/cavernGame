@@ -9,7 +9,6 @@ public class gameController : MonoBehaviour
 	public GameObject cavePlayerPrefab;
 
 	private roomController roomController;
-	private inventoryManager inventory;
 
 	menuManager menuManager;
 
@@ -20,7 +19,6 @@ public class gameController : MonoBehaviour
 	void Start()
 	{
 		roomController = FindObjectOfType<roomController>();
-		inventory = FindObjectOfType<inventoryManager>();
 		interactionTooltip = FindObjectOfType<interactionTooltip>(true);
 		menuManager = FindObjectOfType<menuManager>();
 
@@ -43,7 +41,7 @@ public class gameController : MonoBehaviour
 					break;
 			}
 		}
-		//! temp
+		//! temp cavern respawn
 		if (Input.GetKeyDown(KeyCode.R))
 		{
 			respawnCavern();
@@ -54,7 +52,7 @@ public class gameController : MonoBehaviour
 	{
 		genAndSpawn(level.cavern);
 		clearMenus();
-		inventory.caveInventory.Clear();
+		menuManager.inventoryManager.caveInventory.Clear();
 	}
 
 	public void genAndSpawn(level lvl)
@@ -165,8 +163,8 @@ public class gameController : MonoBehaviour
         {
             inventory.addCaveItem(it);
         } // lmao what*/
-		inventory.labInventory.AddRange(inventory.caveInventory);
-		inventory.caveInventory.Clear();
+		menuManager.inventoryManager.labInventory.AddRange(menuManager.inventoryManager.caveInventory);
+		menuManager.inventoryManager.caveInventory.Clear();
 	}
 	public void enterCavern()
 	{

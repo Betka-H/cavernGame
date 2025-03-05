@@ -13,7 +13,7 @@ public class caveItemMenu : itemMenu
 			{
 				_hasAllSlots = value;
 
-				//! temp slot values
+				//! temp slot limit values
 				if (hasAllSlots)
 				{
 					slotLimit = 20;
@@ -24,7 +24,7 @@ public class caveItemMenu : itemMenu
 					slotLimit = 12;
 					slotCover.gameObject.SetActive(true);
 				}
-				Debug.Log($"sl: {slotLimit}");
+				// Debug.Log($"sl: {slotLimit}");
 			}
 		}
 	}

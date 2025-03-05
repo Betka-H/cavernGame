@@ -4,7 +4,7 @@ public enum menuScreen { gameplay, trading };
 public class menuManager : MonoBehaviour
 {
     public GameObject menuBg;
-
+    public inventoryManager inventoryManager;
     public deathScreen deathScreen;
 
     public caveItemMenu caveItemMenu;
@@ -12,6 +12,8 @@ public class menuManager : MonoBehaviour
     public traderMenu traderMenu;
     public labItemMenu labItemMenu;
     public toolWorkstationMenu toolWorkstationMenu;
+    public equipWorkstation equipWorkstation;
+
     public itemInfoDisplay itemInfoDisplay;
 
     void Awake()
@@ -27,6 +29,7 @@ public class menuManager : MonoBehaviour
         toggleMissionMenu(false);
         toggleTraderMenu(false);
         toggleToolWorkstationMenu(false);
+        toggleEquipmentWorkstationMenu(false);
         deathScreen.gameObject.SetActive(false);
 
         menuBg.SetActive(false);
@@ -58,6 +61,10 @@ public class menuManager : MonoBehaviour
     {
         toolWorkstationMenu.gameObject.SetActive(onOff);
     }
+    void toggleEquipmentWorkstationMenu(bool onOff)
+    {
+        equipWorkstation.gameObject.SetActive(onOff);
+    }
 
     public void toggleGameplayMenuScreen()
     {
@@ -87,6 +94,14 @@ public class menuManager : MonoBehaviour
         // labItemMenu.itemDispType = itemDispType.scrap;
         toggleLabItemMenu(onOff);
         toggleToolWorkstationMenu(onOff);
+    }
+    public void toggleToggleEquipmentWorkstationMenu()
+    {
+        bool onOff = toggleMenu(equipWorkstation.gameObject);
+
+        // labItemMenu.itemDispType = itemDispType.scrap;
+        toggleLabItemMenu(onOff);
+        toggleEquipmentWorkstationMenu(onOff);
     }
 
     bool toggleMenu(GameObject menu)

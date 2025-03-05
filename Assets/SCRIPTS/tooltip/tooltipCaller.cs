@@ -16,9 +16,21 @@ public class tooltipCaller : MonoBehaviour
 	void Update()
 	{
 		if (isEnabled && Input.GetKeyDown(keyToInteract))
-		{
-			tooltipObj.action(tooltipKind);
-		}
+
+			if (isItem())
+			{
+				GetComponent<worldItem>().pickUp();
+			}
+			else
+			{
+				tooltipObj.action(tooltipKind);
+			}
+	}
+	bool isItem()
+	{
+		if (GetComponent<worldItem>() != null)
+			return true;
+		else return false;
 	}
 
 	void OnTriggerEnter2D(Collider2D other)

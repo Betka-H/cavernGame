@@ -11,6 +11,7 @@ public abstract class itemMenu : MonoBehaviour
     protected void Awake()
     {
         regularSlots = gridSlotsParent.GetComponentsInChildren<invItem>();
+        inventoryScript = FindObjectOfType<inventoryManager>();
     }
 
     void OnEnable()

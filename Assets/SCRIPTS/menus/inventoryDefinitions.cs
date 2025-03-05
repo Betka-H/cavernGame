@@ -22,4 +22,5 @@ public class inventoryDefinitions : MonoBehaviour
     public scrap scrapGoggles;
     public scrap scrapVial;
     public scrap scrapPickaxe;
+    public scrap scrapBackpack;
 }

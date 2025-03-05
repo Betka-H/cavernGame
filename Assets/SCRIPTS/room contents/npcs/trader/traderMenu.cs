@@ -95,7 +95,7 @@ public class traderMenu : MonoBehaviour
 
 	private void clearTooltip()
 	{
-		// menuManager.caveItemMenu.selectedItem = null;
+		// menuManager.itemInfoDisplay.selectedItem = null;
 		menuManager.itemInfoDisplay.showInfo(null);
 	}
 

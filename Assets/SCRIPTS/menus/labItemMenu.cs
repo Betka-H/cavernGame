@@ -11,7 +11,6 @@ public class labItemMenu : itemMenu
     {
         base.Awake();
         recipeGridSlots = recipeGridTransform.GetComponentsInChildren<labInvItem>(true);
-        inventoryScript = FindObjectOfType<inventoryManager>();
     }
 
     void OnEnable()

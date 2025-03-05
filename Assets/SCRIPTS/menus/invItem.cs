@@ -5,14 +5,12 @@ public class invItem : MonoBehaviour
     [HideInInspector] public item assignedItem;
 
     protected menuManager menuManager;
-    protected inventoryManager inventoryManager;
 
     public SpriteRenderer spriteRenderer;
 
     void Awake()
     {
         menuManager = FindObjectOfType<menuManager>();
-        inventoryManager = FindObjectOfType<inventoryManager>();
         setNormalScale();
     }
 
@@ -52,7 +50,7 @@ public class invItem : MonoBehaviour
     void showInfo()
     {
         // display item info in menu
-        menuManager.caveItemMenu.selectedItem = assignedItem;
+        // menuManager.itemInfoDisplay.selectedItem = assignedItem;
         menuManager.itemInfoDisplay.showInfo(assignedItem);
     }
 

@@ -63,12 +63,12 @@ public class roomController : MonoBehaviour
 
 	void Start()
 	{
-		//! temp value
+		//! temp trader spawn value
 		traderSpawnChance = 100;
-		//! temp value
+		//! temp item spawn value
 		itemSpawnRate = 100;
 
-		//! temp value
+		//! temp room amount value
 		maxCavernRoomsNr = cavernRooms.Length;
 
 		darknessOverlay = FindObjectOfType<darknessOL>();

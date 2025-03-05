@@ -38,22 +38,22 @@ public class worldItem : MonoBehaviour
 			spriteRenderer.sprite = assignedItem.itemSprite;
 	}
 
-	void OnTriggerEnter2D(Collider2D other)
+	/* void OnTriggerEnter2D(Collider2D other)
 	{
 		if (other.gameObject.CompareTag("player"))
 		{
 			pickUp();
 		}
-	}
-	void pickUp()
+	} */
+	public void pickUp()
 	{
-		Debug.Log($"hs: {caveItemMenu.hasAllSlots}");
+		// Debug.Log($"hs: {caveItemMenu.hasAllSlots}");
 		Debug.Log("check backpack elsewhere");
 		if (inventoryManager.checkEquipment(inventoryManager.inventoryDefinitions.backpack))
 			caveItemMenu.hasAllSlots = true;
 		else caveItemMenu.hasAllSlots = false;
 
-		Debug.Log($"{inventoryManager.caveInventory.Count}, {caveItemMenu.slotLimit}");
+		// Debug.Log($"{inventoryManager.caveInventory.Count}, {caveItemMenu.slotLimit}");
 		if (inventoryManager.caveInventory.Count < caveItemMenu.slotLimit)
 		{
 			inventoryManager.addItem(assignedItem, inventoryManager.caveInventory);

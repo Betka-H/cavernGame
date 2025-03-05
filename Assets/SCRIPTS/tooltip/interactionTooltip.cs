@@ -2,17 +2,19 @@ using UnityEngine.Events;
 using TMPro;
 using UnityEngine;
 
-public enum tooltipKind { enter, exit, item, trader, toolWorkshop };
+public enum tooltipKind { enter, exit, item, trader, toolWorkshop, equipWorkshop };
 
 public class interactionTooltip : MonoBehaviour
 {
 	public TMP_Text textDisplay;
 
 	[Header("interact functions")]
+	[Header("item pickup event")][SerializeField] private UnityEvent itemPickupEvent;
 	[Header("trader event")][SerializeField] private UnityEvent traderEvent;
 	[Header("cavern enter event")][SerializeField] private UnityEvent enterEvent;
 	[Header("cavern exit event")][SerializeField] private UnityEvent exitEvent;
 	[Header("tool workshop event")][SerializeField] private UnityEvent toolWorkshopEvent;
+	[Header("equip workshop event")][SerializeField] private UnityEvent equipWorkshopEvent;
 
 	public void showTooltip(KeyCode key, tooltipKind tk, Vector3 pos)
 	{
@@ -34,6 +36,9 @@ public class interactionTooltip : MonoBehaviour
 			case tooltipKind.toolWorkshop:
 				action = "craft tools";
 				break;
+			case tooltipKind.equipWorkshop:
+				action = "equip equipment";
+				break;
 		}
 
 		textDisplay.text = $"press {key} to {action}";
@@ -47,6 +52,9 @@ public class interactionTooltip : MonoBehaviour
 	{
 		switch (tooltipKind)
 		{
+			case tooltipKind.item:
+				itemPickupEvent.Invoke();
+				break;
 			case tooltipKind.trader:
 				traderEvent.Invoke();
 				break;
@@ -58,6 +66,9 @@ public class interactionTooltip : MonoBehaviour
 				break;
 			case tooltipKind.toolWorkshop:
 				toolWorkshopEvent.Invoke();
+				break;
+			case tooltipKind.equipWorkshop:
+				equipWorkshopEvent.Invoke();
 				break;
 		}
 	}

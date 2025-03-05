@@ -9,7 +9,6 @@ public class inventoryManager : MonoBehaviour
 	[HideInInspector] public List<item> equippedItems;
 
 	[HideInInspector] public inventoryDefinitions inventoryDefinitions;
-	public List<item> allItems;
 
 	/*//* private string savePath = "inventory-save.txt";
 	File.WriteAllText(savePath, string.Join(",", inventoryIds));
@@ -22,7 +21,6 @@ public class inventoryManager : MonoBehaviour
 	void Start()
 	{
 		inventoryDefinitions = FindObjectOfType<inventoryDefinitions>();
-		orderInventory(ref allItems);
 
 		tempInv();
 	}
@@ -53,18 +51,25 @@ public class inventoryManager : MonoBehaviour
 	inventoryDefinitions.scrapGoggles,
 	inventoryDefinitions.scrapPickaxe,
 	inventoryDefinitions.scrapPickaxe,
+	inventoryDefinitions.scrapBackpack,
+	inventoryDefinitions.pickaxe,
+	inventoryDefinitions.pickaxe,
+	inventoryDefinitions.nightVisionGoggles,
 	};
 	}
 
 	public bool checkEquipment(item it)
 	{
-		/* //! tmp lol
+		/* //! temp equip check
 		int rnd = new System.Random().Next(2);
 		if (rnd == 0) return true;
 		else return false; */
 
 		if (equippedItems.Contains(it))
+		{
+			Debug.Log($"{it} is equipped");
 			return true;
+		}
 		else return false;
 	}
 

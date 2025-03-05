@@ -7,14 +7,12 @@ public class toolWorkstationMenu : MonoBehaviour
     scrap assignedScrap;
     public SpriteRenderer scrapSpriteRenderer;
     public SpriteRenderer resultSpriteRenderer;
-    inventoryManager inventoryManager;
     menuManager menuManager;
     public Sprite placeholderScrapItemSprite;
     public Sprite placeholderResultItemSprite;
 
     void Awake()
     {
-        inventoryManager = FindObjectOfType<inventoryManager>(true);
         menuManager = FindObjectOfType<menuManager>();
     }
 
@@ -45,26 +43,27 @@ public class toolWorkstationMenu : MonoBehaviour
         if (assignedScrap != null && checkResources())
         {
             // add crafted item
-            inventoryManager.addItem(assignedScrap.wholeGear, inventoryManager.labInventory);
+            menuManager.inventoryManager.addItem(assignedScrap.wholeGear, menuManager.inventoryManager.labInventory);
             // remove scrap item
-            inventoryManager.removeItem(assignedScrap, inventoryManager.labInventory);
+            menuManager.inventoryManager.removeItem(assignedScrap, menuManager.inventoryManager.labInventory);
             // remove all recipe resources
             foreach (item it in assignedScrap.wholeGear.cost)
             {
-                inventoryManager.removeItem(it, inventoryManager.labInventory);
+                menuManager.inventoryManager.removeItem(it, menuManager.inventoryManager.labInventory);
             }
 
             // clear scrap and recipe displays
             assignScrap(null);
-            menuManager.labItemMenu.refreshItems(menuManager.labItemMenu.regularSlots, inventoryManager.labInventory);
+            menuManager.labItemMenu.refreshItems(menuManager.labItemMenu.regularSlots, menuManager.inventoryManager.labInventory);
             menuManager.labItemMenu.refreshItems(menuManager.labItemMenu.recipeGridSlots, null);
+            // menuManager.itemInfoDisplay.selectedItem = null;
             menuManager.itemInfoDisplay.showInfo(null);
         }
         else Debug.Log("no offer or not enough resources");
     }
     bool checkResources()
     {
-        List<item> checkInv = new List<item>(inventoryManager.labInventory);
+        List<item> checkInv = new List<item>(menuManager.inventoryManager.labInventory);
         bool hasResources = true;
         while (hasResources)
         {
