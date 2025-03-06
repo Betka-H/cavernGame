@@ -77,16 +77,16 @@ public class inventoryManager : MonoBehaviour
 		{
 			foreach (item it in doesTheBigListContainThis)
 			{
-				Debug.Log($"checking {it}");
+				// Debug.Log($"checking {it}");
 				if (checkInv.Contains(it))
 				{
-					Debug.Log($"has {it}");
+					// Debug.Log($"has {it}");
 					checkInv.Remove(it);
 				}
 				else
 				{
 					hasResources = false;
-					Debug.Log($"has not {it}");
+					// Debug.Log($"has not {it}");
 				}
 			}
 			break;

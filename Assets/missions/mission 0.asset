@@ -19,4 +19,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4f151ca1cf2d4f04ca332d49694124e6, type: 2}
   - {fileID: 11400000, guid: 93f8c0fb24728db45ae7422c4e692dfa, type: 2}
   - {fileID: 11400000, guid: 855f72286b24ad8488e6984db26b4f9f, type: 2}
-  calls: []
+  calls:
+  - {fileID: 11400000, guid: 9c45efa2c961d9241bf6654fc8bdc012, type: 2}
+  - {fileID: 11400000, guid: 0456e476997e72541af1f3bae2768e60, type: 2}
+  currentCall: 0

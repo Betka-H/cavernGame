@@ -5,10 +5,12 @@ public class menuManager : MonoBehaviour
 {
     public GameObject menuBg;
     public inventoryManager inventoryManager;
+    public callManager callManager;
     public deathScreen deathScreen;
 
     public caveItemMenu caveItemMenu;
     public missionMenu missionMenu;
+    public callScreen callScreen;
     public traderMenu traderMenu;
     public labItemMenu labItemMenu;
     public toolWorkstationMenu toolWorkstationMenu;
@@ -28,6 +30,7 @@ public class menuManager : MonoBehaviour
         toggleLabItemMenu(false);
         toggleitemInfoDisplay(false);
         toggleMissionMenu(false);
+        toggleCallMenu(false);
         toggleTraderMenu(false);
         toggleToolWorkstationMenu(false);
         toggleEquipmentWorkstationMenu(false);
@@ -64,6 +67,10 @@ public class menuManager : MonoBehaviour
     {
         missionMenu.gameObject.SetActive(onOff);
     }
+    void toggleCallMenu(bool onOff)
+    {
+        callScreen.gameObject.SetActive(onOff);
+    }
     void toggleToolWorkstationMenu(bool onOff)
     {
         toolWorkstationMenu.gameObject.SetActive(onOff);
@@ -77,6 +84,12 @@ public class menuManager : MonoBehaviour
         missionMenu.gameObject.SetActive(onOff);
     }
 
+    public void toggleCallScreen()
+    {
+        bool onOff = toggleMenu(callScreen.gameObject);
+
+        toggleCallMenu(onOff);
+    }
     public void toggleGameplayMenuScreen()
     {
         bool onOff = toggleMenu(missionMenu.gameObject);
@@ -123,7 +136,7 @@ public class menuManager : MonoBehaviour
 
     bool toggleMenu(GameObject menu)
     {
-        bool onOff = !menu.activeSelf;
+        bool onOff = !menu.gameObject.activeSelf;
         hideMenus();
         menuBg.SetActive(onOff);
         return onOff;

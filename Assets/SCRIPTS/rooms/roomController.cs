@@ -125,16 +125,16 @@ public class roomController : MonoBehaviour
 			chosenDarkness.gameObject.SetActive(false);
 	}
 
-	void logCavernRooms()
+	string logCavernRooms()
 	{
 		int i = 0;
 		string debug = "";
 		foreach (room_cavern room in selectedRooms)
 		{
-			debug += $"{room.orderOnMap}: ";
+			debug += $"room {room.orderOnMap}";
 			if (room == entranceRoom)
-				debug += "ENTRANCE ROOM";
-			else debug += room.name;
+				debug += " (ENTRANCE ROOM)";
+			// else debug += room.name;
 
 			if (room.isDark == true)
 			{
@@ -142,12 +142,13 @@ public class roomController : MonoBehaviour
 			}
 			if (room.hasTrader)
 			{
-				debug += " (trader)";
+				debug += " (TRADER)";
 			}
 			debug += ", ";
 			i++;
 		}
-		Debug.Log($"({darknessLvl}) level rooms: {debug}");
+		// Debug.Log($"({darknessLvl}) level rooms: {debug}");
+		return $" level rooms ({darknessLvl}):\n{debug}";
 	}
 
 	void generateLab()
@@ -193,7 +194,7 @@ public class roomController : MonoBehaviour
 		chooseItemSpawnLocations();
 		chooseTraderSpawnLocation();
 
-		logCavernRooms();
+		// Debug.Log(logCavernRooms());
 	}
 
 	void setDarkRooms()
@@ -292,7 +293,7 @@ public class roomController : MonoBehaviour
 
 				//create trader
 				npcTrader = Instantiate(traderPrefab, traderParent).GetComponent<npcTrader>();
-				Debug.Log($"spawned trader at room {traderSpawnOrderOnMap}");
+				// Debug.Log($"spawned trader at room {traderSpawnOrderOnMap}");
 				npcTrader.gameObject.SetActive(false);
 			}
 			else
@@ -413,7 +414,15 @@ public class roomController : MonoBehaviour
 		clearParent(roomParent);
 		clearParent(doorBlockParent);
 		Instantiate(getRoom(isLeft).roomPrefab.transform, roomParent);
-		roomNumberTMP.text = $"room {currentRoomNr} / {selectedRooms.Length - 1}";
+		switch (currentLevel)
+		{
+			case gameController.level.lab:
+				roomNumberTMP.text = $"lab room {currentRoomNr} / {selectedRooms.Length - 1}";
+				break;
+			case gameController.level.cavern:
+				roomNumberTMP.text = $"cavern room {currentRoomNr} / {selectedRooms.Length - 1} {logCavernRooms()}";
+				break;
+		}
 		placeDoorwayBlock();
 
 		colorBg.color = selectedRooms[currentRoomNr].roomBgColor;

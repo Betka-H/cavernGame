@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -174,7 +175,23 @@ public class gameController : MonoBehaviour
 	}
 	public void enterCavern()
 	{
-		Debug.Log("helloooo deadly cavern");
+		if (missionManager.currentMission == 0)
+		{
+			Debug.Log("helloooo deadly cavern");
+
+			missionSO currentMission = menuManager.callManager.currentMission();
+
+			// log
+			// Debug.Log($"calls l: {currentMission.calls.Length}, index of current call: {Array.IndexOf(currentMission.calls, menuManager.callManager.currentCall())}");
+			Debug.Log($"calls l: {currentMission.calls.Length}, index of current call: {missionManager.allMissions[missionManager.currentMission].currentCall}");
+
+			// if (currentMission.calls.Length > Array.IndexOf(currentMission.calls, menuManager.callManager.currentCall()))
+			if (currentMission.calls.Length > missionManager.allMissions[missionManager.currentMission].currentCall)
+				menuManager.callManager.startCall();
+
+			// menuManager.toggleCallScreen(); // piece of shit
+		}
+
 		genAndSpawn(level.cavern);
 		if (menuManager.inventoryManager.checkEquipment(menuManager.inventoryManager.inventoryDefinitions.backpack))
 			menuManager.caveItemMenu.hasAllSlots = true;

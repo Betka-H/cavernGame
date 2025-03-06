@@ -16,26 +16,11 @@ public class missionManager : MonoBehaviour
 
     void Start()
     {
-        Debug.Log($"cm: {currentMission}");
+        Debug.Log($"current mission: {currentMission}");
     }
 
     public void checkMissionItems()
     {
-        /* List<item> tmpList = new List<item>(allMissions[currentMission].requiredItems);
-        foreach (item it in menuManager.inventoryManager.missionInventory)
-        {
-            if (tmpList.Contains(it))
-            {
-
-            }
-        } */
-
-        Debug.Log("checking mission items");
-
-        Debug.Log("req items:");
-        menuManager.inventoryManager.printInventory(allMissions[currentMission].requiredItems);
-        Debug.Log("have items:");
-        menuManager.inventoryManager.printInventory(menuManager.inventoryManager.missionInventory);
         if (menuManager.inventoryManager.checkResources(menuManager.inventoryManager.missionInventory, allMissions[currentMission].requiredItems))
         {
             Debug.Log("new mission?");
@@ -47,5 +32,13 @@ public class missionManager : MonoBehaviour
     {
         Debug.Log("new mission!");
         currentMission++;
+        allMissions[currentMission].currentCall = 0;
+    }
+
+    public void restartMissions()
+    {
+        currentMission = 0;
+        foreach (missionSO mission in allMissions)
+            mission.currentCall = 0;
     }
 }

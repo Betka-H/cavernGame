@@ -12,4 +12,5 @@ public class missionSO : ScriptableObject
 
     public List<item> requiredItems;
     public callSO[] calls;
+    [HideInInspector] public int currentCall = 0;
 }

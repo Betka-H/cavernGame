@@ -21,13 +21,13 @@ public class missionMenu : MonoBehaviour
 
     void OnEnable()
     {
-        Debug.Log($"cm: {missionManager.allMissions[missionManager.currentMission]}, {missionManager.currentMission}");
+        // Debug.Log($"cm: {missionManager.allMissions[missionManager.currentMission]}, {missionManager.currentMission}");
         displayMission(missionManager.allMissions[missionManager.currentMission]);
     }
 
     public void displayMission(missionSO mission)
     {
-        Debug.Log($"new mission: {mission.missionID}, {mission.missionTitle}, {mission.missionDescription}");
+        // Debug.Log($"new mission: {mission.missionID}, {mission.missionTitle}, {mission.missionDescription}");
 
         txtTitle.text = mission.missionTitle;
         txtDescription.text = mission.missionDescription;
