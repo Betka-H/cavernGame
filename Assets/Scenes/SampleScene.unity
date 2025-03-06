@@ -157,6 +157,7 @@ MonoBehaviour:
   currentLevel: 0
   roomParent: {fileID: 1837799390}
   enclosureParent: {fileID: 1689111313}
+  doorBlockParent: {fileID: 1698097974}
   blockL: {fileID: 5893898122074834562, guid: 4b7803ff778149d4d921600b472f0a8e, type: 3}
   blockR: {fileID: 2301586464489702344, guid: bfeb0cb8302c61e40a6c28e518d012cb, type: 3}
   enclosure_walls_lab: {fileID: 6553063550943284792, guid: d515c56bec07dc94fab1c46c882e1e8d, type: 3}
@@ -2487,6 +2488,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1021697124}
   - {fileID: 879594647}
   - {fileID: 1700384801}
   - {fileID: 1837799390}
@@ -5942,6 +5944,7 @@ Transform:
   - {fileID: 1181956724}
   - {fileID: 1689111313}
   - {fileID: 1854100582}
+  - {fileID: 1698097974}
   m_Father: {fileID: 337461474}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!210 &857848535
@@ -6528,14 +6531,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1021697123}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1942860776}
   - {fileID: 80952168}
-  m_Father: {fileID: 1513249485}
+  m_Father: {fileID: 337461474}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1021697125
 MonoBehaviour:
@@ -6559,9 +6562,9 @@ SortingGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1021697123}
   m_Enabled: 1
-  m_SortingLayerID: -1136890995
-  m_SortingLayer: -2
-  m_SortingOrder: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 5
   m_SortAtRoot: 0
 --- !u!1 &1045424569
 GameObject:
@@ -10352,7 +10355,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 439360303}
-  - {fileID: 1021697124}
   - {fileID: 1735347852}
   - {fileID: 337461474}
   - {fileID: 483521445}
@@ -11809,7 +11811,7 @@ GameObject:
   - component: {fileID: 1689111313}
   - component: {fileID: 1689111314}
   m_Layer: 0
-  m_Name: enclosure walls
+  m_Name: enclosure walls parent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11842,6 +11844,37 @@ SortingGroup:
   m_SortingLayer: 0
   m_SortingOrder: -1
   m_SortAtRoot: 0
+--- !u!1 &1698097973
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1698097974}
+  m_Layer: 0
+  m_Name: door block parent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1698097974
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1698097973}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 857848534}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1699748042
 GameObject:
   m_ObjectHideFlags: 0
@@ -11885,6 +11918,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1700384801}
+  - component: {fileID: 1700384802}
   m_Layer: 0
   m_Name: trader parent
   m_TagString: Untagged
@@ -11907,6 +11941,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 337461474}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!210 &1700384802
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1700384800}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 6
+  m_SortAtRoot: 0
 --- !u!1 &1705737776
 GameObject:
   m_ObjectHideFlags: 0

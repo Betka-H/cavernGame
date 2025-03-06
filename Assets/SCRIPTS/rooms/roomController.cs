@@ -24,6 +24,7 @@ public class roomController : MonoBehaviour
 	[Space]
 	public Transform roomParent;
 	public Transform enclosureParent;
+	public Transform doorBlockParent;
 	[Header("doorway blocks")]
 	public GameObject blockL;
 	public GameObject blockR;
@@ -387,7 +388,7 @@ public class roomController : MonoBehaviour
 		}
 
 		if (selectedBlock != null)
-			Instantiate(selectedBlock, enclosureParent);
+			Instantiate(selectedBlock, doorBlockParent);
 	}
 
 	void clearParent(Transform parent)
@@ -410,7 +411,7 @@ public class roomController : MonoBehaviour
 	{
 		setLeftAndRightRoomNumbers();
 		clearParent(roomParent);
-		clearParent(enclosureParent);
+		clearParent(doorBlockParent);
 		Instantiate(getRoom(isLeft).roomPrefab.transform, roomParent);
 		roomNumberTMP.text = $"room {currentRoomNr} / {selectedRooms.Length - 1}";
 		placeDoorwayBlock();
