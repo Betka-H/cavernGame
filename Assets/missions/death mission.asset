@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2aa9bd2290040f740b1590610b914dff, type: 3}
+  m_Name: death mission
+  m_EditorClassIdentifier: 
+  missionID: 666
+  missionTitle: death
+  missionDescription: death. idk if this is even seen anywhere (it shouldnt)
+  requiredItems: []
+  calls:
+  - {fileID: 11400000, guid: 71dd3e64322a8084296c40cceac900a3, type: 2}
+  - {fileID: 11400000, guid: 749dbcca69e5b124496186737bd69f0b, type: 2}
+  currentCall: 0

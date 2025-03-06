@@ -3,10 +3,13 @@ using UnityEngine;
 public class spikes : MonoBehaviour
 {
 	private gameController gameController;
+	callManager callManager;
+	callSO deathCall;
 
-	void Start()
+	void Awake()
 	{
 		gameController = FindObjectOfType<gameController>();
+		callManager = FindObjectOfType<callManager>();
 	}
 
 	void OnTriggerEnter2D(Collider2D other)
@@ -26,7 +29,7 @@ public class spikes : MonoBehaviour
 
 	void die()
 	{
-		Debug.Log("patch notes 3.14: removed death");
+		// Debug.Log("patch notes 3.14: removed death");
 		gameController.death();
 	}
 }

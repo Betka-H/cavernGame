@@ -7,21 +7,23 @@ public class callScreen : MonoBehaviour
     public TMP_Text txtSpeakerName;
     public TMP_Text txtMessage;
 
+    menuManager menuManager;
     callManager callManager;
 
     void Awake()
     {
+        menuManager = FindObjectOfType<menuManager>();
         callManager = FindObjectOfType<callManager>();
     }
 
-    public void talk(callSO caller)
+    public void talk(callSO call)
     {
-        gameObject.SetActive(true);
-        Debug.Log($"trying to talk! ({caller.currentMessage})");
-        int currentMsg = caller.currentMessage;
+        // gameObject.SetActive(true);
+        Debug.Log($"trying to talk! ({call.currentMessage})");
+        int currentMsg = call.currentMessage;
 
-        speakerSpriteRenderer.sprite = caller.talkSprites[currentMsg];
-        txtSpeakerName.text = caller.speakerNames[currentMsg];
-        txtMessage.text = caller.messages[currentMsg];
+        speakerSpriteRenderer.sprite = call.talkSprites[currentMsg];
+        txtSpeakerName.text = call.speakerNames[currentMsg];
+        txtMessage.text = call.messages[currentMsg];
     }
 }

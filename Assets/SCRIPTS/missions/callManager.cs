@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class callManager : MonoBehaviour
 {
-    callScreen callScreen;
+    [HideInInspector] public callScreen callScreen;
     missionManager missionManager;
     menuManager menuManager;
 
@@ -14,24 +14,25 @@ public class callManager : MonoBehaviour
         menuManager = FindObjectOfType<menuManager>();
     }
 
-    public void startCall()
+    missionSO selectedMission;
+    public void startCall(missionSO newMission)
     {
         Debug.Log("starting call!");
 
-        //! temp?
-        // currentMission().currentCall = 0;
-        currentCall().currentMessage = 0;
-        callScreen.talk(currentCall());
+        selectedMission = newMission;
+
+        menuManager.toggleCallScreen();
+        currentMissionCall().currentMessage = 0;
+        callScreen.talk(currentMissionCall());
     }
     public void advanceCall()
     {
         Debug.Log("advancing call.");
 
-        // Debug.Log($"cm: {currentCall().currentMessage}++, msgs.l: {currentCall().messages.Length}");
-        if (currentCall().currentMessage + 1 < currentCall().messages.Length)
+        if (currentMissionCall().currentMessage + 1 < currentMissionCall().messages.Length)
         {
-            currentCall().currentMessage++;
-            callScreen.talk(currentCall());
+            currentMissionCall().currentMessage++;
+            callScreen.talk(currentMissionCall());
         }
         else
         {
@@ -42,19 +43,54 @@ public class callManager : MonoBehaviour
     void endCall()
     {
         Debug.Log($"ending call.");
-        if (currentMission().currentCall < currentMission().calls.Length)
+        if (selectedMission.currentCall < selectedMission.calls.Length)
         {
-            currentMission().currentCall++;
+            selectedMission.currentCall++;
         }
         menuManager.toggleCallScreen();
     }
 
-    public missionSO currentMission()
+    /* public void startMissionCall()
+    {
+        Debug.Log("starting mission call!");
+
+        menuManager.toggleCallScreen();
+        currentMissionCall().currentMessage = 0;
+        callScreen.talk(currentMissionCall());
+    }
+    public void advanceMissionCall()
+    {
+        Debug.Log("advancing mission call.");
+
+        // Debug.Log($"cm: {currentCall().currentMessage}++, msgs.l: {currentCall().messages.Length}");
+        if (currentMissionCall().currentMessage + 1 < currentMissionCall().messages.Length)
+        {
+            currentMissionCall().currentMessage++;
+            callScreen.talk(currentMissionCall());
+        }
+        else
+        {
+            Debug.Log($"no more mission messages!");
+            endMissionCall();
+        }
+    }
+    void endMissionCall()
+    {
+        Debug.Log($"ending mission call.");
+        if (currentMainMission().currentCall < currentMainMission().calls.Length)
+        {
+            currentMainMission().currentCall++;
+        }
+        menuManager.toggleCallScreen();
+    } */
+
+    public missionSO currentMainMission()
     {
         return missionManager.allMissions[missionManager.currentMission];
     }
-    public callSO currentCall()
+    public callSO currentMissionCall()
     {
-        return currentMission().calls[currentMission().currentCall];
+        // return currentMission().calls[currentMission().currentCall];
+        return selectedMission.calls[selectedMission.currentCall];
     }
 }

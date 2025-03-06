@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using UnityEngine;
 
 public class gameController : MonoBehaviour
@@ -25,6 +26,7 @@ public class gameController : MonoBehaviour
 		interactionTooltip = FindObjectOfType<interactionTooltip>(true);
 		menuManager = FindObjectOfType<menuManager>();
 		missionManager = FindObjectOfType<missionManager>();
+		callManager = FindObjectOfType<callManager>();
 
 		genAndSpawn(level.lab);
 
@@ -142,10 +144,24 @@ public class gameController : MonoBehaviour
 	}
 
 	public GameObject deathScreen;
+	callManager callManager;
+	// public callSO[] deathCalls;
+	public missionSO deathMission;
+	int currentDeathCall;
 	public void death()
 	{
 		Debug.Log("death");
-		deathScreen.SetActive(true);
+		// deathScreen.SetActive(true);
+
+		/* if (deathCalls[currentDeathCall].currentMessage <= deathCalls[currentDeathCall].messages.Length)
+		{
+			// menuManager.callManager.callScreen.talk(deathCalls[currentDeathCall]);
+			callManager.startCall(deathCalls[currentDeathCall]);
+			// deathCalls[currentDeathCall].currentMessage++;
+			currentDeathCall++;
+		} */
+		callManager.startCall(deathMission);
+
 		// destroyPlayer();
 		player.GetComponent<playerMovement>().alive = false;
 		player.GetComponent<playerMovement>().rb.velocity = Vector3.zero;
@@ -179,17 +195,12 @@ public class gameController : MonoBehaviour
 		{
 			Debug.Log("helloooo deadly cavern");
 
-			missionSO currentMission = menuManager.callManager.currentMission();
-
-			// log
-			// Debug.Log($"calls l: {currentMission.calls.Length}, index of current call: {Array.IndexOf(currentMission.calls, menuManager.callManager.currentCall())}");
-			Debug.Log($"calls l: {currentMission.calls.Length}, index of current call: {missionManager.allMissions[missionManager.currentMission].currentCall}");
-
-			// if (currentMission.calls.Length > Array.IndexOf(currentMission.calls, menuManager.callManager.currentCall()))
+			/* missionSO currentMission = menuManager.callManager.currentMainMission();
 			if (currentMission.calls.Length > missionManager.allMissions[missionManager.currentMission].currentCall)
-				menuManager.callManager.startCall();
-
-			// menuManager.toggleCallScreen(); // piece of shit
+				menuManager.callManager.startMissionCall(); */
+			missionSO currentMission = menuManager.callManager.currentMainMission();
+			if (currentMission.calls.Length > missionManager.allMissions[missionManager.currentMission].currentCall)
+				menuManager.callManager.startCall(currentMission);
 		}
 
 		genAndSpawn(level.cavern);
