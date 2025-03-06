@@ -72,7 +72,8 @@ public class roomController : MonoBehaviour
 
 		//! temp room amount value
 		// maxCavernRoomsNr = cavernRooms.Length;
-		maxCavernRoomsNr = 5;
+		minCavernRoomsNr = 5;
+		maxCavernRoomsNr = 8;
 
 		darknessOverlay = FindObjectOfType<darknessOL>();
 		inventory = FindObjectOfType<inventoryManager>();
@@ -375,14 +376,18 @@ public class roomController : MonoBehaviour
 
 	void placeDoorwayBlock()
 	{
+		GameObject selectedBlock = null;
 		if (currentRoomNr == 0)
 		{
-			Instantiate(blockL, roomParent);
+			selectedBlock = blockL;
 		}
 		if (currentRoomNr == selectedRooms.Length - 1)
 		{
-			Instantiate(blockR, roomParent);
+			selectedBlock = blockR;
 		}
+
+		if (selectedBlock != null)
+			Instantiate(selectedBlock, enclosureParent);
 	}
 
 	void clearParent(Transform parent)
@@ -405,6 +410,7 @@ public class roomController : MonoBehaviour
 	{
 		setLeftAndRightRoomNumbers();
 		clearParent(roomParent);
+		clearParent(enclosureParent);
 		Instantiate(getRoom(isLeft).roomPrefab.transform, roomParent);
 		roomNumberTMP.text = $"room {currentRoomNr} / {selectedRooms.Length - 1}";
 		placeDoorwayBlock();
