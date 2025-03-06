@@ -17,13 +17,21 @@ public class callManager : MonoBehaviour
     missionSO selectedMission;
     public void startCall(missionSO newMission)
     {
-        Debug.Log("starting call!");
-
         selectedMission = newMission;
-
         menuManager.toggleCallScreen();
-        currentMissionCall().currentMessage = 0;
-        callScreen.talk(currentMissionCall());
+        Debug.Log($"cml: {selectedMission.calls[selectedMission.currentCall].messages.Length}");
+        if (selectedMission.calls[selectedMission.currentCall].messages.Length > 0)
+        {
+            Debug.Log("starting call!");
+
+            currentMissionCall().currentMessage = 0;
+            callScreen.talk(currentMissionCall());
+        }
+        else
+        {
+            Debug.Log("empty call!");
+            endCall();
+        }
     }
     public void advanceCall()
     {
@@ -45,7 +53,9 @@ public class callManager : MonoBehaviour
         Debug.Log($"ending call.");
         if (selectedMission.currentCall < selectedMission.calls.Length)
         {
+            Debug.Log("setting next call");
             selectedMission.currentCall++;
+            // Debug.Log($"next m is {selectedMission.calls[selectedMission.currentCall]}");
         }
         menuManager.toggleCallScreen();
     }

@@ -157,7 +157,9 @@ public class gameController : MonoBehaviour
 			// deathCalls[currentDeathCall].currentMessage++;
 			currentDeathCall++;
 		} */
-		callManager.startCall(missionManager.deathMission);
+		missionSO deathMission = missionManager.deathMission;
+		if (deathMission.calls.Length > deathMission.currentCall)
+			callManager.startCall(deathMission);
 
 		// destroyPlayer();
 		player.GetComponent<playerMovement>().alive = false;
@@ -188,6 +190,11 @@ public class gameController : MonoBehaviour
 	}
 	public void enterCavern()
 	{
+		genAndSpawn(level.cavern);
+		if (menuManager.inventoryManager.checkEquipment(menuManager.inventoryManager.inventoryDefinitions.backpack))
+			menuManager.caveItemMenu.hasAllSlots = true;
+		else menuManager.caveItemMenu.hasAllSlots = false;
+
 		if (missionManager.currentMission == 0)
 		{
 			Debug.Log("helloooo deadly cavern");
@@ -195,14 +202,14 @@ public class gameController : MonoBehaviour
 			/* missionSO currentMission = menuManager.callManager.currentMainMission();
 			if (currentMission.calls.Length > missionManager.allMissions[missionManager.currentMission].currentCall)
 				menuManager.callManager.startMissionCall(); */
-			missionSO currentMission = menuManager.callManager.currentMainMission();
+			/* missionSO currentMission = menuManager.callManager.currentMainMission();
 			if (currentMission.calls.Length > missionManager.allMissions[missionManager.currentMission].currentCall)
+				menuManager.callManager.startCall(currentMission); */
+
+			//! temp mission disable
+			missionSO currentMission = menuManager.callManager.currentMainMission();
+			if (currentMission.calls.Length > currentMission.currentCall) // to prevent looping the last message
 				menuManager.callManager.startCall(currentMission);
 		}
-
-		genAndSpawn(level.cavern);
-		if (menuManager.inventoryManager.checkEquipment(menuManager.inventoryManager.inventoryDefinitions.backpack))
-			menuManager.caveItemMenu.hasAllSlots = true;
-		else menuManager.caveItemMenu.hasAllSlots = false;
 	}
 }
