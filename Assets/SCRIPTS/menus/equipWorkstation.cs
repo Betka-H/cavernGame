@@ -62,7 +62,7 @@ public class equipWorkstation : MonoBehaviour
 
     void refreshItemDisplays()
     {
-        menuManager.labItemMenu.refreshItems(menuManager.labItemMenu.regularSlots, menuManager.inventoryManager.labInventory);
+        menuManager.labItemMenu.itemGrid.refreshItems(menuManager.labItemMenu.itemGrid.regularSlots, menuManager.inventoryManager.labInventory);
         displayEquipment();
     }
 }

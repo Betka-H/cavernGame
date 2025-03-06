@@ -5,16 +5,23 @@ using UnityEngine;
 public class SaveData
 {
     public List<item> itemsSaveList;
+    public int currentMission;
 }
 
 // chatgpt
 public class saveManager : MonoBehaviour
 {
-    public inventoryManager inventoryManager;
-    public inventoryDefinitions inventoryDefinitions;
+    string saveKeyString = "invAndMissionSave";
 
-    void Start()
+    public inventoryDefinitions inventoryDefinitions;
+    menuManager menuManager;
+    missionManager missionManager;
+
+    void Awake()
     {
+        menuManager = FindObjectOfType<menuManager>();
+        missionManager = FindObjectOfType<missionManager>();
+
         // PlayerPrefs.DeleteAll();
         // PlayerPrefs.Save();
         load();
@@ -29,22 +36,26 @@ public class saveManager : MonoBehaviour
     {
         Debug.Log("saving lab inv");
         SaveData data = new SaveData();
-        data.itemsSaveList = inventoryManager.labInventory;
+
+        data.itemsSaveList = menuManager.inventoryManager.labInventory;
+        data.currentMission = missionManager.currentMission;
 
         string json = JsonUtility.ToJson(data);
-        PlayerPrefs.SetString("InventorySave", json);
+        PlayerPrefs.SetString(saveKeyString, json);
+
+
         PlayerPrefs.Save();
     }
 
     void load()
     {
         Debug.Log("loading lab inv");
-        if (!PlayerPrefs.HasKey("InventorySave")) return;
+        if (!PlayerPrefs.HasKey(saveKeyString)) return;
 
-        string json = PlayerPrefs.GetString("InventorySave");
+        string json = PlayerPrefs.GetString(saveKeyString);
         SaveData data = JsonUtility.FromJson<SaveData>(json);
 
-        inventoryManager.labInventory = data.itemsSaveList;
+        menuManager.inventoryManager.labInventory = data.itemsSaveList;
     }
 }
 

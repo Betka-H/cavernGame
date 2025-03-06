@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4143707626361645833}
   m_Layer: 28
-  m_Name: inv grid element
+  m_Name: long count grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

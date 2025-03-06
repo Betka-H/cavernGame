@@ -2,7 +2,7 @@ using UnityEngine.Events;
 using TMPro;
 using UnityEngine;
 
-public enum tooltipKind { enter, exit, item, trader, toolWorkshop, equipWorkshop };
+public enum tooltipKind { enter, exit, item, trader, toolWorkshop, equipWorkshop, missionWorkshop };
 
 public class interactionTooltip : MonoBehaviour
 {
@@ -15,6 +15,7 @@ public class interactionTooltip : MonoBehaviour
 	[Header("cavern exit event")][SerializeField] private UnityEvent exitEvent;
 	[Header("tool workshop event")][SerializeField] private UnityEvent toolWorkshopEvent;
 	[Header("equip workshop event")][SerializeField] private UnityEvent equipWorkshopEvent;
+	[Header("mission workshop event")][SerializeField] private UnityEvent missionWorkshopEvent;
 
 	public void showTooltip(KeyCode key, tooltipKind tk, Vector3 pos)
 	{
@@ -39,11 +40,14 @@ public class interactionTooltip : MonoBehaviour
 			case tooltipKind.equipWorkshop:
 				action = "equip equipment";
 				break;
+			case tooltipKind.missionWorkshop:
+				action = "open mission menu";
+				break;
 		}
 
 		textDisplay.text = $"press {key} to {action}";
 
-		transform.localPosition = pos;
+		// transform.localPosition = pos;
 
 		gameObject.SetActive(true);
 	}
@@ -69,6 +73,9 @@ public class interactionTooltip : MonoBehaviour
 				break;
 			case tooltipKind.equipWorkshop:
 				equipWorkshopEvent.Invoke();
+				break;
+			case tooltipKind.missionWorkshop:
+				missionWorkshopEvent.Invoke();
 				break;
 		}
 	}

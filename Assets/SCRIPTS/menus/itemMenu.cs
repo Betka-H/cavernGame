@@ -3,7 +3,7 @@ using UnityEngine;
 
 public abstract class itemMenu : MonoBehaviour
 {
-    public inventoryManager inventoryScript;
+    [HideInInspector] public inventoryManager inventoryScript;
     public Transform gridSlotsParent;
     [HideInInspector] public invItem[] regularSlots;
     [HideInInspector] public item selectedItem;

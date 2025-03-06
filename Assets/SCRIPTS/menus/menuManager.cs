@@ -31,6 +31,7 @@ public class menuManager : MonoBehaviour
         toggleTraderMenu(false);
         toggleToolWorkstationMenu(false);
         toggleEquipmentWorkstationMenu(false);
+        toggleMissionWorkstationMenu(false);
         deathScreen.gameObject.SetActive(false);
         escMenu.gameObject.SetActive(false);
 
@@ -71,6 +72,10 @@ public class menuManager : MonoBehaviour
     {
         equipWorkstation.gameObject.SetActive(onOff);
     }
+    void toggleMissionWorkstationMenu(bool onOff)
+    {
+        missionMenu.gameObject.SetActive(onOff);
+    }
 
     public void toggleGameplayMenuScreen()
     {
@@ -108,6 +113,12 @@ public class menuManager : MonoBehaviour
         // labItemMenu.itemDispType = itemDispType.scrap;
         toggleLabItemMenu(onOff);
         toggleEquipmentWorkstationMenu(onOff);
+    }
+    public void toggleToggleMissionWorkstationMenu()
+    {
+        bool onOff = toggleMenu(missionMenu.gameObject);
+
+        toggleMissionWorkstationMenu(onOff);
     }
 
     bool toggleMenu(GameObject menu)

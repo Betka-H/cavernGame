@@ -3,12 +3,35 @@ using UnityEngine;
 
 public class missionMenu : MonoBehaviour
 {
-    public TMP_Text title;
-    public TMP_Text main;
+    menuManager menuManager;
+    public itemMenu requiredItemsMenu;
 
-    public void setMission(string newTittle, string newMain)
+    public TMP_Text txtTitle;
+    public TMP_Text txtDescription;
+
+    missionManager missionManager;
+
+    void Awake()
     {
-        title.text = newTittle;
-        main.text = newMain;
+        menuManager = FindObjectOfType<menuManager>();
+        missionManager = FindObjectOfType<missionManager>();
+
+        displayMission(missionManager.allMissions[missionManager.currentMission]);
+    }
+
+    void OnEnable()
+    {
+        Debug.Log($"cm: {missionManager.allMissions[missionManager.currentMission]}, {missionManager.currentMission}");
+        displayMission(missionManager.allMissions[missionManager.currentMission]);
+    }
+
+    public void displayMission(missionSO mission)
+    {
+        Debug.Log($"new mission: {mission.missionID}, {mission.missionTitle}, {mission.missionDescription}");
+
+        txtTitle.text = mission.missionTitle;
+        txtDescription.text = mission.missionDescription;
+        // requiredItemsMenu.refreshItems(requiredItemsMenu.regularSlots, menuManager.inventoryManager.missionInventory);
+        requiredItemsMenu.refreshItems(requiredItemsMenu.regularSlots, missionManager.allMissions[missionManager.currentMission].requiredItems);
     }
 }

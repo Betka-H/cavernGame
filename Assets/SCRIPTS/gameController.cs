@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class gameController : MonoBehaviour
@@ -8,6 +9,7 @@ public class gameController : MonoBehaviour
 	public GameObject labPlayerPrefab;
 	public GameObject cavePlayerPrefab;
 
+	missionManager missionManager;
 	private roomController roomController;
 
 	menuManager menuManager;
@@ -21,6 +23,7 @@ public class gameController : MonoBehaviour
 		roomController = FindObjectOfType<roomController>();
 		interactionTooltip = FindObjectOfType<interactionTooltip>(true);
 		menuManager = FindObjectOfType<menuManager>();
+		missionManager = FindObjectOfType<missionManager>();
 
 		genAndSpawn(level.lab);
 
@@ -155,13 +158,18 @@ public class gameController : MonoBehaviour
 	public void leaveCavern()
 	{
 		Debug.Log("byyye deadly cavern");
+
+		transferToLabAndMissionInventory();
+		missionManager.checkMissionItems();
+
 		roomController.clearRoom();
-		transferInventory();
 		genAndSpawn(level.lab);
 	}
-	public void transferInventory()
+	public void transferToLabAndMissionInventory()
 	{
-		menuManager.inventoryManager.labInventory.AddRange(menuManager.inventoryManager.caveInventory);
+		List<item> caveInv = menuManager.inventoryManager.caveInventory;
+		menuManager.inventoryManager.labInventory.AddRange(caveInv);
+		menuManager.inventoryManager.missionInventory.AddRange(caveInv);
 		menuManager.inventoryManager.caveInventory.Clear();
 	}
 	public void enterCavern()

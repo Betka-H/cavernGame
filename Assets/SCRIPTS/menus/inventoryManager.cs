@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class inventoryManager : MonoBehaviour
 {
-	[HideInInspector] public List<item> labInventory;
 	[HideInInspector] public List<item> caveInventory;
+	[HideInInspector] public List<item> labInventory;
 	[HideInInspector] public List<item> equippedItems;
+	[HideInInspector] public List<item> missionInventory;
 
 	[HideInInspector] public inventoryDefinitions inventoryDefinitions;
 
@@ -68,10 +69,35 @@ public class inventoryManager : MonoBehaviour
 		}
 		else return false;
 	}
+	public bool checkResources(List<item> bigList, List<item> doesTheBigListContainThis)
+	{
+		List<item> checkInv = new List<item>(bigList);
+		bool hasResources = true;
+		while (hasResources)
+		{
+			foreach (item it in doesTheBigListContainThis)
+			{
+				Debug.Log($"checking {it}");
+				if (checkInv.Contains(it))
+				{
+					Debug.Log($"has {it}");
+					checkInv.Remove(it);
+				}
+				else
+				{
+					hasResources = false;
+					Debug.Log($"has not {it}");
+				}
+			}
+			break;
+		}
+		Debug.Log($"resources? {hasResources}");
+		return hasResources;
+	}
 
 	public void orderInventory(ref List<item> inv)
 	{
-		printInventory(inv);
+		// printInventory(inv);
 		if (inv != null)
 			inv = inv.OrderBy(i => i.itemId).ToList();
 	}
@@ -104,5 +130,6 @@ public class inventoryManager : MonoBehaviour
 	{
 		labInventory.Clear();
 		equippedItems.Clear();
+		missionInventory.Clear();
 	}
 }

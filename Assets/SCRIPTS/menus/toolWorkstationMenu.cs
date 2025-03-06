@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class toolWorkstationMenu : MonoBehaviour
 {
+    public Transform recipeGridTransform;
+    [HideInInspector] public labInvItem[] recipeGridSlots;
+
     scrap assignedScrap;
     public SpriteRenderer scrapSpriteRenderer;
     public SpriteRenderer resultSpriteRenderer;
@@ -14,6 +17,7 @@ public class toolWorkstationMenu : MonoBehaviour
     void Awake()
     {
         menuManager = FindObjectOfType<menuManager>();
+        recipeGridSlots = recipeGridTransform.GetComponentsInChildren<labInvItem>(true);
     }
 
     void OnEnable()
@@ -28,19 +32,19 @@ public class toolWorkstationMenu : MonoBehaviour
         {
             scrapSpriteRenderer.sprite = assignedScrap.itemSprite;
             resultSpriteRenderer.sprite = assignedScrap.wholeGear.itemSprite;
-            menuManager.labItemMenu.refreshItems(menuManager.labItemMenu.recipeGridSlots, assignedScrap.wholeGear.cost.ToList());
+            menuManager.labItemMenu.itemGrid.refreshItems(recipeGridSlots, assignedScrap.wholeGear.cost.ToList());
         }
         else
         {
             scrapSpriteRenderer.sprite = placeholderScrapItemSprite;
             resultSpriteRenderer.sprite = placeholderResultItemSprite;
-            menuManager.labItemMenu.refreshItems(menuManager.labItemMenu.recipeGridSlots, new List<item>());
+            menuManager.labItemMenu.itemGrid.refreshItems(recipeGridSlots, new List<item>());
         }
     }
 
     public void createWorkshopGear()
     {
-        if (assignedScrap != null && checkResources())
+        if (assignedScrap != null && menuManager.inventoryManager.checkResources(menuManager.inventoryManager.labInventory, assignedScrap.wholeGear.cost.ToList()))
         {
             // add crafted item
             menuManager.inventoryManager.addItem(assignedScrap.wholeGear, menuManager.inventoryManager.labInventory);
@@ -54,28 +58,11 @@ public class toolWorkstationMenu : MonoBehaviour
 
             // clear scrap and recipe displays
             assignScrap(null);
-            menuManager.labItemMenu.refreshItems(menuManager.labItemMenu.regularSlots, menuManager.inventoryManager.labInventory);
-            menuManager.labItemMenu.refreshItems(menuManager.labItemMenu.recipeGridSlots, null);
+            menuManager.labItemMenu.itemGrid.refreshItems(menuManager.labItemMenu.itemGrid.regularSlots, menuManager.inventoryManager.labInventory);
+            menuManager.labItemMenu.itemGrid.refreshItems(recipeGridSlots, null);
             // menuManager.itemInfoDisplay.selectedItem = null;
             menuManager.itemInfoDisplay.setInfo(null);
         }
         else Debug.Log("no offer or not enough resources");
-    }
-    bool checkResources()
-    {
-        List<item> checkInv = new List<item>(menuManager.inventoryManager.labInventory);
-        bool hasResources = true;
-        while (hasResources)
-        {
-            foreach (item it in assignedScrap.wholeGear.cost)
-            {
-                if (checkInv.Contains(it))
-                    checkInv.Remove(it);
-                else hasResources = false;
-            }
-            break;
-        }
-        Debug.Log($"resources? {hasResources}");
-        return hasResources;
     }
 }
