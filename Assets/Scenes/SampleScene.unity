@@ -5660,7 +5660,6 @@ MonoBehaviour:
   labPlayerPrefab: {fileID: 5563915041685763229, guid: 662344737d244824d8d9d1e3e8999852, type: 3}
   cavePlayerPrefab: {fileID: 5936850974349550149, guid: 194ed91a084300440856c86b83a7e389, type: 3}
   deathScreen: {fileID: 1246856623}
-  deathMission: {fileID: 11400000, guid: a3ccff35b61dfb44ba7fd61ceacc7847, type: 2}
 --- !u!4 &699556568
 Transform:
   m_ObjectHideFlags: 0
@@ -6738,6 +6737,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a14c2d2975e4a9b41be7483d4a0bac1f, type: 2}
   - {fileID: 11400000, guid: 2811ce3f6a5ccd049a0271db705aab97, type: 2}
   - {fileID: 11400000, guid: e7b34d493e03b464aa6d7172298eb188, type: 2}
+  deathMission: {fileID: 11400000, guid: a3ccff35b61dfb44ba7fd61ceacc7847, type: 2}
   currentMission: 0
 --- !u!1 &905430544
 GameObject:

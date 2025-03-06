@@ -15,6 +15,7 @@ public class gameController : MonoBehaviour
 	private roomController roomController;
 
 	menuManager menuManager;
+	callManager callManager;
 
 	interactionTooltip interactionTooltip;
 
@@ -144,10 +145,6 @@ public class gameController : MonoBehaviour
 	}
 
 	public GameObject deathScreen;
-	callManager callManager;
-	// public callSO[] deathCalls;
-	public missionSO deathMission;
-	int currentDeathCall;
 	public void death()
 	{
 		Debug.Log("death");
@@ -160,7 +157,7 @@ public class gameController : MonoBehaviour
 			// deathCalls[currentDeathCall].currentMessage++;
 			currentDeathCall++;
 		} */
-		callManager.startCall(deathMission);
+		callManager.startCall(missionManager.deathMission);
 
 		// destroyPlayer();
 		player.GetComponent<playerMovement>().alive = false;

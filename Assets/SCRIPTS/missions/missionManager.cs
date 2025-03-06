@@ -5,6 +5,7 @@ using UnityEngine;
 public class missionManager : MonoBehaviour
 {
     public missionSO[] allMissions;
+    public missionSO deathMission;
     menuManager menuManager;
 
     [HideInInspector] public int currentMission = 0;
@@ -40,5 +41,7 @@ public class missionManager : MonoBehaviour
         currentMission = 0;
         foreach (missionSO mission in allMissions)
             mission.currentCall = 0;
+
+        deathMission.currentCall = 0;
     }
 }
