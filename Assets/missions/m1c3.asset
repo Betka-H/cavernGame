@@ -10,9 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e096ea82527634445bc2fcfdb7779b94, type: 3}
-  m_Name: m1c2
+  m_Name: m1c3
   m_EditorClassIdentifier: 
-  talkSprites: []
-  speakerNames: []
-  messages: []
-  currentMessage: 1
+  talkSprites:
+  - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
+  - {fileID: -225499093, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
+  speakerNames:
+  - some guy idk
+  - some guy idk
+  messages:
+  - still dont got it?
+  - go!
+  currentMessage: 0

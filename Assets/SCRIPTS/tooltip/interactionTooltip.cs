@@ -9,7 +9,7 @@ public class interactionTooltip : MonoBehaviour
 	public TMP_Text textDisplay;
 
 	[Header("interact functions")]
-	[Header("item pickup event")][SerializeField] private UnityEvent itemPickupEvent;
+	// [Header("item pickup event")][SerializeField] private UnityEvent itemPickupEvent;
 	[Header("trader event")][SerializeField] private UnityEvent traderEvent;
 	[Header("cavern enter event")][SerializeField] private UnityEvent enterEvent;
 	[Header("cavern exit event")][SerializeField] private UnityEvent exitEvent;
@@ -23,7 +23,7 @@ public class interactionTooltip : MonoBehaviour
 		switch (tk)
 		{
 			case tooltipKind.item:
-				action = "pick up";
+				action = "pick up item";
 				break;
 			case tooltipKind.trader:
 				action = "trade";
@@ -57,7 +57,7 @@ public class interactionTooltip : MonoBehaviour
 		switch (tooltipKind)
 		{
 			case tooltipKind.item:
-				itemPickupEvent.Invoke();
+				// itemPickupEvent.Invoke();
 				break;
 			case tooltipKind.trader:
 				traderEvent.Invoke();

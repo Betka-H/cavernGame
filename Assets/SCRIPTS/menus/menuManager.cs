@@ -1,6 +1,9 @@
+using UnityEditor.Callbacks;
 using UnityEngine;
+using UnityEngine.UI;
 
-public enum menuScreen { gameplay, trading };
+public enum openMenu { lab, cave, esc, trader, misison, craft, equip, call };
+// public enum menuScreen { gameplay, trading };
 public class menuManager : MonoBehaviour
 {
     public GameObject menuBg;
@@ -19,14 +22,53 @@ public class menuManager : MonoBehaviour
 
     public itemInfoDisplay itemInfoDisplay;
 
+    public gameController gameController;
+
     void Awake()
     {
+        // menuOpen = null;
+        // Debug.Log($"mo: {menuOpen}");
         hideMenus();
+    }
+
+    openMenu? menuOpen = null;
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            // Debug.Log($"mo: {menuOpen}");
+            // if (menuOpen == null || menuOpen == openMenu.item)
+            // if (menuOpen == null || menuOpen == openMenu.lab || menuOpen == openMenu.cave)
+            if (menuOpen == null)
+            {
+                switch (gameController.roomController.currentLevel)
+                {
+                    case gameController.level.lab:
+                        toggleLabMenuScreen();
+                        break;
+                    case gameController.level.cavern:
+                        toggleCaveGameplayMenuScreen();
+                        break;
+                }
+                /* if (labItemMenu.gameObject.activeSelf || caveItemMenu.gameObject.activeSelf)
+                    menuOpen = openMenu.item;
+                else menuOpen = null; */
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            // if (menuOpen == null || menuOpen == openMenu.esc)
+            {
+                toggleEscapeMenu();
+            }
+            // else hideMenus();
+        }
     }
 
     public void hideMenus()
     {
-        toggleItemMenu(false);
+        toggleCaveItemMenu(false);
         toggleLabItemMenu(false);
         toggleitemInfoDisplay(false);
         toggleMissionMenu(false);
@@ -36,16 +78,23 @@ public class menuManager : MonoBehaviour
         toggleEquipmentWorkstationMenu(false);
         toggleMissionWorkstationMenu(false);
         deathScreen.gameObject.SetActive(false);
-        escMenu.gameObject.SetActive(false);
+        toggleEsc(false);
 
         menuBg.SetActive(false);
-    }
 
-    public void toggleEscapeMenu(bool onOff)
+        menuOpen = null;
+    }
+    // /menuOpen = openMenu.esc;
+
+    void toggleEsc(bool onOff)
     {
+        // if (onOff && menuOpen != openMenu.esc)
+        {
+            // hideMenus();
+        }
         escMenu.gameObject.SetActive(onOff);
     }
-    void toggleItemMenu(bool onOff)
+    void toggleCaveItemMenu(bool onOff)
     {
         caveItemMenu.gameObject.SetActive(onOff);
         toggleitemInfoDisplay(onOff);
@@ -84,61 +133,119 @@ public class menuManager : MonoBehaviour
         missionMenu.gameObject.SetActive(onOff);
     }
 
+    public void toggleEscapeMenu()
+    {
+        // bool onOff = toggleMenu(escMenu.gameObject);
+        if (menuOpen == null || menuOpen == openMenu.esc)
+        {
+            bool onOff = !escMenu.gameObject.activeSelf;
+            if (onOff) menuOpen = openMenu.esc;
+            else menuOpen = null;
+            toggleEsc(onOff);
+            Debug.Log("esc");
+        }
+        // toggleEsc(!escMenu.gameObject.activeSelf);
+    }
     public void toggleCallScreen()
     {
+        menuOpen = openMenu.call;
         bool onOff = toggleMenu(callScreen.gameObject);
 
         toggleCallMenu(onOff);
     }
-    public void toggleGameplayMenuScreen()
+    public void toggleCaveGameplayMenuScreen()
     {
-        bool onOff = toggleMenu(missionMenu.gameObject);
+        if (menuOpen == null || menuOpen == openMenu.cave)
+        {
+            menuOpen = openMenu.cave;
+            bool onOff = toggleMenu(missionMenu.gameObject);
 
-        toggleItemMenu(onOff);
-        toggleMissionMenu(onOff);
+            toggleCaveItemMenu(onOff);
+            toggleMissionMenu(onOff);
+        }
     }
     public void toggleTradingScreen()
     {
-        bool onOff = toggleMenu(traderMenu.gameObject);
+        if (menuOpen == null || menuOpen == openMenu.trader)
+        {
+            menuOpen = openMenu.trader;
+            bool onOff = toggleMenu(traderMenu.gameObject);
 
-        toggleItemMenu(onOff);
-        toggleTraderMenu(onOff);
+            toggleCaveItemMenu(onOff);
+            toggleTraderMenu(onOff);
+        }
     }
     public void toggleLabMenuScreen()
     {
-        bool onOff = toggleMenu(labItemMenu.gameObject);
+        if (menuOpen == null || menuOpen == openMenu.lab)
+        {
+            menuOpen = openMenu.lab;
+            bool onOff = toggleMenu(labItemMenu.gameObject);
 
-        // labItemMenu.itemDispType = itemDispType.all;
-        toggleLabItemMenu(onOff);
+            toggleLabItemMenu(onOff);
+        }
     }
     public void toggleToggletoolWorkstationMenuScreen()
     {
-        bool onOff = toggleMenu(toolWorkstationMenu.gameObject);
+        if (menuOpen == null || menuOpen == openMenu.craft)
+        {
+            bool onOff = toggleMenu(toolWorkstationMenu.gameObject);
 
-        // labItemMenu.itemDispType = itemDispType.scrap;
-        toggleLabItemMenu(onOff);
-        toggleToolWorkstationMenu(onOff);
+            toggleLabItemMenu(onOff);
+            toggleToolWorkstationMenu(onOff);
+
+            menuOpen = openMenu.craft;
+        }
     }
     public void toggleToggleEquipmentWorkstationMenu()
     {
-        bool onOff = toggleMenu(equipWorkstation.gameObject);
+        if (menuOpen == null || menuOpen == openMenu.equip)
+        {
+            bool onOff = toggleMenu(equipWorkstation.gameObject);
 
-        // labItemMenu.itemDispType = itemDispType.scrap;
-        toggleLabItemMenu(onOff);
-        toggleEquipmentWorkstationMenu(onOff);
+            // labItemMenu.itemDispType = itemDispType.scrap;
+            toggleLabItemMenu(onOff);
+            toggleEquipmentWorkstationMenu(onOff);
+
+            menuOpen = openMenu.equip;
+            Debug.Log("eq");
+        }
     }
     public void toggleToggleMissionWorkstationMenu()
     {
-        bool onOff = toggleMenu(missionMenu.gameObject);
+        if (menuOpen == null || menuOpen == openMenu.misison)
+        {
+            menuOpen = openMenu.misison;
+            bool onOff = toggleMenu(missionMenu.gameObject);
 
-        toggleMissionWorkstationMenu(onOff);
+            toggleMissionWorkstationMenu(onOff);
+        }
     }
 
     bool toggleMenu(GameObject menu)
     {
         bool onOff = !menu.gameObject.activeSelf;
+        /* if (menuOpen != openMenu.esc)
+        {
+            hideMenus();
+            menuBg.SetActive(onOff);
+        }
+        else
+        {
+            menuBg.SetActive(false);
+        } */
+
+        // if (menuOpen != openMenu.esc)
         hideMenus();
         menuBg.SetActive(onOff);
+
+        if (!onOff)
+        {
+            // menuOpen = null;
+        }
+
+        Debug.Log($"menu opne: {menuOpen}");
+
         return onOff;
     }
 }

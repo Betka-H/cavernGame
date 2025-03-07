@@ -8,14 +8,18 @@ public abstract class itemMenu : MonoBehaviour
     [HideInInspector] public invItem[] regularSlots;
     [HideInInspector] public item selectedItem;
 
+    [HideInInspector] public bool isAwake;
     protected void Awake()
     {
+        // Debug.Log("awaking itemmenu");
         regularSlots = gridSlotsParent.GetComponentsInChildren<invItem>();
         inventoryScript = FindObjectOfType<inventoryManager>();
+        isAwake = true;
     }
 
     void OnEnable()
     {
+        // if (isAwake)
         selectedItem = null;
     }
 

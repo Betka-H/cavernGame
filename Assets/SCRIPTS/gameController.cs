@@ -12,7 +12,7 @@ public class gameController : MonoBehaviour
 	public GameObject cavePlayerPrefab;
 
 	missionManager missionManager;
-	private roomController roomController;
+	[HideInInspector] public roomController roomController;
 
 	menuManager menuManager;
 	callManager callManager;
@@ -36,7 +36,7 @@ public class gameController : MonoBehaviour
 
 	void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.Q))
+		/* if (Input.GetKeyDown(KeyCode.Q))
 		{
 			switch (roomController.currentLevel)
 			{
@@ -47,16 +47,16 @@ public class gameController : MonoBehaviour
 					toggleCavernMenu();
 					break;
 			}
-		}
+		} */
 		if (Input.GetKeyDown(KeyCode.R))
 		{
 			menuManager.hideMenus();
 			genAndSpawn(level.lab);
 		}
-		if (Input.GetKeyDown(KeyCode.Escape))
+		/* if (Input.GetKeyDown(KeyCode.Escape))
 		{
 			menuManager.toggleEscapeMenu(!menuManager.escMenu.gameObject.activeSelf);
-		}
+		} */
 	}
 
 	public void genAndSpawn(level lvl)
@@ -111,7 +111,7 @@ public class gameController : MonoBehaviour
 		/* itemMenu.gameObject.SetActive(!itemMenu.gameObject.activeSelf);
 		missionMenu.gameObject.SetActive(itemMenu.gameObject.activeSelf); */
 
-		menuManager.toggleGameplayMenuScreen();
+		menuManager.toggleCaveGameplayMenuScreen();
 
 		/* switch (itemMenu.gameObject.activeSelf)
 		{

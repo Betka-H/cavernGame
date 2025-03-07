@@ -22,4 +22,5 @@ MonoBehaviour:
   calls:
   - {fileID: 11400000, guid: 9c45efa2c961d9241bf6654fc8bdc012, type: 2}
   - {fileID: 11400000, guid: 0456e476997e72541af1f3bae2768e60, type: 2}
-  currentCall: 0
+  - {fileID: 11400000, guid: d59bbf8fcbfd84c43a19a508e22fd69e, type: 2}
+  currentCall: 2

@@ -21,6 +21,7 @@ public class inventoryManager : MonoBehaviour
 
 	void Start()
 	{
+		// Debug.Log("starting invenmanager");
 		inventoryDefinitions = FindObjectOfType<inventoryDefinitions>();
 
 		// tempInv();

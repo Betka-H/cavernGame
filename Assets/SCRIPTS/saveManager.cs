@@ -6,7 +6,8 @@ public class SaveData
 {
     public List<item> itemsSaveList;
     public List<item> missionSaveList;
-    public int currentMission;
+    // public int currentMission;
+    public missionSO currentMission;
     public missionSO deathMission;
 }
 
@@ -24,9 +25,14 @@ public class saveManager : MonoBehaviour
         menuManager = FindObjectOfType<menuManager>();
         missionManager = FindObjectOfType<missionManager>();
 
-        // PlayerPrefs.DeleteAll();
-        // PlayerPrefs.Save();
+        clearPrefs();
         load();
+    }
+
+    void clearPrefs()
+    {
+        PlayerPrefs.DeleteAll();
+        PlayerPrefs.Save();
     }
 
     void OnApplicationQuit()
@@ -41,7 +47,9 @@ public class saveManager : MonoBehaviour
 
         data.itemsSaveList = menuManager.inventoryManager.labInventory;
         data.missionSaveList = menuManager.inventoryManager.missionInventory;
-        data.currentMission = missionManager.currentMission;
+        data.currentMission = missionManager.allMissions[missionManager.currentMission];
+        // data.currentMission = missionManager.currentMission;
+        data.deathMission = missionManager.deathMission;
 
         string json = JsonUtility.ToJson(data);
         PlayerPrefs.SetString(saveKeyString, json);
@@ -52,7 +60,7 @@ public class saveManager : MonoBehaviour
 
     void load()
     {
-        Debug.Log("loading lab inv");
+        // Debug.Log("loading lab inv");
         if (!PlayerPrefs.HasKey(saveKeyString)) return;
 
         string json = PlayerPrefs.GetString(saveKeyString);
@@ -60,9 +68,10 @@ public class saveManager : MonoBehaviour
 
         menuManager.inventoryManager.labInventory = data.itemsSaveList;
         menuManager.inventoryManager.missionInventory = data.missionSaveList;
-        missionManager.currentMission = data.currentMission;
-        // missionManager.deathMission = data.deathMission;
-        Debug.Log($"last mission: {missionManager.currentMission}");
+        // missionManager.currentMission = data.currentMission;
+        missionManager.allMissions[missionManager.currentMission] = data.currentMission;
+        missionManager.deathMission = data.deathMission;
+        Debug.LogError($"last mission: {missionManager.currentMission}, {missionManager.allMissions[missionManager.currentMission]}");
     }
 }
 
