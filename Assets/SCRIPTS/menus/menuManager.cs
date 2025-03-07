@@ -31,7 +31,7 @@ public class menuManager : MonoBehaviour
         hideMenus();
     }
 
-    openMenu? menuOpen = null;
+    bool anotherMenuOpen = false;
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Q))
@@ -39,7 +39,7 @@ public class menuManager : MonoBehaviour
             // Debug.Log($"mo: {menuOpen}");
             // if (menuOpen == null || menuOpen == openMenu.item)
             // if (menuOpen == null || menuOpen == openMenu.lab || menuOpen == openMenu.cave)
-            if (menuOpen == null)
+            // if (!anotherMenuOpen)
             {
                 switch (gameController.roomController.currentLevel)
                 {
@@ -50,6 +50,7 @@ public class menuManager : MonoBehaviour
                         toggleCaveGameplayMenuScreen();
                         break;
                 }
+                // anotherMenuOpen = false;
                 /* if (labItemMenu.gameObject.activeSelf || caveItemMenu.gameObject.activeSelf)
                     menuOpen = openMenu.item;
                 else menuOpen = null; */
@@ -82,7 +83,8 @@ public class menuManager : MonoBehaviour
 
         menuBg.SetActive(false);
 
-        menuOpen = null;
+        // anotherMenuOpen = null;
+        anotherMenuOpen = false;
     }
     // /menuOpen = openMenu.esc;
 
@@ -136,11 +138,12 @@ public class menuManager : MonoBehaviour
     public void toggleEscapeMenu()
     {
         // bool onOff = toggleMenu(escMenu.gameObject);
-        if (menuOpen == null || menuOpen == openMenu.esc)
+        // if (anotherMenuOpen == null || anotherMenuOpen == openMenu.esc)
+        // if (anotherMenuOpen == null || anotherMenuOpen == openMenu.esc)
         {
             bool onOff = !escMenu.gameObject.activeSelf;
-            if (onOff) menuOpen = openMenu.esc;
-            else menuOpen = null;
+            // if (onOff) anotherMenuOpen = openMenu.esc;
+            // else anotherMenuOpen = null;
             toggleEsc(onOff);
             Debug.Log("esc");
         }
@@ -148,58 +151,76 @@ public class menuManager : MonoBehaviour
     }
     public void toggleCallScreen()
     {
-        menuOpen = openMenu.call;
-        bool onOff = toggleMenu(callScreen.gameObject);
+        // if (!anotherMenuOpen && !escMenu.gameObject.activeSelf)
+        if (!escMenu.gameObject.activeSelf)
+        {// menuOpen = openMenu.call;
+            bool onOff = toggleMenu(callScreen.gameObject);
 
-        toggleCallMenu(onOff);
+            toggleCallMenu(onOff);
+            anotherMenuOpen = onOff;
+        }
     }
     public void toggleCaveGameplayMenuScreen()
     {
-        if (menuOpen == null || menuOpen == openMenu.cave)
+        // if (menuOpen == null || menuOpen == openMenu.cave)
+        // if (!escMenu.gameObject.activeSelf)
+        if (!anotherMenuOpen && !escMenu.gameObject.activeSelf)
         {
-            menuOpen = openMenu.cave;
+            // menuOpen = openMenu.cave;
             bool onOff = toggleMenu(missionMenu.gameObject);
 
             toggleCaveItemMenu(onOff);
             toggleMissionMenu(onOff);
+            // anotherMenuOpen = onOff;
         }
     }
     public void toggleTradingScreen()
     {
-        if (menuOpen == null || menuOpen == openMenu.trader)
+        // if (menuOpen == null || menuOpen == openMenu.trader)
+        // if (!anotherMenuOpen && !escMenu.gameObject.activeSelf)
+        if (!escMenu.gameObject.activeSelf)
         {
-            menuOpen = openMenu.trader;
+            // menuOpen = openMenu.trader;
             bool onOff = toggleMenu(traderMenu.gameObject);
 
             toggleCaveItemMenu(onOff);
             toggleTraderMenu(onOff);
+            anotherMenuOpen = onOff;
         }
     }
     public void toggleLabMenuScreen()
     {
-        if (menuOpen == null || menuOpen == openMenu.lab)
+        // if (menuOpen == null || menuOpen == openMenu.lab)
+        // if (!escMenu.gameObject.activeSelf)
+        if (!anotherMenuOpen && !escMenu.gameObject.activeSelf)
         {
-            menuOpen = openMenu.lab;
+            // menuOpen = openMenu.lab;
             bool onOff = toggleMenu(labItemMenu.gameObject);
 
             toggleLabItemMenu(onOff);
+            // anotherMenuOpen = onOff;
         }
     }
     public void toggleToggletoolWorkstationMenuScreen()
     {
-        if (menuOpen == null || menuOpen == openMenu.craft)
+        // if (menuOpen == null || menuOpen == openMenu.craft)
+        // if (!anotherMenuOpen && !escMenu.gameObject.activeSelf)
+        if (!escMenu.gameObject.activeSelf)
         {
             bool onOff = toggleMenu(toolWorkstationMenu.gameObject);
 
             toggleLabItemMenu(onOff);
             toggleToolWorkstationMenu(onOff);
 
-            menuOpen = openMenu.craft;
+            anotherMenuOpen = onOff;
+            // menuOpen = openMenu.craft;
         }
     }
     public void toggleToggleEquipmentWorkstationMenu()
     {
-        if (menuOpen == null || menuOpen == openMenu.equip)
+        // if (menuOpen == null || menuOpen == openMenu.equip)
+        // if (!anotherMenuOpen && !escMenu.gameObject.activeSelf)
+        if (!escMenu.gameObject.activeSelf)
         {
             bool onOff = toggleMenu(equipWorkstation.gameObject);
 
@@ -207,18 +228,22 @@ public class menuManager : MonoBehaviour
             toggleLabItemMenu(onOff);
             toggleEquipmentWorkstationMenu(onOff);
 
-            menuOpen = openMenu.equip;
-            Debug.Log("eq");
+            // menuOpen = openMenu.equip;
+            // Debug.Log("eq");
+            anotherMenuOpen = onOff;
         }
     }
     public void toggleToggleMissionWorkstationMenu()
     {
-        if (menuOpen == null || menuOpen == openMenu.misison)
+        // if (menuOpen == null || menuOpen == openMenu.misison)
+        // if (!anotherMenuOpen && !escMenu.gameObject.activeSelf)
+        if (!escMenu.gameObject.activeSelf)
         {
-            menuOpen = openMenu.misison;
+            // menuOpen = openMenu.misison;
             bool onOff = toggleMenu(missionMenu.gameObject);
 
             toggleMissionWorkstationMenu(onOff);
+            anotherMenuOpen = onOff;
         }
     }
 
@@ -244,7 +269,7 @@ public class menuManager : MonoBehaviour
             // menuOpen = null;
         }
 
-        Debug.Log($"menu opne: {menuOpen}");
+        Debug.Log($"menu opne: {anotherMenuOpen}");
 
         return onOff;
     }
