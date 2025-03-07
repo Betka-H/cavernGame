@@ -5,7 +5,9 @@ using UnityEngine;
 public class SaveData
 {
     public List<item> itemsSaveList;
+    public List<item> missionSaveList;
     public int currentMission;
+    public missionSO deathMission;
 }
 
 // chatgpt
@@ -38,6 +40,7 @@ public class saveManager : MonoBehaviour
         SaveData data = new SaveData();
 
         data.itemsSaveList = menuManager.inventoryManager.labInventory;
+        data.missionSaveList = menuManager.inventoryManager.missionInventory;
         data.currentMission = missionManager.currentMission;
 
         string json = JsonUtility.ToJson(data);
@@ -56,6 +59,10 @@ public class saveManager : MonoBehaviour
         SaveData data = JsonUtility.FromJson<SaveData>(json);
 
         menuManager.inventoryManager.labInventory = data.itemsSaveList;
+        menuManager.inventoryManager.missionInventory = data.missionSaveList;
+        missionManager.currentMission = data.currentMission;
+        // missionManager.deathMission = data.deathMission;
+        Debug.Log($"last mission: {missionManager.currentMission}");
     }
 }
 
