@@ -69,6 +69,8 @@ public class menuManager : MonoBehaviour
 
     public void hideMenus()
     {
+        if (anotherMenuOpen && escMenu.gameObject.activeSelf) return;
+
         toggleCaveItemMenu(false);
         toggleLabItemMenu(false);
         toggleitemInfoDisplay(false);
