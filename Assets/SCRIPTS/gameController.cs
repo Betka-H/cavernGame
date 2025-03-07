@@ -50,13 +50,21 @@ public class gameController : MonoBehaviour
 		} */
 		if (Input.GetKeyDown(KeyCode.R))
 		{
-			menuManager.hideMenus();
-			genAndSpawn(level.lab);
+			if (isDead)
+			{
+				menuManager.hideMenus();
+				genAndSpawn(level.lab);
+			}
 		}
 		/* if (Input.GetKeyDown(KeyCode.Escape))
 		{
 			menuManager.toggleEscapeMenu(!menuManager.escMenu.gameObject.activeSelf);
 		} */
+	}
+
+	public void resetEvent()
+	{
+		genAndSpawn(level.lab);
 	}
 
 	public void genAndSpawn(level lvl)
@@ -145,10 +153,10 @@ public class gameController : MonoBehaviour
 	}
 
 	public GameObject deathScreen;
+	bool isDead;
 	public void death()
 	{
 		Debug.Log("death");
-		// deathScreen.SetActive(true);
 
 		/* if (deathCalls[currentDeathCall].currentMessage <= deathCalls[currentDeathCall].messages.Length)
 		{
@@ -161,6 +169,8 @@ public class gameController : MonoBehaviour
 		if (deathMission.calls.Length > deathMission.currentCall)
 			callManager.startCall(deathMission);
 
+		deathScreen.SetActive(true);
+
 		// destroyPlayer();
 		player.GetComponent<playerMovement>().alive = false;
 		player.GetComponent<playerMovement>().rb.velocity = Vector3.zero;
@@ -169,6 +179,8 @@ public class gameController : MonoBehaviour
 		menuManager.inventoryManager.caveInventory.Clear();
 		menuManager.inventoryManager.equippedItems.Clear();
 		// menuManager.equipWorkstation.clearSlots();
+
+		isDead = true;
 	}
 
 	public void leaveCavern()

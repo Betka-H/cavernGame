@@ -25,8 +25,16 @@ public class missionManager : MonoBehaviour
         if (menuManager.inventoryManager.checkResources(menuManager.inventoryManager.missionInventory, allMissions[currentMission].requiredItems))
         {
             Debug.Log("new mission?");
-            newMission();
+            // newMission();
+            endMission();
         }
+    }
+
+    public void endMission()
+    {
+        //! temp
+        // allMissions[currentMission].missionEndEvent.Invoke();
+        newMission();
     }
 
     void newMission()

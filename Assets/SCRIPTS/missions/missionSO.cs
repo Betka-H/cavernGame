@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [CreateAssetMenu(menuName = "missionSO")]
 public class missionSO : ScriptableObject
@@ -13,4 +14,6 @@ public class missionSO : ScriptableObject
     public List<item> requiredItems;
     public callSO[] calls;
     [HideInInspector] public int currentCall = 0;
+
+    public UnityEvent missionEndEvent;
 }

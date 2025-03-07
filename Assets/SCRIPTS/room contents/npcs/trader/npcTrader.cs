@@ -44,7 +44,7 @@ public class npcTrader : NPC
 		if (scrapChance > rnd.Next(100))
 		{
 			int scrapPosition = rnd.Next(traderInventory.Length);
-			traderInventory[scrapPosition] = traderScrapPool[rnd.Next(traderScrapPool.Length - 1)];
+			traderInventory[scrapPosition] = traderScrapPool[rnd.Next(traderScrapPool.Length)];
 			// Debug.Log($"trader sells scrap (as {scrapPosition})");
 		}
 

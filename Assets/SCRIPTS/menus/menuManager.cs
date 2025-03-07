@@ -69,7 +69,7 @@ public class menuManager : MonoBehaviour
 
     public void hideMenus()
     {
-        if (anotherMenuOpen && escMenu.gameObject.activeSelf) return;
+        // if (anotherMenuOpen && escMenu.gameObject.activeSelf) return;
 
         toggleCaveItemMenu(false);
         toggleLabItemMenu(false);
@@ -87,6 +87,7 @@ public class menuManager : MonoBehaviour
 
         // anotherMenuOpen = null;
         anotherMenuOpen = false;
+        Time.timeScale = 1;
     }
     // /menuOpen = openMenu.esc;
 
@@ -147,16 +148,28 @@ public class menuManager : MonoBehaviour
             // if (onOff) anotherMenuOpen = openMenu.esc;
             // else anotherMenuOpen = null;
             toggleEsc(onOff);
-            Debug.Log("esc");
+            if (!onOff && !anotherMenuOpen)
+            {
+                // menuOpen = null;
+                Time.timeScale = 1;
+                Debug.Log("ts 1");
+            }
+            else
+            {
+                Time.timeScale = 0;
+                Debug.Log("ts 0");
+            }
+            // Debug.Log("esc");
         }
         // toggleEsc(!escMenu.gameObject.activeSelf);
     }
     public void toggleCallScreen()
     {
         // if (!anotherMenuOpen && !escMenu.gameObject.activeSelf)
-        if (!escMenu.gameObject.activeSelf)
+        // if (!escMenu.gameObject.activeSelf)
         {// menuOpen = openMenu.call;
             bool onOff = toggleMenu(callScreen.gameObject);
+            // bool onOff = !callScreen.gameObject.activeSelf;
 
             toggleCallMenu(onOff);
             anotherMenuOpen = onOff;
@@ -269,6 +282,13 @@ public class menuManager : MonoBehaviour
         if (!onOff)
         {
             // menuOpen = null;
+            Time.timeScale = 1;
+            Debug.Log("ts 1");
+        }
+        else
+        {
+            Time.timeScale = 0;
+            Debug.Log("ts 0");
         }
 
         Debug.Log($"menu opne: {anotherMenuOpen}");

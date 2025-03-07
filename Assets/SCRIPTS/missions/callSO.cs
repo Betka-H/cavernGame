@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 [CreateAssetMenu(menuName = "callSO")]
 public class callSO : ScriptableObject
@@ -9,4 +10,5 @@ public class callSO : ScriptableObject
     [TextArea]
     public string[] messages;
     [HideInInspector] public int currentMessage = 0;
+    public UnityEvent callEndEvent;
 }
