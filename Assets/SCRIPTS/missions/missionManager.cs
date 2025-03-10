@@ -45,9 +45,16 @@ public class missionManager : MonoBehaviour
 
     void newMission()
     {
-        Debug.Log("new mission!");
-        //! todo check for max missions!
-        currentMission++;
+        if (currentMission + 1 < allMissions.Length)
+        {
+            Debug.Log("new mission!");
+            //! todo check for max missions! // or idk do something. at least it does not throw errors now
+            currentMission++;
+        }
+        else
+        {
+            Debug.Log("no more missions!");
+        }
         allMissions[currentMission].currentCall = 0;
     }
 

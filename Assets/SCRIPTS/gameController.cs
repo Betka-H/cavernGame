@@ -15,6 +15,8 @@ public class gameController : MonoBehaviour
 	missionManager missionManager;
 	[HideInInspector] public roomController roomController;
 
+	audioManager audioManager;
+
 	menuManager menuManager;
 	callManager callManager;
 
@@ -36,6 +38,7 @@ public class gameController : MonoBehaviour
 		missionManager = FindObjectOfType<missionManager>();
 		callManager = FindObjectOfType<callManager>();
 		inventoryManager = FindObjectOfType<inventoryManager>();
+		audioManager = FindObjectOfType<audioManager>();
 
 		genAndSpawn(level.lab);
 
@@ -87,10 +90,20 @@ public class gameController : MonoBehaviour
 
 	public void genAndSpawn(level lvl)
 	{
+		switch (lvl)
+		{
+			case level.lab:
+				audioManager.playMusic(musicLvl.labRegular);
+				break;
+			case level.cavern:
+				audioManager.playMusic(musicLvl.caveRegular);
+				break;
+		}
+
 		clearMenus();
 		spawnPlayer(lvl);
 		roomController.generateLevel(lvl);
-		checkShoes();
+		// checkShoes();
 	}
 	void clearMenus()
 	{
@@ -120,6 +133,8 @@ public class gameController : MonoBehaviour
 
 		roomController.player = player.GetComponent<Transform>();
 
+		checkShoes();
+		Debug.LogWarning("shoes???");
 	}
 	void checkShoes()
 	{
