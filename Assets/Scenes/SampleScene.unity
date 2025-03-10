@@ -2763,7 +2763,6 @@ Transform:
   - {fileID: 572282410}
   - {fileID: 892595346}
   - {fileID: 1157321615}
-  - {fileID: 793757555}
   - {fileID: 875383553}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7546,7 +7545,7 @@ Transform:
   - {fileID: 533903206}
   - {fileID: 1076511179}
   - {fileID: 1561034440}
-  m_Father: {fileID: 265201205}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &793757556
 MonoBehaviour:
@@ -7562,7 +7561,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSource: {fileID: 1561034441}
   playerSfxSource: {fileID: 1060758540}
-  environmentSfxSource: {fileID: 533903207}
+  worldSfxSource: {fileID: 533903207}
   uiSfxSource: {fileID: 1076511180}
   prevMusicLvl: 0
   labMusic:
@@ -7590,6 +7589,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: ae048e1814f33894088de2ea6da8a4f9, type: 3}
   mainMenuMusic:
   - {fileID: 8300000, guid: d926e737758111c4d9245de5682e98d1, type: 3}
+  itemPickup:
+  - {fileID: 8300000, guid: 69cd76c2b478fef4c9cca38e624593a3, type: 3}
   footSteps:
   - {fileID: 8300000, guid: 3ba74d173d82826438edb571b545b4ab, type: 3}
   deathImpale:
@@ -20115,3 +20116,4 @@ SceneRoots:
   - {fileID: 1252296503}
   - {fileID: 1513249485}
   - {fileID: 265201205}
+  - {fileID: 793757555}

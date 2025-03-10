@@ -203,7 +203,7 @@ public class gameController : MonoBehaviour
 		{
 			Debug.Log("death");
 
-			audioManager.playSfx(audioManager.environmentSfxSource, audioManager.deathImpale, true);
+			audioManager.playSfx(audioManager.worldSfxSource, audioManager.deathImpale, true);
 			audioManager.playMusic(musicLvl.death);
 
 			/* if (deathCalls[currentDeathCall].currentMessage <= deathCalls[currentDeathCall].messages.Length)

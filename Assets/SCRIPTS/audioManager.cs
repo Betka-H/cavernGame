@@ -12,7 +12,7 @@ public class audioManager : MonoBehaviour
     [Header("Audio Sources")]
     public AudioSource musicSource;
     public AudioSource playerSfxSource;
-    public AudioSource environmentSfxSource;
+    public AudioSource worldSfxSource;
     public AudioSource uiSfxSource;
 
     private float musicVolume = 1f;
@@ -23,38 +23,21 @@ public class audioManager : MonoBehaviour
         //! check Debug.LogWarning($"credit sound sources!!!");
         //! check Debug.LogWarning($"also delete unused cause these files are huuuuge");
 
-        /* if (instance == null)
+        if (instance == null)
         {
             instance = this;
             DontDestroyOnLoad(gameObject); // Keep this object across scenes //? yeah okay
+            Debug.Log("ddol!");
         }
         else
         {
             Destroy(gameObject);
+            Debug.Log("destroyed audioman");
             return;
-        } */
+        }
 
         //! LoadVolumeSettings();
     }
-
-    void Start()
-    {
-        /* if (defaultMusic != null)
-        {
-            PlayMusic(defaultMusic);
-        } */
-
-        // playMusic();
-    }
-
-    /* // 🎵 Play background music
-    public void PlayMusic(AudioClip clip)
-    {
-        if (musicSource.clip == clip) return; // Avoid restarting the same track
-        musicSource.clip = clip;
-        musicSource.loop = true;
-        musicSource.Play();
-    } */
 
     AudioClip[] selectedClips;
     [HideInInspector] public musicLvl prevMusicLvl;
@@ -107,6 +90,7 @@ public class audioManager : MonoBehaviour
     public AudioClip[] caveMusicEscape;
     public AudioClip[] deathMusic;
     public AudioClip[] mainMenuMusic;
+    public AudioClip[] itemPickup;
 
     int prevTrackNumber = -1;
     int trackNumber = -1;
@@ -157,26 +141,15 @@ public class audioManager : MonoBehaviour
     public AudioClip[] uiButtonMouseover;
     public AudioClip[] uiButtonClick;
 
-    /* public void playPlayerSfx(AudioClip clip)
+    public void playSfx(AudioSource source, AudioClip[] clips, bool allowOverlap)
     {
-        if (!sfxSource.isPlaying)
-        {
-            sfxSource.PlayOneShot(clip);
-            // sfxSource.clip = clip;
-            // sfxSource.Play();
-
-            Debug.LogWarning("playing sound effect: " + clip.name);
-        }
-    } */
-    public void playSfx(AudioSource source, AudioClip[] clips, bool allowMultiple)
-    {
-        if ((!source.isPlaying || allowMultiple) && clips.Length > 0)
+        if ((!source.isPlaying || allowOverlap) && clips.Length > 0)
         {
             int rnd = UnityEngine.Random.Range(0, clips.Length);
 
             source.PlayOneShot(clips[rnd]);
 
-            Debug.LogWarning("playing sound effect: " + clips[rnd].name);
+            // Debug.LogWarning("playing sound effect: " + clips[rnd].name);
         }
         // else Debug.LogError($"no clip assigned or banning multiple");
     }
@@ -194,7 +167,7 @@ public class audioManager : MonoBehaviour
     {
         sfxVolume = volume;
         playerSfxSource.volume = sfxVolume;
-        environmentSfxSource.volume = sfxVolume;
+        worldSfxSource.volume = sfxVolume;
         uiSfxSource.volume = sfxVolume;
         PlayerPrefs.SetFloat("SFXvolume", sfxVolume);
     }
@@ -209,7 +182,7 @@ public class audioManager : MonoBehaviour
         musicSource.volume = musicVolume;
         // sfx
         playerSfxSource.volume = sfxVolume;
-        environmentSfxSource.volume = sfxVolume;
+        worldSfxSource.volume = sfxVolume;
         uiSfxSource.volume = sfxVolume;
     }
 }

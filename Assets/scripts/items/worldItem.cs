@@ -5,6 +5,7 @@ public class worldItem : MonoBehaviour
 	SpriteRenderer spriteRenderer;
 	private inventoryManager inventoryManager;
 	private caveItemMenu caveItemMenu;
+	audioManager audioManager;
 
 	loot assignedItem;
 	[HideInInspector] public Transform assignedSpawnTransform;
@@ -12,6 +13,7 @@ public class worldItem : MonoBehaviour
 
 	void Awake()
 	{
+		audioManager = FindObjectOfType<audioManager>();
 		spriteRenderer = GetComponent<SpriteRenderer>();
 		inventoryManager = FindObjectOfType<inventoryManager>();
 		caveItemMenu = FindObjectOfType<caveItemMenu>(true);
@@ -49,6 +51,8 @@ public class worldItem : MonoBehaviour
 	{
 		if (inventoryManager.caveInventory.Count < caveItemMenu.slotLimit)
 		{
+			audioManager.playSfx(audioManager.worldSfxSource, audioManager.itemPickup, true);
+
 			inventoryManager.addItem(assignedItem, inventoryManager.caveInventory);
 			assignedRoomSO.removeItemSpawn(assignedItem, assignedSpawnTransform);
 			updateItem(null);
