@@ -12,9 +12,10 @@ public class playerMovement : MonoBehaviour
 	public LayerMask wall;
 
 	[Header("movement stats")]
-	public float speed = 20f; // 5f
-	public float bounciness = 10f; // jump height
-	public float agility = 1; // wall jump cap (0 - no jumping allowed >:[)
+	public float defaultSpeed;
+	public float speed; // 5f
+	public float bounciness; // jump height
+	public float agility; // wall jump cap (0 - no jumping allowed >:[)
 
 	[Header("ground check")]
 	public Transform feet;
@@ -35,6 +36,7 @@ public class playerMovement : MonoBehaviour
 		hasJumped = false;
 		wallJumps = 0;
 		alive = true;
+		speed = defaultSpeed;
 	}
 	void FixedUpdate()
 	{

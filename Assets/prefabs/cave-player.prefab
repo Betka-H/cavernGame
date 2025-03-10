@@ -271,6 +271,7 @@ MonoBehaviour:
   wall:
     serializedVersion: 2
     m_Bits: 128
+  defaultSpeed: 8
   speed: 8
   bounciness: 10
   agility: 0

@@ -105,7 +105,7 @@ public class saveManager : MonoBehaviour
             missionManager.deathMission.currentCall = data.deathCall;
         }
 
-        Debug.LogError($"loaded: last mission: {missionManager.currentMission}, call {missionManager.allMissions[missionManager.currentMission].currentCall}, death mission call: {missionManager.deathMission.currentCall}");
+        Debug.LogWarning($"loaded: last mission: {missionManager.currentMission}, call {missionManager.allMissions[missionManager.currentMission].currentCall}, death mission call: {missionManager.deathMission.currentCall}");
         Debug.LogWarning("what about eq inv?");
     }
 }

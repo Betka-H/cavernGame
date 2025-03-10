@@ -8,7 +8,7 @@ public class gameController : MonoBehaviour
 {
 	[Header("player")]
 	public GameObject playerParent;
-	public Transform spawnPoint;
+	public Transform playerSpawnPoint;
 	public GameObject labPlayerPrefab;
 	public GameObject cavePlayerPrefab;
 
@@ -35,6 +35,7 @@ public class gameController : MonoBehaviour
 		menuManager = FindObjectOfType<menuManager>();
 		missionManager = FindObjectOfType<missionManager>();
 		callManager = FindObjectOfType<callManager>();
+		inventoryManager = FindObjectOfType<inventoryManager>();
 
 		genAndSpawn(level.lab);
 
@@ -89,6 +90,7 @@ public class gameController : MonoBehaviour
 		clearMenus();
 		spawnPlayer(lvl);
 		roomController.generateLevel(lvl);
+		checkShoes();
 	}
 	void clearMenus()
 	{
@@ -112,11 +114,20 @@ public class gameController : MonoBehaviour
 				break;
 		}
 		player = Instantiate(playerPrefab, playerParent.transform);
-		player.transform.position = spawnPoint.position;
+		player.transform.position = playerSpawnPoint.position;
 		player.GetComponent<playerMovement>().alive = true;
 		player.GetComponent<playerMovement>().rb.velocity = Vector3.zero;
 
 		roomController.player = player.GetComponent<Transform>();
+
+	}
+	void checkShoes()
+	{
+		if (roomController.currentLevel == level.cavern && inventoryManager.checkEquipment(inventoryManager.inventoryDefinitions.shoes))
+		{
+			Debug.Log("speeeed");
+			player.GetComponent<playerMovement>().speed += 2;
+		}
 	}
 	void destroyPlayer()
 	{

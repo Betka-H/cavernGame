@@ -20,10 +20,14 @@ public class inventoryDefinitions : MonoBehaviour
     public gear vial;
     public gear pickaxe;
     public gear backpack;
+    public gear shoes;
+    public gear harderHat;
 
     [Header("scrap")]
     public scrap scrapGoggles;
     public scrap scrapVial;
     public scrap scrapPickaxe;
     public scrap scrapBackpack;
+    public scrap scrapShoes;
+    public scrap scrapHarderHat;
 }

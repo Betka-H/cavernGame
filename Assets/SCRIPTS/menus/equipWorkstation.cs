@@ -3,6 +3,7 @@ using UnityEngine;
 public class equipWorkstation : MonoBehaviour
 {
     public SpriteRenderer[] slotRenderers;
+    public itemInfoDisplay[] infoDisplays;
     menuManager menuManager;
 
     void Awake()
@@ -25,17 +26,25 @@ public class equipWorkstation : MonoBehaviour
     {
         for (int i = 0; i < slotRenderers.Length; i++)
         {
+            item selItem;
             if (menuManager.inventoryManager.equippedItems.Count > i)
-                slotRenderers[i].sprite = menuManager.inventoryManager.equippedItems[i].itemSprite;
+            {
+                selItem = menuManager.inventoryManager.equippedItems[i];
+                slotRenderers[i].sprite = selItem.itemSprite;
+            }
             else
+            {
+                selItem = null;
                 slotRenderers[i].sprite = null;
+            }
+            infoDisplays[i].setInfo(selItem);
         }
     }
 
     public void equip()
     {
         item equippingItem = menuManager.itemInfoDisplay.selectedItem;
-        if (equippingItem is gear gear && menuManager.inventoryManager.equippedItems.Count + 1 <= slotRenderers.Length)
+        if (equippingItem is gear gear && menuManager.inventoryManager.equippedItems.Count + 1 <= slotRenderers.Length && !menuManager.inventoryManager.equippedItems.Contains(equippingItem))
         {
             menuManager.inventoryManager.addItem(gear, menuManager.inventoryManager.equippedItems);
             menuManager.inventoryManager.removeItem(gear, menuManager.inventoryManager.labInventory);
@@ -46,7 +55,8 @@ public class equipWorkstation : MonoBehaviour
             // refresh item displays
             refreshItemDisplays();
         }
-        else Debug.Log("item not gear or not enough space");
+        else Debug.Log("item not gear, not enough space or twice");
+        Debug.LogWarning("show err messages for these cases"); //! todo
     }
     public void unEquip(int pos)
     {

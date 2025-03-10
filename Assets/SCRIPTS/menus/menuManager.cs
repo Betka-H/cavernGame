@@ -1,6 +1,4 @@
-using UnityEditor.Callbacks;
 using UnityEngine;
-using UnityEngine.UI;
 
 public enum openMenu { lab, cave, esc, trader, misison, craft, equip, call };
 // public enum menuScreen { gameplay, trading };
