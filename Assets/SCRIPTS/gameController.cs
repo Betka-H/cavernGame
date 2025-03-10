@@ -57,6 +57,7 @@ public class gameController : MonoBehaviour
 		} */
 		if (Input.GetKeyDown(KeyCode.R))
 		{
+			Debug.Log($"dead: {isDead}, calling: {isCalling}");
 			if (isDead && !isCalling)
 			{
 				menuManager.hideMenus();

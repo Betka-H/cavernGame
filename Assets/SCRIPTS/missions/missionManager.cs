@@ -41,6 +41,7 @@ public class missionManager : MonoBehaviour
     void newMission()
     {
         Debug.Log("new mission!");
+        //! temp check for max missions!
         currentMission++;
         allMissions[currentMission].currentCall = 0;
     }

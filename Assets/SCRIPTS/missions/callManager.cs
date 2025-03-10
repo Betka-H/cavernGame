@@ -14,6 +14,7 @@ public class callManager : MonoBehaviour
         callScreen = FindObjectOfType<callScreen>();
         missionManager = FindObjectOfType<missionManager>();
         menuManager = FindObjectOfType<menuManager>();
+        gameController.isCalling = false;
     }
 
     missionSO selectedMission;
@@ -26,6 +27,8 @@ public class callManager : MonoBehaviour
         {
             Debug.Log("starting call!");
 
+            gameController.isCalling = true;
+
             currentMissionCall().currentMessage = 0;
             callScreen.talk(currentMissionCall());
         }
@@ -34,7 +37,6 @@ public class callManager : MonoBehaviour
             Debug.Log("empty call!");
             endCall();
         }
-        gameController.isCalling = true;
     }
     public void advanceCall()
     {
