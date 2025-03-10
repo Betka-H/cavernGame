@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9da6ac93b011a0343a2181077a0d1e9b, type: 3}
-  m_Name: vial scrap
+  m_Name: 4.1 - vial scrap
   m_EditorClassIdentifier: 
   itemId: 4.1
   itemName: vial scrap

@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9da6ac93b011a0343a2181077a0d1e9b, type: 3}
-  m_Name: backpack scrap
+  m_Name: 3.1 - pickaxe scrap
   m_EditorClassIdentifier: 
-  itemId: 5.1
-  itemName: backpack scrap
-  itemDescription: piece of backpack
-  itemSprite: {fileID: 21300000, guid: e52cd10459b57fb41a73198c6cab997e, type: 3}
-  wholeGear: {fileID: 11400000, guid: 7f0d007b8c9ac0446bf8e387971f3f7e, type: 2}
+  itemId: 3.1
+  itemName: pickaxe scrap
+  itemDescription: piece of pickaxe
+  itemSprite: {fileID: 21300000, guid: 7c924f767e2cb3e468fb0742f27129f0, type: 3}
+  wholeGear: {fileID: 11400000, guid: 6a62c3feb9724e34a929076bbb422ac8, type: 2}

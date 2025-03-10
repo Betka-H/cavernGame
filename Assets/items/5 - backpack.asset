@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd786c94297a415458506c7336163eb2, type: 3}
-  m_Name: gem_red
+  m_Script: {fileID: 11500000, guid: b40565017206895419412b5f600eb496, type: 3}
+  m_Name: 5 - backpack
   m_EditorClassIdentifier: 
-  itemId: 1.1
-  itemName: red gem
-  itemDescription: gem that is red
-  itemSprite: {fileID: 139969388, guid: 6204d8d4992cf9f42a02ed66e489639a, type: 3}
-  rarity: 100
+  itemId: 5
+  itemName: backpack
+  itemDescription: gives u more inventory slots
+  itemSprite: {fileID: 21300000, guid: 62597ff0c7d92894eb33d152be5fd359, type: 3}
+  cost: []

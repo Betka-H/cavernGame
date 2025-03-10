@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class inventoryDefinitions : MonoBehaviour
 {
-    public List<item> allItems;
+    public List<item> allItems; //! check ???
 
     [Header("gems")]
     public item gemRed;

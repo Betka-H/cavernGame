@@ -184,31 +184,39 @@ public class gameController : MonoBehaviour
 	bool isDead;
 	public void death()
 	{
-		Debug.Log("death");
-
-		/* if (deathCalls[currentDeathCall].currentMessage <= deathCalls[currentDeathCall].messages.Length)
+		if (!inventoryManager.checkEquipment(inventoryManager.inventoryDefinitions.harderHat))
 		{
-			// menuManager.callManager.callScreen.talk(deathCalls[currentDeathCall]);
-			callManager.startCall(deathCalls[currentDeathCall]);
-			// deathCalls[currentDeathCall].currentMessage++;
-			currentDeathCall++;
-		} */
-		missionSO deathMission = missionManager.deathMission;
-		if (deathMission.calls.Length > deathMission.currentCall)
-			callManager.startCall(deathMission);
+			Debug.Log("death");
 
-		deathScreen.SetActive(true);
+			/* if (deathCalls[currentDeathCall].currentMessage <= deathCalls[currentDeathCall].messages.Length)
+			{
+				// menuManager.callManager.callScreen.talk(deathCalls[currentDeathCall]);
+				callManager.startCall(deathCalls[currentDeathCall]);
+				// deathCalls[currentDeathCall].currentMessage++;
+				currentDeathCall++;
+			} */
+			missionSO deathMission = missionManager.deathMission;
+			if (deathMission.calls.Length > deathMission.currentCall)
+				callManager.startCall(deathMission);
 
-		// destroyPlayer();
-		player.GetComponent<playerMovement>().alive = false;
-		player.GetComponent<playerMovement>().rb.velocity = Vector3.zero;
+			deathScreen.SetActive(true);
 
-		// lose inventories
-		menuManager.inventoryManager.caveInventory.Clear();
-		menuManager.inventoryManager.equippedItems.Clear();
-		// menuManager.equipWorkstation.clearSlots();
+			// destroyPlayer();
+			player.GetComponent<playerMovement>().alive = false;
+			player.GetComponent<playerMovement>().rb.velocity = Vector3.zero;
 
-		isDead = true;
+			// lose inventories
+			menuManager.inventoryManager.caveInventory.Clear();
+			menuManager.inventoryManager.equippedItems.Clear();
+			// menuManager.equipWorkstation.clearSlots();
+
+			isDead = true;
+		}
+		else
+		{
+			Debug.Log("has hat! bye bye hat");
+			inventoryManager.removeItem(inventoryManager.inventoryDefinitions.harderHat, inventoryManager.equippedItems);
+		}
 	}
 
 	public void leaveCavern()

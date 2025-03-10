@@ -18465,6 +18465,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7a6870589bd37954787b04dd67bec750, type: 2}
   - {fileID: 11400000, guid: eb8b81aa0dfb0464baae6d658e18eeff, type: 2}
   - {fileID: 11400000, guid: 78adb72ace7c4ef43a6abcaaa3b6fd01, type: 2}
+  - {fileID: 11400000, guid: 58de281c09c73ac4ebaf8fa0238282be, type: 2}
+  - {fileID: 11400000, guid: 52acd9585188b6845b5c6600a5ff0315, type: 2}
   gemRed: {fileID: 11400000, guid: 09beaca968880f7449e06c9b67e05643, type: 2}
   gemOrange: {fileID: 11400000, guid: efe3ff3737876564f8c0aa7130051258, type: 2}
   gemYellow: {fileID: 11400000, guid: ab0e1471363c9ab42a2e91281c3e9a2c, type: 2}
@@ -18478,13 +18480,13 @@ MonoBehaviour:
   pickaxe: {fileID: 11400000, guid: 6a62c3feb9724e34a929076bbb422ac8, type: 2}
   backpack: {fileID: 11400000, guid: 7f0d007b8c9ac0446bf8e387971f3f7e, type: 2}
   shoes: {fileID: 11400000, guid: eb8b81aa0dfb0464baae6d658e18eeff, type: 2}
-  harderHat: {fileID: 0}
+  harderHat: {fileID: 11400000, guid: 58de281c09c73ac4ebaf8fa0238282be, type: 2}
   scrapGoggles: {fileID: 11400000, guid: 2eacc2c6f1934ce41a7f83a454297fc0, type: 2}
   scrapVial: {fileID: 11400000, guid: 7a6870589bd37954787b04dd67bec750, type: 2}
   scrapPickaxe: {fileID: 11400000, guid: 0468bc431e18a904a89870f3ede71e9a, type: 2}
   scrapBackpack: {fileID: 11400000, guid: e3bac1d0fab6ab240b32c5e17c66450b, type: 2}
   scrapShoes: {fileID: 11400000, guid: 78adb72ace7c4ef43a6abcaaa3b6fd01, type: 2}
-  scrapHarderHat: {fileID: 0}
+  scrapHarderHat: {fileID: 11400000, guid: 52acd9585188b6845b5c6600a5ff0315, type: 2}
 --- !u!1001 &2127992823
 PrefabInstance:
   m_ObjectHideFlags: 0

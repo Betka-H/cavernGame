@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9da6ac93b011a0343a2181077a0d1e9b, type: 3}
-  m_Name: shoes scrap
+  m_Name: 2.1 - goggle scrap
   m_EditorClassIdentifier: 
-  itemId: 6.1
-  itemName: shoes scrap
-  itemDescription: piece of shoes
-  itemSprite: {fileID: -225499093, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
-  wholeGear: {fileID: 11400000, guid: eb8b81aa0dfb0464baae6d658e18eeff, type: 2}
+  itemId: 2.1
+  itemName: goggle scrap
+  itemDescription: piece of night vision goggles
+  itemSprite: {fileID: 21300000, guid: 8fce939ca7796aa4280b6d2ef7a1151b, type: 3}
+  wholeGear: {fileID: 11400000, guid: e4277719df81ea04c95be8a3b56f4a66, type: 2}
