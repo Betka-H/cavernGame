@@ -40,7 +40,7 @@ public class roomController : MonoBehaviour
 	public roomSO[] labRooms;
 	public room_cavern[] cavernRooms;
 	private roomSO entranceRoom;
-	private roomSO[] selectedRooms;
+	[HideInInspector] public roomSO[] selectedRooms;
 
 	private int currentRoomNr;
 	private int roomLeft;
