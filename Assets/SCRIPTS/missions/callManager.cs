@@ -25,7 +25,7 @@ public class callManager : MonoBehaviour
     {
         selectedMission = newMission;
         menuManager.toggleCallScreen();
-        Debug.Log($"cml: {selectedMission.calls[selectedMission.currentCall].messages.Length}");
+        // Debug.Log($"cml: {selectedMission.calls[selectedMission.currentCall].messages.Length}");
         if (selectedMission.calls[selectedMission.currentCall].messages.Length > 0)
         {
             Debug.Log("starting call!");
@@ -38,17 +38,17 @@ public class callManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("empty call!");
+            // Debug.Log("empty call!");
             endCall();
         }
     }
     public void advanceCall()
     {
-        Debug.Log("advancing call.");
+        // Debug.Log("advancing call.");
 
         if (currentMissionCall().currentMessage + 1 < currentMissionCall().messages.Length)
         {
-            audioManager.playSfx(audioManager.callAdvance);
+            audioManager.playSfx(audioManager.environmentSfxSource, audioManager.callAdvance);
 
             currentMissionCall().currentMessage++;
             callScreen.talk(currentMissionCall());
@@ -57,7 +57,7 @@ public class callManager : MonoBehaviour
         {
             Debug.Log($"no more messages in call!");
 
-            audioManager.playSfx(audioManager.callEnd); // here, otherwise plays end call even in empty calls
+            audioManager.playSfx(audioManager.environmentSfxSource, audioManager.callEnd); // here, otherwise plays end call even in empty calls
             endCall();
         }
     }
@@ -68,7 +68,7 @@ public class callManager : MonoBehaviour
         currentMissionCall().callEndEvent.Invoke();
         if (selectedMission.currentCall < selectedMission.calls.Length)
         {
-            Debug.Log("setting next call");
+            // Debug.Log("setting next call");
             selectedMission.currentCall++;
             // Debug.Log($"next m is {selectedMission.calls[selectedMission.currentCall]}");
         }

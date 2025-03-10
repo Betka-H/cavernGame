@@ -11,6 +11,8 @@ public class playerMovement : MonoBehaviour
 	public LayerMask ground;
 	public LayerMask wall;
 
+	audioManager audioManager;
+
 	[Header("movement stats")]
 	public float defaultSpeed;
 	public float speed; // 5f
@@ -32,6 +34,8 @@ public class playerMovement : MonoBehaviour
 
 	void Awake()
 	{
+		audioManager = FindObjectOfType<audioManager>();
+
 		rb = GetComponent<Rigidbody2D>();
 		hasJumped = false;
 		wallJumps = 0;
@@ -57,7 +61,7 @@ public class playerMovement : MonoBehaviour
 	}
 
 	// if feet are within a distance from ground (or wall) layer
-	bool groundCheck()
+	public bool groundCheck()
 	{
 		bool groundC = Physics2D.OverlapCircle(feet.position, feetSize, ground);
 		bool wallC = Physics2D.OverlapCircle(feet.position, feetSize, wall);

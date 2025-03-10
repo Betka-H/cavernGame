@@ -4,12 +4,16 @@ public class playerAnimator : MonoBehaviour
 {
 	private Rigidbody2D rb;
 	private Animator animator;
+	audioManager audioManager;
+	playerMovement playerMovement;
 
 	private enum direction { idle, up, down, right, left, dead };
 	private direction dir;
 
 	void Start()
 	{
+		playerMovement = FindObjectOfType<playerMovement>();
+		audioManager = FindObjectOfType<audioManager>();
 		rb = GetComponentInParent<Rigidbody2D>();
 		animator = GetComponentInParent<Animator>();
 	}
@@ -66,9 +70,13 @@ public class playerAnimator : MonoBehaviour
 				animator.SetBool("down", true);
 				break;
 			case direction.right:
+				if (playerMovement.groundCheck())
+					audioManager.playSfx(audioManager.playerSfxSource, audioManager.footSteps);
 				animator.SetBool("right", true);
 				break;
 			case direction.left:
+				if (playerMovement.groundCheck())
+					audioManager.playSfx(audioManager.playerSfxSource, audioManager.footSteps);
 				animator.SetBool("left", true);
 				break;
 			case direction.dead:

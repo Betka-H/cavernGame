@@ -46,7 +46,7 @@ public class saveManager : MonoBehaviour
 
     public void save()
     {
-        Debug.Log("saving lab inv");
+        // Debug.Log("saving lab inv");
         SaveData data = new SaveData();
 
         // inventories
@@ -64,7 +64,7 @@ public class saveManager : MonoBehaviour
 
         PlayerPrefs.Save();
 
-        Debug.LogError($"saved: last mission: {missionManager.currentMission}, last mission call: {missionManager.allMissions[missionManager.currentMission].currentCall}, last death mission call: {missionManager.deathMission.currentCall}");
+        Debug.LogWarning($"saved: last mission: {missionManager.currentMission}, last mission call: {missionManager.allMissions[missionManager.currentMission].currentCall}, last death mission call: {missionManager.deathMission.currentCall}");
     }
 
     void load()
@@ -105,8 +105,8 @@ public class saveManager : MonoBehaviour
             missionManager.deathMission.currentCall = data.deathCall;
         }
 
-        Debug.LogWarning($"loaded: last mission: {missionManager.currentMission}, call {missionManager.allMissions[missionManager.currentMission].currentCall}, death mission call: {missionManager.deathMission.currentCall}");
-        Debug.LogWarning("what about eq inv?");
+        Debug.LogError($"loaded: last mission: {missionManager.currentMission}, call {missionManager.allMissions[missionManager.currentMission].currentCall}, death mission call: {missionManager.deathMission.currentCall}");
+        //! check Debug.LogWarning("what about eq inv?");
     }
 }
 

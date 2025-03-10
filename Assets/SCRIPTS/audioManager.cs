@@ -2,7 +2,7 @@ using System.Collections;
 using System;
 using UnityEngine;
 
-public enum musicLvl { labRegular, caveRegular, caveEscape, death, mainMenu, call }
+public enum musicLvl { labRegular, caveRegular, caveEscape, death, mainMenu, call, walk }
 
 // chatgpt
 public class audioManager : MonoBehaviour
@@ -10,16 +10,17 @@ public class audioManager : MonoBehaviour
     public static audioManager instance;
 
     [Header("Audio Sources")]
-    public AudioSource sfxSource;   // For sound effects
     public AudioSource musicSource; // For background music
+    public AudioSource playerSfxSource;   // For sound effects
+    public AudioSource environmentSfxSource;   // For sound effects
 
-    private float sfxVolume = 1f;
     private float musicVolume = 1f;
+    private float sfxVolume = 1f;
 
     void Awake()
     {
-        Debug.LogError($"credit sound sources!!!");
-        Debug.LogError($"also delete unused cause these files are huuuuge");
+        Debug.LogWarning($"credit sound sources!!!");
+        Debug.LogWarning($"also delete unused cause these files are huuuuge");
 
         /* if (instance == null)
         {
@@ -32,7 +33,7 @@ public class audioManager : MonoBehaviour
             return;
         } */
 
-        LoadVolumeSettings();
+        //! LoadVolumeSettings();
     }
 
     void Start()
@@ -58,7 +59,7 @@ public class audioManager : MonoBehaviour
     [HideInInspector] public musicLvl prevMusicLvl;
     public void playMusic(musicLvl lvl)
     {
-        Debug.Log($"trying to play {lvl}");
+        // Debug.Log($"trying to play {lvl}");
         switch (lvl)
         {
             case musicLvl.labRegular:
@@ -88,6 +89,9 @@ public class audioManager : MonoBehaviour
             case musicLvl.call:
                 selectedClips = callBg;
                 break;
+            case musicLvl.walk:
+                selectedClips = footSteps;
+                break;
             default:
                 Debug.LogError("music selection error, playing fallback");
                 selectedClips = labMusic;
@@ -115,7 +119,7 @@ public class audioManager : MonoBehaviour
         {
             if (selectedClips.Length == 1) // if there is just one song, play the one song
             {
-                Debug.Log("yeah happening");
+                // Debug.Log("yeah happening");
                 trackNumber = 0;
             }
             else // otherwise check for repeats
@@ -144,21 +148,33 @@ public class audioManager : MonoBehaviour
     }
 
     [Header("sfx clips")]
+    public AudioClip[] footSteps;
     public AudioClip[] deathImpale;
     public AudioClip[] callBg; // actually just one. but idk easier to input into existing music looping system
     public AudioClip[] callAdvance;
     public AudioClip[] callEnd;
 
-    public void playSfx(AudioClip clip)
+    /* public void playPlayerSfx(AudioClip clip)
     {
-        sfxSource.PlayOneShot(clip);
-        Debug.LogWarning("playing sound effect: " + clip.name);
-    }
-    public void playSfx(AudioClip[] clips)
+        if (!sfxSource.isPlaying)
+        {
+            sfxSource.PlayOneShot(clip);
+            // sfxSource.clip = clip;
+            // sfxSource.Play();
+
+            Debug.LogWarning("playing sound effect: " + clip.name);
+        }
+    } */
+    public void playSfx(AudioSource source, AudioClip[] clips)
     {
-        int rnd = UnityEngine.Random.Range(0, clips.Length);
-        sfxSource.PlayOneShot(clips[rnd]);
-        Debug.LogWarning("playing sound effect: " + clips[rnd].name);
+        if (!source.isPlaying && clips.Length > 0)
+        {
+            int rnd = UnityEngine.Random.Range(0, clips.Length);
+
+            source.PlayOneShot(clips[rnd]);
+
+            Debug.LogWarning("playing sound effect: " + clips[rnd].name);
+        }
     }
 
     // 🎚 Set music volume
@@ -173,7 +189,8 @@ public class audioManager : MonoBehaviour
     public void SetSFXVolume(float volume)
     {
         sfxVolume = volume;
-        sfxSource.volume = sfxVolume;
+        playerSfxSource.volume = sfxVolume;
+        environmentSfxSource.volume = sfxVolume;
         PlayerPrefs.SetFloat("SFXvolume", sfxVolume);
     }
 
@@ -182,8 +199,10 @@ public class audioManager : MonoBehaviour
     {
         musicVolume = PlayerPrefs.GetFloat("musicVolume", 1f);
         sfxVolume = PlayerPrefs.GetFloat("SFXvolume", 1f);
+
         musicSource.volume = musicVolume;
-        sfxSource.volume = sfxVolume;
+        playerSfxSource.volume = sfxVolume;
+        environmentSfxSource.volume = sfxVolume;
     }
 }
 /* //? for sliders
