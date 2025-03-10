@@ -7,8 +7,9 @@ public class SaveData
     public List<item> itemsSaveList;
     public List<item> missionSaveList;
     // public int currentMission;
-    public missionSO currentMission;
-    public missionSO deathMission;
+    // public missionSO currentMission;
+    public int currentMission;
+    // public missionSO deathMission;
     public int missionCall;
     public int deathCall;
 }
@@ -48,11 +49,13 @@ public class saveManager : MonoBehaviour
         Debug.Log("saving lab inv");
         SaveData data = new SaveData();
 
+        // inventories
         data.itemsSaveList = menuManager.inventoryManager.labInventory;
         data.missionSaveList = menuManager.inventoryManager.missionInventory;
-        data.currentMission = missionManager.allMissions[missionManager.currentMission];
-        // data.currentMission = missionManager.currentMission;
-        data.deathMission = missionManager.deathMission;
+
+        // missions + calls
+        // data.currentMission = missionManager.allMissions[missionManager.currentMission];
+        data.currentMission = missionManager.currentMission;
         data.missionCall = missionManager.allMissions[missionManager.currentMission].currentCall;
         data.deathCall = missionManager.deathMission.currentCall;
 
@@ -61,12 +64,11 @@ public class saveManager : MonoBehaviour
 
         PlayerPrefs.Save();
 
-        Debug.LogError($"saving: last mission: {missionManager.currentMission}, last mission call   {missionManager.allMissions[missionManager.currentMission].currentCall}, death mission call: {missionManager.deathMission.currentCall}");
+        Debug.LogError($"saved: last mission: {missionManager.currentMission}, last mission call: {missionManager.allMissions[missionManager.currentMission].currentCall}, last death mission call: {missionManager.deathMission.currentCall}");
     }
 
     void load()
     {
-        // Debug.Log("loading lab inv");
         // if (!PlayerPrefs.HasKey(saveKeyString)) return;
 
         string json = PlayerPrefs.GetString(saveKeyString);
@@ -76,25 +78,34 @@ public class saveManager : MonoBehaviour
         if (!PlayerPrefs.HasKey(saveKeyString))
         {
             Debug.Log("no save present! creating empty save");
-            menuManager.inventoryManager.labInventory = new List<item>();
-            menuManager.inventoryManager.missionInventory = new List<item>();
-            missionManager.allMissions[missionManager.currentMission] = missionManager.allMissions[0];
-            //! ??
-            missionManager.deathMission.currentCall = 0;
-            missionManager.allMissions[missionManager.currentMission].currentCall = 0;
+
+            // inventories
+            menuManager.inventoryManager.resetInventories();
+            // menuManager.inventoryManager.labInventory = new List<item>();
+            // menuManager.inventoryManager.missionInventory = new List<item>();
+
+            // missions + calls
+            missionManager.restartMissions();
+            // missionManager.allMissions[missionManager.currentMission] = missionManager.allMissions[0];
+            // missionManager.deathMission.currentCall = 0;
+            // missionManager.allMissions[missionManager.currentMission].currentCall = 0;
         }
         else
         {
+            // inventories
             menuManager.inventoryManager.labInventory = data.itemsSaveList;
             menuManager.inventoryManager.missionInventory = data.missionSaveList;
-            // missionManager.currentMission = data.currentMission;
-            missionManager.allMissions[missionManager.currentMission] = data.currentMission;
+
+            // missions + calls
+            // missionManager.allMissions[missionManager.currentMission] = data.currentMission;
+            missionManager.currentMission = data.currentMission;
             missionManager.deathMission.currentCall = missionManager.allMissions[missionManager.currentMission].currentCall;
-            missionManager.allMissions[missionManager.currentMission].currentCall = data.missionCall;
-            missionManager.deathMission = data.deathMission;
+            // missionManager.allMissions[missionManager.currentMission].currentCall = data.missionCall;
+            // missionManager.deathMission = data.deathMission;
             missionManager.deathMission.currentCall = data.deathCall;
         }
-        Debug.LogError($"last mission: {missionManager.currentMission}, call {missionManager.allMissions[missionManager.currentMission].currentCall}, death mission call: {missionManager.deathMission.currentCall}");
+
+        Debug.LogError($"loaded: last mission: {missionManager.currentMission}, call {missionManager.allMissions[missionManager.currentMission].currentCall}, death mission call: {missionManager.deathMission.currentCall}");
         Debug.LogWarning("what about eq inv?");
     }
 }

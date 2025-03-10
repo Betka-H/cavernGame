@@ -22,8 +22,8 @@ public class debugConsole : MonoBehaviour
 
 	void Start()
 	{
-		// Debug.LogWarning("console should not be active at start"); //!
-		// toggleConsole(true); //!
+		// Debug.LogWarning("console should not be active at start");
+		// toggleConsole(true);
 
 		loadCommands();
 	}

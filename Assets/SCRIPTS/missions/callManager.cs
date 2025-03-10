@@ -57,7 +57,7 @@ public class callManager : MonoBehaviour
     {
         Debug.Log($"ending call.");
         //! temp
-        // currentMissionCall().callEndEvent.Invoke();
+        currentMissionCall().callEndEvent.Invoke();
         if (selectedMission.currentCall < selectedMission.calls.Length)
         {
             Debug.Log("setting next call");

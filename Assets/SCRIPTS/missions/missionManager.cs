@@ -8,7 +8,7 @@ public class missionManager : MonoBehaviour
     public missionSO deathMission;
     menuManager menuManager;
 
-    [HideInInspector] public int currentMission = 0;
+    [HideInInspector] public int currentMission;
 
     void Awake()
     {
@@ -19,6 +19,11 @@ public class missionManager : MonoBehaviour
     {
         // Debug.Log($"current mission: {currentMission}");
         // Debug.Log($"current call: {allMissions[currentMission].currentCall}");
+    }
+
+    void Update()
+    {
+        // Debug.Log(currentMission);
     }
 
     public void checkMissionItems()
@@ -34,14 +39,14 @@ public class missionManager : MonoBehaviour
     public void endMission()
     {
         //! temp
-        // allMissions[currentMission].missionEndEvent.Invoke();
+        allMissions[currentMission].missionEndEvent.Invoke();
         newMission();
     }
 
     void newMission()
     {
         Debug.Log("new mission!");
-        //! temp check for max missions!
+        //! todo check for max missions!
         currentMission++;
         allMissions[currentMission].currentCall = 0;
     }

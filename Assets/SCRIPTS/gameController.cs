@@ -121,7 +121,6 @@ public class gameController : MonoBehaviour
 	void destroyPlayer()
 	{
 		foreach (Transform child in playerParent.gameObject.GetComponentsInChildren<Transform>())
-		//! the thing is also considered a child so only delete the children on the children if that makes sense (no it does not. fucj the naming on this one)
 		{
 			if (child.CompareTag("player"))
 			{
@@ -237,6 +236,7 @@ public class gameController : MonoBehaviour
 				menuManager.callManager.startCall(currentMission); */
 
 			//! temp mission disable
+			//? ^^^ what??
 			missionSO currentMission = menuManager.callManager.currentMainMission();
 			if (currentMission.calls.Length > currentMission.currentCall) // to prevent looping the last message
 				menuManager.callManager.startCall(currentMission);

@@ -395,7 +395,6 @@ public class roomController : MonoBehaviour
 	void clearParent(Transform parent)
 	{
 		foreach (Transform child in parent.gameObject.GetComponentInChildren<Transform>())
-		//! the thing is also considered a child so only delete the children on the children if that makes sense (no it does not. fucj the naming on this one)
 		{
 			Destroy(child.gameObject); // destroy current room
 		}
