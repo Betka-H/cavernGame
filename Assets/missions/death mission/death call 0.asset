@@ -17,11 +17,9 @@ MonoBehaviour:
   - {fileID: -225499093, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
   - {fileID: -225499093, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
   - {fileID: -225499093, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
-  - {fileID: 0}
   speakerNames:
   - death
   - some guy idk
-  - yeah its. just some guy actually mb
   - yeah its. just some guy actually mb
   - yeah its. just some guy actually mb
   messages:
@@ -29,5 +27,7 @@ MonoBehaviour:
   - you fuckin died
   - but dont worry
   - weve got spares
-  - '[press r to restart]'
-  currentMessage: 0
+  currentMessage: 4
+  callEndEvent:
+    m_PersistentCalls:
+      m_Calls: []

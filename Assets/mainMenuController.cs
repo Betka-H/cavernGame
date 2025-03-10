@@ -6,9 +6,14 @@ public class mainMenuController : MonoBehaviour
     public Transform settingsMenu;
     public Transform creditsMenu;
 
+    audioManager audioManager;
+
     void Start()
     {
+        audioManager = FindObjectOfType<audioManager>();
+
         openMenu(mainMenu);
+        audioManager.playMusic(musicLvl.mainMenu);
     }
 
     void Update()

@@ -7,6 +7,7 @@ public class callManager : MonoBehaviour
     missionManager missionManager;
     menuManager menuManager;
     gameController gameController;
+    audioManager audioManager;
 
     void Awake()
     {
@@ -14,6 +15,8 @@ public class callManager : MonoBehaviour
         callScreen = FindObjectOfType<callScreen>();
         missionManager = FindObjectOfType<missionManager>();
         menuManager = FindObjectOfType<menuManager>();
+        audioManager = FindObjectOfType<audioManager>();
+
         gameController.isCalling = false;
     }
 
@@ -28,6 +31,7 @@ public class callManager : MonoBehaviour
             Debug.Log("starting call!");
 
             gameController.isCalling = true;
+            audioManager.playMusic(musicLvl.call);
 
             currentMissionCall().currentMessage = 0;
             callScreen.talk(currentMissionCall());
@@ -44,12 +48,16 @@ public class callManager : MonoBehaviour
 
         if (currentMissionCall().currentMessage + 1 < currentMissionCall().messages.Length)
         {
+            audioManager.playSfx(audioManager.callAdvance);
+
             currentMissionCall().currentMessage++;
             callScreen.talk(currentMissionCall());
         }
         else
         {
-            Debug.Log($"no more messages!");
+            Debug.Log($"no more messages in call!");
+
+            audioManager.playSfx(audioManager.callEnd); // here, otherwise plays end call even in empty calls
             endCall();
         }
     }
@@ -66,6 +74,8 @@ public class callManager : MonoBehaviour
         }
         menuManager.toggleCallScreen();
         gameController.isCalling = false;
+
+        audioManager.playMusic(audioManager.prevMusicLvl);
     }
 
     /* public void startMissionCall()

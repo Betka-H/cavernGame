@@ -2,7 +2,7 @@ using System.Collections;
 using System;
 using UnityEngine;
 
-public enum musicLvl { labRegular, caveRegular, caveEscape, death }
+public enum musicLvl { labRegular, caveRegular, caveEscape, death, mainMenu, call }
 
 // chatgpt
 public class audioManager : MonoBehaviour
@@ -21,7 +21,7 @@ public class audioManager : MonoBehaviour
         Debug.LogError($"credit sound sources!!!");
         Debug.LogError($"also delete unused cause these files are huuuuge");
 
-        if (instance == null)
+        /* if (instance == null)
         {
             instance = this;
             DontDestroyOnLoad(gameObject); // Keep this object across scenes //? yeah okay
@@ -30,7 +30,7 @@ public class audioManager : MonoBehaviour
         {
             Destroy(gameObject);
             return;
-        }
+        } */
 
         LoadVolumeSettings();
     }
@@ -55,25 +55,38 @@ public class audioManager : MonoBehaviour
     } */
 
     AudioClip[] selectedClips;
+    [HideInInspector] public musicLvl prevMusicLvl;
     public void playMusic(musicLvl lvl)
     {
+        Debug.Log($"trying to play {lvl}");
         switch (lvl)
         {
             case musicLvl.labRegular:
                 // playMusic(labMusic);
                 selectedClips = labMusic;
+                prevMusicLvl = musicLvl.labRegular;
                 break;
             case musicLvl.caveRegular:
                 // playMusic(caveMusicRegular);
                 selectedClips = caveMusicRegular;
+                prevMusicLvl = musicLvl.caveRegular;
                 break;
             case musicLvl.caveEscape:
                 // playMusic(caveMusicEscape);
                 selectedClips = caveMusicEscape;
+                prevMusicLvl = musicLvl.caveEscape;
                 break;
             case musicLvl.death:
                 // playMusic(caveMusicEscape);
                 selectedClips = deathMusic;
+                prevMusicLvl = musicLvl.death;
+                break;
+            case musicLvl.mainMenu:
+                selectedClips = mainMenuMusic;
+                prevMusicLvl = musicLvl.mainMenu;
+                break;
+            case musicLvl.call:
+                selectedClips = callBg;
                 break;
             default:
                 Debug.LogError("music selection error, playing fallback");
@@ -88,45 +101,64 @@ public class audioManager : MonoBehaviour
     public AudioClip[] caveMusicRegular;
     public AudioClip[] caveMusicEscape;
     public AudioClip[] deathMusic;
+    public AudioClip[] mainMenuMusic;
+
     int prevTrackNumber = -1;
     int trackNumber = -1;
     void playMusic()
     {
         musicSource.Stop();
+        CancelInvoke("playMusic");
 
         // select random track
-        if (selectedClips.Length < 2) // if there is just one song, play the one song
+        if (selectedClips.Length > 0) // (but only if there are clips lol) (just in case)
         {
-            trackNumber = 0;
-        }
-        else // otherwise check for repeats
-        {
-            while (trackNumber == prevTrackNumber)
+            if (selectedClips.Length == 1) // if there is just one song, play the one song
             {
-                trackNumber = UnityEngine.Random.Range(0, selectedClips.Length);
-                if (trackNumber == prevTrackNumber)
+                Debug.Log("yeah happening");
+                trackNumber = 0;
+            }
+            else // otherwise check for repeats
+            {
+                while (trackNumber == prevTrackNumber)
                 {
-                    // Debug.Log("skipping track " + trackNumber);
+                    trackNumber = UnityEngine.Random.Range(0, selectedClips.Length);
+                    if (trackNumber == prevTrackNumber)
+                    {
+                        // Debug.Log("skipping track " + trackNumber);
+                    }
                 }
             }
+
+            // define clip
+            musicSource.clip = selectedClips[trackNumber]; // select the clip
+            prevTrackNumber = Array.IndexOf(selectedClips, musicSource.clip); // set clip as previous track
+
+            // play + repeat
+            musicSource.Play();
+            Invoke("playMusic", musicSource.clip.length); // when its done, play again
+
+            // log
+            Debug.LogWarning("playing music track " + trackNumber + ": " + musicSource.clip.name);
         }
-
-        // define clip
-        musicSource.clip = selectedClips[trackNumber]; // select the clip
-        prevTrackNumber = Array.IndexOf(selectedClips, musicSource.clip); // set clip as previous track
-
-        // play + repeat
-        musicSource.Play();
-        Invoke("playMusic", musicSource.clip.length); // when its done, play again
-
-        // log
-        Debug.LogWarning("playing music track " + trackNumber + ": " + musicSource.clip.name);
     }
 
-    // 🔊 Play a sound effect
-    public void PlaySFX(AudioClip clip)
+    [Header("sfx clips")]
+    public AudioClip[] deathImpale;
+    public AudioClip[] callBg; // actually just one. but idk easier to input into existing music looping system
+    public AudioClip[] callAdvance;
+    public AudioClip[] callEnd;
+
+    public void playSfx(AudioClip clip)
     {
-        sfxSource.PlayOneShot(clip, sfxVolume);
+        sfxSource.PlayOneShot(clip);
+        Debug.LogWarning("playing sound effect: " + clip.name);
+    }
+    public void playSfx(AudioClip[] clips)
+    {
+        int rnd = UnityEngine.Random.Range(0, clips.Length);
+        sfxSource.PlayOneShot(clips[rnd]);
+        Debug.LogWarning("playing sound effect: " + clips[rnd].name);
     }
 
     // 🎚 Set music volume
@@ -134,7 +166,7 @@ public class audioManager : MonoBehaviour
     {
         musicVolume = volume;
         musicSource.volume = musicVolume;
-        PlayerPrefs.SetFloat("MusicVolume", musicVolume);
+        PlayerPrefs.SetFloat("musicVolume", musicVolume);
     }
 
     // 🎚 Set SFX volume
@@ -142,23 +174,18 @@ public class audioManager : MonoBehaviour
     {
         sfxVolume = volume;
         sfxSource.volume = sfxVolume;
-        PlayerPrefs.SetFloat("SFXVolume", sfxVolume);
+        PlayerPrefs.SetFloat("SFXvolume", sfxVolume);
     }
 
     // 💾 Load saved volume settings
     private void LoadVolumeSettings()
     {
-        musicVolume = PlayerPrefs.GetFloat("MusicVolume", 1f);
-        sfxVolume = PlayerPrefs.GetFloat("SFXVolume", 1f);
+        musicVolume = PlayerPrefs.GetFloat("musicVolume", 1f);
+        sfxVolume = PlayerPrefs.GetFloat("SFXvolume", 1f);
         musicSource.volume = musicVolume;
         sfxSource.volume = sfxVolume;
     }
 }
-/* //? play from other
-AudioManager.instance.PlaySFX(mySoundEffect);
-AudioManager.instance.PlayMusic(myBackgroundTrack);
-
-  */
 /* //? for sliders
 public void OnMusicSliderChange(float value)
 {

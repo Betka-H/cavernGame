@@ -7396,42 +7396,44 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sfxSource: {fileID: 533903207}
   musicSource: {fileID: 1561034441}
+  prevMusicLvl: 0
   labMusic:
-  - {fileID: 8300000, guid: 74418c5498eceda41a9bae7849eb7b66, type: 3}
+  - {fileID: 8300000, guid: 52f41d9a106b4c046bd6a90407d78216, type: 3}
+  - {fileID: 8300000, guid: 9165b0ad7c701b142920ede6378b733f, type: 3}
+  - {fileID: 8300000, guid: 99239f04271984f409ebde0a4c6b8c01, type: 3}
   caveMusicRegular:
-  - {fileID: 8300000, guid: 5b635e173983f064b81e7da24aaaf431, type: 3}
-  - {fileID: 8300000, guid: 1d883a702a97e8f42aa7e54cd697512c, type: 3}
-  - {fileID: 8300000, guid: f69f73b84c4bbb445944f08fbe898b60, type: 3}
-  - {fileID: 8300000, guid: 91b4b3e12ba4bb14393ffd87f814c84b, type: 3}
-  - {fileID: 8300000, guid: 8a4b6a3b856c3084594a40a3dfbd5460, type: 3}
-  - {fileID: 8300000, guid: 8f42a3ee11ae22b4399bf0f637e55def, type: 3}
-  - {fileID: 8300000, guid: b41ed07f466a4ac48b31733f6edf4625, type: 3}
-  - {fileID: 8300000, guid: 5170690ec5460284eb57489ce0eb5fb3, type: 3}
-  - {fileID: 8300000, guid: 0698d3331fab4294ba54bc70b6ab1b8f, type: 3}
-  - {fileID: 8300000, guid: b49edba57b0b9ad4faa9864c61ab4835, type: 3}
-  - {fileID: 8300000, guid: 8770247ce47c8514da2a415ee1ce0bbb, type: 3}
-  - {fileID: 8300000, guid: cdeab394056dbd74187edf70e93d35db, type: 3}
-  - {fileID: 8300000, guid: 8c30ec6ec25446842ba9a0a0830385a6, type: 3}
-  - {fileID: 8300000, guid: d5ffc16890fdf7d4f9faabe3fbf519b9, type: 3}
-  - {fileID: 8300000, guid: 74418c5498eceda41a9bae7849eb7b66, type: 3}
-  - {fileID: 8300000, guid: 27b9c5c627cf2194fa44ed1c96e748e3, type: 3}
-  - {fileID: 8300000, guid: cacfc5bb0f422ab4983a10c46b1df906, type: 3}
-  - {fileID: 8300000, guid: ab6c168224ce3794a84adc2c639ee3f3, type: 3}
-  - {fileID: 8300000, guid: 4482d720805899b4c9a5708ca39cfca2, type: 3}
-  - {fileID: 8300000, guid: f2c1056c99fc7544e85c0bc90103a775, type: 3}
-  - {fileID: 8300000, guid: 6783b99455d63a549b5c889f6a8d84fd, type: 3}
-  - {fileID: 8300000, guid: 7f11e339bd52d8e4c8d3678f0a7ab298, type: 3}
-  - {fileID: 8300000, guid: 2cdb113e2dfc43348b7622f9b50c5adb, type: 3}
-  - {fileID: 8300000, guid: ea2ce252c3b696e44ad0daafcbe1f072, type: 3}
-  - {fileID: 8300000, guid: 3797b7d891aaf5e438d798f95c4fd3e9, type: 3}
-  - {fileID: 8300000, guid: 4ef537b0c0aa69444ad6767879f7e7b0, type: 3}
-  - {fileID: 8300000, guid: 2dfcabc4423611244bff4cc1b2d6e942, type: 3}
+  - {fileID: 8300000, guid: b1ac32630086a8d4cba7f34e0447a3ab, type: 3}
+  - {fileID: 8300000, guid: 33cce7f1204379f4b9f4ec630c761d72, type: 3}
+  - {fileID: 8300000, guid: b8427a9a507238a44b567ec93ef988c7, type: 3}
+  - {fileID: 8300000, guid: 0d293f1138f8565459bd0cccef9888bb, type: 3}
+  - {fileID: 8300000, guid: 54f5ac504801c824f926c0dfef1a45b1, type: 3}
+  - {fileID: 8300000, guid: ab490bb7715565048bc3d25bc533f189, type: 3}
+  - {fileID: 8300000, guid: a942f41d3491e51498605e5411dd1494, type: 3}
   caveMusicEscape:
   - {fileID: 8300000, guid: c72b79d27ee6c564b863496820ef9059, type: 3}
   - {fileID: 8300000, guid: f0a443f97414af4489d52cbcc75b6b36, type: 3}
   - {fileID: 8300000, guid: eda56b9dfa0abf641b46d3ea1d772e62, type: 3}
   - {fileID: 8300000, guid: 3459fe979c08bee49a96fcffe8e11270, type: 3}
-  deathMusic: []
+  - {fileID: 8300000, guid: c72b79d27ee6c564b863496820ef9059, type: 3}
+  - {fileID: 8300000, guid: f0a443f97414af4489d52cbcc75b6b36, type: 3}
+  - {fileID: 8300000, guid: eda56b9dfa0abf641b46d3ea1d772e62, type: 3}
+  - {fileID: 8300000, guid: 3459fe979c08bee49a96fcffe8e11270, type: 3}
+  deathMusic:
+  - {fileID: 8300000, guid: ae048e1814f33894088de2ea6da8a4f9, type: 3}
+  mainMenuMusic: []
+  deathImpale:
+  - {fileID: 8300000, guid: 315f305a9769d3b4aab9fd52c0416b66, type: 3}
+  - {fileID: 8300000, guid: accecbcc72b4b6a49b3d4e73570a687b, type: 3}
+  - {fileID: 8300000, guid: 20e567324c8bfc6408b9abba0dafc5a6, type: 3}
+  - {fileID: 8300000, guid: 378e0ad5b3749324a89043ae588e400b, type: 3}
+  callBg:
+  - {fileID: 8300000, guid: 7a0bc448df3cb6644aaf2a59b913f522, type: 3}
+  callAdvance:
+  - {fileID: 8300000, guid: eb743c646d3a3424195d68bfefb9aee2, type: 3}
+  - {fileID: 8300000, guid: ac16ea2a9b106dd488641a77980619c9, type: 3}
+  - {fileID: 8300000, guid: 7dac6de4cb4cef045b8a50f7e8b1068f, type: 3}
+  callEnd:
+  - {fileID: 8300000, guid: b22d0f59804f09c4a8bb76a5148c7f76, type: 3}
 --- !u!1 &810678195
 GameObject:
   m_ObjectHideFlags: 0
