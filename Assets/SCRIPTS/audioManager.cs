@@ -10,17 +10,18 @@ public class audioManager : MonoBehaviour
     public static audioManager instance;
 
     [Header("Audio Sources")]
-    public AudioSource musicSource; // For background music
-    public AudioSource playerSfxSource;   // For sound effects
-    public AudioSource environmentSfxSource;   // For sound effects
+    public AudioSource musicSource;
+    public AudioSource playerSfxSource;
+    public AudioSource environmentSfxSource;
+    public AudioSource uiSfxSource;
 
     private float musicVolume = 1f;
     private float sfxVolume = 1f;
 
     void Awake()
     {
-        Debug.LogWarning($"credit sound sources!!!");
-        Debug.LogWarning($"also delete unused cause these files are huuuuge");
+        //! check Debug.LogWarning($"credit sound sources!!!");
+        //! check Debug.LogWarning($"also delete unused cause these files are huuuuge");
 
         /* if (instance == null)
         {
@@ -153,6 +154,8 @@ public class audioManager : MonoBehaviour
     public AudioClip[] callBg; // actually just one. but idk easier to input into existing music looping system
     public AudioClip[] callAdvance;
     public AudioClip[] callEnd;
+    public AudioClip[] uiButtonMouseover;
+    public AudioClip[] uiButtonClick;
 
     /* public void playPlayerSfx(AudioClip clip)
     {
@@ -165,9 +168,9 @@ public class audioManager : MonoBehaviour
             Debug.LogWarning("playing sound effect: " + clip.name);
         }
     } */
-    public void playSfx(AudioSource source, AudioClip[] clips)
+    public void playSfx(AudioSource source, AudioClip[] clips, bool allowMultiple)
     {
-        if (!source.isPlaying && clips.Length > 0)
+        if ((!source.isPlaying || allowMultiple) && clips.Length > 0)
         {
             int rnd = UnityEngine.Random.Range(0, clips.Length);
 
@@ -175,6 +178,7 @@ public class audioManager : MonoBehaviour
 
             Debug.LogWarning("playing sound effect: " + clips[rnd].name);
         }
+        // else Debug.LogError($"no clip assigned or banning multiple");
     }
 
     // 🎚 Set music volume
@@ -191,6 +195,7 @@ public class audioManager : MonoBehaviour
         sfxVolume = volume;
         playerSfxSource.volume = sfxVolume;
         environmentSfxSource.volume = sfxVolume;
+        uiSfxSource.volume = sfxVolume;
         PlayerPrefs.SetFloat("SFXvolume", sfxVolume);
     }
 
@@ -200,9 +205,12 @@ public class audioManager : MonoBehaviour
         musicVolume = PlayerPrefs.GetFloat("musicVolume", 1f);
         sfxVolume = PlayerPrefs.GetFloat("SFXvolume", 1f);
 
+        // music
         musicSource.volume = musicVolume;
+        // sfx
         playerSfxSource.volume = sfxVolume;
         environmentSfxSource.volume = sfxVolume;
+        uiSfxSource.volume = sfxVolume;
     }
 }
 /* //? for sliders
