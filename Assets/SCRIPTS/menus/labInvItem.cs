@@ -23,4 +23,11 @@ public class labInvItem : invItem
 		assignedAmount = amount;
 		amountTextDisp.text = assignedAmount.ToString();
 	}
+	public void assignItem(item it, int hasAmount, int neededAmount)
+	{
+		base.assignItem(it);
+		// assignedAmount = amount;
+		// amountTextDisp.text = assignedAmount.ToString();
+		amountTextDisp.text = $"{hasAmount} / {neededAmount}";
+	}
 }

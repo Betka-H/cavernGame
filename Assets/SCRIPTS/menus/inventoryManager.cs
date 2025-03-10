@@ -24,7 +24,7 @@ public class inventoryManager : MonoBehaviour
 		// Debug.Log("starting invenmanager");
 		inventoryDefinitions = FindObjectOfType<inventoryDefinitions>();
 
-		// tempInv();
+		tempInv();
 	}
 
 	void tempInv()
@@ -53,6 +53,9 @@ public class inventoryManager : MonoBehaviour
 	inventoryDefinitions.scrapPickaxe,
 	inventoryDefinitions.scrapPickaxe,
 	inventoryDefinitions.scrapBackpack,
+	inventoryDefinitions.backpack,
+	inventoryDefinitions.backpack,
+	inventoryDefinitions.backpack,
 	inventoryDefinitions.pickaxe,
 	inventoryDefinitions.pickaxe,
 	inventoryDefinitions.nightVisionGoggles,

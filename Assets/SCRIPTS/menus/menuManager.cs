@@ -152,12 +152,10 @@ public class menuManager : MonoBehaviour
             {
                 // menuOpen = null;
                 Time.timeScale = 1;
-                Debug.Log("ts 1");
             }
             else
             {
                 Time.timeScale = 0;
-                Debug.Log("ts 0");
             }
             // Debug.Log("esc");
         }
@@ -168,11 +166,14 @@ public class menuManager : MonoBehaviour
         // if (!anotherMenuOpen && !escMenu.gameObject.activeSelf)
         // if (!escMenu.gameObject.activeSelf)
         {// menuOpen = openMenu.call;
-            bool onOff = toggleMenu(callScreen.gameObject);
-            // bool onOff = !callScreen.gameObject.activeSelf;
+         // bool onOff = toggleMenu(callScreen.gameObject);
+            bool onOff = !callScreen.gameObject.activeSelf;
+            if (!onOff)
+                Time.timeScale = 1;
+            else Time.timeScale = 0;
 
             toggleCallMenu(onOff);
-            anotherMenuOpen = onOff;
+            // anotherMenuOpen = onOff;
         }
     }
     public void toggleCaveGameplayMenuScreen()
@@ -283,15 +284,15 @@ public class menuManager : MonoBehaviour
         {
             // menuOpen = null;
             Time.timeScale = 1;
-            Debug.Log("ts 1");
+            // Debug.Log("ts 1");
         }
         else
         {
             Time.timeScale = 0;
-            Debug.Log("ts 0");
+            // Debug.Log("ts 0");
         }
 
-        Debug.Log($"menu opne: {anotherMenuOpen}");
+        // Debug.Log($"menu opne: {anotherMenuOpen}");
 
         return onOff;
     }

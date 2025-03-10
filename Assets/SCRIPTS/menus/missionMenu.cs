@@ -31,7 +31,7 @@ public class missionMenu : MonoBehaviour
 
         txtTitle.text = mission.missionTitle;
         txtDescription.text = mission.missionDescription;
-        // requiredItemsMenu.refreshItems(requiredItemsMenu.regularSlots, menuManager.inventoryManager.missionInventory);
-        requiredItemsMenu.refreshItems(requiredItemsMenu.regularSlots, missionManager.allMissions[missionManager.currentMission].requiredItems);
+        requiredItemsMenu.refreshItems(requiredItemsMenu.regularSlots, menuManager.inventoryManager.missionInventory);
+        // requiredItemsMenu.refreshItems(requiredItemsMenu.regularSlots, missionManager.allMissions[missionManager.currentMission].requiredItems);
     }
 }

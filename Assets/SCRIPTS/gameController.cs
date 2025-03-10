@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class gameController : MonoBehaviour
 {
@@ -17,12 +18,18 @@ public class gameController : MonoBehaviour
 	menuManager menuManager;
 	callManager callManager;
 
+	[HideInInspector] public bool isCalling;
+
 	interactionTooltip interactionTooltip;
+
+	inventoryManager inventoryManager;
+	saveManager saveManager;
 
 	public enum level { lab, cavern };
 
 	void Start()
 	{
+		saveManager = FindObjectOfType<saveManager>();
 		roomController = FindObjectOfType<roomController>();
 		interactionTooltip = FindObjectOfType<interactionTooltip>(true);
 		menuManager = FindObjectOfType<menuManager>();
@@ -50,7 +57,7 @@ public class gameController : MonoBehaviour
 		} */
 		if (Input.GetKeyDown(KeyCode.R))
 		{
-			if (isDead)
+			if (isDead && !isCalling)
 			{
 				menuManager.hideMenus();
 				genAndSpawn(level.lab);
@@ -62,13 +69,23 @@ public class gameController : MonoBehaviour
 		} */
 	}
 
+	public void saveAndGoToMainMenu()
+	{
+		saveManager.save();
+		SceneManager.LoadScene(0);
+	}
+
 	public void resetEvent()
 	{
-		genAndSpawn(level.lab);
+		// genAndSpawn(level.lab);
+		missionManager.restartMissions();
+		inventoryManager.resetInventories();
+		saveAndGoToMainMenu();
 	}
 
 	public void genAndSpawn(level lvl)
 	{
+		clearMenus();
 		spawnPlayer(lvl);
 		roomController.generateLevel(lvl);
 	}

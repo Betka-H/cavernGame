@@ -6,9 +6,11 @@ public class callManager : MonoBehaviour
     [HideInInspector] public callScreen callScreen;
     missionManager missionManager;
     menuManager menuManager;
+    gameController gameController;
 
     void Awake()
     {
+        gameController = FindObjectOfType<gameController>();
         callScreen = FindObjectOfType<callScreen>();
         missionManager = FindObjectOfType<missionManager>();
         menuManager = FindObjectOfType<menuManager>();
@@ -32,6 +34,7 @@ public class callManager : MonoBehaviour
             Debug.Log("empty call!");
             endCall();
         }
+        gameController.isCalling = true;
     }
     public void advanceCall()
     {
@@ -60,6 +63,7 @@ public class callManager : MonoBehaviour
             // Debug.Log($"next m is {selectedMission.calls[selectedMission.currentCall]}");
         }
         menuManager.toggleCallScreen();
+        gameController.isCalling = false;
     }
 
     /* public void startMissionCall()

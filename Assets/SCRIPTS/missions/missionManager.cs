@@ -17,7 +17,8 @@ public class missionManager : MonoBehaviour
 
     void Start()
     {
-        Debug.Log($"current mission: {currentMission}");
+        // Debug.Log($"current mission: {currentMission}");
+        // Debug.Log($"current call: {allMissions[currentMission].currentCall}");
     }
 
     public void checkMissionItems()
