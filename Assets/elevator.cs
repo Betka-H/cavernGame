@@ -11,7 +11,7 @@ public class elevator : MonoBehaviour
 
     audioManager audioManager;
 
-    void Start()
+    void Awake()
     {
         audioManager = FindObjectOfType<audioManager>();
         // openDoors();

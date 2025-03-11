@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
 using UnityEngine;
@@ -286,10 +287,18 @@ public class gameController : MonoBehaviour
 			missionSO currentMission = menuManager.callManager.currentMainMission();
 			if (currentMission.calls.Length > currentMission.currentCall) // to prevent looping the last message
 				menuManager.callManager.startCall(currentMission);
+
+			StartCoroutine(WaitForCallToEndAndOpenDoors());
 		}
 
-		while (isCalling) { }
+		IEnumerator WaitForCallToEndAndOpenDoors()
+		{
+			while (isCalling)
+			{
+				yield return null;
+			}
 
-		getElevator().openDoors();
+			getElevator().openDoors();
+		}
 	}
 }
