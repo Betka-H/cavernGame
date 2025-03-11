@@ -52,7 +52,6 @@ public class elevator : MonoBehaviour
             else exitObj = GameObject.Find("cavern exit point");
 
             exitObj.GetComponent<tooltipCaller>().isExitPoint = true;
-            Debug.Log($"eo: {exitObj}");
         }
     }
 

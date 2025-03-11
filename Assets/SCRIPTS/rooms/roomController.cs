@@ -93,6 +93,7 @@ public class roomController : MonoBehaviour
 				clearParent(enclosureParent);
 				Instantiate(enclosure_walls_lab, enclosureParent);
 				generateLab(labFirst);
+				if (labFirst) labFirst = false;
 				break;
 			case gameController.level.cavern:
 				Instantiate(enclosure_walls_cave, enclosureParent);

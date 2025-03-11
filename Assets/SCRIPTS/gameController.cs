@@ -43,7 +43,7 @@ public class gameController : MonoBehaviour
 
 		roomController.labFirst = true;
 		genAndSpawn(level.lab);
-		roomController.labFirst = false;
+		// roomController.labFirst = false;
 
 		clearMenus();
 	}
@@ -232,6 +232,7 @@ public class gameController : MonoBehaviour
 			// menuManager.equipWorkstation.clearSlots();
 
 			isDead = true;
+			roomController.labFirst = true;
 		}
 		else
 		{
