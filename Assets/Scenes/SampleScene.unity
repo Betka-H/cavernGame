@@ -7611,7 +7611,7 @@ MonoBehaviour:
   uiButtonClick:
   - {fileID: 8300000, guid: f69f73b84c4bbb445944f08fbe898b60, type: 3}
   elevatorMove:
-  - {fileID: 8300000, guid: 88abb0f4c9981fc459b61870ee6a487f, type: 3}
+  - {fileID: 8300000, guid: bcef893422242ad48b0f27ad89c5c5b1, type: 3}
   elevatorDing:
   - {fileID: 8300000, guid: 01964300d449d364583b1491a28104c8, type: 3}
   elevatorOpen:

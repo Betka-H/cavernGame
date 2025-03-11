@@ -291,6 +291,7 @@ public class gameController : MonoBehaviour
 			StartCoroutine(WaitForCallToEndAndOpenDoors());
 		}
 
+		// chatgpt i guess
 		IEnumerator WaitForCallToEndAndOpenDoors()
 		{
 			while (isCalling)
