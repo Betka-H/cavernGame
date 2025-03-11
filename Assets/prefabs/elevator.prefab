@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8072533048029525694}
-  - component: {fileID: 6087440343747725943}
   m_Layer: 0
   m_Name: walls
   m_TagString: Untagged
@@ -38,18 +37,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!210 &6087440343747725943
-SortingGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1954886174145444950}
-  m_Enabled: 1
-  m_SortingLayerID: -1136890995
-  m_SortingLayer: -2
-  m_SortingOrder: 0
-  m_SortAtRoot: 0
 --- !u!1 &2423521746050324812
 GameObject:
   m_ObjectHideFlags: 0
@@ -108,7 +95,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.58431375}
+  m_Color: {r: 0.40873086, g: 0.5188679, b: 0.48760208, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -182,7 +169,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
+  m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: -1136890995
@@ -264,7 +251,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.58431375}
+  m_Color: {r: 0.40873086, g: 0.5188679, b: 0.48760208, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -493,6 +480,10 @@ PrefabInstance:
       value: 0.6273585
       objectReference: {fileID: 0}
     - target: {fileID: 2985325214838514777, guid: 4e021b43ca5214f4ea4af938ffc8dad4, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2985325214838514777, guid: 4e021b43ca5214f4ea4af938ffc8dad4, type: 3}
       propertyPath: m_SortingLayer
       value: 0
       objectReference: {fileID: 0}
@@ -581,6 +572,10 @@ PrefabInstance:
     - target: {fileID: 2985325214838514777, guid: 4e021b43ca5214f4ea4af938ffc8dad4, type: 3}
       propertyPath: m_Color.r
       value: 0.6273585
+      objectReference: {fileID: 0}
+    - target: {fileID: 2985325214838514777, guid: 4e021b43ca5214f4ea4af938ffc8dad4, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2985325214838514777, guid: 4e021b43ca5214f4ea4af938ffc8dad4, type: 3}
       propertyPath: m_SortingLayer
