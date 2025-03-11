@@ -137,7 +137,7 @@ public class gameController : MonoBehaviour
 		roomController.player = player.GetComponent<Transform>();
 
 		checkShoes();
-		Debug.LogWarning("shoes???");
+		// Debug.LogWarning("shoes???");
 	}
 	void checkShoes()
 	{

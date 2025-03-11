@@ -74,7 +74,7 @@ public class elevator : MonoBehaviour
 
         resetDoorsToClosed();
 
-        Debug.Log("opening doors");
+        // Debug.Log("opening doors");
         // Debug.LogWarning($"is first: {isFirst}");
         // CancelInvoke();
         // closeDoors(true);
@@ -113,7 +113,7 @@ public class elevator : MonoBehaviour
     {
         if (!isAwake) Awake();
 
-        Debug.Log("closing doors");
+        // Debug.Log("closing doors");
         openDoors(true);
 
         walls.gameObject.SetActive(true);
@@ -147,7 +147,7 @@ public class elevator : MonoBehaviour
 
     void resetDoorsToClosed()
     {
-        Debug.Log("resetting doors to closed");
+        // Debug.Log("resetting doors to closed");
 
         StopAllCoroutines();
         doorL.position = doorLStartPos;
