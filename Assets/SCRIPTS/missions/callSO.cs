@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -10,5 +11,14 @@ public class callSO : ScriptableObject
     [TextArea]
     public string[] messages;
     [HideInInspector] public int currentMessage = 0;
-    public UnityEvent callEndEvent;
+    // public UnityEvent callEndEvent;
+
+    [System.Serializable]
+    public struct endEventValue
+    {
+        public string objName;
+        public string methodName;
+    }
+
+    public List<endEventValue> endEventValuesList;
 }

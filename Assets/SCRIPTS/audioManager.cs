@@ -140,6 +140,9 @@ public class audioManager : MonoBehaviour
     public AudioClip[] callEnd;
     public AudioClip[] uiButtonMouseover;
     public AudioClip[] uiButtonClick;
+    public AudioClip[] elevatorMove;
+    public AudioClip[] elevatorDing;
+    public AudioClip[] elevatorOpen;
 
     public void playSfx(AudioSource source, AudioClip[] clips, bool allowOverlap)
     {

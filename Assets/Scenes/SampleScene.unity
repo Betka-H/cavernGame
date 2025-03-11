@@ -7610,6 +7610,12 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 1d883a702a97e8f42aa7e54cd697512c, type: 3}
   uiButtonClick:
   - {fileID: 8300000, guid: f69f73b84c4bbb445944f08fbe898b60, type: 3}
+  elevatorMove:
+  - {fileID: 8300000, guid: 88abb0f4c9981fc459b61870ee6a487f, type: 3}
+  elevatorDing:
+  - {fileID: 8300000, guid: 01964300d449d364583b1491a28104c8, type: 3}
+  elevatorOpen:
+  - {fileID: 8300000, guid: 4a0eb26427289a14ea5c7098cea272e7, type: 3}
 --- !u!1 &810678195
 GameObject:
   m_ObjectHideFlags: 0

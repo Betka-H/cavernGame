@@ -237,6 +237,15 @@ public class gameController : MonoBehaviour
 		}
 	}
 
+	public void testMethod()
+	{
+		Debug.LogWarning("test");
+	}
+
+	elevator getElevator()
+	{
+		return FindObjectOfType<elevator>();
+	}
 	public void leaveCavern()
 	{
 		Debug.Log("byyye deadly cavern");
@@ -278,5 +287,9 @@ public class gameController : MonoBehaviour
 			if (currentMission.calls.Length > currentMission.currentCall) // to prevent looping the last message
 				menuManager.callManager.startCall(currentMission);
 		}
+
+		while (isCalling) { }
+
+		getElevator().openDoors();
 	}
 }

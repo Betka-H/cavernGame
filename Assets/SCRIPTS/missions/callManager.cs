@@ -65,7 +65,8 @@ public class callManager : MonoBehaviour
     {
         Debug.Log($"ending call.");
         //! temp
-        currentMissionCall().callEndEvent.Invoke();
+        // currentMissionCall().callEndEvent.Invoke();
+        runEndEvent();
         if (selectedMission.currentCall < selectedMission.calls.Length)
         {
             // Debug.Log("setting next call");
@@ -76,6 +77,16 @@ public class callManager : MonoBehaviour
         gameController.isCalling = false;
 
         audioManager.playMusic(audioManager.prevMusicLvl);
+    }
+
+    void runEndEvent()
+    {
+        foreach (var even in selectedMission.calls[selectedMission.currentCall].endEventValuesList)
+        {
+            Debug.Log("found event");
+            GameObject gameObj = GameObject.Find(even.objName);
+            gameObj.SendMessage(even.methodName);
+        }
     }
 
     /* public void startMissionCall()

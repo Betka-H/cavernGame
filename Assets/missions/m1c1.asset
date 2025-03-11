@@ -27,4 +27,7 @@ MonoBehaviour:
   - how was the fall
   - okay im JK
   - go do the stuff
-  currentMessage: 0
+  currentMessage: 3
+  endEventValuesList:
+  - objName: gameController
+    methodName: testMethod

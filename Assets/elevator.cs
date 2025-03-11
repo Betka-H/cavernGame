@@ -9,21 +9,28 @@ public class elevator : MonoBehaviour
 
     public Transform walls;
 
+    audioManager audioManager;
+
     void Start()
     {
-        openDoors();
+        audioManager = FindObjectOfType<audioManager>();
+        // openDoors();
     }
 
     public void openDoors()
     {
-        iTween.MoveBy(doorL.gameObject, iTween.Hash("x", -2, "speed", 0.5, "easeType", "easeInOutExpo", "delay", .3));
-        iTween.MoveBy(doorR.gameObject, iTween.Hash("x", 2, "speed", 0.5, "easeType", "easeInOutExpo", "delay", .3));
+        audioManager.playSfx(audioManager.worldSfxSource, audioManager.elevatorMove, true);
+
+        iTween.MoveBy(doorL.gameObject, iTween.Hash("x", -2, "speed", 0.5, "easeType", "easeInOutExpo", "delay", 3));
+        iTween.MoveBy(doorR.gameObject, iTween.Hash("x", 2, "speed", 0.5, "easeType", "easeInOutExpo", "delay", 3));
 
         StartCoroutine("openWalls");
     }
 
     IEnumerator openWalls()
     {
+        audioManager.playSfx(audioManager.worldSfxSource, audioManager.elevatorDing, true);
+        audioManager.playSfx(audioManager.worldSfxSource, audioManager.elevatorOpen, true);
         yield return new WaitForSeconds(3);
         walls.gameObject.SetActive(false);
     }
