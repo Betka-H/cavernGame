@@ -5,6 +5,9 @@ public class inventoryDefinitions : MonoBehaviour
 {
     public List<item> allItems; //! check ???
 
+    [Header("mission items")]
+    public List<item> missionItems;
+
     [Header("gems")]
     public item gemRed;
     public item gemOrange;

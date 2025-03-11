@@ -15,5 +15,14 @@ public class missionSO : ScriptableObject
     public callSO[] calls;
     [HideInInspector] public int currentCall = 0;
 
-    public UnityEvent missionEndEvent;
+    // public UnityEvent missionEndEvent;
+
+    [System.Serializable]
+    public struct endEventValue
+    {
+        public string objName;
+        public string methodName;
+    }
+
+    public List<endEventValue> endEventValuesList;
 }

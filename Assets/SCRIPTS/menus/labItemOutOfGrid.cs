@@ -18,13 +18,13 @@ public class labItemOutOfGrid : itemMenu
     {
         if (isAwake)
         {
-            inventoryScript.orderInventory(ref hasList);
+            inventoryScript.sortInventory(ref hasList);
             List<item> tempHasInv;
             if (hasList == null)
                 tempHasInv = new List<item>();
             else tempHasInv = new List<item>(hasList);
 
-            inventoryScript.orderInventory(ref neededList);
+            inventoryScript.sortInventory(ref neededList);
             List<item> tempNeedsInv;
             if (neededList == null)
                 tempNeedsInv = new List<item>();

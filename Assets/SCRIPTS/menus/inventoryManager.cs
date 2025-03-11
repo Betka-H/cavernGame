@@ -111,7 +111,7 @@ public class inventoryManager : MonoBehaviour
 		return hasResources;
 	}
 
-	public void orderInventory(ref List<item> inv)
+	public void sortInventory(ref List<item> inv)
 	{
 		// printInventory(inv);
 		if (inv != null)

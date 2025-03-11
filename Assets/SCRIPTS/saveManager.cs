@@ -12,7 +12,7 @@ public class SaveData
     // public missionSO deathMission;
     public int missionCall;
     public int deathCall;
-}
+}   
 
 // chatgpt
 public class saveManager : MonoBehaviour

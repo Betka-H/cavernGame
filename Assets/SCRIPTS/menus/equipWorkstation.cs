@@ -86,6 +86,7 @@ public class equipWorkstation : MonoBehaviour
     }
     public void unEquip(int pos)
     {
+        Debug.Log($"?!?!?!?!?!?");
         if (menuManager.inventoryManager.equippedItems.Count > pos)
         {
             item gear = menuManager.inventoryManager.equippedItems[pos];

@@ -42,7 +42,7 @@ public class caveItemMenu : itemMenu
 	}
 	public override void refreshItems(invItem[] slots, List<item> itemList)
 	{
-		inventoryScript.orderInventory(ref itemList);
+		inventoryScript.sortInventory(ref itemList);
 
 		if (regularSlots != null)
 		{

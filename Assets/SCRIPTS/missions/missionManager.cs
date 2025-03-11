@@ -17,6 +17,7 @@ public class missionManager : MonoBehaviour
 
     void Start()
     {
+        checkRndMission();
         // Debug.Log($"current mission: {currentMission}");
         // Debug.Log($"current call: {allMissions[currentMission].currentCall}");
     }
@@ -51,6 +52,8 @@ public class missionManager : MonoBehaviour
             FindObjectOfType<announcerManager>().announceMessage("you have a new mission!");
             //! todo check for max missions! // or idk do something. at least it does not throw errors now
             currentMission++;
+
+            checkRndMission();
         }
         else
         {
@@ -71,5 +74,29 @@ public class missionManager : MonoBehaviour
 
         // Debug.Log($"dm: {deathMission}");
         deathMission.currentCall = 0;
+    }
+
+    void checkRndMission()
+    {
+        if (allMissions[currentMission] is randomMissionSO rndMission)
+        {
+            Debug.Log($"random mission");
+            // generate random items
+            rndMission.requiredItems.Clear();
+
+            List<item> allMissionItems = menuManager.inventoryManager.inventoryDefinitions.missionItems;
+            for (int i = 0; i < rndMission.howManyItems; i++)
+            {
+                int rndIndex = Random.Range(0, allMissionItems.Count);
+                item rndItem = allMissionItems[rndIndex];
+
+                rndMission.requiredItems.Add(rndItem);
+
+                Debug.Log($"generating item {i}: {rndItem}");
+            }
+            Debug.Log($"req items generated:");
+            menuManager.inventoryManager.sortInventory(ref rndMission.requiredItems);
+            menuManager.inventoryManager.printInventory(rndMission.requiredItems);
+        }
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum musicLvl { labRegular, caveRegular, caveEscape, death, mainMenu, call, walk }
 
@@ -14,6 +15,9 @@ public class audioManager : MonoBehaviour
     public AudioSource playerSfxSource;
     public AudioSource worldSfxSource;
     public AudioSource uiSfxSource;
+
+    public Slider musicSlider;
+    public Slider sfxSlider;
 
     private float musicVolume = 1f;
     private float sfxVolume = 1f;
@@ -36,7 +40,7 @@ public class audioManager : MonoBehaviour
             return;
         }
 
-        //! LoadVolumeSettings();
+        LoadVolumeSettings();
     }
 
     AudioClip[] selectedClips;
@@ -179,7 +183,7 @@ public class audioManager : MonoBehaviour
     // 💾 Load saved volume settings
     private void LoadVolumeSettings()
     {
-        musicVolume = PlayerPrefs.GetFloat("musicVolume", 1f);
+        musicVolume = PlayerPrefs.GetFloat("musicVolume", 0.75f);
         sfxVolume = PlayerPrefs.GetFloat("SFXvolume", 1f);
 
         // music
@@ -188,6 +192,12 @@ public class audioManager : MonoBehaviour
         playerSfxSource.volume = sfxVolume;
         worldSfxSource.volume = sfxVolume;
         uiSfxSource.volume = sfxVolume;
+
+        if (musicSlider != null && sfxSlider != null)
+        {
+            musicSlider.value = musicVolume;
+            sfxSlider.value = sfxVolume;
+        }
     }
 }
 /* //? for sliders
