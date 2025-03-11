@@ -57,6 +57,10 @@ public class worldItem : MonoBehaviour
 			assignedRoomSO.removeItemSpawn(assignedItem, assignedSpawnTransform);
 			updateItem(null);
 		}
-		else Debug.Log("inv full!");
+		else
+		{
+			// Debug.Log("inv full!"); }
+			FindObjectOfType<announcerManager>().announceMessage("inventory full!");
+		}
 	}
 }

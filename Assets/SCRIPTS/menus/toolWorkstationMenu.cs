@@ -48,27 +48,36 @@ public class toolWorkstationMenu : MonoBehaviour
 
     public void createWorkshopGear()
     {
-        if (assignedScrap != null && menuManager.inventoryManager.checkResources(menuManager.inventoryManager.labInventory, assignedScrap.wholeGear.cost.ToList()))
+        if (assignedScrap != null)
         {
-            // add crafted item
-            menuManager.inventoryManager.addItem(assignedScrap.wholeGear, menuManager.inventoryManager.labInventory);
-            // remove scrap item
-            menuManager.inventoryManager.removeItem(assignedScrap, menuManager.inventoryManager.labInventory);
-            // remove all recipe resources
-            foreach (item it in assignedScrap.wholeGear.cost)
+            if (menuManager.inventoryManager.checkResources(menuManager.inventoryManager.labInventory, assignedScrap.wholeGear.cost.ToList()))
             {
-                menuManager.inventoryManager.removeItem(it, menuManager.inventoryManager.labInventory);
+                // add crafted item
+                menuManager.inventoryManager.addItem(assignedScrap.wholeGear, menuManager.inventoryManager.labInventory);
+                // remove scrap item
+                menuManager.inventoryManager.removeItem(assignedScrap, menuManager.inventoryManager.labInventory);
+                // remove all recipe resources
+                foreach (item it in assignedScrap.wholeGear.cost)
+                {
+                    menuManager.inventoryManager.removeItem(it, menuManager.inventoryManager.labInventory);
+                }
+
+                // clear scrap and recipe displays
+                assignScrap(null);
+                menuManager.labItemMenu.itemGrid.refreshItems(menuManager.labItemMenu.itemGrid.regularSlots, menuManager.inventoryManager.labInventory);
+                //??? menuManager.labItemMenu.itemGrid.refreshItems(recipeGridSlots, null);
+                requiredItemsMenu.refreshItems(requiredItemsMenu.regularSlots, menuManager.inventoryManager.labInventory, new List<item>());
+
+                // menuManager.itemInfoDisplay.selectedItem = null;
+                menuManager.itemInfoDisplay.setInfo(null);
             }
-
-            // clear scrap and recipe displays
-            assignScrap(null);
-            menuManager.labItemMenu.itemGrid.refreshItems(menuManager.labItemMenu.itemGrid.regularSlots, menuManager.inventoryManager.labInventory);
-            //??? menuManager.labItemMenu.itemGrid.refreshItems(recipeGridSlots, null);
-            requiredItemsMenu.refreshItems(requiredItemsMenu.regularSlots, menuManager.inventoryManager.labInventory, new List<item>());
-
-            // menuManager.itemInfoDisplay.selectedItem = null;
-            menuManager.itemInfoDisplay.setInfo(null);
+            else
+                FindObjectOfType<announcerManager>().announceMessage($"you do not have the required materials!");
         }
-        else Debug.Log("no offer or not enough resources");
+        else
+        {
+            // Debug.Log("no offer or not enough resources");
+            FindObjectOfType<announcerManager>().announceMessage($"no item selected!");
+        }
     }
 }

@@ -32,7 +32,7 @@ public class audioManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
-            Debug.Log("destroyed audioman");
+            Debug.LogError("destroyed audioman");
             return;
         }
 
@@ -128,7 +128,8 @@ public class audioManager : MonoBehaviour
             Invoke("playMusic", musicSource.clip.length); // when its done, play again
 
             // log
-            Debug.LogWarning("playing music track " + trackNumber + ": " + musicSource.clip.name);
+            // Debug.LogWarning("playing music track " + trackNumber + ": " + musicSource.clip.name);
+            // FindObjectOfType<announcerManager>().announceMessage($"playing music track {trackNumber}: {musicSource.clip.name}");
         }
     }
 

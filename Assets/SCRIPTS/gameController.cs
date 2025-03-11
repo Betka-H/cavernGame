@@ -204,7 +204,8 @@ public class gameController : MonoBehaviour
 	{
 		if (!inventoryManager.checkEquipment(inventoryManager.inventoryDefinitions.harderHat))
 		{
-			Debug.Log("death");
+			// Debug.Log("death");
+			FindObjectOfType<announcerManager>().announceMessage($"you died!");
 
 			audioManager.playSfx(audioManager.worldSfxSource, audioManager.deathImpale, true);
 			audioManager.playMusic(musicLvl.death);
@@ -236,7 +237,8 @@ public class gameController : MonoBehaviour
 		}
 		else
 		{
-			Debug.Log("has hat! bye bye hat");
+			// Debug.Log("has hat! bye bye hat");
+			FindObjectOfType<announcerManager>().announceMessage($"you lost the harder hat! be careful");
 			inventoryManager.removeItem(inventoryManager.inventoryDefinitions.harderHat, inventoryManager.equippedItems);
 		}
 	}
@@ -276,7 +278,7 @@ public class gameController : MonoBehaviour
 		genAndSpawn(level.lab);
 
 		getElevator().isFirst = true;
-		Debug.Log("new doors!!");
+		// Debug.Log("new doors!!");
 		// getElevator().closeDoors(true);
 		getElevator().openDoors(false);
 
@@ -348,7 +350,7 @@ public class gameController : MonoBehaviour
 				}
 
 				getElevator().openDoors(false);
-				Debug.LogWarning("should open now");
+				// Debug.LogWarning("should open now");
 			}
 		}
 	}

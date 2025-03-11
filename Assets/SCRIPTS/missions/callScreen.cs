@@ -22,7 +22,7 @@ public class callScreen : MonoBehaviour
         // gameObject.SetActive(true);
         // if (call.messages.Length > 0)
         {
-            Debug.Log($"trying to talk! ({call.currentMessage})");
+            // Debug.Log($"trying to talk! ({call.currentMessage})");
             int currentMsg = call.currentMessage;
 
             speakerSpriteRenderer.sprite = call.talkSprites[currentMsg];

@@ -106,6 +106,7 @@ public class saveManager : MonoBehaviour
         }
 
         Debug.LogError($"loaded: last mission: {missionManager.currentMission}, call {missionManager.allMissions[missionManager.currentMission].currentCall}, death mission call: {missionManager.deathMission.currentCall}");
+        // FindObjectOfType<announcerManager>().announceMessage($"loaded: last mission: {missionManager.currentMission}, call {missionManager.allMissions[missionManager.currentMission].currentCall}, death mission call: {missionManager.deathMission.currentCall}");
         //! check Debug.LogWarning("what about eq inv?");
     }
 }

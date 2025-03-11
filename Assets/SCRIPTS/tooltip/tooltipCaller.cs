@@ -37,7 +37,7 @@ public class tooltipCaller : MonoBehaviour
 
 			if (onlyActivateOncePerEnter)
 			{
-				Debug.Log("should be false");
+				// Debug.Log("should be false");
 				OnTriggerExit2D(null);
 				// isEnabled = false;
 			}
@@ -54,7 +54,7 @@ public class tooltipCaller : MonoBehaviour
 	{
 		if (isExitPoint)
 		{
-			Debug.Log("is exit point");
+			// Debug.Log("is exit point");
 			isExitPoint = false;
 		}
 		else

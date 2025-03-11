@@ -44,19 +44,45 @@ public class equipWorkstation : MonoBehaviour
     public void equip()
     {
         item equippingItem = menuManager.itemInfoDisplay.selectedItem;
-        if (equippingItem is gear gear && menuManager.inventoryManager.equippedItems.Count + 1 <= slotRenderers.Length && !menuManager.inventoryManager.equippedItems.Contains(equippingItem))
+        // Debug.Log($"eq: {equippingItem}");
+        if (equippingItem != null)
         {
-            menuManager.inventoryManager.addItem(gear, menuManager.inventoryManager.equippedItems);
-            menuManager.inventoryManager.removeItem(gear, menuManager.inventoryManager.labInventory);
+            if (equippingItem is gear gear)
+            {
+                if (menuManager.inventoryManager.equippedItems.Count + 1 <= slotRenderers.Length)
+                {
+                    if (!menuManager.inventoryManager.equippedItems.Contains(equippingItem))
+                    {
+                        menuManager.inventoryManager.addItem(gear, menuManager.inventoryManager.equippedItems);
+                        menuManager.inventoryManager.removeItem(gear, menuManager.inventoryManager.labInventory);
 
-            // menuManager.itemInfoDisplay.selectedItem = null;
-            menuManager.itemInfoDisplay.setInfo(null);
+                        // menuManager.itemInfoDisplay.selectedItem = null;
+                        menuManager.itemInfoDisplay.setInfo(null);
 
-            // refresh item displays
-            refreshItemDisplays();
+                        // refresh item displays
+                        refreshItemDisplays();
+                    }
+                    else
+                    {
+                        FindObjectOfType<announcerManager>().announceMessage($"you cannot equip the same item twice!");
+                    }
+                }
+                else
+                {
+                    FindObjectOfType<announcerManager>().announceMessage($"not enough space to equip item!");
+                }
+            }
+            else
+            {
+                FindObjectOfType<announcerManager>().announceMessage($"this item is not gear!");
+            }
         }
-        else Debug.Log("item not gear, not enough space or twice");
-        Debug.LogWarning("show err messages for these cases"); //! todo
+        else
+        {
+            FindObjectOfType<announcerManager>().announceMessage($"no item selected!");
+        }
+        // else Debug.Log("item not gear, not enough space or twice");
+        // Debug.LogWarning("show err messages for these cases");
     }
     public void unEquip(int pos)
     {
@@ -67,7 +93,11 @@ public class equipWorkstation : MonoBehaviour
             menuManager.inventoryManager.removeItem(gear, menuManager.inventoryManager.equippedItems);
             refreshItemDisplays();
         }
-        else Debug.Log("no item to remove");
+        else
+        {
+            // Debug.Log("no item to remove");
+            FindObjectOfType<announcerManager>().announceMessage($"no item to unequip!");
+        }
     }
 
     void refreshItemDisplays()

@@ -27,7 +27,8 @@ public class cavernTimer : MonoBehaviour
     {
         int countdown;
         countdown = Random.Range(initialTimeMin, initialTimeMax);
-        Debug.Log($"started cave timer for {countdown}s");
+        // Debug.Log($"started cave timer for {countdown}s");
+        // FindObjectOfType<announcerManager>().announceMessage($"started cave timer for {countdown}s");
 
         // initial
         // yield return new WaitForSeconds(countdown);
@@ -53,6 +54,7 @@ public class cavernTimer : MonoBehaviour
     {
         //! Debug.Log("initial timer ended");
         //! Debug.Log("cue cave-ins");
+        FindObjectOfType<announcerManager>().announceMessage("timer finished :33");
         // StartCoroutine(StartRandomTimer());
     }
 }

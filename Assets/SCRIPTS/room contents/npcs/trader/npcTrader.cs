@@ -61,6 +61,6 @@ public class npcTrader : NPC
 		{
 			msg.Add($"{traderInventory[i].itemName} ({i})");
 		}
-		Debug.Log($"the trader inventory contains {string.Join(", ", msg)}");
+		// Debug.Log($"the trader inventory contains {string.Join(", ", msg)}");
 	}
 }

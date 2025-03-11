@@ -80,7 +80,7 @@ public class inventoryManager : MonoBehaviour
 	{
 		if (equippedItems.Contains(it))
 		{
-			Debug.Log($"{it} is equipped");
+			// Debug.Log($"{it} is equipped");
 			return true;
 		}
 		else return false;
@@ -107,7 +107,7 @@ public class inventoryManager : MonoBehaviour
 			}
 			break;
 		}
-		Debug.Log($"resources? {hasResources}");
+		// Debug.Log($"resources? {hasResources}");
 		return hasResources;
 	}
 
@@ -138,7 +138,7 @@ public class inventoryManager : MonoBehaviour
 		else
 		{
 			inventory.Remove(it);
-			Debug.Log($"removed item {it} from {nameof(inventory)}");
+			// Debug.Log($"removed item {it} from {nameof(inventory)}");
 		}
 	}
 

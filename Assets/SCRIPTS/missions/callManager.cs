@@ -83,7 +83,7 @@ public class callManager : MonoBehaviour
     {
         foreach (var even in selectedMission.calls[selectedMission.currentCall].endEventValuesList)
         {
-            Debug.Log("found event");
+            // Debug.Log("found event");
             GameObject gameObj = GameObject.Find(even.objName);
             gameObj.SendMessage(even.methodName);
         }

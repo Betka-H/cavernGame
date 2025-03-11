@@ -58,7 +58,7 @@ public class traderMenu : MonoBehaviour
 				timesTraded++;
 				showTradeCount();
 
-				Debug.Log("attempting trade");
+				//  Debug.Log("attempting trade");
 
 				// itemMenu.remItem(itemMenu.selectedItem);
 				inventoryManager.removeItem(offeredItem, inventoryManager.caveInventory);
@@ -84,12 +84,17 @@ public class traderMenu : MonoBehaviour
 				updateHands();
 				clearTooltip();
 			}
-			else Debug.Log("cannot trade the main item");
+			else
+			{
+				// Debug.Log("cannot trade the main item");
+				FindObjectOfType<announcerManager>().announceMessage("you cannot trade the same item the trader is selling!");
+			}
 		}
 		else
 		{
-			Debug.Log("no offer or trader inv empty");
-			// chance stuff? make it more agitated when you offer nothing
+			// Debug.Log("no offer or trader inv empty");
+			//! chance stuff? make it more agitated when you offer nothing
+			FindObjectOfType<announcerManager>().announceMessage("no offer!");
 		}
 	}
 

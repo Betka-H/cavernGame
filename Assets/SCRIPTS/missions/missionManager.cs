@@ -30,7 +30,7 @@ public class missionManager : MonoBehaviour
     {
         if (menuManager.inventoryManager.checkResources(menuManager.inventoryManager.missionInventory, allMissions[currentMission].requiredItems))
         {
-            Debug.Log("new mission?");
+            // Debug.Log("new mission?");
             // newMission();
             endMission();
         }
@@ -38,8 +38,8 @@ public class missionManager : MonoBehaviour
 
     public void endMission()
     {
-        //! temp
-        allMissions[currentMission].missionEndEvent.Invoke();
+        FindObjectOfType<announcerManager>().announceMessage($"invoke mission end", true);
+        // allMissions[currentMission].missionEndEvent.Invoke();
         newMission();
     }
 
@@ -47,13 +47,15 @@ public class missionManager : MonoBehaviour
     {
         if (currentMission + 1 < allMissions.Length)
         {
-            Debug.Log("new mission!");
+            // Debug.Log("new mission!");
+            FindObjectOfType<announcerManager>().announceMessage("you have a new mission!");
             //! todo check for max missions! // or idk do something. at least it does not throw errors now
             currentMission++;
         }
         else
         {
-            Debug.Log("no more missions!");
+            // Debug.Log("no more missions!");
+            FindObjectOfType<announcerManager>().announceMessage("there are no more missions!");
         }
         allMissions[currentMission].currentCall = 0;
     }
