@@ -960,11 +960,11 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_LayerOverridePriority: 0
+  m_LayerOverridePriority: 3
   m_ForceSendLayers:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -1011,7 +1011,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1343291602}
         m_TargetAssemblyTypeName: inventoryManager, Assembly-CSharp
-        m_MethodName: resetInventories
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1615,11 +1615,11 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_LayerOverridePriority: 0
+  m_LayerOverridePriority: 3
   m_ForceSendLayers:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -4545,11 +4545,11 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_LayerOverridePriority: 0
+  m_LayerOverridePriority: 3
   m_ForceSendLayers:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -5342,11 +5342,11 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_LayerOverridePriority: 0
+  m_LayerOverridePriority: 3
   m_ForceSendLayers:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -8038,7 +8038,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 69
@@ -10740,13 +10740,13 @@ BoxCollider2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_LayerOverridePriority: 0
+  m_LayerOverridePriority: -5
   m_ForceSendLayers:
     serializedVersion: 2
     m_Bits: 4294967295
   m_ForceReceiveLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
   m_ContactCaptureLayers:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -12063,11 +12063,11 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_LayerOverridePriority: 0
+  m_LayerOverridePriority: 3
   m_ForceSendLayers:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -16370,11 +16370,11 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_LayerOverridePriority: 0
+  m_LayerOverridePriority: 3
   m_ForceSendLayers:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -16450,11 +16450,11 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_LayerOverridePriority: 0
+  m_LayerOverridePriority: 3
   m_ForceSendLayers:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -18874,11 +18874,11 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_LayerOverridePriority: 0
+  m_LayerOverridePriority: 3
   m_ForceSendLayers:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -18925,7 +18925,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 829627198}
         m_TargetAssemblyTypeName: traderMenu, Assembly-CSharp
-        m_MethodName: trade
+        m_MethodName: offer
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

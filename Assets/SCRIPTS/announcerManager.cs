@@ -31,12 +31,15 @@ public class announcerManager : MonoBehaviour
 
     public void announceMessage(string message)
     {
+        Debug.Log($"announcer: \"{message}\"");
+
         // if (lastAnnounced < 0.5f)
         if (canAnnounce)
         {
             newAnnouncer = Instantiate(announcerPrefab, announcerParent);
             newAnnouncer.transform.localPosition = announcerParent.localPosition;
             newAnnouncer.GetComponent<TextMeshProUGUI>().text = message;
+
 
             // yellow
             newAnnouncer.GetComponent<TextMeshProUGUI>().color = Color.yellow;
@@ -48,7 +51,7 @@ public class announcerManager : MonoBehaviour
         }
         else
         {
-            Debug.Log($"cant announce more");
+            // Debug.Log($"cant announce more");
             newAnnouncer = null;
         }
     }
