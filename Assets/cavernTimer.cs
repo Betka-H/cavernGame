@@ -33,7 +33,7 @@ public class cavernTimer : MonoBehaviour
         // yield return new WaitForSeconds(countdown);
         while (countdown > 0)
         {
-            Debug.Log($"Time left: {countdown:F2}s");
+            // Debug.Log($"Time left: {countdown:F2}s");
             yield return new WaitForSeconds(1);
             countdown -= 1;
             timerDisplayTxt.text = $"time left: {countdown}s";
@@ -51,8 +51,8 @@ public class cavernTimer : MonoBehaviour
 
     void endInitialTimer()
     {
-        Debug.Log("initial timer ended");
-        Debug.Log("cue cave-ins");
+        //! Debug.Log("initial timer ended");
+        //! Debug.Log("cue cave-ins");
         // StartCoroutine(StartRandomTimer());
     }
 }

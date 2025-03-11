@@ -222,7 +222,7 @@ GameObject:
   - component: {fileID: 7239259564188733375}
   - component: {fileID: 1319173834498656882}
   m_Layer: 0
-  m_Name: Circle
+  m_Name: cavern exit point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -327,7 +327,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.06416762, y: 0.10083461}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -338,7 +338,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 6.1150675, y: 6.408405}
   m_EdgeRadius: 0
 --- !u!114 &1319173834498656882
 MonoBehaviour:
@@ -354,6 +354,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tooltipKind: 1
   keyToInteract: 101
+  onlyActivateOncePerEnter: 1
+  isExitPoint: 0
 --- !u!1 &7875710032728244850
 GameObject:
   m_ObjectHideFlags: 0
@@ -383,9 +385,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8834482474854871002}
   - {fileID: 2724669406720443927}
   - {fileID: 3349278100955833040}
+  - {fileID: 1986693778969074629}
   m_Father: {fileID: 7932632238650256314}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8064957421546638880
@@ -580,9 +582,9 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3bbe1c156a19dab4483a0b660d55c205, type: 3}
---- !u!224 &8834482474854871002 stripped
+--- !u!224 &1986693778969074629 stripped
 RectTransform:
-  m_CorrespondingSourceObject: {fileID: 5909789151937935594, guid: 3bbe1c156a19dab4483a0b660d55c205, type: 3}
+  m_CorrespondingSourceObject: {fileID: 3678189220464872693, guid: 3bbe1c156a19dab4483a0b660d55c205, type: 3}
   m_PrefabInstance: {fileID: 2925557367344256816}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8539409845462870019

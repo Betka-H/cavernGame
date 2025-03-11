@@ -41,7 +41,9 @@ public class gameController : MonoBehaviour
 		inventoryManager = FindObjectOfType<inventoryManager>();
 		audioManager = FindObjectOfType<audioManager>();
 
+		roomController.labFirst = true;
 		genAndSpawn(level.lab);
+		roomController.labFirst = false;
 
 		clearMenus();
 	}
@@ -252,22 +254,34 @@ public class gameController : MonoBehaviour
 		Debug.Log("byyye deadly cavern");
 
 		getElevator().closeDoors(false);
-		StartCoroutine(waitForDoorsToClose());
-
-		transferToLabAndMissionInventory();
-		missionManager.checkMissionItems();
-
-		roomController.clearRoom();
-		genAndSpawn(level.lab);
+		StartCoroutine(waitForDoorsToCloseAndGoToLab());
 	}
-	IEnumerator waitForDoorsToClose()
+	IEnumerator waitForDoorsToCloseAndGoToLab()
 	{
-		while (getElevator().isClosed)
+		while (!getElevator().isClosed)
 		{
 			yield return null;
 		}
 
+		// getElevator().openDoors(false);
+
+		yield return new WaitForSeconds(3);
+
+		transferToLabAndMissionInventory();
+		missionManager.checkMissionItems();
+
+		audioManager.worldSfxSource.Stop();
+		roomController.clearRoom();
+		genAndSpawn(level.lab);
+
+		getElevator().isFirst = true;
+		Debug.Log("new doors!!");
+		// getElevator().closeDoors(true);
 		getElevator().openDoors(false);
+
+		/* GameObject exitObj = GameObject.Find("lab exit point");
+		exitObj.GetComponent<tooltipCaller>().disable();
+		Debug.Log($"eo: {exitObj}"); */
 	}
 	public void transferToLabAndMissionInventory()
 	{
@@ -278,44 +292,63 @@ public class gameController : MonoBehaviour
 	}
 	public void enterCavern()
 	{
-		genAndSpawn(level.cavern);
-		getElevator().isFirst = true;
+		Debug.Log("helloooo deadly cavern");
 
-		if (menuManager.inventoryManager.checkEquipment(menuManager.inventoryManager.inventoryDefinitions.backpack))
-			menuManager.caveItemMenu.hasAllSlots = true;
-		else menuManager.caveItemMenu.hasAllSlots = false;
+		getElevator().closeDoors(false);
+		StartCoroutine(waitForDoorsToCloseAndGoToCave());
 
-		if (missionManager.currentMission == 0)
+		IEnumerator waitForDoorsToCloseAndGoToCave()
 		{
-			Debug.Log("helloooo deadly cavern");
-
-			/* missionSO currentMission = menuManager.callManager.currentMainMission();
-			if (currentMission.calls.Length > missionManager.allMissions[missionManager.currentMission].currentCall)
-				menuManager.callManager.startMissionCall(); */
-			/* missionSO currentMission = menuManager.callManager.currentMainMission();
-			if (currentMission.calls.Length > missionManager.allMissions[missionManager.currentMission].currentCall)
-				menuManager.callManager.startCall(currentMission); */
-
-			//! temp mission disable
-			//? ^^^ what??
-			missionSO currentMission = menuManager.callManager.currentMainMission();
-			if (currentMission.calls.Length > currentMission.currentCall) // to prevent looping the last message
-				menuManager.callManager.startCall(currentMission);
-
-			getElevator().closeDoors(true);
-			StartCoroutine(WaitForCallToEndAndOpenDoors());
-		}
-
-		// chatgpt i guess
-		IEnumerator WaitForCallToEndAndOpenDoors()
-		{
-			while (isCalling)
+			while (!getElevator().isClosed)
 			{
 				yield return null;
 			}
 
-			getElevator().openDoors(false);
-			Debug.LogWarning("should open now");
+			// getElevator().openDoors(false);
+
+			yield return new WaitForSeconds(3);
+
+			// transferToLabAndMissionInventory();
+			// missionManager.checkMissionItems();
+
+			roomController.clearRoom();
+			genAndSpawn(level.cavern);
+			audioManager.worldSfxSource.Stop();
+
+			// genAndSpawn(level.cavern);
+			getElevator().isFirst = true;
+
+			if (menuManager.inventoryManager.checkEquipment(menuManager.inventoryManager.inventoryDefinitions.backpack))
+				menuManager.caveItemMenu.hasAllSlots = true;
+			else menuManager.caveItemMenu.hasAllSlots = false;
+
+			/* GameObject exitObj = GameObject.Find("cavern exit point");
+			exitObj.GetComponent<tooltipCaller>().disable();
+			Debug.Log($"eo: {exitObj}"); */
+
+			if (missionManager.currentMission == 0)
+			{
+				//! temp mission disable
+				//? ^^^ what??
+				missionSO currentMission = menuManager.callManager.currentMainMission();
+				if (currentMission.calls.Length > currentMission.currentCall) // to prevent looping the last message
+					menuManager.callManager.startCall(currentMission);
+
+				getElevator().closeDoors(true);
+				StartCoroutine(WaitForCallToEndAndOpenDoors());
+			}
+
+			// chatgpt i guess
+			IEnumerator WaitForCallToEndAndOpenDoors()
+			{
+				while (isCalling)
+				{
+					yield return null;
+				}
+
+				getElevator().openDoors(false);
+				Debug.LogWarning("should open now");
+			}
 		}
 	}
 }

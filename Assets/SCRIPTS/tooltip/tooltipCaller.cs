@@ -6,6 +6,9 @@ public class tooltipCaller : MonoBehaviour
 	public tooltipKind tooltipKind;
 	public KeyCode keyToInteract;
 
+	public bool onlyActivateOncePerEnter;
+	[HideInInspector] public bool isExitPoint;
+
 	bool isEnabled;
 
 	void Awake()
@@ -13,10 +16,16 @@ public class tooltipCaller : MonoBehaviour
 		tooltipObj = FindObjectOfType<interactionTooltip>(true);
 	}
 
+	public void disable()
+	{
+		OnTriggerExit2D(null);
+	}
+
 	void Update()
 	{
+		// if ((!onlyActivateOncePerEnter || !hasBeenActivated) && isEnabled && Input.GetKeyDown(keyToInteract))
 		if (isEnabled && Input.GetKeyDown(keyToInteract))
-
+		{
 			if (isItem())
 			{
 				GetComponent<worldItem>().pickUp();
@@ -25,6 +34,14 @@ public class tooltipCaller : MonoBehaviour
 			{
 				tooltipObj.action(tooltipKind);
 			}
+
+			if (onlyActivateOncePerEnter)
+			{
+				Debug.Log("should be false");
+				OnTriggerExit2D(null);
+				// isEnabled = false;
+			}
+		}
 	}
 	bool isItem()
 	{
@@ -35,11 +52,19 @@ public class tooltipCaller : MonoBehaviour
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		if (other.gameObject.CompareTag("player"))
+		if (isExitPoint)
 		{
-			tooltipObj.showTooltip(keyToInteract, tooltipKind, new Vector3(transform.localPosition.x, transform.localPosition.y + 150, 0f));
+			Debug.Log("is exit point");
+			isExitPoint = false;
+		}
+		else
+		{
+			if (other.gameObject.CompareTag("player"))
+			{
+				tooltipObj.showTooltip(keyToInteract, tooltipKind, new Vector3(transform.localPosition.x, transform.localPosition.y + 150, 0f));
 
-			isEnabled = true;
+				isEnabled = true;
+			}
 		}
 	}
 

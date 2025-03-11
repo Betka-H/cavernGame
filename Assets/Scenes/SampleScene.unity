@@ -7614,7 +7614,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: bcef893422242ad48b0f27ad89c5c5b1, type: 3}
   elevatorDing:
   - {fileID: 8300000, guid: 01964300d449d364583b1491a28104c8, type: 3}
-  elevatorOpen:
+  elevatorDoors:
   - {fileID: 8300000, guid: 4a0eb26427289a14ea5c7098cea272e7, type: 3}
 --- !u!1 &810678195
 GameObject:

@@ -63,7 +63,7 @@ public class interactionTooltip : MonoBehaviour
 				traderEvent.Invoke();
 				break;
 			case tooltipKind.enter:
- 				enterEvent.Invoke();
+				enterEvent.Invoke();
 				break;
 			case tooltipKind.exit:
 				exitEvent.Invoke();

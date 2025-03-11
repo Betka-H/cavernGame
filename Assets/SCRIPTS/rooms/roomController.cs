@@ -80,6 +80,7 @@ public class roomController : MonoBehaviour
 		inventory = FindObjectOfType<inventoryManager>();
 	}
 
+	[HideInInspector] public bool labFirst;
 	public void generateLevel(gameController.level lvl)
 	{
 		Debug.LogWarning($"=============================... generating new level ({lvl})...=======================================");
@@ -91,7 +92,7 @@ public class roomController : MonoBehaviour
 			case gameController.level.lab:
 				clearParent(enclosureParent);
 				Instantiate(enclosure_walls_lab, enclosureParent);
-				generateLab();
+				generateLab(labFirst);
 				break;
 			case gameController.level.cavern:
 				Instantiate(enclosure_walls_cave, enclosureParent);
@@ -151,10 +152,13 @@ public class roomController : MonoBehaviour
 		return $" level rooms ({darknessLvl}):\n{debug}";
 	}
 
-	void generateLab()
+	void generateLab(bool first)
 	{
 		// choose lab entrance
-		entranceRoom = labRooms[1];
+		// Debug.Log($"lab first?: {first}");
+		if (first)
+			entranceRoom = labRooms[1]; //! temp. regular entrance
+		else entranceRoom = labRooms[0]; //! temp. elevator entrance
 		selectedRooms = labRooms;
 	}
 	//* generate cavern

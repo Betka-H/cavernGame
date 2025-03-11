@@ -8,6 +8,8 @@ public class elevator : MonoBehaviour
     public Transform doorL;
     public Transform doorR;
 
+    float moveAmount = 1.7f;
+
     public Transform walls;
 
     audioManager audioManager;
@@ -20,14 +22,14 @@ public class elevator : MonoBehaviour
     public bool isLab;
     public bool isFirst;
 
+    bool isAwake;
     void Awake()
     {
-        Debug.LogWarning("door awake");
         audioManager = FindObjectOfType<audioManager>();
 
         doorLStartPos = doorL.position;
         doorRStartPos = doorR.position;
-
+        isAwake = true;
         // walls.gameObject.SetActive(true);
         // isClosed = true;
 
@@ -42,39 +44,57 @@ public class elevator : MonoBehaviour
             walls.gameObject.SetActive(false);
             openDoors(true);
         }
+        else
+        {
+            GameObject exitObj;
+            if (isLab)
+                exitObj = GameObject.Find("lab exit point");
+            else exitObj = GameObject.Find("cavern exit point");
+
+            exitObj.GetComponent<tooltipCaller>().isExitPoint = true;
+            Debug.Log($"eo: {exitObj}");
+        }
     }
+
+    //chatgpt
+    float logTimer = 0f; // Tracks elapsed time
     void Update()
     {
-        // Debug.Log(isClosed);
-    }
+        /* logTimer += Time.deltaTime; // Accumulate time
+
+        if (logTimer >= 1f) // If 1 second has passed
+        {
+            Debug.Log(isClosed);
+            logTimer = 0f; // Reset timer
+        } */
+    }//chgpt
 
     public void openDoors(bool instant)
     {
+        if (!isAwake) Awake();
+
+        resetDoorsToClosed();
+
         Debug.Log("opening doors");
-        Debug.LogWarning($"is first: {isFirst}");
-        CancelInvoke();
-        doorL.position = doorLStartPos;
-        doorR.position = doorRStartPos;
+        // Debug.LogWarning($"is first: {isFirst}");
+        // CancelInvoke();
+        // closeDoors(true);
 
         if (instant)
         {
-            // iTween.MoveBy(doorL.gameObject, iTween.Hash("x", -1.7, "speed", 1, "easeType", "easeInOutExpo"));
-            // iTween.MoveBy(doorR.gameObject, iTween.Hash("x", 1.7, "speed", 1, "easeType", "easeInOutExpo"));
-
-            doorL.position = doorLStartPos + new Vector2(-1.7f, 0);
-            doorR.position = doorRStartPos + new Vector2(1.7f, 0);
+            doorL.position = doorLStartPos + new Vector2(-moveAmount, 0);
+            doorR.position = doorRStartPos + new Vector2(moveAmount, 0);
 
             walls.gameObject.SetActive(false);
             isClosed = false;
         }
         else
         {
-            Debug.Log("opening slowly");
-            walls.gameObject.SetActive(true);
+            // walls.gameObject.SetActive(true);
             audioManager.playSfx(audioManager.worldSfxSource, audioManager.elevatorMove, true);
 
-            iTween.MoveBy(doorL.gameObject, iTween.Hash("x", -1.7, "speed", 0.5, "easeType", "easeInOutExpo", "delay", 4));
-            iTween.MoveBy(doorR.gameObject, iTween.Hash("x", 1.7, "speed", 0.5, "easeType", "easeInOutExpo", "delay", 4));
+            iTween.MoveBy(doorL.gameObject, iTween.Hash("x", -moveAmount, "speed", 0.5, "easeType", "easeInOutExpo", "delay", 4));
+            iTween.MoveBy(doorR.gameObject, iTween.Hash("x", moveAmount, "speed", 0.5, "easeType", "easeInOutExpo", "delay", 4));
 
             StartCoroutine("openWalls");
         }
@@ -84,42 +104,56 @@ public class elevator : MonoBehaviour
         yield return new WaitForSeconds(3);
         audioManager.playSfx(audioManager.worldSfxSource, audioManager.elevatorDing, true);
         audioManager.playSfx(audioManager.worldSfxSource, audioManager.elevatorDoors, true);
-        yield return new WaitForSeconds(3.5f);
 
+        yield return new WaitForSeconds(3.5f);
         walls.gameObject.SetActive(false);
         isClosed = false;
     }
 
     public void closeDoors(bool instant)
     {
+        if (!isAwake) Awake();
+
         Debug.Log("closing doors");
+        openDoors(true);
+
+        walls.gameObject.SetActive(true);
         if (instant)
         {
-            // iTween.MoveBy(doorL.gameObject, iTween.Hash("x", -1.7, "speed", 1, "easeType", "easeInOutExpo"));
-            // iTween.MoveBy(doorR.gameObject, iTween.Hash("x", 1.7, "speed", 1, "easeType", "easeInOutExpo"));
+            resetDoorsToClosed();
 
-            doorL.position = doorLStartPos;
-            doorR.position = doorRStartPos;
-
-            Debug.Log("instant!");
-
-            walls.gameObject.SetActive(true);
+            // walls.gameObject.SetActive(true);
             isClosed = true;
         }
         else
         {
-            iTween.MoveBy(doorL.gameObject, iTween.Hash("x", 1.7, "speed", 0.5, "easeType", "easeInOutExpo", "delay", 4));
-            iTween.MoveBy(doorR.gameObject, iTween.Hash("x", -1.7, "speed", 0.5, "easeType", "easeInOutExpo", "delay", 4));
+            audioManager.playSfx(audioManager.worldSfxSource, audioManager.elevatorDoors, true);
+            iTween.MoveBy(doorL.gameObject, iTween.Hash("x", moveAmount, "speed", 0.5, "easeType", "easeInOutExpo"));
+            iTween.MoveBy(doorR.gameObject, iTween.Hash("x", -moveAmount, "speed", 0.5, "easeType", "easeInOutExpo"));
 
             StartCoroutine("closeWalls");
+            // walls.gameObject.SetActive(true);
+            // isClosed = true;
         }
     }
     IEnumerator closeWalls()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(5);
         // audioManager.playSfx(audioManager.worldSfxSource, audioManager.elevatorDing, true);
-        audioManager.playSfx(audioManager.worldSfxSource, audioManager.elevatorDoors, true);
-        yield return new WaitForSeconds(3);
+        audioManager.playSfx(audioManager.worldSfxSource, audioManager.elevatorMove, true);
+        // Debug.Log("closign doors");
+        // yield return new WaitForSeconds(3);
+        isClosed = true;
+    }
+
+    void resetDoorsToClosed()
+    {
+        Debug.Log("resetting doors to closed");
+
+        StopAllCoroutines();
+        doorL.position = doorLStartPos;
+        doorR.position = doorRStartPos;
+
         walls.gameObject.SetActive(true);
         isClosed = true;
     }
