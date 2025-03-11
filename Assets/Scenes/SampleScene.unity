@@ -198,6 +198,7 @@ MonoBehaviour:
   itemPrefab: {fileID: 4990905397584942865, guid: dc0dd59358eccea4994f4d139ac2ea02, type: 3}
   player: {fileID: 0}
   colorBg: {fileID: 486764289}
+  labFirst: 0
 --- !u!4 &40118687
 Transform:
   m_ObjectHideFlags: 0
@@ -1551,6 +1552,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   recipeGridTransform: {fileID: 1640088917}
   recipeGridSlots: []
+  requiredItemsMenu: {fileID: 1640088919}
   scrapSpriteRenderer: {fileID: 1541727260}
   resultSpriteRenderer: {fileID: 1241050575}
   placeholderScrapItemSprite: {fileID: 1854333662, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
@@ -10797,7 +10799,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1187531094}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31ca64122f611a34d807c4148db95424, type: 3}
+  m_Script: {fileID: 11500000, guid: 72c1c009b8a0dc94a9d3b79c4798a895, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryScript: {fileID: 0}
@@ -15354,6 +15356,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1640088917}
   - component: {fileID: 1640088918}
+  - component: {fileID: 1640088919}
   m_Layer: 18
   m_Name: recipe item grid
   m_TagString: Untagged
@@ -15410,6 +15413,23 @@ MonoBehaviour:
   m_Spacing: {x: 0.5, y: 0.5}
   m_Constraint: 1
   m_ConstraintCount: 3
+--- !u!114 &1640088919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1640088916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72c1c009b8a0dc94a9d3b79c4798a895, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryScript: {fileID: 0}
+  gridSlotsParent: {fileID: 1640088917}
+  regularSlots: []
+  selectedItem: {fileID: 0}
+  isAwake: 0
 --- !u!1001 &1652187180
 PrefabInstance:
   m_ObjectHideFlags: 0

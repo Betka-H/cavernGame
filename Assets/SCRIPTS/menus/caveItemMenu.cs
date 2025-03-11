@@ -36,6 +36,10 @@ public class caveItemMenu : itemMenu
 		refreshItems(regularSlots, inventoryScript.caveInventory);
 	}
 
+	public override void refreshItems(invItem[] cat, List<item> dog, List<item> rat)
+	{
+		// bwomp
+	}
 	public override void refreshItems(invItem[] slots, List<item> itemList)
 	{
 		inventoryScript.orderInventory(ref itemList);

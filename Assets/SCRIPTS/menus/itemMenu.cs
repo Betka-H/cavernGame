@@ -24,6 +24,7 @@ public abstract class itemMenu : MonoBehaviour
     }
 
     public abstract void refreshItems(invItem[] slots, List<item> itemList);
+    public abstract void refreshItems(invItem[] slots, List<item> hasList, List<item> neededList);
 
     /* private List<item> groupItems(List<item> itemList, itemDispType dt)
     {

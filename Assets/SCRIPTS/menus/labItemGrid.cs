@@ -9,6 +9,10 @@ public class labItemGrid : itemMenu
         base.Awake();
     }
 
+    public override void refreshItems(invItem[] cat, List<item> dog, List<item> rat)
+    {
+        // shut uuup
+    }
     public override void refreshItems(invItem[] slots, List<item> itemList)
     {
         if (isAwake)
