@@ -27,7 +27,7 @@ public class audioManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject); // Keep this object across scenes //? yeah okay
-            Debug.Log("ddol!");
+            // Debug.Log("ddol!");
         }
         else
         {
@@ -142,7 +142,7 @@ public class audioManager : MonoBehaviour
     public AudioClip[] uiButtonClick;
     public AudioClip[] elevatorMove;
     public AudioClip[] elevatorDing;
-    public AudioClip[] elevatorOpen;
+    public AudioClip[] elevatorDoors;
 
     public void playSfx(AudioSource source, AudioClip[] clips, bool allowOverlap)
     {

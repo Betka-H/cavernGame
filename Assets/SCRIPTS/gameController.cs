@@ -251,11 +251,23 @@ public class gameController : MonoBehaviour
 	{
 		Debug.Log("byyye deadly cavern");
 
+		getElevator().closeDoors(false);
+		StartCoroutine(waitForDoorsToClose());
+
 		transferToLabAndMissionInventory();
 		missionManager.checkMissionItems();
 
 		roomController.clearRoom();
 		genAndSpawn(level.lab);
+	}
+	IEnumerator waitForDoorsToClose()
+	{
+		while (getElevator().isClosed)
+		{
+			yield return null;
+		}
+
+		getElevator().openDoors(false);
 	}
 	public void transferToLabAndMissionInventory()
 	{
@@ -267,6 +279,8 @@ public class gameController : MonoBehaviour
 	public void enterCavern()
 	{
 		genAndSpawn(level.cavern);
+		getElevator().isFirst = true;
+
 		if (menuManager.inventoryManager.checkEquipment(menuManager.inventoryManager.inventoryDefinitions.backpack))
 			menuManager.caveItemMenu.hasAllSlots = true;
 		else menuManager.caveItemMenu.hasAllSlots = false;
@@ -288,6 +302,7 @@ public class gameController : MonoBehaviour
 			if (currentMission.calls.Length > currentMission.currentCall) // to prevent looping the last message
 				menuManager.callManager.startCall(currentMission);
 
+			getElevator().closeDoors(true);
 			StartCoroutine(WaitForCallToEndAndOpenDoors());
 		}
 
@@ -299,7 +314,8 @@ public class gameController : MonoBehaviour
 				yield return null;
 			}
 
-			getElevator().openDoors();
+			getElevator().openDoors(false);
+			Debug.LogWarning("should open now");
 		}
 	}
 }
