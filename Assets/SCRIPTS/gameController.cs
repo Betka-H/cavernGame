@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -126,18 +128,42 @@ public class gameController : MonoBehaviour
 		roomController.generateLevel(lvl);
 		clearMenus();
 
-		if (lvl == level.space)
+		// if (lvl == level.space)
+		if (missionManager.checkCurrentMission(-1, 0))
 		{
-			// Debug.LogError($"space lvl - start mission");
-			missionSO currentMission = missionManager.allMissions[missionManager.currentMission];
-			callManager.startCall(currentMission);
-			// Debug.LogError($"starting space call");
+			callManager.startCall(getCurrentMission());
+		}
+		else if (missionManager.checkCurrentMission(-1, 1))
+		{
+			// Debug.LogWarning("byeah");
+			getElevator().isFirst = true;
+
+			// chatgpt
+			StartCoroutine(delayAction(() => callManager.startCall(getCurrentMission()), 8f));
+			/* Invoke("startNextMainMissionCall", 8f);
+			void startNextMainMissionCall()
+			{
+				callManager.startCall(getCurrentMission());
+			} */
 		}
 	}
+
+	// chatgpt
+	IEnumerator delayAction(Action action, float delay)
+	{
+		yield return new WaitForSeconds(delay);
+		action?.Invoke(); // Calls the function safely
+	}
+
+
 	void clearMenus()
 	{
 		menuManager.hideMenus();
 		interactionTooltip.hideTooltip();
+	}
+	missionSO getCurrentMission()
+	{
+		return missionManager.allMissions[missionManager.currentMission];
 	}
 
 	GameObject playerPrefab;
@@ -296,7 +322,9 @@ public class gameController : MonoBehaviour
 
 		// getElevator().openDoors(false);
 
-		yield return new WaitForSeconds(3);
+		Debug.LogWarning("wait for 3!!!");
+		// yield return new WaitForSeconds(3); // keep this line
+		yield return new WaitForSeconds(0.5f); //! delete this line
 
 		transferToLabAndMissionInventory();
 		missionManager.checkMissionItems();
@@ -337,7 +365,9 @@ public class gameController : MonoBehaviour
 
 			// getElevator().openDoors(false);
 
-			yield return new WaitForSeconds(3);
+			Debug.LogWarning("wait for 3!!!");
+			// yield return new WaitForSeconds(3); // keep this line
+			yield return new WaitForSeconds(0.5f); //! delete this line
 
 			// transferToLabAndMissionInventory();
 			// missionManager.checkMissionItems();
@@ -357,19 +387,21 @@ public class gameController : MonoBehaviour
 			exitObj.GetComponent<tooltipCaller>().disable();
 			Debug.Log($"eo: {exitObj}"); */
 
-			if (missionManager.currentMission == 0)
+			// if (missionManager.currentMission == 0)
+			// if (getCurrentMission().missionID == 0)
+			if (missionManager.checkCurrentMission(0, -1))
 			{
-				//! temp mission disable
-				//? ^^^ what??
-				missionSO currentMission = menuManager.callManager.currentMainMission();
-				if (currentMission.calls.Length > currentMission.currentCall) // to prevent looping the last message
-					menuManager.callManager.startCall(currentMission);
 
-				// getElevator().closeDoors(true);
-				StartCoroutine(WaitForCallToEndAndOpenDoors());
+				/* missionSO currentMission = menuManager.callManager.currentMainMission();
+				if (currentMission.calls.Length > currentMission.currentCall) // to prevent looping the last message
+					menuManager.callManager.startCall(currentMission); */
+
+				callManager.startCall(getCurrentMission());
 			}
-			else
-				getElevator().openDoors(false);
+			/* else
+				getElevator().openDoors(false); */
+
+			StartCoroutine(WaitForCallToEndAndOpenDoors());
 
 			// chatgpt i guess
 			IEnumerator WaitForCallToEndAndOpenDoors()
@@ -380,6 +412,7 @@ public class gameController : MonoBehaviour
 					yield return null;
 				}
 
+				Debug.Log($"not calling anymore");
 				// FindObjectOfType<announcerManager>().announceMessage($"door opening?");
 				getElevator().openDoors(false);
 				// Debug.LogWarning("should open now");

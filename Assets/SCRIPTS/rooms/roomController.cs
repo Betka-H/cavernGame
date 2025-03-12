@@ -103,6 +103,7 @@ public class roomController : MonoBehaviour
 				generateSpace();
 				break;
 			case gameController.level.cavern:
+				clearParent(enclosureParent);
 				Instantiate(enclosure_walls_cave, enclosureParent);
 				generateCavern();
 				chooseDarkness();

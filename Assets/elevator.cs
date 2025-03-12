@@ -20,6 +20,7 @@ public class elevator : MonoBehaviour
     Vector2 doorRStartPos;
 
     public bool isLab;
+    public bool isMainEntrance;
     public bool isFirst;
 
     bool isAwake;
@@ -39,20 +40,37 @@ public class elevator : MonoBehaviour
     }
     void Start()
     {
-        if (!isFirst)
+        if (isMainEntrance)
         {
-            walls.gameObject.SetActive(false);
-            openDoors(true);
+            if (isFirst)
+            {
+                isFirst = false;
+                openDoors(false);
+            }
+            else closeDoors(true);
         }
         else
         {
-            GameObject exitObj;
-            if (isLab)
-                exitObj = GameObject.Find("lab exit point");
-            else exitObj = GameObject.Find("cavern exit point");
+            if (!isFirst)
+            {
+                walls.gameObject.SetActive(false);
+                openDoors(true);
+            }
+            else
+            {
+                GameObject exitObj;
+                if (isLab)
+                    exitObj = GameObject.Find("lab exit point");
+                else exitObj = GameObject.Find("cavern exit point");
 
-            exitObj.GetComponent<tooltipCaller>().isExitPoint = true;
+                exitObj.GetComponent<tooltipCaller>().isExitPoint = true;
+            }
         }
+
+        Debug.LogWarning("dont run this!! lol");
+        //! delete
+        walls.gameObject.SetActive(false);
+        //! ^^^
     }
 
     //chatgpt
@@ -118,7 +136,9 @@ public class elevator : MonoBehaviour
         // Debug.Log("closing doors");
         openDoors(true);
 
-        walls.gameObject.SetActive(true);
+        Debug.LogError($"walls should be true");
+        //! walls.gameObject.SetActive(true);
+
         if (instant)
         {
             resetDoorsToClosed();
@@ -157,7 +177,9 @@ public class elevator : MonoBehaviour
         doorL.position = doorLStartPos;
         doorR.position = doorRStartPos;
 
-        walls.gameObject.SetActive(true);
+        Debug.LogError($"walls should be true");
+        //! walls.gameObject.SetActive(true);
+
         isClosed = true;
     }
 }

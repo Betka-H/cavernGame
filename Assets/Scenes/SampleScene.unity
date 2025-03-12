@@ -296,7 +296,7 @@ MonoBehaviour:
   blockR: {fileID: 2301586464489702344, guid: bfeb0cb8302c61e40a6c28e518d012cb, type: 3}
   enclosure_walls_lab: {fileID: 6553063550943284792, guid: d515c56bec07dc94fab1c46c882e1e8d, type: 3}
   enclosure_walls_space: {fileID: 4032801956974249638, guid: 9274c58cd892fef4e955f9ac474d8ad5, type: 3}
-  enclosure_walls_cave: {fileID: 4032801956974249638, guid: 9274c58cd892fef4e955f9ac474d8ad5, type: 3}
+  enclosure_walls_cave: {fileID: 4032801956974249638, guid: 6c0ea82172b31154fb4718b892253617, type: 3}
   minCavernRoomsNr: 5
   maxCavernRoomsNr: 8
   labRooms:
@@ -2749,7 +2749,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: continue
+  m_text: yes
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

@@ -189,7 +189,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8950177509809473929}
   m_Layer: 5
-  m_Name: lab room 1
+  m_Name: lab room 1 - cave entrance
   m_TagString: room
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -211,6 +211,7 @@ Transform:
   - {fileID: 1844332533572492817}
   - {fileID: 2241316891799730719}
   - {fileID: 8647024668334048096}
+  - {fileID: 1556178056789209876}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8903193736761204019
@@ -452,4 +453,66 @@ PrefabInstance:
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3678189220464872693, guid: 3bbe1c156a19dab4483a0b660d55c205, type: 3}
   m_PrefabInstance: {fileID: 5407673632768757653}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8467533064543417342
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 8950177509809473929}
+    m_Modifications:
+    - target: {fileID: 51381791830413162, guid: 22a56f04154f5014d84163b2a625db8b, type: 3}
+      propertyPath: m_Name
+      value: mission menu toggle
+      objectReference: {fileID: 0}
+    - target: {fileID: 6924882316759236842, guid: 22a56f04154f5014d84163b2a625db8b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 374
+      objectReference: {fileID: 0}
+    - target: {fileID: 6924882316759236842, guid: 22a56f04154f5014d84163b2a625db8b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -206
+      objectReference: {fileID: 0}
+    - target: {fileID: 6924882316759236842, guid: 22a56f04154f5014d84163b2a625db8b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6924882316759236842, guid: 22a56f04154f5014d84163b2a625db8b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6924882316759236842, guid: 22a56f04154f5014d84163b2a625db8b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6924882316759236842, guid: 22a56f04154f5014d84163b2a625db8b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6924882316759236842, guid: 22a56f04154f5014d84163b2a625db8b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6924882316759236842, guid: 22a56f04154f5014d84163b2a625db8b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6924882316759236842, guid: 22a56f04154f5014d84163b2a625db8b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6924882316759236842, guid: 22a56f04154f5014d84163b2a625db8b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 22a56f04154f5014d84163b2a625db8b, type: 3}
+--- !u!4 &1556178056789209876 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6924882316759236842, guid: 22a56f04154f5014d84163b2a625db8b, type: 3}
+  m_PrefabInstance: {fileID: 8467533064543417342}
   m_PrefabAsset: {fileID: 0}

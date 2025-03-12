@@ -70,26 +70,37 @@ public class callManager : MonoBehaviour
 
         audioManager.playMusic(audioManager.prevMusicLvl);
 
-        runEndEvent();
-
         if (selectedMission.currentCall < selectedMission.calls.Length)
         {
             // Debug.Log("setting next call");
             selectedMission.currentCall++;
             // Debug.Log($"next m is {selectedMission.calls[selectedMission.currentCall]}");
         }
+
+        runCallEndEvent();
     }
 
-    void runEndEvent()
+    void runCallEndEvent()
     {
-        if (selectedMission.calls[selectedMission.currentCall].endEventValuesList != null)
-            foreach (var even in selectedMission.calls[selectedMission.currentCall].endEventValuesList)
+        int currentCallID = selectedMission.currentCall - 1;
+        var endEventList = selectedMission.calls[currentCallID].endEventValuesList;
+        if (endEventList != null)
+            foreach (var even in endEventList)
             {
                 // Debug.Log("found event");
                 GameObject gameObj = GameObject.Find(even.objName);
                 gameObj.SendMessage(even.methodName);
             }
         // else Debug.LogError($"no call end event");
+
+        /* if (selectedMission.calls[selectedMission.currentCall].endEventValuesList != null)
+            foreach (var even in selectedMission.calls[selectedMission.currentCall].endEventValuesList)
+            {
+                // Debug.Log("found event");
+                GameObject gameObj = GameObject.Find(even.objName);
+                gameObj.SendMessage(even.methodName);
+            }
+        // else Debug.LogError($"no call end event"); */
     }
 
     /* public void startMissionCall()

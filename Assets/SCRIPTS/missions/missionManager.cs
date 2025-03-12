@@ -29,6 +29,26 @@ public class missionManager : MonoBehaviour
         // Debug.Log(currentMission);
     }
 
+    // -1 to not check call
+    public bool checkCurrentMission(int wantedMissionID, int wantedCallID)
+    {
+        Debug.Log($"checking mission state as {wantedMissionID}, {wantedCallID}");
+        missionSO currentMissionSO = allMissions[currentMission];
+
+        Debug.Log($"current mission: {currentMissionSO} ({currentMissionSO.missionID}), current call: {currentMissionSO.currentCall}");
+
+        if (currentMissionSO.missionID == wantedMissionID && (currentMissionSO.currentCall == wantedCallID || wantedCallID == -1))
+        {
+            Debug.Log($"right mission");
+            return true;
+        }
+        else
+        {
+            Debug.Log($"not the right mission");
+            return false;
+        }
+    }
+
     public void checkMissionItems()
     {
         missionSO cm = allMissions[currentMission];
