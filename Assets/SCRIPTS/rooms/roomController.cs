@@ -210,7 +210,8 @@ public class roomController : MonoBehaviour
 		foreach (room_cavern room in selectedRooms)
 		{
 			room.isDark = false;
-			if (room != entranceRoom || darknessLvl == darknessLevel.dark) // for every room except the entrance room (cant be dark there) (except for when dl is dark)
+			// if (room != entranceRoom || darknessLvl == darknessLevel.dark) // for every room except the entrance room (cant be dark there) (except for when dl is dark)
+			if (room != entranceRoom) // for every room except the entrance room BECAUSE FUCK THE ELEVATOR DOORS
 			{
 				if (rnd.Next(100) <= darknessChance)
 					room.isDark = true;

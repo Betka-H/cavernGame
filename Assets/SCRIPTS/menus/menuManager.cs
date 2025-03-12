@@ -11,11 +11,13 @@ public class menuManager : MonoBehaviour
 
     public caveItemMenu caveItemMenu;
     public missionMenu missionMenu;
+    public missionMenu ingameMissionMenu;
     public callScreen callScreen;
     public traderMenu traderMenu;
     public labItemMenu labItemMenu;
     public toolWorkstationMenu toolWorkstationMenu;
     public equipWorkstation equipWorkstation;
+    public equipWorkstation ingameEquipWorkstation;
     public Transform escMenu;
 
     public itemInfoDisplay itemInfoDisplay;
@@ -80,6 +82,9 @@ public class menuManager : MonoBehaviour
         toggleMissionWorkstationMenu(false);
         deathScreen.gameObject.SetActive(false);
         toggleEsc(false);
+
+        ingameMissionMenu.gameObject.SetActive(false);
+        ingameEquipWorkstation.gameObject.SetActive(false);
 
         menuBg.SetActive(false);
 
@@ -181,11 +186,13 @@ public class menuManager : MonoBehaviour
         if (!anotherMenuOpen && !escMenu.gameObject.activeSelf)
         {
             // menuOpen = openMenu.cave;
-            bool onOff = toggleMenu(missionMenu.gameObject);
+            bool onOff = toggleMenu(caveItemMenu.gameObject);
 
             toggleCaveItemMenu(onOff);
-            toggleMissionMenu(onOff);
+            // toggleMissionMenu(onOff);
             // anotherMenuOpen = onOff;
+            ingameMissionMenu.gameObject.SetActive(onOff);
+            ingameEquipWorkstation.gameObject.SetActive(onOff);
         }
     }
     public void toggleTradingScreen()

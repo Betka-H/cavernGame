@@ -94,8 +94,8 @@ public class missionManager : MonoBehaviour
 
                 Debug.Log($"generating item {i}: {rndItem}");
             }
-            Debug.Log($"req items generated:");
             menuManager.inventoryManager.sortInventory(ref rndMission.requiredItems);
+            Debug.Log($"req items generated:");
             menuManager.inventoryManager.printInventory(rndMission.requiredItems);
         }
     }

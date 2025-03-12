@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class equipWorkstation : MonoBehaviour
 {
-    public SpriteRenderer[] slotRenderers;
+    // public SpriteRenderer[] slotRenderers;
     public itemInfoDisplay[] infoDisplays;
     menuManager menuManager;
 
@@ -24,7 +24,22 @@ public class equipWorkstation : MonoBehaviour
 
     void displayEquipment()
     {
-        for (int i = 0; i < slotRenderers.Length; i++)
+        for (int i = 0; i < infoDisplays.Length; i++)
+        {
+            item selItem;
+            if (menuManager.inventoryManager.equippedItems.Count > i)
+            {
+                selItem = menuManager.inventoryManager.equippedItems[i];
+                infoDisplays[i].selectedItem = selItem;
+            }
+            else
+            {
+                selItem = null;
+                infoDisplays[i].selectedItem = null;
+            }
+            infoDisplays[i].setInfo(selItem);
+        }
+        /* for (int i = 0; i < slotRenderers.Length; i++)
         {
             item selItem;
             if (menuManager.inventoryManager.equippedItems.Count > i)
@@ -38,7 +53,7 @@ public class equipWorkstation : MonoBehaviour
                 slotRenderers[i].sprite = null;
             }
             infoDisplays[i].setInfo(selItem);
-        }
+        } */
     }
 
     public void equip()
@@ -49,7 +64,7 @@ public class equipWorkstation : MonoBehaviour
         {
             if (equippingItem is gear gear)
             {
-                if (menuManager.inventoryManager.equippedItems.Count + 1 <= slotRenderers.Length)
+                if (menuManager.inventoryManager.equippedItems.Count + 1 <= infoDisplays.Length)
                 {
                     if (!menuManager.inventoryManager.equippedItems.Contains(equippingItem))
                     {

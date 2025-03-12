@@ -113,7 +113,8 @@ public class inventoryManager : MonoBehaviour
 
 	public void sortInventory(ref List<item> inv)
 	{
-		// printInventory(inv);
+		// Debug.Log($"SORTING!?!??!?");
+		printInventory(inv);
 		if (inv != null)
 			inv = inv.OrderBy(i => i.itemId).ToList();
 	}

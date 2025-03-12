@@ -15,8 +15,14 @@ MonoBehaviour:
   missionID: 1000
   missionTitle: rnd mission 0
   missionDescription: random
-  requiredItems: []
+  requiredItems:
+  - {fileID: 11400000, guid: 09beaca968880f7449e06c9b67e05643, type: 2}
+  - {fileID: 11400000, guid: efe3ff3737876564f8c0aa7130051258, type: 2}
+  - {fileID: 11400000, guid: ab0e1471363c9ab42a2e91281c3e9a2c, type: 2}
+  - {fileID: 11400000, guid: 339f8e52414bc414c943c6f213a335fb, type: 2}
+  - {fileID: 11400000, guid: 339f8e52414bc414c943c6f213a335fb, type: 2}
   calls: []
   currentCall: 0
   endEventValuesList: []
   howManyItems: 5
+  hasBeenAssigned: 0

@@ -1,4 +1,5 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class missionMenu : MonoBehaviour
@@ -28,7 +29,7 @@ public class missionMenu : MonoBehaviour
     public void displayMission(missionSO mission)
     {
         // Debug.Log($"new mission: {mission.missionID}, {mission.missionTitle}, {mission.missionDescription}");
-
+        Debug.Log($"displaying mission {mission.missionID} - {mission.name}");
         txtTitle.text = mission.missionTitle;
         txtDescription.text = mission.missionDescription;
         // requiredItemsMenu.refreshItems(requiredItemsMenu.regularSlots, menuManager.inventoryManager.missionInventory);

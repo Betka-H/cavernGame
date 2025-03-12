@@ -17,12 +17,13 @@ public class itemInfoDisplay : MonoBehaviour
     void OnEnable()
     {
         // selectedItem = null;
-        setInfo(null);
+        // setInfo(null);
     }
 
     public void setInfo(item it)
     {
         selectedItem = it;
+        // Debug.Log($"setting info for: {it}");
 
         void show(Sprite sprite, string name, string description)
         {
