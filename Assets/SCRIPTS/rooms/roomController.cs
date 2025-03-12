@@ -86,6 +86,16 @@ public class roomController : MonoBehaviour
 
 		darknessOverlay = FindObjectOfType<darknessOL>();
 		inventory = FindObjectOfType<inventoryManager>();
+
+		switch (PlayerPrefs.GetInt("jumpWarn", 0))
+		{
+			case 0:
+				m_hasWarnedJump = false;
+				break;
+			case 1:
+				m_hasWarnedJump = true;
+				break;
+		}
 	}
 
 	bool m_hasWarnedJump = false;
@@ -98,6 +108,7 @@ public class roomController : MonoBehaviour
 			if (currentLevel == gameController.level.lab && playerMovement.transform.GetComponent<Rigidbody2D>().velocity.y > 0)
 			{
 				m_hasWarnedJump = true;
+				PlayerPrefs.SetInt("jumpWarn", 1);
 				Invoke("startJumpCall", 5f);
 			}
 		}

@@ -12,7 +12,7 @@ public class SaveData
     // public missionSO deathMission;
     public int missionCall;
     public int deathCall;
-    public int jumpCall;
+    // public int jumpCall; //! save warn bool instead
 }
 
 // chatgpt
@@ -59,7 +59,7 @@ public class saveManager : MonoBehaviour
         data.currentMission = missionManager.currentMission;
         data.missionCall = missionManager.allMissions[missionManager.currentMission].currentCall;
         data.deathCall = missionManager.deathMission.currentCall;
-        data.jumpCall = missionManager.jumpMission.currentCall;
+        // data.jumpCall = missionManager.jumpMission.currentCall;
 
         string json = JsonUtility.ToJson(data);
         PlayerPrefs.SetString(saveKeyString, json);
@@ -105,7 +105,7 @@ public class saveManager : MonoBehaviour
             // missionManager.allMissions[missionManager.currentMission].currentCall = data.missionCall;
             // missionManager.deathMission = data.deathMission;
             missionManager.deathMission.currentCall = data.deathCall;
-            missionManager.jumpMission.currentCall = data.jumpCall;
+            // missionManager.jumpMission.currentCall = data.jumpCall;
         }
 
         Debug.LogWarning($"loaded: last mission: {missionManager.currentMission}, call {missionManager.allMissions[missionManager.currentMission].currentCall}, death mission call: {missionManager.deathMission.currentCall}, jump mission call: {missionManager.jumpMission.currentCall}");
