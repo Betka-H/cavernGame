@@ -56,17 +56,18 @@ public class elevator : MonoBehaviour
     }
 
     //chatgpt
-    float logTimer = 0f; // Tracks elapsed time
+    /* float logTimer = 0f; // Tracks elapsed time
     void Update()
     {
-        /* logTimer += Time.deltaTime; // Accumulate time
+        logTimer += Time.deltaTime; // Accumulate time
 
-        if (logTimer >= 1f) // If 1 second has passed
+        if (logTimer >= 2f) // If 1 second has passed
         {
-            Debug.Log(isClosed);
+            // Debug.Log(isClosed);
+            FindObjectOfType<announcerManager>().announceMessage($"door is closed: {isClosed}", true);
             logTimer = 0f; // Reset timer
-        } */
-    }//chgpt
+        }
+    }//chgpt */
 
     public void openDoors(bool instant)
     {
@@ -91,6 +92,7 @@ public class elevator : MonoBehaviour
         {
             // walls.gameObject.SetActive(true);
             audioManager.playSfx(audioManager.worldSfxSource, audioManager.elevatorMove, true);
+            FindObjectOfType<announcerManager>().announceMessage($"opening elevator doors");
 
             iTween.MoveBy(doorL.gameObject, iTween.Hash("x", -moveAmount, "speed", 0.5, "easeType", "easeInOutExpo", "delay", 4));
             iTween.MoveBy(doorR.gameObject, iTween.Hash("x", moveAmount, "speed", 0.5, "easeType", "easeInOutExpo", "delay", 4));
@@ -129,6 +131,8 @@ public class elevator : MonoBehaviour
             audioManager.playSfx(audioManager.worldSfxSource, audioManager.elevatorDoors, true);
             iTween.MoveBy(doorL.gameObject, iTween.Hash("x", moveAmount, "speed", 0.5, "easeType", "easeInOutExpo"));
             iTween.MoveBy(doorR.gameObject, iTween.Hash("x", -moveAmount, "speed", 0.5, "easeType", "easeInOutExpo"));
+
+            FindObjectOfType<announcerManager>().announceMessage($"closing elevator doors");
 
             StartCoroutine("closeWalls");
             // walls.gameObject.SetActive(true);

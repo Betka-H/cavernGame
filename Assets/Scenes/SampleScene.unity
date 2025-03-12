@@ -295,6 +295,7 @@ MonoBehaviour:
   blockL: {fileID: 5893898122074834562, guid: 4b7803ff778149d4d921600b472f0a8e, type: 3}
   blockR: {fileID: 2301586464489702344, guid: bfeb0cb8302c61e40a6c28e518d012cb, type: 3}
   enclosure_walls_lab: {fileID: 6553063550943284792, guid: d515c56bec07dc94fab1c46c882e1e8d, type: 3}
+  enclosure_walls_space: {fileID: 4032801956974249638, guid: 9274c58cd892fef4e955f9ac474d8ad5, type: 3}
   enclosure_walls_cave: {fileID: 4032801956974249638, guid: 9274c58cd892fef4e955f9ac474d8ad5, type: 3}
   minCavernRoomsNr: 5
   maxCavernRoomsNr: 8
@@ -302,6 +303,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a9577a00b93bbad4f90b190332000b6d, type: 2}
   - {fileID: 11400000, guid: 661a44c915d001c4dacb6dd66cb48d2d, type: 2}
   - {fileID: 11400000, guid: a057e912c1b72414ca6ee51612aaa06f, type: 2}
+  - {fileID: 11400000, guid: d6326bd3e2c99e44098bff0d4b966b46, type: 2}
+  spaceRooms:
+  - {fileID: 11400000, guid: cb3f046cb30d60d48a785f8ad207768b, type: 2}
   cavernRooms:
   - {fileID: 11400000, guid: 971d6478ef7a22946aa186eee9c51d92, type: 2}
   - {fileID: 11400000, guid: 1df159999703f5643968a918662a0aed, type: 2}
@@ -1635,7 +1639,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 158.69, y: 76.83498}
+  m_AnchoredPosition: {x: 158.69, y: 4}
   m_SizeDelta: {x: 503.71, y: 256.59}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &124533505
@@ -1685,8 +1689,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 32
+  m_fontSizeBase: 32
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3575,8 +3579,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -289.4924, y: -128.29497}
-  m_SizeDelta: {x: 374.26, y: 153.67}
+  m_AnchoredPosition: {x: 171.18, y: 147.44}
+  m_SizeDelta: {x: 528.68, y: 115.37}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &296513936
 MonoBehaviour:
@@ -3632,7 +3636,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -7693,6 +7697,7 @@ MonoBehaviour:
   playerSpawnPoint: {fileID: 1823140161}
   labPlayerPrefab: {fileID: 5563915041685763229, guid: 662344737d244824d8d9d1e3e8999852, type: 3}
   cavePlayerPrefab: {fileID: 5936850974349550149, guid: 194ed91a084300440856c86b83a7e389, type: 3}
+  spacePlayerPrefab: {fileID: 5563915041685763229, guid: 06c7a776ea6537448a64a018ffc59ef3, type: 3}
   roomController: {fileID: 0}
   isCalling: 0
   deathScreen: {fileID: 1246856623}
@@ -8730,6 +8735,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: ae048e1814f33894088de2ea6da8a4f9, type: 3}
   mainMenuMusic:
   - {fileID: 8300000, guid: d926e737758111c4d9245de5682e98d1, type: 3}
+  spaceMusic: []
   itemPickup:
   - {fileID: 8300000, guid: 69cd76c2b478fef4c9cca38e624593a3, type: 3}
   footSteps:
@@ -9276,9 +9282,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allMissions:
-  - {fileID: 11400000, guid: a14c2d2975e4a9b41be7483d4a0bac1f, type: 2}
-  - {fileID: 11400000, guid: 2811ce3f6a5ccd049a0271db705aab97, type: 2}
-  - {fileID: 11400000, guid: e7b34d493e03b464aa6d7172298eb188, type: 2}
+  - {fileID: 11400000, guid: a23eed4daad9b2e488eb5dd02f8532c9, type: 2}
   deathMission: {fileID: 11400000, guid: a3ccff35b61dfb44ba7fd61ceacc7847, type: 2}
   currentMission: 0
 --- !u!1001 &895644847
@@ -20825,8 +20829,8 @@ Transform:
   m_GameObject: {fileID: 2000213297}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -408.3825, y: 29.675049, z: 0}
-  m_LocalScale: {x: 306, y: 252, z: 1}
+  m_LocalPosition: {x: -408.3825, y: -2.99, z: 0}
+  m_LocalScale: {x: 306, y: 316.8396, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1980269335}

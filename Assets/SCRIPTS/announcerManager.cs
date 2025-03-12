@@ -31,7 +31,7 @@ public class announcerManager : MonoBehaviour
 
     public void announceMessage(string message)
     {
-        Debug.Log($"announcer: \"{message}\"");
+        Debug.LogWarning($"announcer: \"{message}\"");
 
         // if (lastAnnounced < 0.5f)
         if (canAnnounce)

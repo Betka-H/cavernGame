@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
+using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,6 +13,7 @@ public class gameController : MonoBehaviour
 	public Transform playerSpawnPoint;
 	public GameObject labPlayerPrefab;
 	public GameObject cavePlayerPrefab;
+	public GameObject spacePlayerPrefab;
 
 	missionManager missionManager;
 	[HideInInspector] public roomController roomController;
@@ -28,7 +30,7 @@ public class gameController : MonoBehaviour
 	inventoryManager inventoryManager;
 	saveManager saveManager;
 
-	public enum level { lab, cavern };
+	public enum level { lab, cavern, space };
 
 	void Start()
 	{
@@ -42,10 +44,21 @@ public class gameController : MonoBehaviour
 		audioManager = FindObjectOfType<audioManager>();
 
 		roomController.labFirst = true;
-		genAndSpawn(level.lab);
-		// roomController.labFirst = false;
 
-		clearMenus();
+		// clearMenus();
+
+		//! tmp, use this>>>>
+		/* if (PlayerPrefs.GetInt("HasStarted", 0) == 0)
+		{
+			PlayerPrefs.SetInt("HasStarted", 1); // Save that the game has started
+			PlayerPrefs.Save();
+
+			genAndSpawn(level.space);
+		}
+		else genAndSpawn(level.lab); */
+		genAndSpawn(level.space); //! delet this line
+
+		// clearMenus();
 	}
 
 	void Update()
@@ -67,7 +80,7 @@ public class gameController : MonoBehaviour
 			Debug.Log($"dead: {isDead}, calling: {isCalling}");
 			if (isDead && !isCalling)
 			{
-				menuManager.hideMenus();
+				// menuManager.hideMenus();
 				genAndSpawn(level.lab);
 			}
 		}
@@ -75,6 +88,12 @@ public class gameController : MonoBehaviour
 		{
 			menuManager.toggleEscapeMenu(!menuManager.escMenu.gameObject.activeSelf);
 		} */
+	}
+
+	public void endOfIntroCall()
+	{
+		Debug.LogError($"end of intro call");
+		genAndSpawn(level.lab);
 	}
 
 	public void saveAndGoToMainMenu()
@@ -101,18 +120,27 @@ public class gameController : MonoBehaviour
 			case level.cavern:
 				audioManager.playMusic(musicLvl.caveRegular);
 				break;
+			case level.space:
+				audioManager.playMusic(musicLvl.space);
+				break;
 		}
 
-		clearMenus();
 		spawnPlayer(lvl);
 		roomController.generateLevel(lvl);
-		// checkShoes();
+		clearMenus();
+
+		if (lvl == level.space)
+		{
+			Debug.LogError($"space lvl - start mission");
+			missionSO currentMission = missionManager.allMissions[missionManager.currentMission];
+			callManager.startCall(currentMission);
+			Debug.LogError($"starting space call");
+		}
 	}
 	void clearMenus()
 	{
 		menuManager.hideMenus();
 		interactionTooltip.hideTooltip();
-		deathScreen.SetActive(false);
 	}
 
 	GameObject playerPrefab;
@@ -127,6 +155,9 @@ public class gameController : MonoBehaviour
 				break;
 			case level.cavern:
 				playerPrefab = cavePlayerPrefab;
+				break;
+			case level.space:
+				playerPrefab = spacePlayerPrefab;
 				break;
 		}
 		player = Instantiate(playerPrefab, playerParent.transform);
@@ -191,11 +222,11 @@ public class gameController : MonoBehaviour
 
 	void todo()
 	{
-		Debug.LogError("dont forget to upload to github!");
+		/* Debug.LogError("dont forget to upload to github!");
 		Debug.LogWarning("=========================================================================");
 		Debug.LogWarning("todo:");
 		// Debug.LogWarning("have an unlockable npc which gives u a \"weather forecast\" for the next run depending on the darkness level");
-		Debug.LogWarning("search temp");
+		Debug.LogWarning("search temp"); */
 	}
 
 	public GameObject deathScreen;
@@ -337,18 +368,22 @@ public class gameController : MonoBehaviour
 				if (currentMission.calls.Length > currentMission.currentCall) // to prevent looping the last message
 					menuManager.callManager.startCall(currentMission);
 
-				getElevator().closeDoors(true);
+				// getElevator().closeDoors(true);
 				StartCoroutine(WaitForCallToEndAndOpenDoors());
 			}
+			else
+				getElevator().openDoors(false);
 
 			// chatgpt i guess
 			IEnumerator WaitForCallToEndAndOpenDoors()
 			{
+				// FindObjectOfType<announcerManager>().announceMessage($"door opening?????");
 				while (isCalling)
 				{
 					yield return null;
 				}
 
+				// FindObjectOfType<announcerManager>().announceMessage($"door opening?");
 				getElevator().openDoors(false);
 				// Debug.LogWarning("should open now");
 			}

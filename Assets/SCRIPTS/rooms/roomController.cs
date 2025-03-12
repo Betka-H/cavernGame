@@ -18,7 +18,7 @@ public class roomController : MonoBehaviour
 
 	private inventoryManager inventory;
 
-	public gameController.level currentLevel;
+	[HideInInspector] public gameController.level currentLevel;
 
 	// enclosure
 	[Space]
@@ -30,6 +30,7 @@ public class roomController : MonoBehaviour
 	public GameObject blockR;
 	[Header("doorway heights")]
 	public GameObject enclosure_walls_lab;
+	public GameObject enclosure_walls_space;
 	public GameObject enclosure_walls_cave;
 
 	// rooms
@@ -38,6 +39,7 @@ public class roomController : MonoBehaviour
 	public int maxCavernRoomsNr;
 	[Header("rooms // cavern 0 is entry room, lab is already assorted: assign starting room at //choose lab entrance")]
 	public roomSO[] labRooms;
+	public roomSO[] spaceRooms;
 	public room_cavern[] cavernRooms;
 	private roomSO entranceRoom;
 	[HideInInspector] public roomSO[] selectedRooms;
@@ -94,6 +96,11 @@ public class roomController : MonoBehaviour
 				Instantiate(enclosure_walls_lab, enclosureParent);
 				generateLab(labFirst);
 				if (labFirst) labFirst = false;
+				break;
+			case gameController.level.space:
+				clearParent(enclosureParent);
+				Instantiate(enclosure_walls_space, enclosureParent);
+				generateSpace();
 				break;
 			case gameController.level.cavern:
 				Instantiate(enclosure_walls_cave, enclosureParent);
@@ -153,13 +160,21 @@ public class roomController : MonoBehaviour
 		return $" level rooms ({darknessLvl}):\n{debug}";
 	}
 
+	void generateSpace()
+	{
+		entranceRoom = spaceRooms[0];
+		selectedRooms = spaceRooms;
+	}
 	void generateLab(bool first)
 	{
 		// choose lab entrance
-		// Debug.Log($"lab first?: {first}");
 		if (first)
-			entranceRoom = labRooms[1]; //! temp. regular entrance
-		else entranceRoom = labRooms[0]; //! temp. elevator entrance
+		{
+			entranceRoom = labRooms[3]; // normal entrance
+			Debug.LogError($"lab room is 3 (4)");
+		}
+		else entranceRoom = labRooms[0]; // elevator entrance
+
 		selectedRooms = labRooms;
 	}
 	//* generate cavern

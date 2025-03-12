@@ -28,7 +28,7 @@ public class menuManager : MonoBehaviour
     {
         // menuOpen = null;
         // Debug.Log($"mo: {menuOpen}");
-        hideMenus();
+        // hideMenus();
     }
 
     bool anotherMenuOpen = false;
@@ -70,6 +70,7 @@ public class menuManager : MonoBehaviour
     public void hideMenus()
     {
         // if (anotherMenuOpen && escMenu.gameObject.activeSelf) return;
+        Debug.LogError($"hiding menus");
 
         toggleCaveItemMenu(false);
         toggleLabItemMenu(false);
@@ -174,6 +175,8 @@ public class menuManager : MonoBehaviour
             if (!onOff)
                 Time.timeScale = 1;
             else Time.timeScale = 0;
+
+            Debug.LogError($"toggling call screen {onOff} (true = on)");
 
             toggleCallMenu(onOff);
             // anotherMenuOpen = onOff;

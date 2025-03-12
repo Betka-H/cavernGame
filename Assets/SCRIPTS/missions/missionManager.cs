@@ -17,6 +17,8 @@ public class missionManager : MonoBehaviour
 
     void Start()
     {
+        restartMissions(); //! tmp. testing space mission
+
         checkRndMission();
         // Debug.Log($"current mission: {currentMission}");
         // Debug.Log($"current call: {allMissions[currentMission].currentCall}");
@@ -29,18 +31,18 @@ public class missionManager : MonoBehaviour
 
     public void checkMissionItems()
     {
-        if (menuManager.inventoryManager.checkResources(menuManager.inventoryManager.missionInventory, allMissions[currentMission].requiredItems))
+        missionSO cm = allMissions[currentMission];
+        if (menuManager.inventoryManager.checkResources(menuManager.inventoryManager.missionInventory, cm.requiredItems))
         {
-            // Debug.Log("new mission?");
-            // newMission();
-            endMission();
+            FindObjectOfType<announcerManager>().announceMessage($"all items collected");
+            if (cm.endOnAllItems)
+                endMission();
         }
     }
 
     public void endMission()
     {
-        FindObjectOfType<announcerManager>().announceMessage($"invoke mission end", true);
-        // allMissions[currentMission].missionEndEvent.Invoke();
+        runEndEvent();
         newMission();
     }
 
@@ -97,6 +99,16 @@ public class missionManager : MonoBehaviour
             menuManager.inventoryManager.sortInventory(ref rndMission.requiredItems);
             Debug.Log($"req items generated:");
             menuManager.inventoryManager.printInventory(rndMission.requiredItems);
+        }
+    }
+
+    void runEndEvent()
+    {
+        foreach (var even in allMissions[currentMission].endEventValuesList)
+        {
+            // Debug.Log("found event");
+            GameObject gameObj = GameObject.Find(even.objName);
+            gameObj.SendMessage(even.methodName);
         }
     }
 }

@@ -3,7 +3,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum musicLvl { labRegular, caveRegular, caveEscape, death, mainMenu, call, walk }
+public enum musicLvl { labRegular, caveRegular, caveEscape, death, mainMenu, call, walk, space }
 
 // chatgpt
 public class audioManager : MonoBehaviour
@@ -80,6 +80,9 @@ public class audioManager : MonoBehaviour
             case musicLvl.walk:
                 selectedClips = footSteps;
                 break;
+            case musicLvl.space:
+                selectedClips = spaceMusic;
+                break;
             default:
                 Debug.LogError("music selection error, playing fallback");
                 selectedClips = labMusic;
@@ -94,6 +97,7 @@ public class audioManager : MonoBehaviour
     public AudioClip[] caveMusicEscape;
     public AudioClip[] deathMusic;
     public AudioClip[] mainMenuMusic;
+    public AudioClip[] spaceMusic;
     public AudioClip[] itemPickup;
 
     int prevTrackNumber = -1;
