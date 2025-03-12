@@ -169,10 +169,7 @@ public class roomController : MonoBehaviour
 	{
 		// choose lab entrance
 		if (first)
-		{
 			entranceRoom = labRooms[3]; // normal entrance
-			Debug.LogError($"lab room is 3 (4)");
-		}
 		else entranceRoom = labRooms[0]; // elevator entrance
 
 		selectedRooms = labRooms;

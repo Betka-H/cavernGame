@@ -1,8 +1,5 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel.Design;
-using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -92,7 +89,7 @@ public class gameController : MonoBehaviour
 
 	public void endOfIntroCall()
 	{
-		Debug.LogError($"end of intro call");
+		// Debug.LogError($"end of intro call");
 		genAndSpawn(level.lab);
 	}
 
@@ -131,10 +128,10 @@ public class gameController : MonoBehaviour
 
 		if (lvl == level.space)
 		{
-			Debug.LogError($"space lvl - start mission");
+			// Debug.LogError($"space lvl - start mission");
 			missionSO currentMission = missionManager.allMissions[missionManager.currentMission];
 			callManager.startCall(currentMission);
-			Debug.LogError($"starting space call");
+			// Debug.LogError($"starting space call");
 		}
 	}
 	void clearMenus()

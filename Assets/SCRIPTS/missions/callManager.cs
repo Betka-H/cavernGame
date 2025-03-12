@@ -89,7 +89,7 @@ public class callManager : MonoBehaviour
                 GameObject gameObj = GameObject.Find(even.objName);
                 gameObj.SendMessage(even.methodName);
             }
-        else Debug.LogError($"no call end event");
+        // else Debug.LogError($"no call end event");
     }
 
     /* public void startMissionCall()
