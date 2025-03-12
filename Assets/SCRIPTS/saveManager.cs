@@ -12,6 +12,7 @@ public class SaveData
     // public missionSO deathMission;
     public int missionCall;
     public int deathCall;
+    public int jumpCall;
 }
 
 // chatgpt
@@ -58,6 +59,7 @@ public class saveManager : MonoBehaviour
         data.currentMission = missionManager.currentMission;
         data.missionCall = missionManager.allMissions[missionManager.currentMission].currentCall;
         data.deathCall = missionManager.deathMission.currentCall;
+        data.jumpCall = missionManager.jumpMission.currentCall;
 
         string json = JsonUtility.ToJson(data);
         PlayerPrefs.SetString(saveKeyString, json);
@@ -99,13 +101,14 @@ public class saveManager : MonoBehaviour
             // missions + calls
             // missionManager.allMissions[missionManager.currentMission] = data.currentMission;
             missionManager.currentMission = data.currentMission;
-            missionManager.deathMission.currentCall = missionManager.allMissions[missionManager.currentMission].currentCall; //! ????????????
+            // missionManager.deathMission.currentCall = missionManager.allMissions[missionManager.currentMission].currentCall; //! ????????????
             // missionManager.allMissions[missionManager.currentMission].currentCall = data.missionCall;
             // missionManager.deathMission = data.deathMission;
             missionManager.deathMission.currentCall = data.deathCall;
+            missionManager.jumpMission.currentCall = data.jumpCall;
         }
 
-        Debug.LogWarning($"loaded: last mission: {missionManager.currentMission}, call {missionManager.allMissions[missionManager.currentMission].currentCall}, death mission call: {missionManager.deathMission.currentCall}");
+        Debug.LogWarning($"loaded: last mission: {missionManager.currentMission}, call {missionManager.allMissions[missionManager.currentMission].currentCall}, death mission call: {missionManager.deathMission.currentCall}, jump mission call: {missionManager.jumpMission.currentCall}");
         // FindObjectOfType<announcerManager>().announceMessage($"loaded: last mission: {missionManager.currentMission}, call {missionManager.allMissions[missionManager.currentMission].currentCall}, death mission call: {missionManager.deathMission.currentCall}");
         //! check Debug.LogWarning("what about eq inv?");
     }
