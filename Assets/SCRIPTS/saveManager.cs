@@ -30,7 +30,7 @@ public class saveManager : MonoBehaviour
         missionManager = FindObjectOfType<missionManager>();
 
         //! temp pref clear
-        // clearPrefs();
+        clearPrefs();
         load();
     }
 

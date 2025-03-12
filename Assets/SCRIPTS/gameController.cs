@@ -47,15 +47,15 @@ public class gameController : MonoBehaviour
 		// clearMenus();
 
 		//! tmp, use this>>>>
-		/* if (PlayerPrefs.GetInt("HasStarted", 0) == 0)
+		if (PlayerPrefs.GetInt("HasStarted", 0) == 0)
 		{
 			PlayerPrefs.SetInt("HasStarted", 1); // Save that the game has started
 			PlayerPrefs.Save();
 
 			genAndSpawn(level.space);
 		}
-		else genAndSpawn(level.lab); */
-		genAndSpawn(level.space); //! delet this line
+		else genAndSpawn(level.lab);
+		// genAndSpawn(level.space); //! delet this line
 
 		// clearMenus();
 	}
@@ -135,6 +135,7 @@ public class gameController : MonoBehaviour
 		}
 		else if (missionManager.checkCurrentMission(-1, 1))
 		{
+			FindObjectOfType<playerMovement>().speed = 3.5f;
 			getElevator().isFirst = true; // door opens only on first and then stays closed
 
 			// StartCoroutine(delayAction(() => callManager.startCall(getCurrentMission()), 21f));
@@ -149,6 +150,10 @@ public class gameController : MonoBehaviour
 	public void startNextMainMissionCall()
 	{
 		callManager.startCall(getCurrentMission());
+	}
+	public void m_resetPlayerSpeed()
+	{
+		FindObjectOfType<playerMovement>().speed = FindObjectOfType<playerMovement>().defaultSpeed;
 	}
 
 	/* // chatgpt
@@ -267,7 +272,7 @@ public class gameController : MonoBehaviour
 			// Debug.Log("death");
 			FindObjectOfType<announcerManager>().announceMessage($"you died!");
 
-			audioManager.playSfx(audioManager.worldSfxSource, audioManager.deathImpale, true);
+			audioManager.playSfx(audioManager.worldSfxSource, audioManager.deathImpale);
 			audioManager.playMusic(musicLvl.death);
 
 			/* if (deathCalls[currentDeathCall].currentMessage <= deathCalls[currentDeathCall].messages.Length)

@@ -8,7 +8,7 @@ public class elevator : MonoBehaviour
     public Transform doorL;
     public Transform doorR;
 
-    float moveAmount = 1.7f;
+    float moveAmount = 2f;
 
     public Transform walls;
 
@@ -109,7 +109,8 @@ public class elevator : MonoBehaviour
         else
         {
             // walls.gameObject.SetActive(true);
-            audioManager.playSfx(audioManager.worldSfxSource, audioManager.elevatorMove, true);
+            // audioManager.playSfx(audioManager.worldSfxSource, audioManager.elevatorMove, true);
+            audioManager.playSfx(audioManager.worldSfxSource, audioManager.elevatorMove);
             FindObjectOfType<announcerManager>().announceMessage($"opening elevator doors");
 
             iTween.MoveBy(doorL.gameObject, iTween.Hash("x", -moveAmount, "speed", 0.5, "easeType", "easeInOutExpo", "delay", 4));
@@ -121,8 +122,10 @@ public class elevator : MonoBehaviour
     IEnumerator openWalls()
     {
         yield return new WaitForSeconds(3);
-        audioManager.playSfx(audioManager.worldSfxSource, audioManager.elevatorDing, true);
-        audioManager.playSfx(audioManager.worldSfxSource, audioManager.elevatorDoors, true);
+        // audioManager.playSfx(audioManager.worldSfxSource, audioManager.elevatorDing, true);
+        audioManager.playSfx(audioManager.worldSfxSource, audioManager.elevatorDing);
+        // audioManager.playSfx(audioManager.worldSfxSource, audioManager.elevatorDoors, true);
+        audioManager.playSfx(audioManager.worldSfxSource, audioManager.elevatorDoors);
 
         yield return new WaitForSeconds(3.5f);
         walls.gameObject.SetActive(false);
@@ -148,7 +151,8 @@ public class elevator : MonoBehaviour
         }
         else
         {
-            audioManager.playSfx(audioManager.worldSfxSource, audioManager.elevatorDoors, true);
+            // audioManager.playSfx(audioManager.worldSfxSource, audioManager.elevatorDoors, true);
+            audioManager.playSfx(audioManager.worldSfxSource, audioManager.elevatorDoors);
             iTween.MoveBy(doorL.gameObject, iTween.Hash("x", moveAmount, "speed", 0.5, "easeType", "easeInOutExpo"));
             iTween.MoveBy(doorR.gameObject, iTween.Hash("x", -moveAmount, "speed", 0.5, "easeType", "easeInOutExpo"));
 
@@ -163,7 +167,8 @@ public class elevator : MonoBehaviour
     {
         yield return new WaitForSeconds(5);
         // audioManager.playSfx(audioManager.worldSfxSource, audioManager.elevatorDing, true);
-        audioManager.playSfx(audioManager.worldSfxSource, audioManager.elevatorMove, true);
+        // audioManager.playSfx(audioManager.worldSfxSource, audioManager.elevatorMove, true);
+        audioManager.playSfx(audioManager.worldSfxSource, audioManager.elevatorMove);
         // Debug.Log("closign doors");
         // yield return new WaitForSeconds(3);
         isClosed = true;

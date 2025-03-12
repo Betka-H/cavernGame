@@ -69,6 +69,8 @@ public class roomController : MonoBehaviour
 
 	public SpriteRenderer colorBg;
 
+	bool hasMentionedJumping;
+
 	void Start()
 	{
 		missionManager = FindObjectOfType<missionManager>();
@@ -94,6 +96,7 @@ public class roomController : MonoBehaviour
 				break;
 			case 1:
 				m_hasWarnedJump = true;
+				getPlayerMovement().bounciness = 0;
 				break;
 		}
 	}
@@ -101,11 +104,9 @@ public class roomController : MonoBehaviour
 	bool m_hasWarnedJump = false;
 	void Update()
 	{
-		if (!m_hasWarnedJump)
+		if (!m_hasWarnedJump && hasMentionedJumping)
 		{
-			playerMovement playerMovement = FindObjectOfType<playerMovement>();
-
-			if (currentLevel == gameController.level.lab && playerMovement.transform.GetComponent<Rigidbody2D>().velocity.y > 0)
+			if (currentLevel == gameController.level.lab && getPlayerMovement().transform.GetComponent<Rigidbody2D>().velocity.y > 0)
 			{
 				m_hasWarnedJump = true;
 				PlayerPrefs.SetInt("jumpWarn", 1);
@@ -117,8 +118,17 @@ public class roomController : MonoBehaviour
 	{
 		callManager.startCall(missionManager.jumpMission);
 
-		playerMovement playerMovement = FindObjectOfType<playerMovement>();
-		playerMovement.bounciness = 0;
+		getPlayerMovement().bounciness = 0;
+	}
+
+	public void m_mentionJumping()
+	{
+		FindObjectOfType<announcerManager>().announceMessage($"mentioned jumping", true);
+		hasMentionedJumping = true;
+	}
+	playerMovement getPlayerMovement()
+	{
+		return FindObjectOfType<playerMovement>();
 	}
 
 	[HideInInspector] public bool labFirst;

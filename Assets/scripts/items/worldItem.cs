@@ -51,7 +51,7 @@ public class worldItem : MonoBehaviour
 	{
 		if (inventoryManager.caveInventory.Count < caveItemMenu.slotLimit)
 		{
-			audioManager.playSfx(audioManager.worldSfxSource, audioManager.itemPickup, true);
+			audioManager.playSfx(audioManager.worldSfxSource, audioManager.itemPickup);
 
 			inventoryManager.addItem(assignedItem, inventoryManager.caveInventory);
 			assignedRoomSO.removeItemSpawn(assignedItem, assignedSpawnTransform);

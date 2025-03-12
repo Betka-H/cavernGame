@@ -41,4 +41,8 @@ MonoBehaviour:
   - '[...]'
   - Anyway, hurry over so we can get started properly!
   currentMessage: 7
-  endEventValuesList: []
+  endEventValuesList:
+  - objName: roomController
+    methodName: m_mentionJumping
+  - objName: gameController
+    methodName: m_resetPlayerSpeed

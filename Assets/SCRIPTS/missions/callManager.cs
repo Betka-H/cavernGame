@@ -49,7 +49,7 @@ public class callManager : MonoBehaviour
 
         if (currentMissionCall().currentMessage + 1 < currentMissionCall().messages.Length)
         {
-            audioManager.playSfx(audioManager.worldSfxSource, audioManager.callAdvance, true);
+            audioManager.playSfx(audioManager.worldSfxSource, audioManager.callAdvance);
 
             currentMissionCall().currentMessage++;
             callScreen.talk(currentMissionCall());
@@ -58,7 +58,7 @@ public class callManager : MonoBehaviour
         {
             Debug.Log($"no more messages in call!");
 
-            audioManager.playSfx(audioManager.worldSfxSource, audioManager.callEnd, true); // here, otherwise plays end call even in empty calls
+            audioManager.playSfx(audioManager.worldSfxSource, audioManager.callEnd); // here, otherwise plays end call even in empty calls
             endCall();
         }
     }

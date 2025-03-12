@@ -71,12 +71,12 @@ public class playerAnimator : MonoBehaviour
 				break;
 			case direction.right:
 				if (playerMovement.groundCheck())
-					audioManager.playSfx(audioManager.playerSfxSource, audioManager.footSteps, false);
+					audioManager.playSfx(audioManager.playerSfxSource, audioManager.footSteps);
 				animator.SetBool("right", true);
 				break;
 			case direction.left:
 				if (playerMovement.groundCheck())
-					audioManager.playSfx(audioManager.playerSfxSource, audioManager.footSteps, false);
+					audioManager.playSfx(audioManager.playerSfxSource, audioManager.footSteps);
 				animator.SetBool("left", true);
 				break;
 			case direction.dead:

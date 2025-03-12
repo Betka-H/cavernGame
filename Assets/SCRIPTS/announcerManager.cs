@@ -46,7 +46,6 @@ public class announcerManager : MonoBehaviour
 
             // announcer reset
             // lastAnnounced = 0;
-            canAnnounce = false;
             StartCoroutine(announcerCooldown());
         }
         else
@@ -70,6 +69,7 @@ public class announcerManager : MonoBehaviour
     // chatgpt
     IEnumerator announcerCooldown()
     {
+        canAnnounce = false;
         yield return new WaitForSecondsRealtime(0.65f);
         canAnnounce = true;
     }

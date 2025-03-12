@@ -153,17 +153,40 @@ public class audioManager : MonoBehaviour
     public AudioClip[] elevatorDing;
     public AudioClip[] elevatorDoors;
 
-    public void playSfx(AudioSource source, AudioClip[] clips, bool allowOverlap)
+    bool canPlaySfx = true;
+    public void playSfx(AudioSource source, AudioClip[] clips)
     {
-        if ((!source.isPlaying || allowOverlap) && clips.Length > 0)
+        // if ((!source.isPlaying || allowOverlap) && clips.Length > 0)
+        if (canPlaySfx && clips.Length > 0)
         {
             int rnd = UnityEngine.Random.Range(0, clips.Length);
 
             source.PlayOneShot(clips[rnd]);
 
+            StartCoroutine(sfxCooldown());
             // Debug.LogWarning("playing sound effect: " + clips[rnd].name);
         }
         // else Debug.LogError($"no clip assigned or banning multiple");
+    }
+    /* public void playSfx(AudioSource source, AudioClip[] clips, bool allowOverlap)
+    {
+        // if ((!source.isPlaying || allowOverlap) && clips.Length > 0)
+        if ((canPlaySfx || allowOverlap) && clips.Length > 0)
+        {
+            int rnd = UnityEngine.Random.Range(0, clips.Length);
+
+            source.PlayOneShot(clips[rnd]);
+
+            StartCoroutine(sfxCooldown());
+            // Debug.LogWarning("playing sound effect: " + clips[rnd].name);
+        }
+        // else Debug.LogError($"no clip assigned or banning multiple");
+    } */
+    IEnumerator sfxCooldown()
+    {
+        canPlaySfx = false;
+        yield return new WaitForSecondsRealtime(0.25f);
+        canPlaySfx = true;
     }
 
     // 🎚 Set music volume

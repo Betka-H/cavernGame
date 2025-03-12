@@ -14,14 +14,18 @@ public class button : MonoBehaviour
 
     void OnMouseEnter()
     {
-        audioManager.playSfx(audioManager.uiSfxSource, audioManager.uiButtonMouseover, true);
+        // audioManager.playSfx(audioManager.uiSfxSource, audioManager.uiButtonMouseover, true);
+        audioManager.playSfx(audioManager.uiSfxSource, audioManager.uiButtonMouseover);
     }
 
     void OnMouseDown()
     {
         // Debug.Log("invoke?");
         if (doDefaultSfx)
-            audioManager.playSfx(audioManager.uiSfxSource, audioManager.uiButtonClick, true);
+        {
+            // audioManager.playSfx(audioManager.uiSfxSource, audioManager.uiButtonClick, true);
+            audioManager.playSfx(audioManager.uiSfxSource, audioManager.uiButtonClick);
+        }
         buttonEvent.Invoke();
     }
 }
