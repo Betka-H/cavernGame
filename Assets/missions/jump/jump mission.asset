@@ -10,16 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2aa9bd2290040f740b1590610b914dff, type: 3}
-  m_Name: tutorial mission
+  m_Name: jump mission
   m_EditorClassIdentifier: 
-  missionID: -1
-  missionTitle: tutorial mission
-  missionDescription: uhh idk
+  missionID: -1000
+  missionTitle: jump
+  missionDescription: j
   endOnAllItems: 0
   requiredItems: []
   calls:
-  - {fileID: 11400000, guid: fc231678b18bb1f428455137a0768c71, type: 2}
-  - {fileID: 11400000, guid: 55bd118279e09824f8372e6108bb1159, type: 2}
-  - {fileID: 11400000, guid: 00a4ad5f4da90bd43a51476717c9ddf1, type: 2}
-  currentCall: 2
+  - {fileID: 11400000, guid: a14daa126b79efa4eb8c5beed4d4d2dc, type: 2}
+  currentCall: 3
   endEventValuesList: []

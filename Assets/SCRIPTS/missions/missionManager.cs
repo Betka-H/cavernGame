@@ -6,6 +6,7 @@ public class missionManager : MonoBehaviour
 {
     public missionSO[] allMissions;
     public missionSO deathMission;
+    public missionSO jumpMission;
     menuManager menuManager;
 
     [HideInInspector] public int currentMission;
@@ -96,6 +97,7 @@ public class missionManager : MonoBehaviour
 
         // Debug.Log($"dm: {deathMission}");
         deathMission.currentCall = 0;
+        jumpMission.currentCall = 0;
     }
 
     void checkRndMission()

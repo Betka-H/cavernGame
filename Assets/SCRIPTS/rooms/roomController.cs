@@ -33,6 +33,9 @@ public class roomController : MonoBehaviour
 	public GameObject enclosure_walls_space;
 	public GameObject enclosure_walls_cave;
 
+	missionManager missionManager;
+	callManager callManager;
+
 	// rooms
 	[Header("rooms")]
 	public int minCavernRoomsNr;
@@ -68,6 +71,9 @@ public class roomController : MonoBehaviour
 
 	void Start()
 	{
+		missionManager = FindObjectOfType<missionManager>();
+		callManager = FindObjectOfType<callManager>();
+
 		//! temp trader spawn value
 		traderSpawnChance = 100;
 		//! temp item spawn value
@@ -80,6 +86,28 @@ public class roomController : MonoBehaviour
 
 		darknessOverlay = FindObjectOfType<darknessOL>();
 		inventory = FindObjectOfType<inventoryManager>();
+	}
+
+	bool m_hasWarnedJump = false;
+	void Update()
+	{
+		if (!m_hasWarnedJump)
+		{
+			playerMovement playerMovement = FindObjectOfType<playerMovement>();
+
+			if (currentLevel == gameController.level.lab && playerMovement.transform.GetComponent<Rigidbody2D>().velocity.y > 0)
+			{
+				m_hasWarnedJump = true;
+				Invoke("startJumpCall", 5f);
+			}
+		}
+	}
+	public void startJumpCall()
+	{
+		callManager.startCall(missionManager.jumpMission);
+
+		playerMovement playerMovement = FindObjectOfType<playerMovement>();
+		playerMovement.bounciness = 0;
 	}
 
 	[HideInInspector] public bool labFirst;

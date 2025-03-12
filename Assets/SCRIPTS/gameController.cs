@@ -135,25 +135,31 @@ public class gameController : MonoBehaviour
 		}
 		else if (missionManager.checkCurrentMission(-1, 1))
 		{
-			// Debug.LogWarning("byeah");
-			getElevator().isFirst = true;
+			getElevator().isFirst = true; // door opens only on first and then stays closed
 
-			// chatgpt
-			StartCoroutine(delayAction(() => callManager.startCall(getCurrentMission()), 8f));
-			/* Invoke("startNextMainMissionCall", 8f);
-			void startNextMainMissionCall()
-			{
-				callManager.startCall(getCurrentMission());
-			} */
+			// StartCoroutine(delayAction(() => callManager.startCall(getCurrentMission()), 21f));
+			// StartCoroutine(delayAction(() => callManager.startCall(getCurrentMission()), 3f));
+
+			float callDelay = 8f;
+			Invoke("startNextMainMissionCall", callDelay);
+			callDelay += 2.5f;
+			Invoke("startNextMainMissionCall", callDelay);
 		}
 	}
+	public void startNextMainMissionCall()
+	{
+		callManager.startCall(getCurrentMission());
+	}
 
-	// chatgpt
+	/* // chatgpt
+	float logger;
 	IEnumerator delayAction(Action action, float delay)
 	{
+		logger += Time.deltaTime;
+		Debug.Log($"{logger}");
 		yield return new WaitForSeconds(delay);
-		action?.Invoke(); // Calls the function safely
-	}
+		action?.Invoke();
+	} */
 
 
 	void clearMenus()
@@ -323,8 +329,8 @@ public class gameController : MonoBehaviour
 		// getElevator().openDoors(false);
 
 		Debug.LogWarning("wait for 3!!!");
-		// yield return new WaitForSeconds(3); // keep this line
-		yield return new WaitForSeconds(0.5f); //! delete this line
+		yield return new WaitForSeconds(3); // keep this line
+											// yield return new WaitForSeconds(0.5f); //! delete this line
 
 		transferToLabAndMissionInventory();
 		missionManager.checkMissionItems();
@@ -366,8 +372,8 @@ public class gameController : MonoBehaviour
 			// getElevator().openDoors(false);
 
 			Debug.LogWarning("wait for 3!!!");
-			// yield return new WaitForSeconds(3); // keep this line
-			yield return new WaitForSeconds(0.5f); //! delete this line
+			yield return new WaitForSeconds(3); // keep this line
+												// yield return new WaitForSeconds(0.5f); //! delete this line
 
 			// transferToLabAndMissionInventory();
 			// missionManager.checkMissionItems();

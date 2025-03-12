@@ -99,7 +99,7 @@ public class saveManager : MonoBehaviour
             // missions + calls
             // missionManager.allMissions[missionManager.currentMission] = data.currentMission;
             missionManager.currentMission = data.currentMission;
-            missionManager.deathMission.currentCall = missionManager.allMissions[missionManager.currentMission].currentCall;
+            missionManager.deathMission.currentCall = missionManager.allMissions[missionManager.currentMission].currentCall; //! ????????????
             // missionManager.allMissions[missionManager.currentMission].currentCall = data.missionCall;
             // missionManager.deathMission = data.deathMission;
             missionManager.deathMission.currentCall = data.deathCall;

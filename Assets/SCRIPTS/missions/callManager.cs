@@ -24,6 +24,7 @@ public class callManager : MonoBehaviour
     public void startCall(missionSO newMission)
     {
         selectedMission = newMission;
+        Debug.Log($"sm: {selectedMission.name}, cc: {selectedMission.currentCall}");
         menuManager.toggleCallScreen();
         // Debug.Log($"cml: {selectedMission.calls[selectedMission.currentCall].messages.Length}");
         if (selectedMission.calls[selectedMission.currentCall].messages.Length > 0)

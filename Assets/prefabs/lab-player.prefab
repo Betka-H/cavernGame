@@ -240,7 +240,7 @@ MonoBehaviour:
     m_Bits: 128
   defaultSpeed: 8
   speed: 7
-  bounciness: 0
+  bounciness: 7.5
   agility: 2
   feet: {fileID: 4468577910251891063}
   feetSize: 0.3
