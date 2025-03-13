@@ -141,6 +141,7 @@ public class menuManager : MonoBehaviour
     void toggleMissionWorkstationMenu(bool onOff)
     {
         missionMenu.gameObject.SetActive(onOff);
+        // toggleLabItemMenu(onOff);
     }
 
     public void toggleEscapeMenu()
@@ -258,6 +259,8 @@ public class menuManager : MonoBehaviour
             anotherMenuOpen = onOff;
         }
     }
+
+    // bool hasTalkedBeforeFirstCave = true;
     public void toggleToggleMissionWorkstationMenu()
     {
         // if (menuOpen == null || menuOpen == openMenu.misison)
@@ -277,7 +280,16 @@ public class menuManager : MonoBehaviour
                 anotherMenuOpen = onOff;
 
                 callManager.startCall(getCurrentMission());
+                // hasTalkedBeforeFirstCave = true;
             }
+            /* if (onOff && !hasTalkedBeforeFirstCave)
+            {
+                onOff = toggleMenu(missionMenu.gameObject);
+                toggleMissionWorkstationMenu(onOff);
+                anotherMenuOpen = onOff;
+
+                // callManager.startCall(getCurrentMission()); //?
+            } */
         }
     }
 

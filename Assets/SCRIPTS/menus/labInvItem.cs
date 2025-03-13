@@ -21,6 +21,10 @@ public class labInvItem : invItem
 	{
 		base.assignItem(it);
 		assignedAmount = amount;
-		amountTextDisp.text = assignedAmount.ToString();
+		if (amount == 0)
+		{
+			amountTextDisp.text = "";
+		}
+		else amountTextDisp.text = assignedAmount.ToString();
 	}
 }

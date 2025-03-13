@@ -32,7 +32,7 @@ public class callManager : MonoBehaviour
             Debug.Log("starting call!");
 
             gameController.isCalling = true;
-            audioManager.playMusic(musicLvl.call);
+            //? audioManager.playMusic(musicLvl.call);
 
             currentMissionCall().currentMessage = 0;
             callScreen.talk(currentMissionCall());
@@ -69,7 +69,7 @@ public class callManager : MonoBehaviour
         menuManager.toggleCallScreen();
         gameController.isCalling = false;
 
-        audioManager.playMusic(audioManager.prevMusicLvl);
+        //? audioManager.playMusic(audioManager.prevMusicLvl);
 
         if (selectedMission.currentCall < selectedMission.calls.Length)
         {

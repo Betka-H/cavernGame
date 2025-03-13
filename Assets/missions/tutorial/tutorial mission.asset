@@ -13,10 +13,13 @@ MonoBehaviour:
   m_Name: tutorial mission
   m_EditorClassIdentifier: 
   missionID: -1
-  missionTitle: tutorial mission
-  missionDescription: uhh idk
+  missionTitle: First mission
+  missionDescription: Gather 3 green gems
   endOnAllItems: 0
-  requiredItems: []
+  requiredItems:
+  - {fileID: 11400000, guid: 93f8c0fb24728db45ae7422c4e692dfa, type: 2}
+  - {fileID: 11400000, guid: 93f8c0fb24728db45ae7422c4e692dfa, type: 2}
+  - {fileID: 11400000, guid: 93f8c0fb24728db45ae7422c4e692dfa, type: 2}
   calls:
   - {fileID: 11400000, guid: fc231678b18bb1f428455137a0768c71, type: 2}
   - {fileID: 11400000, guid: 55bd118279e09824f8372e6108bb1159, type: 2}

@@ -109,6 +109,7 @@ public class roomController : MonoBehaviour
 			if (currentLevel == gameController.level.lab && getPlayerMovement().transform.GetComponent<Rigidbody2D>().velocity.y > 0)
 			{
 				Invoke("startJumpCall", 5f);
+				m_hasWarnedJump = true;
 			}
 		}
 	}
@@ -116,15 +117,14 @@ public class roomController : MonoBehaviour
 	{
 		if (currentLevel == gameController.level.lab) // but only if theyre still in the lab
 		{
+			Debug.LogWarning("still in lab");
 			callManager.startCall(missionManager.jumpMission);
 
-			getPlayerMovement().bounciness = 0
-			 ;
-			m_hasWarnedJump = true;
+			getPlayerMovement().bounciness = 0;
 			PlayerPrefs.SetInt("jumpWarn", 1);
 		}
+		else m_hasWarnedJump = true;
 	}
-
 	public void m_mentionJumping()
 	{
 		FindObjectOfType<announcerManager>().announceMessage($"mentioned jumping", true);

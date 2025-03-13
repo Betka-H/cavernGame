@@ -141,9 +141,11 @@ public class gameController : MonoBehaviour
 			// StartCoroutine(delayAction(() => callManager.startCall(getCurrentMission()), 21f));
 			// StartCoroutine(delayAction(() => callManager.startCall(getCurrentMission()), 3f));
 
-			float callDelay = 8f;
+			// float callDelay = 8f; //! run this
+			float callDelay = 0.5f; //! delete this
 			Invoke("startNextMainMissionCall", callDelay);
-			callDelay += 2.5f;
+			// callDelay += 2.5f; //! run this
+			callDelay += 0.5f; //! delete this
 			Invoke("startNextMainMissionCall", callDelay);
 		}
 	}
@@ -417,7 +419,8 @@ public class gameController : MonoBehaviour
 				// if (getCurrentMission().missionID == 0)
 				if (missionManager.checkCurrentMission(-1, 4))
 				{
-					Invoke("startNextMainMissionCall", 5f);
+					// Invoke("startNextMainMissionCall", 5f); //! run this
+					Invoke("startNextMainMissionCall", 0.5f); //! delete this
 				}
 
 				if (missionManager.checkCurrentMission(0, -1))

@@ -48,7 +48,9 @@ public class labItemOutOfGrid : itemMenu
                         int neededAmount = tempNeedsInv.Count(item => item == currentItem);
                         int hasAmount = tempHasInv.Count(item => item == currentItem);
                         // assign item and its amount
-                        currentSlot.assignItem(currentItem, hasAmount, neededAmount);
+                        if (hasAmount <= neededAmount)
+                            currentSlot.assignItem(currentItem, hasAmount, neededAmount);
+                        else currentSlot.assignItem(currentItem, neededAmount, neededAmount);
                         // remove item
                         tempNeedsInv.RemoveAll(item => item == currentItem);
                         tempHasInv.RemoveAll(item => item == currentItem);

@@ -98,6 +98,7 @@ public class missionManager : MonoBehaviour
         // Debug.Log($"dm: {deathMission}");
         deathMission.currentCall = 0;
         jumpMission.currentCall = 0;
+        Debug.Log($"restarting missions");
     }
 
     void checkRndMission()

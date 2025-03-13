@@ -14,20 +14,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   talkSprites:
   - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
-  - {fileID: -225499093, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
-  - {fileID: -225499093, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
-  - {fileID: -225499093, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
+  - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
+  - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
+  - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
+  - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
+  - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
+  - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
+  - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
   speakerNames:
-  - death
-  - some guy idk
-  - yeah its. just some guy actually mb
-  - yeah its. just some guy actually mb
+  - MG
+  - MG
+  - MG
+  - MG
+  - MG
+  - MG
+  - MG
+  - MG
   messages:
-  - oh.
-  - you fuckin died
-  - but dont worry
-  - weve got spares
+  - Yo! Are you okay?!?!
+  - Hello?!?
+  - '[...]'
+  - '[...]'
+  - '[...]'
+  - shit.
+  - '[...]'
+  - Should've mentioned the spikes...
   currentMessage: 4
-  callEndEvent:
-    m_PersistentCalls:
-      m_Calls: []
+  endEventValuesList: []
