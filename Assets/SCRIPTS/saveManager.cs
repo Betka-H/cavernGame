@@ -10,7 +10,7 @@ public class SaveData
     // public missionSO currentMission;
     public int currentMission;
     // public missionSO deathMission;
-    public int missionCall;
+    // public int missionCall;
     public int deathCall;
     // public int jumpCall; //! save warn bool instead
 }
@@ -57,7 +57,7 @@ public class saveManager : MonoBehaviour
         // missions + calls
         // data.currentMission = missionManager.allMissions[missionManager.currentMission];
         data.currentMission = missionManager.currentMission;
-        data.missionCall = missionManager.allMissions[missionManager.currentMission].currentCall;
+        // data.missionCall = missionManager.allMissions[missionManager.currentMission].currentCall;
         data.deathCall = missionManager.deathMission.currentCall;
         // data.jumpCall = missionManager.jumpMission.currentCall;
 

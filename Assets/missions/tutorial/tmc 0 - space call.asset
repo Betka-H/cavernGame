@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e096ea82527634445bc2fcfdb7779b94, type: 3}
+  m_Name: tmc 0 - space call
+  m_EditorClassIdentifier: 
+  talkSprites:
+  - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
+  - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
+  speakerNames:
+  - '[Electronic announcer]'
+  - '[Electronic announcer]'
+  messages:
+  - '[bzzt]
+
+    Dear passengers, we are about to arrive to [space base name].'
+  - 'Please have your communicator devices ready, as you will receive more instructions
+    shortly after landing.
+
+    [bzzt]'
+  currentMessage: 3
+  endEventValuesList:
+  - objName: gameController
+    methodName: endOfIntroCall
+  - objName: gameController
+    methodName: m_lockCavern

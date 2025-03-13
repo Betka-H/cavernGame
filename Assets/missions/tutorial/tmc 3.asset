@@ -52,5 +52,7 @@ MonoBehaviour:
   - Huh? Why don't I accompany you downstairs?
   - Simply put, I'm just the mission guy here. I'm not authorised to go down there.
   - But you are! Lucky you. Now, get going! We haven't got time to spare.
-  currentMessage: 7
-  endEventValuesList: []
+  currentMessage: 10
+  endEventValuesList:
+  - objName: gameController
+    methodName: m_unlockCavern
