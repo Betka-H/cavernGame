@@ -13017,6 +13017,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuBg: {fileID: 2102197490}
   inventoryManager: {fileID: 1343291602}
+  missionManager: {fileID: 892595347}
   callManager: {fileID: 1157321616}
   deathScreen: {fileID: 1246856626}
   caveItemMenu: {fileID: 1621603476}

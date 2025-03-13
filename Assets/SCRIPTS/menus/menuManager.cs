@@ -6,6 +6,7 @@ public class menuManager : MonoBehaviour
 {
     public GameObject menuBg;
     public inventoryManager inventoryManager;
+    public missionManager missionManager;
     public callManager callManager;
     public deathScreen deathScreen;
 
@@ -268,7 +269,21 @@ public class menuManager : MonoBehaviour
 
             toggleMissionWorkstationMenu(onOff);
             anotherMenuOpen = onOff;
+
+            if (onOff && missionManager.checkCurrentMission(-1, 3))
+            {
+                onOff = toggleMenu(missionMenu.gameObject);
+                toggleMissionWorkstationMenu(onOff);
+                anotherMenuOpen = onOff;
+
+                callManager.startCall(getCurrentMission());
+            }
         }
+    }
+
+    missionSO getCurrentMission()
+    {
+        return missionManager.allMissions[missionManager.currentMission];
     }
 
     bool toggleMenu(GameObject menu)

@@ -19,9 +19,13 @@ MonoBehaviour:
   - '[Electronic announcer]'
   - '[Electronic announcer]'
   messages:
-  - Dear passengers, we are about to arrive to [space base name].
-  - Please have your communicator devices ready, as you will receive more instructions
+  - '[bzzt]
+
+    Dear passengers, we are about to arrive to [space base name].'
+  - 'Please have your communicator devices ready, as you will receive more instructions
     shortly after landing.
+
+    [bzzt]'
   currentMessage: 3
   endEventValuesList:
   - objName: gameController
