@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e096ea82527634445bc2fcfdb7779b94, type: 3}
-  m_Name: tmc 3
+  m_Name: tmc 5
   m_EditorClassIdentifier: 
   talkSprites:
   - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
@@ -41,23 +41,22 @@ MonoBehaviour:
   - '[mission guy]'
   - '[mission guy]'
   messages:
-  - Welcome once again!
-  - I forgot to introduce myself. My name's [name], but everyone calls me MG.
-  - Short for Mission Guy. Yup.
-  - Anyway, like I said, it's my duty to show you around today.
-  - The rooms you just walked past are the research labs. That's where you will hand
-    over the stuff you find in the cave.
-  - That will allow the lab boys to do science research and you will be able to use
-    the materials to craft gear to use in your next expeditions.
-  - Don't worry, they'll walk you through the whole process when the time comes.
-    For now, just note that we have labs here. Yup.
-  - But now, we've got some cave exploration to do!
-  - Head over to that elevator and call me once you're downstairs.
+  - By the way, don't worry if you don't find anything the first time around.
+  - Just keep coming back and eventually something'll pop up.
   - '[...]'
-  - Huh? Why don't I accompany you downstairs?
-  - Simply put, I'm just the mission guy here. I'm not authorised to go down there.
-  - But you are! Lucky you. Now, get going! We haven't got time to spare.
-  currentMessage: 10
-  endEventValuesList:
-  - objName: gameController
-    methodName: m_unlockCavern
+  - Hm? 'Won't that be sort of pointless?'
+  - '[...]'
+  - Oh!!
+  - I KNEW i forgot to mention something important!
+  - Right. So, this cave. Not your usual cave complex, as you might be used to from
+    Earth, no.
+  - The interesting thing about this cave is that every few hours or so, there is
+    an earthquake, and the entire Cavern starts shifting!
+  - Every time that happens, it's an entirely new place down there. We've barely
+    managed to secure a safe access point.
+  - So, don't worry if you won't be able to find all of the mission items in one
+    trip. You can just come back a bit later and find the rest.
+  - '[...]'
+  - Ok, that really should be everything! Good luck! I'll be waiting upstairs.
+  currentMessage: 0
+  endEventValuesList: []

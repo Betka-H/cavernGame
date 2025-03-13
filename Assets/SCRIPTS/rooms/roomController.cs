@@ -17,6 +17,7 @@ public class roomController : MonoBehaviour
 	[HideInInspector] public darknessLevel darknessLvl; // mainly for weather forecast
 
 	private inventoryManager inventory;
+	private gameController gameController;
 
 	[HideInInspector] public gameController.level currentLevel;
 
@@ -77,6 +78,7 @@ public class roomController : MonoBehaviour
 		callManager = FindObjectOfType<callManager>();
 
 		//! temp trader spawn value
+		//! place trader into remote locations on maps - 5s trader call delay
 		traderSpawnChance = 100;
 		//! temp item spawn value
 		itemSpawnRate = 100;
@@ -99,6 +101,8 @@ public class roomController : MonoBehaviour
 				getPlayerMovement().bounciness = 0;
 				break;
 		}
+
+		gameController = FindObjectOfType<gameController>();
 	}
 
 	bool m_hasWarnedJump = false;
@@ -395,8 +399,18 @@ public class roomController : MonoBehaviour
 	}
 	void summonTrader()
 	{
+		if (PlayerPrefs.GetInt("hasMetTrader", 0) == 0)
+		{
+			Invoke("startTraderCall", 3.5f);
+		}
+
+		Debug.LogWarning("summoning trader");
 		npcTrader.transform.localPosition = traderSpawnRoom.chosenTraderSpawn.position;
 		npcTrader.gameObject.SetActive(true);
+	}
+	public void startTraderCall()
+	{
+		callManager.startCall(missionManager.traderMission);
 	}
 
 	public enum darknessLevel { light, midLight, midDark, dark };

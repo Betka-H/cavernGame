@@ -24,12 +24,12 @@ public class callManager : MonoBehaviour
     public void startCall(missionSO newMission)
     {
         selectedMission = newMission;
-        Debug.Log($"sm: {selectedMission.name}, cc: {selectedMission.currentCall}");
+        Debug.Log($"starting call for m: {selectedMission.name}, c: {selectedMission.currentCall}");
         menuManager.toggleCallScreen();
         // Debug.Log($"cml: {selectedMission.calls[selectedMission.currentCall].messages.Length}");
         if (selectedMission.calls[selectedMission.currentCall].messages.Length > 0)
         {
-            Debug.Log("starting call!");
+            // Debug.Log("starting call!");
 
             gameController.isCalling = true;
             //? audioManager.playMusic(musicLvl.call);
@@ -40,7 +40,7 @@ public class callManager : MonoBehaviour
         else
         {
             // Debug.Log("empty call!");
-            endCall();
+            endCall(true);
         }
     }
     public void advanceCall()
@@ -56,15 +56,15 @@ public class callManager : MonoBehaviour
         }
         else
         {
-            Debug.Log($"no more messages in call!");
+            // Debug.Log($"no more messages in call!");
 
             audioManager.playSfx(audioManager.worldSfxSource, audioManager.callEnd); // here, otherwise plays end call even in empty calls
-            endCall();
+            endCall(true);
         }
     }
-    void endCall()
+    public void endCall(bool advance)
     {
-        Debug.Log($"ending call.");
+        Debug.Log($"ending call for m: {selectedMission.name}, c: {selectedMission.currentCall}");
 
         menuManager.toggleCallScreen();
         gameController.isCalling = false;
@@ -73,15 +73,30 @@ public class callManager : MonoBehaviour
 
         if (selectedMission.currentCall < selectedMission.calls.Length)
         {
+            // runCallEndEvent();
+
             // Debug.Log("setting next call");
             selectedMission.currentCall++;
-            // Debug.Log($"next m is {selectedMission.calls[selectedMission.currentCall]}");
-        }
+            Debug.Log($"next call is {selectedMission.calls[selectedMission.currentCall]} in mission {selectedMission.name}");
 
-        runCallEndEvent();
+            if (advance)
+            {
+                // Debug.LogWarning("ending call");
+                Debug.Log($"ending event for m: {selectedMission.name}, c: {selectedMission.currentCall}");
+                selectedMission.calls[selectedMission.currentCall - 1].endCall();
+            }
+        }
+        else if (selectedMission.endOnAllCalls) selectedMission.endMission();
+
+        // if this is the last call, end the mission
+        // if (selectedMission.endOnAllCalls) //! my god.....
+        /* if (selectedMission.endOnAllCalls && selectedMission.currentCall == selectedMission.calls.Length)
+        {
+            selectedMission.endMission();
+        } */
     }
 
-    void runCallEndEvent()
+    /* void runCallEndEvent()
     {
         int currentCallID = selectedMission.currentCall - 1;
         var endEventList = selectedMission.calls[currentCallID].endEventValuesList;
@@ -92,17 +107,18 @@ public class callManager : MonoBehaviour
                 GameObject gameObj = GameObject.Find(even.objName);
                 gameObj.SendMessage(even.methodName);
             }
-        // else Debug.LogError($"no call end event");
+ */
+    // else Debug.LogError($"no call end event");
 
-        /* if (selectedMission.calls[selectedMission.currentCall].endEventValuesList != null)
-            foreach (var even in selectedMission.calls[selectedMission.currentCall].endEventValuesList)
-            {
-                // Debug.Log("found event");
-                GameObject gameObj = GameObject.Find(even.objName);
-                gameObj.SendMessage(even.methodName);
-            }
-        // else Debug.LogError($"no call end event"); */
-    }
+    /* if (selectedMission.calls[selectedMission.currentCall].endEventValuesList != null)
+        foreach (var even in selectedMission.calls[selectedMission.currentCall].endEventValuesList)
+        {
+            // Debug.Log("found event");
+            GameObject gameObj = GameObject.Find(even.objName);
+            gameObj.SendMessage(even.methodName);
+        }
+    // else Debug.LogError($"no call end event"); */
+    /*  } */
 
     /* public void startMissionCall()
     {

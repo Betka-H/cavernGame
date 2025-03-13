@@ -16,6 +16,7 @@ MonoBehaviour:
   missionTitle: First mission
   missionDescription: Gather 3 green gems
   endOnAllItems: 0
+  endOnAllCalls: 1
   requiredItems:
   - {fileID: 11400000, guid: 93f8c0fb24728db45ae7422c4e692dfa, type: 2}
   - {fileID: 11400000, guid: 93f8c0fb24728db45ae7422c4e692dfa, type: 2}
@@ -26,5 +27,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 00a4ad5f4da90bd43a51476717c9ddf1, type: 2}
   - {fileID: 11400000, guid: 6acaa8b7a9118c941ac0f04889415b9a, type: 2}
   - {fileID: 11400000, guid: c75cbd593bc4e774f9f9c3b8a431e3f7, type: 2}
-  currentCall: 4
-  endEventValuesList: []
+  currentCall: 0
+  endEventValuesList:
+  - objName: gameController
+    methodName: m_endTutorial

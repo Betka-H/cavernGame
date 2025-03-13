@@ -36,6 +36,7 @@ public class saveManager : MonoBehaviour
 
     void clearPrefs()
     {
+        Debug.Log($"clearing save");
         PlayerPrefs.DeleteAll();
         PlayerPrefs.Save();
     }
@@ -108,7 +109,8 @@ public class saveManager : MonoBehaviour
             // missionManager.jumpMission.currentCall = data.jumpCall;
         }
 
-        Debug.LogWarning($"loaded: last mission: {missionManager.currentMission}, call {missionManager.allMissions[missionManager.currentMission].currentCall}, death mission call: {missionManager.deathMission.currentCall}, jump mission call: {missionManager.jumpMission.currentCall}");
+        Debug.LogWarning($"loaded: last mission: {missionManager.currentMission}, call {missionManager.allMissions[missionManager.currentMission].currentCall}, death mission call: {missionManager.deathMission.currentCall}");
+        // Debug.LogWarning($"loaded: last mission: {missionManager.currentMission}, call {missionManager.allMissions[missionManager.currentMission].currentCall}, death mission call: {missionManager.deathMission.currentCall}, jump mission call: {missionManager.jumpMission.currentCall}");
         // FindObjectOfType<announcerManager>().announceMessage($"loaded: last mission: {missionManager.currentMission}, call {missionManager.allMissions[missionManager.currentMission].currentCall}, death mission call: {missionManager.deathMission.currentCall}");
         //! check Debug.LogWarning("what about eq inv?");
     }

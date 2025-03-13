@@ -21,4 +21,15 @@ public class callSO : ScriptableObject
     }
 
     public List<endEventValue> endEventValuesList;
+
+    public void endCall()
+    {
+        if (endEventValuesList != null)
+            foreach (var even in endEventValuesList)
+            {
+                // Debug.Log("found event");
+                GameObject gameObj = GameObject.Find(even.objName);
+                gameObj.SendMessage(even.methodName);
+            }
+    }
 }

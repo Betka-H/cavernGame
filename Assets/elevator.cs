@@ -137,31 +137,32 @@ public class elevator : MonoBehaviour
         if (!isAwake) Awake();
 
         // Debug.Log("closing doors");
-        openDoors(true);
+        // openDoors(true);
 
         Debug.LogError($"walls should be true");
         //! walls.gameObject.SetActive(true);
 
-        if (instant)
-        {
-            resetDoorsToClosed();
+        if (!isClosed)
+            if (instant)
+            {
+                resetDoorsToClosed();
 
-            // walls.gameObject.SetActive(true);
-            isClosed = true;
-        }
-        else
-        {
-            // audioManager.playSfx(audioManager.worldSfxSource, audioManager.elevatorDoors, true);
-            audioManager.playSfx(audioManager.worldSfxSource, audioManager.elevatorDoors);
-            iTween.MoveBy(doorL.gameObject, iTween.Hash("x", moveAmount, "speed", 0.5, "easeType", "easeInOutExpo"));
-            iTween.MoveBy(doorR.gameObject, iTween.Hash("x", -moveAmount, "speed", 0.5, "easeType", "easeInOutExpo"));
+                // walls.gameObject.SetActive(true);
+                isClosed = true;
+            }
+            else
+            {
+                // audioManager.playSfx(audioManager.worldSfxSource, audioManager.elevatorDoors, true);
+                audioManager.playSfx(audioManager.worldSfxSource, audioManager.elevatorDoors);
+                iTween.MoveBy(doorL.gameObject, iTween.Hash("x", moveAmount, "speed", 0.5, "easeType", "easeInOutExpo"));
+                iTween.MoveBy(doorR.gameObject, iTween.Hash("x", -moveAmount, "speed", 0.5, "easeType", "easeInOutExpo"));
 
-            FindObjectOfType<announcerManager>().announceMessage($"closing elevator doors");
+                FindObjectOfType<announcerManager>().announceMessage($"closing elevator doors");
 
-            StartCoroutine("closeWalls");
-            // walls.gameObject.SetActive(true);
-            // isClosed = true;
-        }
+                StartCoroutine("closeWalls");
+                // walls.gameObject.SetActive(true);
+                // isClosed = true;
+            }
     }
     IEnumerator closeWalls()
     {
@@ -182,7 +183,7 @@ public class elevator : MonoBehaviour
         doorL.position = doorLStartPos;
         doorR.position = doorRStartPos;
 
-        Debug.LogError($"walls should be true");
+        Debug.LogWarning($"walls should be true");
         //! walls.gameObject.SetActive(true);
 
         isClosed = true;

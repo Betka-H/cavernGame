@@ -41,6 +41,5 @@ public class mainMenuController : MonoBehaviour
         Debug.Log("try to not delete settings?");
         PlayerPrefs.DeleteAll();
         PlayerPrefs.Save();
-        Debug.Log("save deleted");
     }
 }

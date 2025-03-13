@@ -16,13 +16,17 @@ MonoBehaviour:
   - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
   - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
   - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
+  - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
   speakerNames:
+  - '[mission guy]'
   - '[mission guy]'
   - '[mission guy]'
   - '[mission guy]'
   messages:
   - Alright! Welcome to the cavern.
   - Your first mission is to find 3 green gems.
-  - Just walk around a bit and you should be able to find some.
-  currentMessage: 0
+  - The lab boys say that's all they need before they're able to make some new special
+    equipment they designed. That's science for 'ya.
+  - Anyway, just walk around a bit and you should be able to find some of the stuff.
+  currentMessage: 2
   endEventValuesList: []

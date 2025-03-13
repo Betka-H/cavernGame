@@ -20,7 +20,7 @@ public class button : MonoBehaviour
 
     void OnMouseDown()
     {
-        // Debug.Log("invoke?");
+        // Debug.Log("invoke btn event?");
         if (doDefaultSfx)
         {
             // audioManager.playSfx(audioManager.uiSfxSource, audioManager.uiButtonClick, true);

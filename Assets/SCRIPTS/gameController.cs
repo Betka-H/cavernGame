@@ -89,9 +89,9 @@ public class gameController : MonoBehaviour
 		} */
 	}
 
-	public void endOfIntroCall()
+	public void m_endOfIntroCall()
 	{
-		// Debug.LogError($"end of intro call");
+		Debug.LogError($"end of intro call");
 		genAndSpawn(level.lab);
 	}
 
@@ -131,22 +131,32 @@ public class gameController : MonoBehaviour
 		// if (lvl == level.space)
 		if (missionManager.checkCurrentMission(-1, 0))
 		{
+			Debug.LogWarning("gennspawn: starting space call");
 			callManager.startCall(getCurrentMission());
 		}
 		else if (missionManager.checkCurrentMission(-1, 1))
 		{
+			Debug.LogWarning("gennspawn: starting 1st tutorial call");
 			FindObjectOfType<playerMovement>().speed = 3.5f;
 			getElevator().isFirst = true; // door opens only on first and then stays closed
 
 			// StartCoroutine(delayAction(() => callManager.startCall(getCurrentMission()), 21f));
 			// StartCoroutine(delayAction(() => callManager.startCall(getCurrentMission()), 3f));
 
-			// float callDelay = 8f; //! run this
-			float callDelay = 0.5f; //! delete this
+			float callDelay = 8f; //! run this
+								  // float callDelay = 0.5f; //! delete this
 			Invoke("startNextMainMissionCall", callDelay);
-			// callDelay += 2.5f; //! run this
-			callDelay += 0.5f; //! delete this
+			callDelay += 2.5f; //! run this
+							   // callDelay += 0.5f; //! delete this
 			Invoke("startNextMainMissionCall", callDelay);
+		}
+		else if (missionManager.checkCurrentMission(0, 0))
+		{
+			Debug.LogWarning("BYEAH");
+
+			roomController.clearRoom();
+			getElevator().isFirst = true;
+			getElevator().openDoors(true);
 		}
 	}
 	public void startNextMainMissionCall()
@@ -156,6 +166,21 @@ public class gameController : MonoBehaviour
 	public void m_resetPlayerSpeed()
 	{
 		FindObjectOfType<playerMovement>().speed = FindObjectOfType<playerMovement>().defaultSpeed;
+	}
+	public void m_metTrader()
+	{
+		FindObjectOfType<announcerManager>().announceMessage($"has met trader", true);
+		PlayerPrefs.SetInt("hasMetTrader", 1); // Save that the game has started
+		PlayerPrefs.Save();
+	}
+
+	public void m_endTutorial() // called at the end of tutorial mission
+	{
+		/* FindObjectOfType<announcerManager>().announceMessage($"skipping the tutorial! and checking cm+cc");
+		missionManager.checkCurrentMission(0, -1);
+		 */
+		genAndSpawn(level.lab);
+		// getElevator().openDoors(true);
 	}
 
 	/* // chatgpt
@@ -419,21 +444,9 @@ public class gameController : MonoBehaviour
 				// if (getCurrentMission().missionID == 0)
 				if (missionManager.checkCurrentMission(-1, 4))
 				{
-					// Invoke("startNextMainMissionCall", 5f); //! run this
-					Invoke("startNextMainMissionCall", 0.5f); //! delete this
+					Invoke("startNextMainMissionCall", 5f); //! run this
+															// Invoke("startNextMainMissionCall", 0.5f); //! delete this
 				}
-
-				if (missionManager.checkCurrentMission(0, -1))
-				{
-
-					/* missionSO currentMission = menuManager.callManager.currentMainMission();
-					if (currentMission.calls.Length > currentMission.currentCall) // to prevent looping the last message
-						menuManager.callManager.startCall(currentMission); */
-
-					callManager.startCall(getCurrentMission());
-				}
-				/* else
-					getElevator().openDoors(false); */
 
 				StartCoroutine(WaitForCallToEndAndOpenDoors());
 
@@ -455,7 +468,7 @@ public class gameController : MonoBehaviour
 		}
 		else
 		{
-			FindObjectOfType<announcerManager>().announceMessage($"cavern locked! go to MG first");
+			FindObjectOfType<announcerManager>().announceMessage($"cavern locked! go talk to MG first");
 
 			/* //? if (missionManager.checkCurrentMission(-1, 4))
 			{

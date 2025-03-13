@@ -5,20 +5,26 @@ using UnityEngine;
 public class missionManager : MonoBehaviour
 {
     public missionSO[] allMissions;
+
+    [Header("special missons")] // make sure to set call to 0
     public missionSO deathMission;
     public missionSO jumpMission;
+    public missionSO traderMission;
+
     menuManager menuManager;
+    callManager callManager;
 
     [HideInInspector] public int currentMission;
 
     void Awake()
     {
         menuManager = FindObjectOfType<menuManager>();
+        callManager = FindObjectOfType<callManager>();
     }
 
     void Start()
     {
-        restartMissions(); //! tmp. testing space mission
+        // restartMissions(); //! tmp. testing space mission
 
         checkRndMission();
         // Debug.Log($"current mission: {currentMission}");
@@ -57,15 +63,20 @@ public class missionManager : MonoBehaviour
         {
             FindObjectOfType<announcerManager>().announceMessage($"all items collected");
             if (cm.endOnAllItems)
-                endMission();
+            {
+                cm.endMission();
+                newMission();
+                // endMission();
+            }
         }
     }
 
-    public void endMission()
+    /* public void endMission()
     {
-        runEndEvent();
+
+        // runEndEvent();
         newMission();
-    }
+    } */
 
     void newMission()
     {
@@ -73,7 +84,6 @@ public class missionManager : MonoBehaviour
         {
             // Debug.Log("new mission!");
             FindObjectOfType<announcerManager>().announceMessage("you have a new mission!");
-            //! todo check for max missions! // or idk do something. at least it does not throw errors now
             currentMission++;
 
             checkRndMission();
@@ -98,7 +108,24 @@ public class missionManager : MonoBehaviour
         // Debug.Log($"dm: {deathMission}");
         deathMission.currentCall = 0;
         jumpMission.currentCall = 0;
-        Debug.Log($"restarting missions");
+        traderMission.currentCall = 0;
+        // Debug.Log($"restarting missions");
+
+        menuManager.toggleCallScreen();
+    }
+
+    public void skipTutorial() // called by skip tutorial btn
+    {
+        FindObjectOfType<announcerManager>().announceMessage($"skipping the tutorial");
+
+        callManager.endCall(false);
+
+        missionSO tutorialMission = allMissions[0];
+
+        restartMissions();
+        currentMission = 1;
+
+        tutorialMission.endMission();
     }
 
     void checkRndMission()
@@ -125,7 +152,7 @@ public class missionManager : MonoBehaviour
         }
     }
 
-    void runEndEvent()
+    /* void runEndEvent()
     {
         foreach (var even in allMissions[currentMission].endEventValuesList)
         {
@@ -133,5 +160,5 @@ public class missionManager : MonoBehaviour
             GameObject gameObj = GameObject.Find(even.objName);
             gameObj.SendMessage(even.methodName);
         }
-    }
+    } */
 }

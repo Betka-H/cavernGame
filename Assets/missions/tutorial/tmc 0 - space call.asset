@@ -26,9 +26,9 @@ MonoBehaviour:
     shortly after landing.
 
     [bzzt]'
-  currentMessage: 3
+  currentMessage: 0
   endEventValuesList:
   - objName: gameController
-    methodName: endOfIntroCall
+    methodName: m_endOfIntroCall
   - objName: gameController
     methodName: m_lockCavern
