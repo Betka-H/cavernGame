@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class traderMenu : MonoBehaviour
@@ -20,6 +21,20 @@ public class traderMenu : MonoBehaviour
 	{
 		menuManager = FindObjectOfType<menuManager>();
 		inventoryManager = FindObjectOfType<inventoryManager>();
+	}
+
+	void Start()
+	{
+		inventoryManager.addItem(inventoryManager.inventoryDefinitions.gemBlue, inventoryManager.caveInventory);
+		inventoryManager.addItem(inventoryManager.inventoryDefinitions.gemBlue, inventoryManager.caveInventory);
+		inventoryManager.addItem(inventoryManager.inventoryDefinitions.gemBlue, inventoryManager.caveInventory);
+		inventoryManager.addItem(inventoryManager.inventoryDefinitions.gemPink, inventoryManager.caveInventory);
+		inventoryManager.addItem(inventoryManager.inventoryDefinitions.gemPink, inventoryManager.caveInventory);
+		inventoryManager.addItem(inventoryManager.inventoryDefinitions.gemPink, inventoryManager.caveInventory);
+		inventoryManager.addItem(inventoryManager.inventoryDefinitions.gemYellow, inventoryManager.caveInventory);
+		inventoryManager.addItem(inventoryManager.inventoryDefinitions.gemYellow, inventoryManager.caveInventory);
+		inventoryManager.addItem(inventoryManager.inventoryDefinitions.gemYellow, inventoryManager.caveInventory);
+		inventoryManager.addItem(inventoryManager.inventoryDefinitions.gemYellow, inventoryManager.caveInventory);
 	}
 
 	void OnEnable()
@@ -47,55 +62,85 @@ public class traderMenu : MonoBehaviour
 		handL.assignItem(offeredItem);
 		updateHands();
 	}
+
+	bool hasFled = false;
 	int timesTraded = 0;
 	public void trade()
 	{
-		if (offeredItem != null && traderInv.Count > 0)
-		{
-			item currentlyTradedItem = traderInv[0];
-			if (offeredItem != mainItem)
+		if (!hasFled)
+			if (offeredItem != null && traderInv.Count > 0)
 			{
-				timesTraded++;
-				showTradeCount();
-
-				//  Debug.Log("attempting trade");
-
-				// itemMenu.remItem(itemMenu.selectedItem);
-				inventoryManager.removeItem(offeredItem, inventoryManager.caveInventory);
-
-				// offerMade = false;
-				offeredItem = null;
-				handL.assignItem(offeredItem);
-
-				// itemMenu.addItem(tradedItem);
-				inventoryManager.addItem(currentlyTradedItem, inventoryManager.caveInventory);
-				menuManager.caveItemMenu.refreshItems(menuManager.caveItemMenu.regularSlots, inventoryManager.caveInventory);
-				traderInv.RemoveAt(0);
-				if (traderInv.Count > 0)
+				item currentlyTradedItem = traderInv[0];
+				if (offeredItem != mainItem)
 				{
-					currentlyTradedItem = traderInv[0];
-					handR.assignItem(currentlyTradedItem);
+					timesTraded++;
+					timesTraded += UnityEngine.Random.Range(0, timesTraded);
+
+					showTradeCount();
+
+					//  Debug.Log("attempting trade");
+
+					// itemMenu.remItem(itemMenu.selectedItem);
+					inventoryManager.removeItem(offeredItem, inventoryManager.caveInventory);
+
+					// offerMade = false;
+					offeredItem = null;
+					handL.assignItem(offeredItem);
+
+					// itemMenu.addItem(tradedItem);
+					inventoryManager.addItem(currentlyTradedItem, inventoryManager.caveInventory);
+					menuManager.caveItemMenu.refreshItems(menuManager.caveItemMenu.regularSlots, inventoryManager.caveInventory);
+					traderInv.RemoveAt(0);
+					if (traderInv.Count > 0)
+					{
+						currentlyTradedItem = traderInv[0];
+						handR.assignItem(currentlyTradedItem);
+					}
+					else
+						handR.assignItem(null);
+
+					// chance stuff
+
+					updateHands();
+					clearTooltip();
 				}
 				else
-					handR.assignItem(null);
-
-				// chance stuff
-
-				updateHands();
-				clearTooltip();
+				{
+					// Debug.Log("cannot trade the main item");
+					FindObjectOfType<announcerManager>().announceMessage("you cannot trade the same item the trader is selling! the trader grows more agitated.");
+					timesTraded++;
+					showTradeCount();
+				}
 			}
 			else
 			{
-				// Debug.Log("cannot trade the main item");
-				FindObjectOfType<announcerManager>().announceMessage("you cannot trade the same item the trader is selling!");
+				// Debug.Log("no offer or trader inv empty");
+				//! chance stuff? make it more agitated when you offer nothing
+				FindObjectOfType<announcerManager>().announceMessage("no offer! the trader grows more agitated.");
+				timesTraded++;
+				showTradeCount();
 			}
-		}
-		else
+		if (timesTraded > traderInv.Count)
 		{
-			// Debug.Log("no offer or trader inv empty");
-			//! chance stuff? make it more agitated when you offer nothing
-			FindObjectOfType<announcerManager>().announceMessage("no offer!");
+			hasFled = true;
+			Invoke("flee", 2.5f);
 		}
+	}
+	public void flee()
+	{
+		FindObjectOfType<menuManager>().hideMenus();
+		FindObjectOfType<npcTrader>().gameObject.SetActive(false);
+		int stealRnd = UnityEngine.Random.Range(0, timesTraded);
+		int stoleAmount = 0;
+		for (int i = 0; i < stealRnd; i++)
+		{
+			inventoryManager.removeItem(mainItem, inventoryManager.caveInventory);
+			stoleAmount++;
+		}
+		if (stoleAmount > 0)
+			FindObjectOfType<announcerManager>().announceMessage($"the trader has fled, taking {stoleAmount} of your items with it!");
+		else
+			FindObjectOfType<announcerManager>().announceMessage($"the trader has fled!");
 	}
 
 	private void clearTooltip()

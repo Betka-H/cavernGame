@@ -187,7 +187,7 @@ public class roomController : MonoBehaviour
 	public void clearRoom()
 	{
 		clearParent(itemParent);
-		// killTrader();
+		killTrader();
 		if (chosenDarkness != null)
 			chosenDarkness.gameObject.SetActive(false);
 	}
@@ -347,13 +347,13 @@ public class roomController : MonoBehaviour
 
 			//
 			//! TEMP FOR TESTING. forces trader to spawn in entrance room
-			/* Debug.LogWarning("trader should spawn elsewhere");
+			Debug.LogWarning("trader should spawn elsewhere");
 			if (entranceRoom is room_cavern traderEntrRoom)
 			{
 				traderSpawnRoomPool.Clear();
 				traderEntrRoom.setTraderSpawn();
 				traderSpawnRoomPool.Add(traderEntrRoom);
-			} */
+			}
 			//
 
 
@@ -403,6 +403,9 @@ public class roomController : MonoBehaviour
 	{
 		if (PlayerPrefs.GetInt("hasMetTrader", 0) == 0)
 		{
+			PlayerPrefs.SetInt("hasMetTrader", 1);
+
+			CancelInvoke("startTraderCall");
 			Invoke("startTraderCall", 3.5f);
 		}
 

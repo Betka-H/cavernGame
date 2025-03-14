@@ -181,7 +181,7 @@ public class menuManager : MonoBehaviour
             // Debug.LogError($"toggling call screen {onOff} (true = on)");
 
             toggleCallMenu(onOff);
-            // anotherMenuOpen = onOff;
+            anotherMenuOpen = onOff; //?
         }
     }
     public void toggleCaveGameplayMenuScreen()
@@ -203,15 +203,15 @@ public class menuManager : MonoBehaviour
     public void toggleTradingScreen()
     {
         // if (menuOpen == null || menuOpen == openMenu.trader)
-        // if (!anotherMenuOpen && !escMenu.gameObject.activeSelf)
-        if (!escMenu.gameObject.activeSelf)
+        if (!anotherMenuOpen && !escMenu.gameObject.activeSelf) //?
+        // if (!escMenu.gameObject.activeSelf) //?
         {
             // menuOpen = openMenu.trader;
             bool onOff = toggleMenu(traderMenu.gameObject);
 
             toggleCaveItemMenu(onOff);
             toggleTraderMenu(onOff);
-            anotherMenuOpen = onOff;
+            // anotherMenuOpen = onOff; //?
         }
     }
     public void toggleLabMenuScreen()

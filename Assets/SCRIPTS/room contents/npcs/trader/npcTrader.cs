@@ -48,7 +48,7 @@ public class npcTrader : NPC
 			// Debug.Log($"trader sells scrap (as {scrapPosition})");
 		}
 
-		logTraderInventory();
+		// logTraderInventory();
 
 		// Debug.Log($"mm: {menuManager}");
 		menuManager.traderMenu.setInventory(traderInventory, mainItem);

@@ -23,6 +23,16 @@ public class callManager : MonoBehaviour
     missionSO selectedMission;
     public void startCall(missionSO newMission)
     {
+        try
+        {
+            FindObjectOfType<playerMovement>().GetComponent<Rigidbody>().velocity = Vector3.zero;
+        }
+        catch (System.Exception)
+        {
+
+            // throw;
+        }
+
         selectedMission = newMission;
         Debug.Log($"starting call for m: {selectedMission.name}, c: {selectedMission.currentCall}");
         menuManager.toggleCallScreen();

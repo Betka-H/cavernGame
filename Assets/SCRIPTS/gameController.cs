@@ -162,7 +162,7 @@ public class gameController : MonoBehaviour
 		{
 			Debug.LogWarning("BYEAH");
 
-			roomController.clearRoom();
+			//? roomController.clearRoom(); /?! what
 			getElevator().isFirst = true;
 			getElevator().openDoors(true);
 		}
