@@ -17,9 +17,9 @@ MonoBehaviour:
   - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
   - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
   speakerNames:
-  - '[mission guy]'
-  - '[mission guy]'
-  - '[mission guy]'
+  - Crafting lab assistant
+  - Crafting lab assistant
+  - Crafting lab assistant
   messages:
   - The machine automatically calculates the cost of the reconstruction.
   - Thanks to your last expedition, we now have enough materials to craft this item.

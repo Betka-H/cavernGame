@@ -16,8 +16,11 @@ MonoBehaviour:
   missionTitle: jump
   missionDescription: j
   endOnAllItems: 0
+  endOnAllCalls: 1
   requiredItems: []
   calls:
   - {fileID: 11400000, guid: a14daa126b79efa4eb8c5beed4d4d2dc, type: 2}
-  currentCall: 3
-  endEventValuesList: []
+  currentCall: 0
+  endEventValuesList:
+  - objName: roomController
+    methodName: m_resetPlayerBounciness

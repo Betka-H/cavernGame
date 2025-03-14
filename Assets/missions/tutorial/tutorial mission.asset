@@ -27,6 +27,15 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 00a4ad5f4da90bd43a51476717c9ddf1, type: 2}
   - {fileID: 11400000, guid: 6acaa8b7a9118c941ac0f04889415b9a, type: 2}
   - {fileID: 11400000, guid: c75cbd593bc4e774f9f9c3b8a431e3f7, type: 2}
+  - {fileID: 11400000, guid: 111c682f08d163e42b74dcc70fa29452, type: 2}
+  - {fileID: 11400000, guid: 470e4af6d5c1dcf418c9c431e9ab8a59, type: 2}
+  - {fileID: 11400000, guid: e0c9b43bc4bb5524fafc6c01ff276084, type: 2}
+  - {fileID: 11400000, guid: 78dd9166cd1785d44ab26e1ba0bd873c, type: 2}
+  - {fileID: 11400000, guid: 1f8868e31ee22b94aac94517c48a9718, type: 2}
+  - {fileID: 11400000, guid: 20a876fc330c562409ca97819b6fc8d6, type: 2}
+  - {fileID: 11400000, guid: eececcff1d4fe3947acffaa236497d6d, type: 2}
+  - {fileID: 11400000, guid: b8a4e55256c8f4643b54950beb5247fd, type: 2}
+  - {fileID: 11400000, guid: fc849435866fe954a92bbf05f74dfbd7, type: 2}
   currentCall: 4
   endEventValuesList:
   - objName: gameController

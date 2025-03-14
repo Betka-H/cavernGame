@@ -28,5 +28,5 @@ MonoBehaviour:
   - 'End of announcement.
 
     [bzzt]'
-  currentMessage: 3
+  currentMessage: 2
   endEventValuesList: []

@@ -62,6 +62,11 @@ public class missionManager : MonoBehaviour
         if (menuManager.inventoryManager.checkResources(menuManager.inventoryManager.missionInventory, cm.requiredItems))
         {
             FindObjectOfType<announcerManager>().announceMessage($"all items collected");
+            if (cm.missionID == -1)
+            {
+                Debug.LogWarning("collected all items for tutorial mission");
+                callManager.startCall(cm);
+            }
             if (cm.endOnAllItems)
             {
                 cm.endMission();

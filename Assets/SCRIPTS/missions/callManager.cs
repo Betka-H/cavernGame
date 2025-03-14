@@ -74,13 +74,14 @@ public class callManager : MonoBehaviour
     }
     public void endCall(bool advance)
     {
-        Debug.Log($"ending call for m: {selectedMission.name}, c: {selectedMission.currentCall}");
+        Debug.Log($"ending call for m: {selectedMission.name}, eoac?: {selectedMission.endOnAllCalls}, call: {selectedMission.currentCall}, all calls: {selectedMission.calls.Length}");
 
         menuManager.toggleCallScreen();
         gameController.isCalling = false;
 
         //? audioManager.playMusic(audioManager.prevMusicLvl);
 
+        Debug.LogWarning($"{selectedMission.currentCall + 1} < {selectedMission.calls.Length}?");
         if (selectedMission.currentCall + 1 < selectedMission.calls.Length)
         {
             // runCallEndEvent();
@@ -96,7 +97,12 @@ public class callManager : MonoBehaviour
                 selectedMission.calls[selectedMission.currentCall - 1].endCall();
             }
         }
-        else if (selectedMission.endOnAllCalls) selectedMission.endMission();
+        else if (selectedMission.endOnAllCalls)
+        {
+            selectedMission.calls[selectedMission.currentCall].endCall();
+            selectedMission.endMission();
+            Debug.LogWarning("ending (jump?) mission");
+        }
 
         // if this is the last call, end the mission
         // if (selectedMission.endOnAllCalls) //! my god.....

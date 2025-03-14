@@ -20,7 +20,5 @@ MonoBehaviour:
   requiredItems: []
   calls:
   - {fileID: 11400000, guid: 71dd3e64322a8084296c40cceac900a3, type: 2}
-  - {fileID: 11400000, guid: 749dbcca69e5b124496186737bd69f0b, type: 2}
-  - {fileID: 11400000, guid: cee6ce8ce27e1db4c91a061b9ef5b51b, type: 2}
-  currentCall: 0
+  currentCall: 1
   endEventValuesList: []

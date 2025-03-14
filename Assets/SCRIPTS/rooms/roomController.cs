@@ -91,7 +91,7 @@ public class roomController : MonoBehaviour
 		darknessOverlay = FindObjectOfType<darknessOL>();
 		inventory = FindObjectOfType<inventoryManager>();
 
-		switch (PlayerPrefs.GetInt("jumpWarn", 0))
+		/* switch (PlayerPrefs.GetInt("jumpWarn", 0))
 		{
 			case 0:
 				Debug.LogError("has warned jump false");
@@ -102,7 +102,7 @@ public class roomController : MonoBehaviour
 				m_hasWarnedJump = true;
 				getPlayerMovement().bounciness = 0;
 				break;
-		}
+		} */
 
 		gameController = FindObjectOfType<gameController>();
 	}
@@ -127,13 +127,22 @@ public class roomController : MonoBehaviour
 			Debug.LogWarning("still in lab");
 			callManager.startCall(missionManager.jumpMission);
 
-			getPlayerMovement().bounciness = 0;
 			PlayerPrefs.SetInt("jumpWarn", 1);
 			PlayerPrefs.Save();
 		}
 		else m_hasWarnedJump = true;
 	}
-	public void m_mentionJumping()
+	public void m_resetPlayerBounciness() // called at end of jump warn call
+	{
+		Debug.LogError($"resetting bounce");
+		getPlayerMovement().bounciness = 0;
+	}
+	public void m_setPlayerBounciness() // called at end of space call
+	{
+		Debug.LogError($"setting bounce");
+		getPlayerMovement().bounciness = 7.5f;
+	}
+	public void m_mentionJumping() // called at end of some tutorial call
 	{
 		FindObjectOfType<announcerManager>().announceMessage($"mentioned jumping", true);
 		hasMentionedJumping = true;
