@@ -188,7 +188,7 @@ public class menuManager : MonoBehaviour
     {
         // if (menuOpen == null || menuOpen == openMenu.cave)
         // if (!escMenu.gameObject.activeSelf)
-        if (!anotherMenuOpen && !escMenu.gameObject.activeSelf)
+        if (!anotherMenuOpen && !escMenu.gameObject.activeSelf && !callScreen.gameObject.activeSelf)
         {
             // menuOpen = openMenu.cave;
             bool onOff = toggleMenu(caveItemMenu.gameObject);
@@ -202,23 +202,26 @@ public class menuManager : MonoBehaviour
     }
     public void toggleTradingScreen()
     {
-        // if (menuOpen == null || menuOpen == openMenu.trader)
-        if (!anotherMenuOpen && !escMenu.gameObject.activeSelf) //?
-        // if (!escMenu.gameObject.activeSelf) //?
-        {
-            // menuOpen = openMenu.trader;
-            bool onOff = toggleMenu(traderMenu.gameObject);
+        // if (FindObjectOfType<roomController>().m_hasIntroducedTrader) // only if knows about the trader
+        {  // if (menuOpen == null || menuOpen == openMenu.trader)
+            if (!anotherMenuOpen && !escMenu.gameObject.activeSelf && !callScreen.gameObject.activeSelf) //?
+                                                                                                         // if (!escMenu.gameObject.activeSelf) //?
+            {
+                // menuOpen = openMenu.trader;
+                bool onOff = toggleMenu(traderMenu.gameObject);
 
-            toggleCaveItemMenu(onOff);
-            toggleTraderMenu(onOff);
-            // anotherMenuOpen = onOff; //?
+                toggleCaveItemMenu(onOff);
+                toggleTraderMenu(onOff);
+                // anotherMenuOpen = onOff; //?
+            }
         }
+        // FindObjectOfType<announcerManager>().announceMessage("doesnt know trader yet", true);
     }
     public void toggleLabMenuScreen()
     {
         // if (menuOpen == null || menuOpen == openMenu.lab)
         // if (!escMenu.gameObject.activeSelf)
-        if (!anotherMenuOpen && !escMenu.gameObject.activeSelf)
+        if (!anotherMenuOpen && !escMenu.gameObject.activeSelf && !callScreen.gameObject.activeSelf)
         {
             // menuOpen = openMenu.lab;
             bool onOff = toggleMenu(labItemMenu.gameObject);
@@ -231,7 +234,7 @@ public class menuManager : MonoBehaviour
     {
         // if (menuOpen == null || menuOpen == openMenu.craft)
         // if (!anotherMenuOpen && !escMenu.gameObject.activeSelf)
-        if (!escMenu.gameObject.activeSelf)
+        if (!escMenu.gameObject.activeSelf && !callScreen.gameObject.activeSelf)
         {
             bool onOff = toggleMenu(toolWorkstationMenu.gameObject);
 
@@ -246,7 +249,7 @@ public class menuManager : MonoBehaviour
     {
         // if (menuOpen == null || menuOpen == openMenu.equip)
         // if (!anotherMenuOpen && !escMenu.gameObject.activeSelf)
-        if (!escMenu.gameObject.activeSelf)
+        if (!escMenu.gameObject.activeSelf && !callScreen.gameObject.activeSelf)
         {
             bool onOff = toggleMenu(equipWorkstation.gameObject);
 
@@ -265,7 +268,7 @@ public class menuManager : MonoBehaviour
     {
         // if (menuOpen == null || menuOpen == openMenu.misison)
         // if (!anotherMenuOpen && !escMenu.gameObject.activeSelf)
-        if (!escMenu.gameObject.activeSelf)
+        if (!escMenu.gameObject.activeSelf && !callScreen.gameObject.activeSelf)
         {
             // menuOpen = openMenu.misison;
             bool onOff = toggleMenu(missionMenu.gameObject);

@@ -6,6 +6,7 @@ public enum tooltipKind { enter, exit, item, trader, toolWorkshop, equipWorkshop
 
 public class interactionTooltip : MonoBehaviour
 {
+	bool locked;
 	public TMP_Text textDisplay;
 
 	[Header("interact functions")]
@@ -19,65 +20,75 @@ public class interactionTooltip : MonoBehaviour
 
 	public void showTooltip(KeyCode key, tooltipKind tk, Vector3 pos)
 	{
-		string action = "";
-		switch (tk)
+		if (tk != tooltipKind.trader || FindObjectOfType<roomController>().m_hasIntroducedTrader) // only if knows about the trader
 		{
-			case tooltipKind.item:
-				action = "pick up item";
-				break;
-			case tooltipKind.trader:
-				action = "trade";
-				break;
-			case tooltipKind.enter:
-				action = "enter the cavern";
-				break;
-			case tooltipKind.exit:
-				action = "exit the cavern";
-				break;
-			case tooltipKind.toolWorkshop:
-				action = "craft tools";
-				break;
-			case tooltipKind.equipWorkshop:
-				action = "equip equipment";
-				break;
-			case tooltipKind.missionWorkshop:
-				action = "open mission menu";
-				break;
+			string action = "";
+			switch (tk)
+			{
+				case tooltipKind.item:
+					action = "pick up item";
+					break;
+				case tooltipKind.trader:
+					action = "trade";
+					break;
+				case tooltipKind.enter:
+					action = "enter the cavern";
+					break;
+				case tooltipKind.exit:
+					action = "exit the cavern";
+					break;
+				case tooltipKind.toolWorkshop:
+					action = "craft tools";
+					break;
+				case tooltipKind.equipWorkshop:
+					action = "equip equipment";
+					break;
+				case tooltipKind.missionWorkshop:
+					action = "open mission menu";
+					break;
+			}
+
+			textDisplay.text = $"press {key} to {action}";
+
+			// transform.localPosition = pos;
+
+			locked = false;
+			gameObject.SetActive(true);
 		}
-
-		textDisplay.text = $"press {key} to {action}";
-
-		// transform.localPosition = pos;
-
-		gameObject.SetActive(true);
+		else
+		{
+			locked = true;
+			FindObjectOfType<announcerManager>().announceMessage("doesnt know trader", true);
+		}
 	}
 
 	public void action(tooltipKind tooltipKind)
 	{
-		switch (tooltipKind)
-		{
-			case tooltipKind.item:
-				// itemPickupEvent.Invoke();
-				break;
-			case tooltipKind.trader:
-				traderEvent.Invoke();
-				break;
-			case tooltipKind.enter:
-				enterEvent.Invoke();
-				break;
-			case tooltipKind.exit:
-				exitEvent.Invoke();
-				break;
-			case tooltipKind.toolWorkshop:
-				toolWorkshopEvent.Invoke();
-				break;
-			case tooltipKind.equipWorkshop:
-				equipWorkshopEvent.Invoke();
-				break;
-			case tooltipKind.missionWorkshop:
-				missionWorkshopEvent.Invoke();
-				break;
-		}
+		if (!locked)
+			switch (tooltipKind)
+			{
+				case tooltipKind.item:
+					// itemPickupEvent.Invoke();
+					break;
+				case tooltipKind.trader:
+					traderEvent.Invoke();
+					break;
+				case tooltipKind.enter:
+					enterEvent.Invoke();
+					break;
+				case tooltipKind.exit:
+					exitEvent.Invoke();
+					break;
+				case tooltipKind.toolWorkshop:
+					toolWorkshopEvent.Invoke();
+					break;
+				case tooltipKind.equipWorkshop:
+					equipWorkshopEvent.Invoke();
+					break;
+				case tooltipKind.missionWorkshop:
+					missionWorkshopEvent.Invoke();
+					break;
+			}
 	}
 
 	public void hideTooltip()

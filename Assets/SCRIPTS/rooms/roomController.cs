@@ -407,14 +407,17 @@ public class roomController : MonoBehaviour
 
 			CancelInvoke("startTraderCall");
 			Invoke("startTraderCall", 3.5f);
+			m_hasIntroducedTrader = false;
 		}
 
 		Debug.LogWarning("summoning trader");
 		npcTrader.transform.localPosition = traderSpawnRoom.chosenTraderSpawn.position;
 		npcTrader.gameObject.SetActive(true);
 	}
+	public bool m_hasIntroducedTrader;
 	public void startTraderCall()
 	{
+		m_hasIntroducedTrader = true;
 		callManager.startCall(missionManager.traderMission);
 	}
 

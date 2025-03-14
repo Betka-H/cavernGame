@@ -29,9 +29,9 @@ MonoBehaviour:
   messages:
   - Yo! Are you okay?!?!
   - Hello?!?
-  - '[...] [...] [...]'
-  - shit.
+  - '[...]'
+  - Shit.
   - '[...]'
   - Probably should've mentioned the spikes...
-  currentMessage: 7
+  currentMessage: 5
   endEventValuesList: []

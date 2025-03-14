@@ -63,67 +63,68 @@ public class traderMenu : MonoBehaviour
 		updateHands();
 	}
 
-	bool hasFled = false;
+	// bool hasFled = false;
 	int timesTraded = 0;
 	public void trade()
 	{
-		if (!hasFled)
-			if (offeredItem != null && traderInv.Count > 0)
+		// if (!hasFled)
+		if (offeredItem != null && traderInv.Count > 0)
+		{
+			item currentlyTradedItem = traderInv[0];
+			if (offeredItem != mainItem)
 			{
-				item currentlyTradedItem = traderInv[0];
-				if (offeredItem != mainItem)
+				timesTraded++;
+				timesTraded += UnityEngine.Random.Range(0, timesTraded);
+
+				showTradeCount();
+
+				//  Debug.Log("attempting trade");
+
+				// itemMenu.remItem(itemMenu.selectedItem);
+				inventoryManager.removeItem(offeredItem, inventoryManager.caveInventory);
+
+				// offerMade = false;
+				offeredItem = null;
+				handL.assignItem(offeredItem);
+
+				// itemMenu.addItem(tradedItem);
+				inventoryManager.addItem(currentlyTradedItem, inventoryManager.caveInventory);
+				menuManager.caveItemMenu.refreshItems(menuManager.caveItemMenu.regularSlots, inventoryManager.caveInventory);
+				traderInv.RemoveAt(0);
+				if (traderInv.Count > 0)
 				{
-					timesTraded++;
-					timesTraded += UnityEngine.Random.Range(0, timesTraded);
-
-					showTradeCount();
-
-					//  Debug.Log("attempting trade");
-
-					// itemMenu.remItem(itemMenu.selectedItem);
-					inventoryManager.removeItem(offeredItem, inventoryManager.caveInventory);
-
-					// offerMade = false;
-					offeredItem = null;
-					handL.assignItem(offeredItem);
-
-					// itemMenu.addItem(tradedItem);
-					inventoryManager.addItem(currentlyTradedItem, inventoryManager.caveInventory);
-					menuManager.caveItemMenu.refreshItems(menuManager.caveItemMenu.regularSlots, inventoryManager.caveInventory);
-					traderInv.RemoveAt(0);
-					if (traderInv.Count > 0)
-					{
-						currentlyTradedItem = traderInv[0];
-						handR.assignItem(currentlyTradedItem);
-					}
-					else
-						handR.assignItem(null);
-
-					// chance stuff
-
-					updateHands();
-					clearTooltip();
+					currentlyTradedItem = traderInv[0];
+					handR.assignItem(currentlyTradedItem);
 				}
 				else
-				{
-					// Debug.Log("cannot trade the main item");
-					FindObjectOfType<announcerManager>().announceMessage("you cannot trade the same item the trader is selling! the trader grows more agitated.");
-					timesTraded++;
-					showTradeCount();
-				}
+					handR.assignItem(null);
+
+				// chance stuff
+
+				updateHands();
+				clearTooltip();
 			}
 			else
 			{
-				// Debug.Log("no offer or trader inv empty");
-				//! chance stuff? make it more agitated when you offer nothing
-				FindObjectOfType<announcerManager>().announceMessage("no offer! the trader grows more agitated.");
+				// Debug.Log("cannot trade the main item");
+				FindObjectOfType<announcerManager>().announceMessage("you cannot trade the same item the trader is selling! the trader grows more agitated.");
 				timesTraded++;
 				showTradeCount();
 			}
+		}
+		else
+		{
+			// Debug.Log("no offer or trader inv empty");
+			//! chance stuff? make it more agitated when you offer nothing
+			FindObjectOfType<announcerManager>().announceMessage("no offer! the trader grows more agitated.");
+			timesTraded++;
+			showTradeCount();
+		}
 		if (timesTraded > traderInv.Count)
 		{
-			hasFled = true;
-			Invoke("flee", 2.5f);
+			// hasFled = true;
+			// Invoke("flee", 2.5f);
+			flee();
 		}
 	}
 	public void flee()

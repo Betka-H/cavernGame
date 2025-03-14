@@ -57,6 +57,7 @@ public class saveManager : MonoBehaviour
 
         // missions + calls
         // data.currentMission = missionManager.allMissions[missionManager.currentMission];
+        // Debug.LogWarning($"savign current mission: {missionManager.currentMission}");
         data.currentMission = missionManager.currentMission;
         // data.missionCall = missionManager.allMissions[missionManager.currentMission].currentCall;
         data.deathCall = missionManager.deathMission.currentCall;
