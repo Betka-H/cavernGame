@@ -70,7 +70,7 @@ public class roomController : MonoBehaviour
 
 	public SpriteRenderer colorBg;
 
-	bool hasMentionedJumping;
+	public bool hasMentionedJumping = true;
 
 	void Start()
 	{
@@ -94,9 +94,11 @@ public class roomController : MonoBehaviour
 		switch (PlayerPrefs.GetInt("jumpWarn", 0))
 		{
 			case 0:
+				Debug.LogError("has warned jump false");
 				m_hasWarnedJump = false;
 				break;
 			case 1:
+				Debug.LogError("has warned jump true");
 				m_hasWarnedJump = true;
 				getPlayerMovement().bounciness = 0;
 				break;
@@ -112,6 +114,7 @@ public class roomController : MonoBehaviour
 		{
 			if (currentLevel == gameController.level.lab && getPlayerMovement().transform.GetComponent<Rigidbody2D>().velocity.y > 0)
 			{
+				Debug.LogError("should call jump");
 				Invoke("startJumpCall", 5f);
 				m_hasWarnedJump = true;
 			}
@@ -126,6 +129,7 @@ public class roomController : MonoBehaviour
 
 			getPlayerMovement().bounciness = 0;
 			PlayerPrefs.SetInt("jumpWarn", 1);
+			PlayerPrefs.Save();
 		}
 		else m_hasWarnedJump = true;
 	}
@@ -384,7 +388,7 @@ public class roomController : MonoBehaviour
 			traderSpawnRoom = null; // otherwise dont spawn it
 		}
 	}
-	void killTrader()
+	public void killTrader()
 	{
 		FindObjectOfType<announcerManager>().announceMessage($"murdering trader", true);
 

@@ -126,6 +126,9 @@ public class missionManager : MonoBehaviour
         currentMission = 1;
 
         tutorialMission.endMission();
+
+        // PlayerPrefs.SetInt("jumpWarn", 1);
+        // PlayerPrefs.Save();
     }
 
     void checkRndMission()

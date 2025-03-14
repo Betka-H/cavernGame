@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -64,12 +65,16 @@ public class traderMenu : MonoBehaviour
 	}
 
 	// bool hasFled = false;
+	int invLength = -1;
 	int timesTraded = 0;
 	public void trade()
 	{
 		// if (!hasFled)
 		if (offeredItem != null && traderInv.Count > 0)
 		{
+			if (invLength == -1)
+				invLength = traderInv.Count;
+
 			item currentlyTradedItem = traderInv[0];
 			if (offeredItem != mainItem)
 			{
@@ -107,7 +112,7 @@ public class traderMenu : MonoBehaviour
 			else
 			{
 				// Debug.Log("cannot trade the main item");
-				FindObjectOfType<announcerManager>().announceMessage("you cannot trade the same item the trader is selling! the trader grows more agitated.");
+				FindObjectOfType<announcerManager>().announceMessage("you cannot trade the same item the trader is selling!");
 				timesTraded++;
 				showTradeCount();
 			}
@@ -116,32 +121,39 @@ public class traderMenu : MonoBehaviour
 		{
 			// Debug.Log("no offer or trader inv empty");
 			//! chance stuff? make it more agitated when you offer nothing
-			FindObjectOfType<announcerManager>().announceMessage("no offer! the trader grows more agitated.");
+			FindObjectOfType<announcerManager>().announceMessage("no offer!");
 			timesTraded++;
 			showTradeCount();
 		}
-		if (timesTraded > traderInv.Count)
+
+		Debug.LogWarning($"times traded: {timesTraded}, trader inv: {invLength}");
+		if (timesTraded > invLength)
 		{
-			// hasFled = true;
-			// Invoke("flee", 2.5f);
-			flee();
+			Debug.LogWarning("flee?");
+			StartCoroutine(flee());
 		}
 	}
-	public void flee()
+	IEnumerator flee()
 	{
+		yield return new WaitForSecondsRealtime(0.25f);
+
+		Debug.LogWarning("fleeing!");
+		// hasFled = true;
 		FindObjectOfType<menuManager>().hideMenus();
 		FindObjectOfType<npcTrader>().gameObject.SetActive(false);
-		int stealRnd = UnityEngine.Random.Range(0, timesTraded);
+		int stealRnd = UnityEngine.Random.Range(0, timesTraded / 2);
 		int stoleAmount = 0;
 		for (int i = 0; i < stealRnd; i++)
 		{
-			inventoryManager.removeItem(mainItem, inventoryManager.caveInventory);
+			inventoryManager.removeItem(inventoryManager.caveInventory[UnityEngine.Random.Range(0, inventoryManager.caveInventory.Count - 1)], inventoryManager.caveInventory);
 			stoleAmount++;
 		}
 		if (stoleAmount > 0)
 			FindObjectOfType<announcerManager>().announceMessage($"the trader has fled, taking {stoleAmount} of your items with it!");
 		else
 			FindObjectOfType<announcerManager>().announceMessage($"the trader has fled!");
+
+		FindObjectOfType<roomController>().killTrader();
 	}
 
 	private void clearTooltip()

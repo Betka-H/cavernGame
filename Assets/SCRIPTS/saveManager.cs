@@ -12,6 +12,7 @@ public class SaveData
     // public missionSO deathMission;
     // public int missionCall;
     public int deathCall;
+    public bool hasWarnedAboutJumping;
     // public int jumpCall; //! save warn bool instead
 }
 
@@ -23,11 +24,13 @@ public class saveManager : MonoBehaviour
     // public inventoryDefinitions inventoryDefinitions;
     menuManager menuManager;
     missionManager missionManager;
+    roomController roomController;
 
     void Awake()
     {
         menuManager = FindObjectOfType<menuManager>();
         missionManager = FindObjectOfType<missionManager>();
+        roomController = FindObjectOfType<roomController>();
 
         //! temp pref clear
         clearPrefs();
@@ -54,6 +57,7 @@ public class saveManager : MonoBehaviour
         // inventories
         data.itemsSaveList = menuManager.inventoryManager.labInventory;
         data.missionSaveList = menuManager.inventoryManager.missionInventory;
+        data.hasWarnedAboutJumping = roomController.hasMentionedJumping;
 
         // missions + calls
         // data.currentMission = missionManager.allMissions[missionManager.currentMission];
@@ -88,6 +92,7 @@ public class saveManager : MonoBehaviour
             // menuManager.inventoryManager.labInventory = new List<item>();
             // menuManager.inventoryManager.missionInventory = new List<item>();
 
+            roomController.hasMentionedJumping = true;
             // missions + calls
             missionManager.restartMissions();
             // missionManager.allMissions[missionManager.currentMission] = missionManager.allMissions[0];
@@ -99,6 +104,8 @@ public class saveManager : MonoBehaviour
             // inventories
             menuManager.inventoryManager.labInventory = data.itemsSaveList;
             menuManager.inventoryManager.missionInventory = data.missionSaveList;
+
+            roomController.hasMentionedJumping = data.hasWarnedAboutJumping;
 
             // missions + calls
             // missionManager.allMissions[missionManager.currentMission] = data.currentMission;

@@ -10,12 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e096ea82527634445bc2fcfdb7779b94, type: 3}
-  m_Name: tmc 2
+  m_Name: tmc 11
   m_EditorClassIdentifier: 
   talkSprites:
-  - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
-  - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
-  - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
   - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
   - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
   - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
@@ -27,22 +24,11 @@ MonoBehaviour:
   - '[mission guy]'
   - '[mission guy]'
   - '[mission guy]'
-  - '[mission guy]'
-  - '[mission guy]'
-  - '[mission guy]'
   messages:
-  - Oh, and if you're having trouble moving around, that's because the gravity here
-    is a bit messed up.
-  - But don't worry, you'll get used to it.
-  - Just use the [A] key to go left, [D] to go right and jump with [spacebar].
-  - No jumping allowed up here in the lab though.
-  - Sorry.
-  - I don't make the rules.
+  - Hey, new guy!
+  - What've you got?
   - '[...]'
-  - Whatever, hurry over so we can get started properly!
-  currentMessage: 7
-  endEventValuesList:
-  - objName: roomController
-    methodName: m_mentionJumping
-  - objName: gameController
-    methodName: m_resetPlayerSpeed
+  - Shoes? Alright!
+  - Go ahead, try them on!
+  currentMessage: 0
+  endEventValuesList: []

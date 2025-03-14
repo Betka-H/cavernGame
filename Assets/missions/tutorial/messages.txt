@@ -14,8 +14,7 @@
   - Since you're one of the new guys, it is my duty to show you around a bit and
     get you familiar with the place.
   - We can start right away!
-  - You will find me by the cave elevator, it's just down the hall from the main
-    entrance.
+  - You will find me by the cave elevator. It's just down the hall from the main entrance.
   - Can't miss it.
 
 
@@ -28,7 +27,7 @@
   - Sorry.
   - I don't make the rules.
   - '[...]'
-  - Anyway, hurry over so we can get started properly!
+  - Whatever, hurry over so we can get started properly!
 
 
 
@@ -46,15 +45,14 @@
   - Head over to that elevator and call me once you're downstairs.
   - '[...]'
   - Huh? Why don't I accompany you downstairs?
-  - Simply put, I'm just the mission guy here. I'm not authorised to go down there.
+  - Simply put, I'm only the mission guy here. I'm not authorised to go down there.
   - But you are! Lucky you. Now, get going! We haven't got time to spare.
 
 
 
   - Alright! Welcome to the cavern.
   - Your first mission is to find 3 green gems.
-  - The lab boys say that's all they need before they're able to make some new special
-    equipment they designed. That's science for 'ya.
+  - Lab boys need 'em for some new gadget they're working on.
   - Anyway, just walk around a bit and you should be able to find some of the stuff.
 
 
@@ -76,3 +74,69 @@
     trip. You can just come back a bit later and find the rest.
   - '[...]'
   - Ok, that really should be everything! Good luck! I'll be waiting upstairs.
+
+
+
+  - Got everything? Great!
+  - Bring it over to the crafting lab and the science assistant will instruct you further.
+
+
+
+  - Hey! Nice to have you here.
+  - And the rocks you brought from the underground.
+  - Nice to have them too.
+  - [...]
+  - Ahem, let's get started.
+  - This machine is able to reconstruct a piece of gear from just a part of it and a handful of extra material.
+  - We already have an item scrap in the lab stash, so insert that by clicking on it.
+
+
+
+  - The machine automatically calculates the cost of the reconstruction.
+  - Thanks to your last expedition, we now have enough materials to craft this item.
+  - Just push the big button and the machine will do it's thing.
+
+
+
+  - Neat! That's all from me for now.
+  - You can equip the shoes at the lab nextdoors.
+
+
+(if gone to MG first)
+  - Cool, what did you get?
+  - [...]
+  - Oh! Shoes. Pretty good.
+  - Go equip them at the other lab and come back for your first real mission!
+
+
+(at eq lab. skip prev call if first)
+  - Hey, new guy!
+  - What've you got?
+  - [...]
+  - Shoes? Alright!
+  - Go ahead, try them on!
+
+
+
+  - Fancy.
+  - The guys nextdoors are like magicians with that crafting machine of theirs, I'm telling 'ya.
+  - Anyway, no time to waste!
+  - Go talk to MG about your next assignment.
+
+
+
+  - Hey! These shoes look good on you!
+  - They compliment the uhh...
+  - The orange.
+  - [...]
+  - Man, I wish they'd give ME some new shoes every once in a while.
+  - I've had these ones since i came here!
+  - And that's been...
+  - A while.
+  - [...]
+  - Anyway!
+  - You've successfully completed the first misson.
+  - Nice job! It only gets worse from here.
+  - [...]
+  - Just kidding... I'ts about average.
+  - Here you go! Good luck.

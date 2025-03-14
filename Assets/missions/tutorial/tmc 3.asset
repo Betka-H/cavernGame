@@ -55,7 +55,7 @@ MonoBehaviour:
   - Head over to that elevator and call me once you're downstairs.
   - '[...]'
   - Huh? Why don't I accompany you downstairs?
-  - Simply put, I'm just the mission guy here. I'm not authorised to go down there.
+  - Simply put, I'm only the mission guy here. I'm not authorised to go down there.
   - But you are! Lucky you. Now, get going! We haven't got time to spare.
   currentMessage: 10
   endEventValuesList:

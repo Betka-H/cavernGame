@@ -146,6 +146,7 @@ public class gameController : MonoBehaviour
 		{
 			Debug.LogWarning("gennspawn: starting 1st tutorial call");
 			FindObjectOfType<playerMovement>().speed = 3.5f;
+			roomController.hasMentionedJumping = false;
 			getElevator().isFirst = true; // door opens only on first and then stays closed
 
 			// StartCoroutine(delayAction(() => callManager.startCall(getCurrentMission()), 21f));

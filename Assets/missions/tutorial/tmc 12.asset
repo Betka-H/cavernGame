@@ -10,33 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e096ea82527634445bc2fcfdb7779b94, type: 3}
-  m_Name: tmc 1
+  m_Name: tmc 12
   m_EditorClassIdentifier: 
   talkSprites:
   - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
   - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
   - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
   - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
-  - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
-  - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
-  - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
   speakerNames:
-  - 
-  - 
-  - '[mission guy]'
   - '[mission guy]'
   - '[mission guy]'
   - '[mission guy]'
   - '[mission guy]'
   messages:
-  - '[you hear a beep from your communicator device]'
-  - '[you have incoming messages]'
-  - Heey! Welcome to [space base]!
-  - Since you're one of the new guys, it is my duty to show you around a bit and
-    get you familiar with the place.
-  - We can start right away!
-  - You will find me by the cave elevator. It's just down the hall from the main
-    entrance.
-  - Can't miss it.
-  currentMessage: 5
+  - Fancy.
+  - The guys nextdoors are like magicians with that crafting machine of theirs, I'm
+    telling 'ya.
+  - Anyway, no time to waste!
+  - Go talk to MG about your next assignment.
+  currentMessage: 0
   endEventValuesList: []
