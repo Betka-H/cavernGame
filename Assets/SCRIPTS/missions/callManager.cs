@@ -71,7 +71,7 @@ public class callManager : MonoBehaviour
 
         //? audioManager.playMusic(audioManager.prevMusicLvl);
 
-        if (selectedMission.currentCall < selectedMission.calls.Length)
+        if (selectedMission.currentCall + 1 < selectedMission.calls.Length)
         {
             // runCallEndEvent();
 

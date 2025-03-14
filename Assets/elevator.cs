@@ -58,6 +58,8 @@ public class elevator : MonoBehaviour
             }
             else
             {
+                openDoors(false);
+
                 GameObject exitObj;
                 if (isLab)
                     exitObj = GameObject.Find("lab exit point");
@@ -122,12 +124,12 @@ public class elevator : MonoBehaviour
     IEnumerator openWalls()
     {
         yield return new WaitForSeconds(3);
-        // audioManager.playSfx(audioManager.worldSfxSource, audioManager.elevatorDing, true);
+
         audioManager.playSfx(audioManager.worldSfxSource, audioManager.elevatorDing);
-        // audioManager.playSfx(audioManager.worldSfxSource, audioManager.elevatorDoors, true);
         audioManager.playSfx(audioManager.worldSfxSource, audioManager.elevatorDoors);
 
         yield return new WaitForSeconds(3.5f);
+
         walls.gameObject.SetActive(false);
         isClosed = false;
     }
@@ -139,33 +141,32 @@ public class elevator : MonoBehaviour
         // Debug.Log("closing doors");
         // openDoors(true);
 
-        Debug.LogError($"walls should be true");
-        //! walls.gameObject.SetActive(true);
-
         if (!isClosed)
             if (instant)
             {
                 resetDoorsToClosed();
 
                 // walls.gameObject.SetActive(true);
-                isClosed = true;
+                // isClosed = true;
             }
             else
             {
                 // audioManager.playSfx(audioManager.worldSfxSource, audioManager.elevatorDoors, true);
                 audioManager.playSfx(audioManager.worldSfxSource, audioManager.elevatorDoors);
+
                 iTween.MoveBy(doorL.gameObject, iTween.Hash("x", moveAmount, "speed", 0.5, "easeType", "easeInOutExpo"));
                 iTween.MoveBy(doorR.gameObject, iTween.Hash("x", -moveAmount, "speed", 0.5, "easeType", "easeInOutExpo"));
 
                 FindObjectOfType<announcerManager>().announceMessage($"closing elevator doors");
 
                 StartCoroutine("closeWalls");
-                // walls.gameObject.SetActive(true);
                 // isClosed = true;
             }
     }
     IEnumerator closeWalls()
     {
+        walls.gameObject.SetActive(true);
+
         yield return new WaitForSeconds(5);
         // audioManager.playSfx(audioManager.worldSfxSource, audioManager.elevatorDing, true);
         // audioManager.playSfx(audioManager.worldSfxSource, audioManager.elevatorMove, true);

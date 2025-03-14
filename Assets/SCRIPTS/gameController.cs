@@ -54,7 +54,12 @@ public class gameController : MonoBehaviour
 
 			genAndSpawn(level.space);
 		}
-		else genAndSpawn(level.lab);
+		else
+		{
+			roomController.labFirst = true;
+			genAndSpawn(level.lab);
+			getElevator().isFirst = true;
+		}
 		// genAndSpawn(level.space); //! delet this line
 
 		// clearMenus();
@@ -79,8 +84,9 @@ public class gameController : MonoBehaviour
 			Debug.Log($"dead: {isDead}, calling: {isCalling}");
 			if (isDead && !isCalling)
 			{
-				// menuManager.hideMenus();
+				roomController.labFirst = true;
 				genAndSpawn(level.lab);
+				getElevator().isFirst = true;
 			}
 		}
 		/* if (Input.GetKeyDown(KeyCode.Escape))
@@ -92,7 +98,9 @@ public class gameController : MonoBehaviour
 	public void m_endOfIntroCall()
 	{
 		Debug.LogError($"end of intro call");
+		roomController.labFirst = true;
 		genAndSpawn(level.lab);
+		getElevator().isFirst = true;
 	}
 
 	public void saveAndGoToMainMenu()
@@ -179,7 +187,9 @@ public class gameController : MonoBehaviour
 		/* FindObjectOfType<announcerManager>().announceMessage($"skipping the tutorial! and checking cm+cc");
 		missionManager.checkCurrentMission(0, -1);
 		 */
+		// roomController.labFirst = true;
 		genAndSpawn(level.lab);
+		getElevator().isFirst = true;
 		// getElevator().openDoors(true);
 	}
 
@@ -325,7 +335,7 @@ public class gameController : MonoBehaviour
 			// menuManager.equipWorkstation.clearSlots();
 
 			isDead = true;
-			roomController.labFirst = true;
+			// roomController.labFirst = true;
 		}
 		else
 		{
@@ -369,12 +379,15 @@ public class gameController : MonoBehaviour
 
 		audioManager.worldSfxSource.Stop();
 		roomController.clearRoom();
+		// roomController.labFirst = true;
 		genAndSpawn(level.lab);
+		// getElevator().isFirst = true;
+		Debug.LogWarning("door is first");
 
-		getElevator().isFirst = true;
+		// getElevator().isFirst = true;
 		// Debug.Log("new doors!!");
 		// getElevator().closeDoors(true);
-		getElevator().openDoors(false);
+		// getElevator().openDoors(false);
 
 		/* GameObject exitObj = GameObject.Find("lab exit point");
 		exitObj.GetComponent<tooltipCaller>().disable();
