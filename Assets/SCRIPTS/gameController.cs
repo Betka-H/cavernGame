@@ -187,9 +187,9 @@ public class gameController : MonoBehaviour
 		/* FindObjectOfType<announcerManager>().announceMessage($"skipping the tutorial! and checking cm+cc");
 		missionManager.checkCurrentMission(0, -1);
 		 */
-		// roomController.labFirst = true;
+		roomController.labFirst = false;
 		genAndSpawn(level.lab);
-		getElevator().isFirst = true;
+		getElevator().isFirst = false;
 		// getElevator().openDoors(true);
 	}
 

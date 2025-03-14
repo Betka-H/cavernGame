@@ -187,7 +187,7 @@ public class roomController : MonoBehaviour
 	public void clearRoom()
 	{
 		clearParent(itemParent);
-		killTrader();
+		// killTrader();
 		if (chosenDarkness != null)
 			chosenDarkness.gameObject.SetActive(false);
 	}
@@ -386,6 +386,8 @@ public class roomController : MonoBehaviour
 	}
 	void killTrader()
 	{
+		FindObjectOfType<announcerManager>().announceMessage($"murdering trader", true);
+
 		clearParent(traderParent);
 
 		/* foreach (room_cavern room in selectedRooms)
