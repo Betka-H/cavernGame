@@ -67,6 +67,7 @@ public class missionManager : MonoBehaviour
                 Debug.LogWarning("collected all items for tutorial mission");
                 callManager.startCall(cm);
             }
+
             if (cm.endOnAllItems)
             {
                 cm.endMission();

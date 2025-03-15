@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public enum openMenu { lab, cave, esc, trader, misison, craft, equip, call };
@@ -243,6 +244,16 @@ public class menuManager : MonoBehaviour
 
             anotherMenuOpen = onOff;
             // menuOpen = openMenu.craft;
+
+            if (missionManager.checkCurrentMission(-1, 7)) //! testing
+            {
+                /* onOff = toggleMenu(toolWorkstationMenu.gameObject);
+                toggleToolWorkstationMenu(onOff);
+                anotherMenuOpen = onOff; */
+
+                callManager.startCall(getCurrentMission());
+                // startNextMainMissionCall();
+            }
         }
     }
     public void toggleToggleEquipmentWorkstationMenu()
@@ -260,6 +271,23 @@ public class menuManager : MonoBehaviour
             // menuOpen = openMenu.equip;
             // Debug.Log("eq");
             anotherMenuOpen = onOff;
+
+
+            if (missionManager.checkCurrentMission(-1, 10)) //! testing
+            {
+                Debug.LogWarning("advancing from 10th to 11th call");
+                missionManager.allMissions[missionManager.currentMission].currentCall++;
+            }
+            else if (missionManager.checkCurrentMission(-1, 11)) //! testing
+            {
+                onOff = toggleMenu(missionMenu.gameObject);
+                toggleMissionWorkstationMenu(onOff);
+                anotherMenuOpen = onOff;
+
+                callManager.startCall(getCurrentMission());
+                // missionManager.checkMissionItems();
+                // startNextMainMissionCall();
+            }
         }
     }
 
@@ -285,6 +313,36 @@ public class menuManager : MonoBehaviour
                 callManager.startCall(getCurrentMission());
                 // hasTalkedBeforeFirstCave = true;
             }
+            else if (missionManager.checkCurrentMission(-1, 6)) //! testing
+            {
+                onOff = toggleMenu(missionMenu.gameObject);
+                toggleMissionWorkstationMenu(onOff);
+                anotherMenuOpen = onOff;
+
+                // callManager.startCall(getCurrentMission());
+                missionManager.checkMissionItems();
+                // startNextMainMissionCall();
+            }
+            else if (missionManager.checkCurrentMission(-1, 10)) //! testing
+            {
+                /* Debug.LogWarning("advancing from 10th to 11th call");
+                missionManager.allMissions[missionManager.currentMission].currentCall++; */
+                onOff = toggleMenu(missionMenu.gameObject);
+                toggleMissionWorkstationMenu(onOff);
+                anotherMenuOpen = onOff;
+
+                callManager.startCall(getCurrentMission());
+            }
+            else if (missionManager.checkCurrentMission(-1, 13)) //! testing
+            {
+                onOff = toggleMenu(missionMenu.gameObject);
+                toggleMissionWorkstationMenu(onOff);
+                anotherMenuOpen = onOff;
+
+                callManager.startCall(getCurrentMission());
+
+                StartCoroutine(showFirstMission());
+            }
             /* if (onOff && !hasTalkedBeforeFirstCave)
             {
                 onOff = toggleMenu(missionMenu.gameObject);
@@ -294,6 +352,13 @@ public class menuManager : MonoBehaviour
                 // callManager.startCall(getCurrentMission()); //?
             } */
         }
+    }
+    IEnumerator showFirstMission()
+    {
+        while (gameController.isCalling)
+            yield return null;
+
+        toggleToggleMissionWorkstationMenu();
     }
 
     missionSO getCurrentMission()

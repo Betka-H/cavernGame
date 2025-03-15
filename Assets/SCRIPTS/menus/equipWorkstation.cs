@@ -76,6 +76,14 @@ public class equipWorkstation : MonoBehaviour
 
                         // refresh item displays
                         refreshItemDisplays();
+
+                        if (FindObjectOfType<missionManager>().checkCurrentMission(-1, 12)) //! testing
+                        {
+                            callManager callManager = FindObjectOfType<callManager>();
+                            callManager.startCall(callManager.currentMainMission());
+                            menuManager.toggleToggleEquipmentWorkstationMenu();
+                            // startNextMainMissionCall();
+                        }
                     }
                     else
                     {

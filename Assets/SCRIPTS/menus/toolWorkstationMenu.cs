@@ -36,6 +36,13 @@ public class toolWorkstationMenu : MonoBehaviour
             resultSpriteRenderer.sprite = assignedScrap.wholeGear.itemSprite;
             //??? menuManager.labItemMenu.itemGrid.refreshItems(recipeGridSlots, assignedScrap.wholeGear.cost.ToList());
             requiredItemsMenu.refreshItems(requiredItemsMenu.regularSlots, menuManager.inventoryManager.labInventory, assignedScrap.wholeGear.cost.ToList());
+
+            if (FindObjectOfType<missionManager>().checkCurrentMission(-1, 8)) //! testing
+            {
+                callManager callManager = FindObjectOfType<callManager>();
+                callManager.startCall(callManager.currentMainMission());
+                // startNextMainMissionCall();
+            }
         }
         else
         {
@@ -70,6 +77,14 @@ public class toolWorkstationMenu : MonoBehaviour
 
                 // menuManager.itemInfoDisplay.selectedItem = null;
                 menuManager.itemInfoDisplay.setInfo(null);
+
+                if (FindObjectOfType<missionManager>().checkCurrentMission(-1, 9)) //! testing
+                {
+                    callManager callManager = FindObjectOfType<callManager>();
+                    callManager.startCall(callManager.currentMainMission());
+                    menuManager.toggleToggletoolWorkstationMenuScreen();
+                    // startNextMainMissionCall();
+                }
             }
             else
                 FindObjectOfType<announcerManager>().announceMessage($"you do not have the required materials!");

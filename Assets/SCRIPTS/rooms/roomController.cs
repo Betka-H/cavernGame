@@ -556,5 +556,12 @@ public class roomController : MonoBehaviour
 				npcTrader.gameObject.SetActive(false);
 		}
 		else if (chosenDarkness != null) chosenDarkness.gameObject.SetActive(false);
+
+
+		if (missionManager.checkCurrentMission(-1, 5) && currentLevel == gameController.level.cavern && selectedRooms[currentRoomNr] != entranceRoom) //! testing
+		{
+			callManager.startCall(callManager.currentMainMission());
+			// startNextMainMissionCall();
+		}
 	}
 }
