@@ -278,11 +278,12 @@ public class menuManager : MonoBehaviour
                 Debug.LogWarning("advancing from 10th to 11th call");
                 missionManager.allMissions[missionManager.currentMission].currentCall++;
             }
-            else if (missionManager.checkCurrentMission(-1, 11)) //! testing
+            if (missionManager.checkCurrentMission(-1, 11)) //! DONT ELSE THIS
             {
-                onOff = toggleMenu(missionMenu.gameObject);
-                toggleMissionWorkstationMenu(onOff);
-                anotherMenuOpen = onOff;
+                /* onOff = toggleMenu(equipWorkstation.gameObject);
+                toggleLabItemMenu(onOff);
+                toggleEquipmentWorkstationMenu(onOff);
+                anotherMenuOpen = onOff; */
 
                 callManager.startCall(getCurrentMission());
                 // missionManager.checkMissionItems();

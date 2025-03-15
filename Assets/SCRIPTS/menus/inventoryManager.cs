@@ -37,7 +37,7 @@ public class inventoryManager : MonoBehaviour
 	}
 	public void m_afterTutorialInv()
 	{
-		Debug.LogWarning("after tutorial inv");
+		Debug.LogWarning("after tutorial inv"); // 34 + 22 = 56
 		labInventory = new List<item>
 	{
 	inventoryDefinitions.shoes,

@@ -39,5 +39,3 @@ MonoBehaviour:
   endEventValuesList:
   - objName: gameController
     methodName: m_endTutorial
-  - objName: inventoryManager
-    methodName: m_afterTutorialInv

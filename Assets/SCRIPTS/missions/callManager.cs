@@ -101,7 +101,8 @@ public class callManager : MonoBehaviour
         {
             selectedMission.calls[selectedMission.currentCall].endCall();
             selectedMission.endMission();
-            Debug.LogWarning("ending (jump?) mission");
+            if (missionManager.allMissions.Contains(selectedMission))
+                missionManager.newMission();
         }
 
         // if this is the last call, end the mission

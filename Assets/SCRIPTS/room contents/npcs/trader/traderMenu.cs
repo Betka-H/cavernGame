@@ -26,7 +26,7 @@ public class traderMenu : MonoBehaviour
 
 	void Start()
 	{
-		inventoryManager.addItem(inventoryManager.inventoryDefinitions.gemBlue, inventoryManager.caveInventory);
+		/* inventoryManager.addItem(inventoryManager.inventoryDefinitions.gemBlue, inventoryManager.caveInventory);
 		inventoryManager.addItem(inventoryManager.inventoryDefinitions.gemBlue, inventoryManager.caveInventory);
 		inventoryManager.addItem(inventoryManager.inventoryDefinitions.gemBlue, inventoryManager.caveInventory);
 		inventoryManager.addItem(inventoryManager.inventoryDefinitions.gemPink, inventoryManager.caveInventory);
@@ -35,7 +35,7 @@ public class traderMenu : MonoBehaviour
 		inventoryManager.addItem(inventoryManager.inventoryDefinitions.gemYellow, inventoryManager.caveInventory);
 		inventoryManager.addItem(inventoryManager.inventoryDefinitions.gemYellow, inventoryManager.caveInventory);
 		inventoryManager.addItem(inventoryManager.inventoryDefinitions.gemYellow, inventoryManager.caveInventory);
-		inventoryManager.addItem(inventoryManager.inventoryDefinitions.gemYellow, inventoryManager.caveInventory);
+		inventoryManager.addItem(inventoryManager.inventoryDefinitions.gemYellow, inventoryManager.caveInventory); */
 	}
 
 	void OnEnable()

@@ -84,7 +84,7 @@ public class missionManager : MonoBehaviour
         newMission();
     } */
 
-    void newMission()
+    public void newMission()
     {
         if (currentMission + 1 < allMissions.Length)
         {
@@ -133,6 +133,9 @@ public class missionManager : MonoBehaviour
 
         Debug.LogError($"ending tutorial mission");
         tutorialMission.endMission();
+
+        // FindObjectOfType<missionManager>().m_afterTutorialInv();
+        FindObjectOfType<inventoryManager>().m_afterTutorialInv();
 
         // PlayerPrefs.SetInt("jumpWarn", 1);
         // PlayerPrefs.Save();
