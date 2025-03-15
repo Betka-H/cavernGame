@@ -91,6 +91,7 @@ public class gameController : MonoBehaviour
 				roomController.labFirst = true;
 				genAndSpawn(level.lab);
 				getElevator().isFirst = true;
+				isDead = false;
 			}
 		}
 		/* if (Input.GetKeyDown(KeyCode.Escape))
