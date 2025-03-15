@@ -103,7 +103,7 @@ public class missionManager : MonoBehaviour
 
     public void restartMissions()
     {
-        // Debug.LogError($"restarting missions");
+        Debug.LogError($"restarting missions");
         currentMission = 0;
         foreach (missionSO mission in allMissions)
         {

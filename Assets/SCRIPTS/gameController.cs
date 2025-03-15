@@ -47,10 +47,14 @@ public class gameController : MonoBehaviour
 		// clearMenus();
 
 		//! tmp, use this>>>>
-		if (PlayerPrefs.GetInt("HasStarted", 0) == 0)
+		// if (PlayerPrefs.GetInt("HasStarted", 0) == 0)
+		if (missionManager.checkCurrentMission(-1, 0)) // if first call is tutorial space call
 		{
-			PlayerPrefs.SetInt("HasStarted", 1); // Save that the game has started
-			PlayerPrefs.Save();
+			if (PlayerPrefs.GetInt("HasStarted", 0) == 0)
+			{
+				PlayerPrefs.SetInt("HasStarted", 1); // Save that the game has started
+				PlayerPrefs.Save();
+			}
 
 			genAndSpawn(level.space);
 		}
@@ -93,6 +97,35 @@ public class gameController : MonoBehaviour
 		{
 			menuManager.toggleEscapeMenu(!menuManager.escMenu.gameObject.activeSelf);
 		} */
+
+		if (roomController.currentLevel == level.lab && getPlayerMovement().transform.GetComponent<Rigidbody2D>().velocity.y > 0) // if player jumps in the lab
+		{
+			if (!m_hasWarnedJump && roomController.hasMentionedJumping)
+			{
+				// Debug.LogError("should call jump");
+				Invoke("startJumpCall", 5f);
+				m_hasWarnedJump = true; // here to prevent multiple triggers
+			}
+		}
+	}
+	playerMovement getPlayerMovement()
+	{
+		return FindObjectOfType<playerMovement>();
+	}
+
+	public bool m_hasWarnedJump = false;
+	public void startJumpCall()
+	{
+		if (roomController.currentLevel == level.lab) // but only if theyre still in the lab
+		{
+			// Debug.LogWarning("still in lab");
+			callManager.startCall(missionManager.jumpMission);
+
+			PlayerPrefs.SetInt("jumpWarn", 1);
+			PlayerPrefs.Save();
+			// m_hasWarnedJump = true;
+		}
+		else m_hasWarnedJump = false;
 	}
 
 	public void m_endOfIntroCall()
@@ -135,6 +168,21 @@ public class gameController : MonoBehaviour
 		spawnPlayer(lvl);
 		roomController.generateLevel(lvl);
 		clearMenus();
+
+		if (lvl == level.lab)
+			switch (PlayerPrefs.GetInt("jumpWarn", 0))
+			{
+				case 0:
+					Debug.LogError("has warned jump false");
+					m_hasWarnedJump = false;
+					getPlayerMovement().bounciness = 7.5f;
+					break;
+				case 1:
+					Debug.LogError("has warned jump true");
+					m_hasWarnedJump = true;
+					getPlayerMovement().bounciness = 0;
+					break;
+			}
 
 		// if (lvl == level.space)
 		if (missionManager.checkCurrentMission(-1, 0))
@@ -179,7 +227,7 @@ public class gameController : MonoBehaviour
 	public void m_metTrader()
 	{
 		FindObjectOfType<announcerManager>().announceMessage($"has met trader", true);
-		PlayerPrefs.SetInt("hasMetTrader", 1); // Save that the game has started
+		PlayerPrefs.SetInt("hasMetTrader", 1);
 		PlayerPrefs.Save();
 	}
 

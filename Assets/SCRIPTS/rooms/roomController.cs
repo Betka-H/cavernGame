@@ -107,16 +107,16 @@ public class roomController : MonoBehaviour
 		gameController = FindObjectOfType<gameController>();
 	}
 
-	bool m_hasWarnedJump = false;
+	/* public bool m_hasWarnedJump = false;
 	void Update()
 	{
-		if (!m_hasWarnedJump && hasMentionedJumping)
+		if (currentLevel == gameController.level.lab && getPlayerMovement().transform.GetComponent<Rigidbody2D>().velocity.y > 0) // if player jumps in the lab
 		{
-			if (currentLevel == gameController.level.lab && getPlayerMovement().transform.GetComponent<Rigidbody2D>().velocity.y > 0)
+			if (!m_hasWarnedJump && hasMentionedJumping)
 			{
-				Debug.LogError("should call jump");
+				// Debug.LogError("should call jump");
 				Invoke("startJumpCall", 5f);
-				m_hasWarnedJump = true;
+				// m_hasWarnedJump = true;
 			}
 		}
 	}
@@ -124,14 +124,15 @@ public class roomController : MonoBehaviour
 	{
 		if (currentLevel == gameController.level.lab) // but only if theyre still in the lab
 		{
-			Debug.LogWarning("still in lab");
+			// Debug.LogWarning("still in lab");
 			callManager.startCall(missionManager.jumpMission);
 
 			PlayerPrefs.SetInt("jumpWarn", 1);
 			PlayerPrefs.Save();
+			m_hasWarnedJump = true;
 		}
-		else m_hasWarnedJump = true;
-	}
+		else m_hasWarnedJump = false;
+	} */
 	public void m_resetPlayerBounciness() // called at end of jump warn call
 	{
 		Debug.LogError($"resetting bounce");
@@ -416,18 +417,25 @@ public class roomController : MonoBehaviour
 	{
 		if (PlayerPrefs.GetInt("hasMetTrader", 0) == 0)
 		{
+			Debug.LogWarning("has not met trader yet");
 			PlayerPrefs.SetInt("hasMetTrader", 1);
+			PlayerPrefs.Save();
 
 			CancelInvoke("startTraderCall");
 			Invoke("startTraderCall", 3.5f);
 			m_hasIntroducedTrader = false;
 		}
+		else
+		{
+			Debug.LogWarning("has met trader already");
+			m_hasIntroducedTrader = true;
+		}
 
-		Debug.LogWarning("summoning trader");
+		// Debug.LogWarning("summoning trader");
 		npcTrader.transform.localPosition = traderSpawnRoom.chosenTraderSpawn.position;
 		npcTrader.gameObject.SetActive(true);
 	}
-	public bool m_hasIntroducedTrader;
+	public bool m_hasIntroducedTrader = true;
 	public void startTraderCall()
 	{
 		m_hasIntroducedTrader = true;

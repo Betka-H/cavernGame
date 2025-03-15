@@ -10,9 +10,9 @@ public class SaveData
     // public missionSO currentMission;
     public int currentMission;
     // public missionSO deathMission;
-    // public int missionCall;
+    public int missionCall;
     public int deathCall;
-    public bool hasWarnedAboutJumping;
+    // public bool hasWarnedAboutJumping;
     // public int jumpCall; //! save warn bool instead
 }
 
@@ -33,7 +33,7 @@ public class saveManager : MonoBehaviour
         roomController = FindObjectOfType<roomController>();
 
         //! temp pref clear
-        clearPrefs();
+        // clearPrefs();
         load();
     }
 
@@ -57,13 +57,13 @@ public class saveManager : MonoBehaviour
         // inventories
         data.itemsSaveList = menuManager.inventoryManager.labInventory;
         data.missionSaveList = menuManager.inventoryManager.missionInventory;
-        data.hasWarnedAboutJumping = roomController.hasMentionedJumping;
+        // data.hasWarnedAboutJumping = roomController.hasMentionedJumping;
 
         // missions + calls
         // data.currentMission = missionManager.allMissions[missionManager.currentMission];
         // Debug.LogWarning($"savign current mission: {missionManager.currentMission}");
         data.currentMission = missionManager.currentMission;
-        // data.missionCall = missionManager.allMissions[missionManager.currentMission].currentCall;
+        data.missionCall = missionManager.allMissions[missionManager.currentMission].currentCall;
         data.deathCall = missionManager.deathMission.currentCall;
         // data.jumpCall = missionManager.jumpMission.currentCall;
 
@@ -78,9 +78,6 @@ public class saveManager : MonoBehaviour
     void load()
     {
         // if (!PlayerPrefs.HasKey(saveKeyString)) return;
-
-        string json = PlayerPrefs.GetString(saveKeyString);
-        SaveData data = JsonUtility.FromJson<SaveData>(json);
 
         // if there is no save - crate a clear one
         if (!PlayerPrefs.HasKey(saveKeyString))
@@ -101,23 +98,28 @@ public class saveManager : MonoBehaviour
         }
         else
         {
+            string json = PlayerPrefs.GetString(saveKeyString);
+            SaveData data = JsonUtility.FromJson<SaveData>(json);
+
             // inventories
             menuManager.inventoryManager.labInventory = data.itemsSaveList;
             menuManager.inventoryManager.missionInventory = data.missionSaveList;
 
-            roomController.hasMentionedJumping = data.hasWarnedAboutJumping;
+            // roomController.hasMentionedJumping = data.hasWarnedAboutJumping;
 
             // missions + calls
             // missionManager.allMissions[missionManager.currentMission] = data.currentMission;
             missionManager.currentMission = data.currentMission;
             // missionManager.deathMission.currentCall = missionManager.allMissions[missionManager.currentMission].currentCall; //! ????????????
-            // missionManager.allMissions[missionManager.currentMission].currentCall = data.missionCall;
+            missionManager.allMissions[missionManager.currentMission].currentCall = data.missionCall;
             // missionManager.deathMission = data.deathMission;
             missionManager.deathMission.currentCall = data.deathCall;
             // missionManager.jumpMission.currentCall = data.jumpCall;
         }
 
         Debug.LogWarning($"loaded: last mission: {missionManager.currentMission}, call {missionManager.allMissions[missionManager.currentMission].currentCall}, death mission call: {missionManager.deathMission.currentCall}");
+        PlayerPrefs.Save();
+
         // Debug.LogWarning($"loaded: last mission: {missionManager.currentMission}, call {missionManager.allMissions[missionManager.currentMission].currentCall}, death mission call: {missionManager.deathMission.currentCall}, jump mission call: {missionManager.jumpMission.currentCall}");
         // FindObjectOfType<announcerManager>().announceMessage($"loaded: last mission: {missionManager.currentMission}, call {missionManager.allMissions[missionManager.currentMission].currentCall}, death mission call: {missionManager.deathMission.currentCall}");
         //! check Debug.LogWarning("what about eq inv?");
