@@ -113,8 +113,8 @@ public class traderMenu : MonoBehaviour
 			{
 				// Debug.Log("cannot trade the main item");
 				FindObjectOfType<announcerManager>().announceMessage("you cannot trade the same item the trader is selling!");
-				timesTraded++;
-				showTradeCount();
+				/* timesTraded++;
+				showTradeCount(); */
 			}
 		}
 		else
@@ -122,14 +122,14 @@ public class traderMenu : MonoBehaviour
 			// Debug.Log("no offer or trader inv empty");
 			//! chance stuff? make it more agitated when you offer nothing
 			FindObjectOfType<announcerManager>().announceMessage("no offer!");
-			timesTraded++;
-			showTradeCount();
+			/* timesTraded++;
+			showTradeCount(); */
 		}
 
 		Debug.LogWarning($"times traded: {timesTraded}, trader inv: {invLength}");
 		if (timesTraded > invLength)
 		{
-			Debug.LogWarning("flee?");
+			// Debug.LogWarning("flee?");
 			StartCoroutine(flee());
 		}
 	}
@@ -137,7 +137,7 @@ public class traderMenu : MonoBehaviour
 	{
 		yield return new WaitForSecondsRealtime(0.25f);
 
-		Debug.LogWarning("fleeing!");
+		// Debug.LogWarning("fleeing!");
 		// hasFled = true;
 		FindObjectOfType<menuManager>().hideMenus();
 		FindObjectOfType<npcTrader>().gameObject.SetActive(false);
@@ -145,13 +145,14 @@ public class traderMenu : MonoBehaviour
 		int stoleAmount = 0;
 		for (int i = 0; i < stealRnd; i++)
 		{
+			//! what if no cave inv?
 			inventoryManager.removeItem(inventoryManager.caveInventory[UnityEngine.Random.Range(0, inventoryManager.caveInventory.Count - 1)], inventoryManager.caveInventory);
 			stoleAmount++;
 		}
 		if (stoleAmount > 0)
 			FindObjectOfType<announcerManager>().announceMessage($"the trader has fled, taking {stoleAmount} of your items with it!");
 		else
-			FindObjectOfType<announcerManager>().announceMessage($"the trader has fled!");
+			FindObjectOfType<announcerManager>().announceMessage($"the trader has fled! your wallet remains intact.");
 
 		FindObjectOfType<roomController>().killTrader();
 	}

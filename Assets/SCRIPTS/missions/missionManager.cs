@@ -131,6 +131,7 @@ public class missionManager : MonoBehaviour
         restartMissions();
         currentMission = 1;
 
+        Debug.LogError($"ending tutorial mission");
         tutorialMission.endMission();
 
         // PlayerPrefs.SetInt("jumpWarn", 1);

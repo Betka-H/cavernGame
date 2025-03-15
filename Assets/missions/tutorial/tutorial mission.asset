@@ -14,11 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   missionID: -1
   missionTitle: First mission
-  missionDescription: Gather 3 green gems
+  missionDescription: Gather 2 green gems
   endOnAllItems: 0
-  endOnAllCalls: 0
+  endOnAllCalls: 1
   requiredItems:
-  - {fileID: 11400000, guid: 93f8c0fb24728db45ae7422c4e692dfa, type: 2}
   - {fileID: 11400000, guid: 93f8c0fb24728db45ae7422c4e692dfa, type: 2}
   - {fileID: 11400000, guid: 93f8c0fb24728db45ae7422c4e692dfa, type: 2}
   calls:
@@ -36,7 +35,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: eececcff1d4fe3947acffaa236497d6d, type: 2}
   - {fileID: 11400000, guid: b8a4e55256c8f4643b54950beb5247fd, type: 2}
   - {fileID: 11400000, guid: fc849435866fe954a92bbf05f74dfbd7, type: 2}
-  currentCall: 4
+  currentCall: 0
   endEventValuesList:
   - objName: gameController
     methodName: m_endTutorial
+  - objName: inventoryManager
+    methodName: m_afterTutorialInv

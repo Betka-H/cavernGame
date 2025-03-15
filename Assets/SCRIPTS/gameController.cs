@@ -237,6 +237,8 @@ public class gameController : MonoBehaviour
 		/* FindObjectOfType<announcerManager>().announceMessage($"skipping the tutorial! and checking cm+cc");
 		missionManager.checkCurrentMission(0, -1);
 		 */
+		FindObjectOfType<announcerManager>().announceMessage($"skipping the tutorial!");
+
 		roomController.labFirst = false;
 		genAndSpawn(level.lab);
 		getElevator().isFirst = false;

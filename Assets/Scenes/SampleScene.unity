@@ -336,7 +336,9 @@ MonoBehaviour:
   itemPrefab: {fileID: 4990905397584942865, guid: dc0dd59358eccea4994f4d139ac2ea02, type: 3}
   player: {fileID: 0}
   colorBg: {fileID: 486764289}
+  hasMentionedJumping: 1
   labFirst: 0
+  m_hasIntroducedTrader: 1
 --- !u!4 &40118687
 Transform:
   m_ObjectHideFlags: 0
@@ -8377,6 +8379,7 @@ MonoBehaviour:
   spacePlayerPrefab: {fileID: 5563915041685763229, guid: 06c7a776ea6537448a64a018ffc59ef3, type: 3}
   roomController: {fileID: 0}
   isCalling: 0
+  m_hasWarnedJump: 0
   deathScreen: {fileID: 1246856623}
 --- !u!4 &699556568
 Transform:
@@ -15300,7 +15303,7 @@ GameObject:
   - component: {fileID: 1343291601}
   - component: {fileID: 1343291602}
   m_Layer: 0
-  m_Name: inventory
+  m_Name: inventoryManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

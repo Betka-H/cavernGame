@@ -19,60 +19,28 @@ public class inventoryManager : MonoBehaviour
 		inventoryIds.Add(int.Parse(s));
 	} */
 
-	void Start()
+	void Awake()
 	{
 		// Debug.Log("starting invenmanager");
 		inventoryDefinitions = FindObjectOfType<inventoryDefinitions>();
-
-		tempInv();
 	}
 
-	void tempInv()
+	void beforeTutorialLabInv()
 	{
+		Debug.LogError($"li: {labInventory}");
+
 		labInventory = new List<item>
 	{
-	inventoryDefinitions.gemBlue,
-	inventoryDefinitions.gemBlue,
-	inventoryDefinitions.gemBlue,
-	inventoryDefinitions.gemBlue,
-	inventoryDefinitions.gemBlue,
-	inventoryDefinitions.gemBlue,
-	inventoryDefinitions.gemYellow,
-	inventoryDefinitions.gemYellow,
-	inventoryDefinitions.gemOrange,
-	inventoryDefinitions.gemOrange,
-	inventoryDefinitions.gemClear,
-	inventoryDefinitions.gemClear,
-	inventoryDefinitions.gemClear,
-	inventoryDefinitions.gemClear,
-	inventoryDefinitions.gemClear,
-	inventoryDefinitions.gemClear,
-	inventoryDefinitions.gemClear,
-	inventoryDefinitions.scrapGoggles,
-	inventoryDefinitions.scrapGoggles,
-	inventoryDefinitions.scrapPickaxe,
-	inventoryDefinitions.scrapPickaxe,
-	inventoryDefinitions.scrapBackpack,
-	inventoryDefinitions.backpack,
+	inventoryDefinitions.gemGreen,
+	inventoryDefinitions.scrapShoes,
+	};
+	}
+	public void m_afterTutorialInv()
+	{
+		Debug.LogWarning("after tutorial inv");
+		labInventory = new List<item>
+	{
 	inventoryDefinitions.shoes,
-	inventoryDefinitions.shoes,
-	inventoryDefinitions.harderHat,
-	inventoryDefinitions.harderHat,
-	inventoryDefinitions.harderHat,
-	inventoryDefinitions.scrapHarderHat,
-	inventoryDefinitions.scrapHarderHat,
-	inventoryDefinitions.scrapHarderHat,
-	inventoryDefinitions.scrapHarderHat,
-	inventoryDefinitions.scrapShoes,
-	inventoryDefinitions.scrapShoes,
-	inventoryDefinitions.scrapShoes,
-	inventoryDefinitions.backpack,
-	inventoryDefinitions.backpack,
-	inventoryDefinitions.pickaxe,
-	inventoryDefinitions.pickaxe,
-	inventoryDefinitions.nightVisionGoggles,
-	inventoryDefinitions.nightVisionGoggles,
-	inventoryDefinitions.nightVisionGoggles,
 	};
 	}
 
@@ -145,7 +113,10 @@ public class inventoryManager : MonoBehaviour
 
 	public void resetInventories()
 	{
-		labInventory.Clear();
+		Debug.LogError($"clearing inventories");
+		// labInventory.Clear();
+		beforeTutorialLabInv();
+
 		equippedItems.Clear();
 		missionInventory.Clear();
 	}
