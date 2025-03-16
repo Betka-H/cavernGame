@@ -30,7 +30,8 @@ public class missionMenu : MonoBehaviour
     {
         // Debug.Log($"new mission: {mission.missionID}, {mission.missionTitle}, {mission.missionDescription}");
         // Debug.Log($"displaying mission {mission.missionID} - {mission.name}");
-        txtTitle.text = mission.missionTitle;
+        // txtTitle.text = mission.missionTitle;
+        txtTitle.text = (mission.missionID + 1).ToString();
         txtDescription.text = mission.missionDescription;
         // requiredItemsMenu.refreshItems(requiredItemsMenu.regularSlots, menuManager.inventoryManager.missionInventory);
         requiredItemsMenu.refreshItems(requiredItemsMenu.regularSlots, menuManager.inventoryManager.missionInventory, missionManager.allMissions[missionManager.currentMission].requiredItems);

@@ -10,6 +10,7 @@ public class traderMenu : MonoBehaviour
 {
 	public traderHand handL;
 	public traderHand handR;
+	public traderHand bagHand;
 
 	menuManager menuManager;
 	inventoryManager inventoryManager;
@@ -48,6 +49,7 @@ public class traderMenu : MonoBehaviour
 	{
 		handL.displayItem();
 		handR.displayItem();
+		bagHand.displayItem();
 	}
 	void clearLHand()
 	{
@@ -100,6 +102,10 @@ public class traderMenu : MonoBehaviour
 				{
 					currentlyTradedItem = traderInv[0];
 					handR.assignItem(currentlyTradedItem);
+					if (traderInv.Count > 1)
+						bagHand.assignItem(traderInv[1]);
+					else
+						bagHand.assignItem(null);
 				}
 				else
 					handR.assignItem(null);
@@ -175,5 +181,8 @@ public class traderMenu : MonoBehaviour
 		showTradeCount();
 		traderInv = inv.ToList();
 		handR.assignItem(traderInv[0]);
+		bagHand.assignItem(traderInv[1]);
+		Debug.LogWarning("trader inv:");
+		inventoryManager.printInventory(traderInv);
 	}
 }

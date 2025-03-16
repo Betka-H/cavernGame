@@ -32,13 +32,15 @@ public class equipWorkstation : MonoBehaviour
             {
                 selItem = menuManager.inventoryManager.equippedItems[i];
                 infoDisplays[i].selectedItem = selItem;
-                unequipButtons[i].gameObject.SetActive(true);
+                if (unequipButtons.Length > 0)
+                    unequipButtons[i].gameObject.SetActive(true);
             }
             else
             {
                 selItem = null;
                 infoDisplays[i].selectedItem = null;
-                unequipButtons[i].gameObject.SetActive(false);
+                if (unequipButtons.Length > 0)
+                    unequipButtons[i].gameObject.SetActive(false);
             }
             infoDisplays[i].setInfo(selItem);
         }
