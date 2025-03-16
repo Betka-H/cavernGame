@@ -46,7 +46,7 @@ public class menuManager : MonoBehaviour
                 switch (gameController.roomController.currentLevel)
                 {
                     case gameController.level.lab:
-                        toggleLabMenuScreen();
+                        //? toggleLabMenuScreen();
                         break;
                     case gameController.level.cavern:
                         toggleCaveGameplayMenuScreen();

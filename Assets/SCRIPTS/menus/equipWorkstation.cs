@@ -4,6 +4,7 @@ public class equipWorkstation : MonoBehaviour
 {
     // public SpriteRenderer[] slotRenderers;
     public itemInfoDisplay[] infoDisplays;
+    public Transform[] unequipButtons;
     menuManager menuManager;
 
     void Awake()
@@ -31,11 +32,13 @@ public class equipWorkstation : MonoBehaviour
             {
                 selItem = menuManager.inventoryManager.equippedItems[i];
                 infoDisplays[i].selectedItem = selItem;
+                unequipButtons[i].gameObject.SetActive(true);
             }
             else
             {
                 selItem = null;
                 infoDisplays[i].selectedItem = null;
+                unequipButtons[i].gameObject.SetActive(false);
             }
             infoDisplays[i].setInfo(selItem);
         }

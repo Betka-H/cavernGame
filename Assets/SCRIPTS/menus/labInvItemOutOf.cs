@@ -10,6 +10,7 @@ public class labInvItemOutOf : invItem
 	public Color normal;
 	public Color hasEnough;
 	public Color notEnough;
+	public Transform wholeThing;
 
 	new void OnMouseDown()
 	{
@@ -29,10 +30,12 @@ public class labInvItemOutOf : invItem
 		// amountTextDisp.text = assignedAmount.ToString();
 		amountTextDisp.text = $"{hasAmount} / {neededAmount}";
 
+		wholeThing.gameObject.SetActive(true);
 		if (neededAmount == 0)
 		{
-			amountTextDisp.text = "";
-			bgSpriteRenderer.color = normal;
+			/* amountTextDisp.text = "";
+			bgSpriteRenderer.color = normal; */
+			wholeThing.gameObject.SetActive(false);
 		}
 		else if (hasAmount < neededAmount)
 			bgSpriteRenderer.color = notEnough;
