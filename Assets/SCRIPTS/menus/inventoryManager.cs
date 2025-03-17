@@ -435,4 +435,10 @@ public class inventoryManager : MonoBehaviour
 		equippedItems.Clear();
 		missionInventory.Clear();
 	}
+
+	void OnApplicationQuit()
+	{
+		labInventory.AddRange(equippedItems);
+		equippedItems.Clear();
+	}
 }

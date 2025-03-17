@@ -1,11 +1,13 @@
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 
 [System.Serializable]
 public class SaveData
 {
     public List<item> itemsSaveList;
-    public List<item> missionSaveList;
+    public List<item> missionInvSaveList;
+    public List<item> rndMissionReqList;
     // public int currentMission;
     // public missionSO currentMission;
     public int currentMission;
@@ -54,9 +56,16 @@ public class saveManager : MonoBehaviour
         // Debug.Log("saving lab inv");
         SaveData data = new SaveData();
 
-        // inventories
-        data.itemsSaveList = menuManager.inventoryManager.labInventory;
-        data.missionSaveList = menuManager.inventoryManager.missionInventory;
+        // inventories 
+        data.itemsSaveList = new List<item>();
+        data.itemsSaveList.AddRange(menuManager.inventoryManager.labInventory);
+        data.missionInvSaveList = new List<item>();
+        data.missionInvSaveList.AddRange(menuManager.inventoryManager.missionInventory);
+        data.rndMissionReqList = new List<item>();
+        data.rndMissionReqList.AddRange(missionManager.allMissions[missionManager.currentMission].requiredItems);
+        Debug.LogWarning($"saving cm req items: v v v");
+        menuManager.inventoryManager.printInventory(data.rndMissionReqList);
+        menuManager.inventoryManager.printInventory(missionManager.allMissions[missionManager.currentMission].requiredItems);
         // data.hasWarnedAboutJumping = roomController.hasMentionedJumping;
 
         // missions + calls
@@ -72,7 +81,7 @@ public class saveManager : MonoBehaviour
 
         PlayerPrefs.Save();
 
-        Debug.LogWarning($"saved: last mission: {missionManager.currentMission}, last mission call: {missionManager.allMissions[missionManager.currentMission].currentCall}, last death mission call: {missionManager.deathMission.currentCall}");
+        Debug.LogWarning($"saved: last mission: {missionManager.currentMission} ({missionManager.allMissions[missionManager.currentMission].requiredItems.Count} req items), last mission call: {missionManager.allMissions[missionManager.currentMission].currentCall}, last death mission call: {missionManager.deathMission.currentCall}");
     }
 
     void load()
@@ -96,16 +105,10 @@ public class saveManager : MonoBehaviour
             // missionManager.deathMission.currentCall = 0;
             // missionManager.allMissions[missionManager.currentMission].currentCall = 0;
         }
-        else
+        else // if has save
         {
             string json = PlayerPrefs.GetString(saveKeyString);
             SaveData data = JsonUtility.FromJson<SaveData>(json);
-
-            // inventories
-            menuManager.inventoryManager.labInventory = data.itemsSaveList;
-            menuManager.inventoryManager.missionInventory = data.missionSaveList;
-
-            // roomController.hasMentionedJumping = data.hasWarnedAboutJumping;
 
             // missions + calls
             // missionManager.allMissions[missionManager.currentMission] = data.currentMission;
@@ -115,9 +118,21 @@ public class saveManager : MonoBehaviour
             // missionManager.deathMission = data.deathMission;
             missionManager.deathMission.currentCall = data.deathCall;
             // missionManager.jumpMission.currentCall = data.jumpCall;
+
+            // inventories
+            menuManager.inventoryManager.labInventory = new List<item>();
+            menuManager.inventoryManager.labInventory.AddRange(data.itemsSaveList);
+            menuManager.inventoryManager.missionInventory = new List<item>();
+            menuManager.inventoryManager.missionInventory.AddRange(data.missionInvSaveList);
+            missionManager.allMissions[missionManager.currentMission].requiredItems = new List<item>();
+            missionManager.allMissions[missionManager.currentMission].requiredItems.AddRange(data.rndMissionReqList);
+            Debug.LogWarning($"loading cm req items: v v v");
+            menuManager.inventoryManager.printInventory(data.rndMissionReqList);
+            menuManager.inventoryManager.printInventory(missionManager.allMissions[missionManager.currentMission].requiredItems);
+            // roomController.hasMentionedJumping = data.hasWarnedAboutJumping;
         }
 
-        Debug.LogWarning($"loaded: last mission: {missionManager.currentMission}, call {missionManager.allMissions[missionManager.currentMission].currentCall}, death mission call: {missionManager.deathMission.currentCall}");
+        Debug.LogWarning($"loaded: last mission: {missionManager.currentMission} ({missionManager.allMissions[missionManager.currentMission].requiredItems.Count} req items), call {missionManager.allMissions[missionManager.currentMission].currentCall}, death mission call: {missionManager.deathMission.currentCall}");
         PlayerPrefs.Save();
 
         // Debug.LogWarning($"loaded: last mission: {missionManager.currentMission}, call {missionManager.allMissions[missionManager.currentMission].currentCall}, death mission call: {missionManager.deathMission.currentCall}, jump mission call: {missionManager.jumpMission.currentCall}");

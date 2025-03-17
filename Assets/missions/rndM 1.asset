@@ -12,11 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bff8bd200c870c94c8f690b64752f36e, type: 3}
   m_Name: rndM 1
   m_EditorClassIdentifier: 
-  missionID: 1001
+  missionID: 1
   missionTitle: rnd mission 1
   missionDescription: get thsi stuff
+  endOnAllItems: 1
+  endOnAllCalls: 0
   requiredItems: []
   calls: []
   currentCall: 0
   endEventValuesList: []
-  howManyItems: 3
+  howManyItems: 8
+  hasBeenAssigned: 0

@@ -114,7 +114,7 @@ public class equipWorkstation : MonoBehaviour
     }
     public void unEquip(int pos)
     {
-        // Debug.Log($"?!?!?!?!?!?");
+        // Debug.Log($"item? {menuManager.inventoryManager.equippedItems[pos]}");
         if (menuManager.inventoryManager.equippedItems.Count > pos)
         {
             item gear = menuManager.inventoryManager.equippedItems[pos];
@@ -128,6 +128,11 @@ public class equipWorkstation : MonoBehaviour
             FindObjectOfType<announcerManager>().announceMessage($"no item to unequip!");
         }
     }
+
+    /* void OnApplicationQuit()
+    {
+        menuManager.inventoryManager.labInventory.AddRange(menuManager.inventoryManager.equippedItems);
+    } */
 
     void refreshItemDisplays()
     {

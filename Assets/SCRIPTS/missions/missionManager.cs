@@ -116,9 +116,9 @@ public class missionManager : MonoBehaviour
             if (mission.missionID != -1) // not for tutorial
             {
                 // mission.requiredItems = new List<item>();
-                Debug.LogWarning($"clearing req list");
+                // Debug.LogWarning($"clearing req list");
                 mission.requiredItems.Clear();
-                Debug.LogWarning($"req list length: {mission.requiredItems.Count}");
+                // Debug.LogWarning($"req list length: {mission.requiredItems.Count}");
             }
         }
 
@@ -126,7 +126,7 @@ public class missionManager : MonoBehaviour
         deathMission.currentCall = 0;
         jumpMission.currentCall = 0;
         traderMission.currentCall = 0;
-        // Debug.Log($"restarting missions");
+        Debug.Log($"restarting missions: deathm: {deathMission.currentCall}, jumpm: {jumpMission.currentCall}, traderm: {traderMission.currentCall}");
 
         menuManager.toggleCallScreen();
     }
@@ -154,7 +154,7 @@ public class missionManager : MonoBehaviour
         // PlayerPrefs.Save();
     }
 
-    void checkRndMission()
+    public void checkRndMission()
     {
         if (allMissions[currentMission] is randomMissionSO rndMission)
         {
@@ -175,7 +175,7 @@ public class missionManager : MonoBehaviour
 
                     rndMission.requiredItems.Add(rndItem);
 
-                    Debug.Log($"generating item {i}: {rndItem}");
+                    // Debug.Log($"generating item {i}: {rndItem}");
                 }
                 menuManager.inventoryManager.sortInventory(ref rndMission.requiredItems);
                 Debug.Log($"req items generated:");

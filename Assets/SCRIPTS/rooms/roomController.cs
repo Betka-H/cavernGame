@@ -415,6 +415,7 @@ public class roomController : MonoBehaviour
 	}
 	void summonTrader()
 	{
+		Debug.LogWarning($"spawning trader; has met: {PlayerPrefs.GetInt("hasMetTrader", 0)}");
 		if (PlayerPrefs.GetInt("hasMetTrader", 0) == 0)
 		{
 			Debug.LogWarning("has not met trader yet");

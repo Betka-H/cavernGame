@@ -12,15 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bff8bd200c870c94c8f690b64752f36e, type: 3}
   m_Name: rndM 0
   m_EditorClassIdentifier: 
-  missionID: 1000
+  missionID: 0
   missionTitle: rnd mission 0
   missionDescription: random
-  requiredItems:
-  - {fileID: 11400000, guid: 09beaca968880f7449e06c9b67e05643, type: 2}
-  - {fileID: 11400000, guid: efe3ff3737876564f8c0aa7130051258, type: 2}
-  - {fileID: 11400000, guid: ab0e1471363c9ab42a2e91281c3e9a2c, type: 2}
-  - {fileID: 11400000, guid: 339f8e52414bc414c943c6f213a335fb, type: 2}
-  - {fileID: 11400000, guid: 339f8e52414bc414c943c6f213a335fb, type: 2}
+  endOnAllItems: 1
+  endOnAllCalls: 0
+  requiredItems: []
   calls: []
   currentCall: 0
   endEventValuesList: []

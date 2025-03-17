@@ -7,6 +7,7 @@ public class room_cavern : roomSO
 {
     [HideInInspector]
     public bool isDark;
+    public bool isEntryRoom;
 
     public List<loot> lootThatCanSpawnInThisRoom = new List<loot>();
     List<Transform> chosenLootSpawnLocations = new List<Transform>();
@@ -19,8 +20,24 @@ public class room_cavern : roomSO
 
     public void setLoot(int chance)
     {
-        assignLootSpawnpoints(chance);
-        assignLoot();
+        inventoryDefinitions inventoryDefinitions = FindObjectOfType<inventoryDefinitions>();
+        if (!isEntryRoom)
+        {
+            // temp i guess??? or not
+            lootThatCanSpawnInThisRoom = new List<loot>
+            {
+            inventoryDefinitions.gemRed as loot,
+            inventoryDefinitions.gemOrange as loot,
+            inventoryDefinitions.gemYellow as loot,
+            inventoryDefinitions.gemGreen as loot,
+            inventoryDefinitions.gemBlue as loot,
+            inventoryDefinitions.gemPurple as loot,
+            inventoryDefinitions.gemPink as loot,
+            inventoryDefinitions.gemClear as loot,
+            };
+            assignLootSpawnpoints(chance);
+            assignLoot();
+        }
     }
     void assignLootSpawnpoints(int chance)
     {

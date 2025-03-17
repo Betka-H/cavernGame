@@ -276,6 +276,12 @@ public class menuManager : MonoBehaviour
         {
             bool onOff = toggleMenu(equipWorkstation.gameObject);
 
+            if (onOff)
+            {
+                Debug.LogWarning($"gear?: v v v");
+                inventoryManager.printInventory(inventoryManager.equippedItems);
+            }
+
             // labItemMenu.itemDispType = itemDispType.scrap;
             toggleLabItemMenu(onOff);
             toggleEquipmentWorkstationMenu(onOff);
@@ -323,6 +329,9 @@ public class menuManager : MonoBehaviour
         {
             // menuOpen = openMenu.misison;
             bool onOff = toggleMenu(missionMenu.gameObject);
+
+            if (onOff)
+                missionManager.checkRndMission();
 
             toggleMissionWorkstationMenu(onOff);
             anotherMenuOpen = onOff;

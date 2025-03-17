@@ -154,6 +154,9 @@ public class gameController : MonoBehaviour
 
 	public void genAndSpawn(level lvl)
 	{
+		Debug.LogWarning($"gear?: v v v");
+		inventoryManager.printInventory(inventoryManager.equippedItems);
+
 		switch (lvl)
 		{
 			case level.lab:

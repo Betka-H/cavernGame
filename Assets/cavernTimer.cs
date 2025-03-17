@@ -54,7 +54,7 @@ public class cavernTimer : MonoBehaviour
     {
         //! Debug.Log("initial timer ended");
         //! Debug.Log("cue cave-ins");
-        FindObjectOfType<announcerManager>().announceMessage("timer finished :33", true);
+        // FindObjectOfType<announcerManager>().announceMessage("timer finished :33", true);
         // StartCoroutine(StartRandomTimer());
     }
 }
