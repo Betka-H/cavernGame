@@ -359,6 +359,7 @@ public class roomController : MonoBehaviour
 			}
 
 
+
 			//
 			//! TEMP FOR TESTING. forces trader to spawn in entrance room
 			/* Debug.LogWarning("trader should spawn elsewhere");
@@ -423,6 +424,7 @@ public class roomController : MonoBehaviour
 			PlayerPrefs.Save();
 
 			CancelInvoke("startTraderCall");
+			missionManager.traderMission.currentCall = 0;
 			Invoke("startTraderCall", 3.5f);
 			m_hasIntroducedTrader = false;
 		}

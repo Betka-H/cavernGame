@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using Unity.VisualScripting;
 using UnityEngine;
+using System.Linq;
 using UnityEngine.SceneManagement;
 
 public class gameController : MonoBehaviour
@@ -462,8 +463,11 @@ public class gameController : MonoBehaviour
 
 		foreach (item it in requiredInv) // for all current mission items
 		{
+			int howMuchOfIt = requiredInv.Count(item => item == it);
+
 			// add the item to the mission inv and remove it from the cave inv
-			if (caveInv.Contains(it))
+			//! removes items even if quota is complete (bad)
+			if (caveInv.Contains(it) && menuManager.inventoryManager.missionInventory.Count(item => item == it) < howMuchOfIt)
 			{
 				menuManager.inventoryManager.missionInventory.Add(it);
 				caveInv.Remove(it);
