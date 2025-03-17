@@ -175,6 +175,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8950177509809473929}
     m_Modifications:
+    - target: {fileID: 986983767036964010, guid: 3bbe1c156a19dab4483a0b660d55c205, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 426.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 986983767036964010, guid: 3bbe1c156a19dab4483a0b660d55c205, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 36.52
+      objectReference: {fileID: 0}
     - target: {fileID: 2678507152832201204, guid: 3bbe1c156a19dab4483a0b660d55c205, type: 3}
       propertyPath: m_Name
       value: elevator

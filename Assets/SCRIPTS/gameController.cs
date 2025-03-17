@@ -11,13 +11,18 @@ public class gameController : MonoBehaviour
 {
 	[Header("player")]
 	public GameObject playerParent;
-	public Transform playerSpawnPoint;
+	Transform playerSpawnPoint;
+	public Transform centerPlayerSpawnPoint;
+	public Transform caveExitPlayerSpawnPoint;
+
 	public GameObject labPlayerPrefab;
 	public GameObject cavePlayerPrefab;
 	public GameObject spacePlayerPrefab;
 
 	missionManager missionManager;
 	[HideInInspector] public roomController roomController;
+
+	public SpriteRenderer floorImg;
 
 	audioManager audioManager;
 
@@ -162,12 +167,23 @@ public class gameController : MonoBehaviour
 		{
 			case level.lab:
 				audioManager.playMusic(musicLvl.labRegular);
+				floorImg.enabled = false;
+				if (leavingCavern)
+				{
+					playerSpawnPoint = caveExitPlayerSpawnPoint;
+					leavingCavern = false;
+				}
+				else playerSpawnPoint = centerPlayerSpawnPoint;
 				break;
 			case level.cavern:
+				playerSpawnPoint = centerPlayerSpawnPoint;
 				audioManager.playMusic(musicLvl.caveRegular);
+				floorImg.enabled = true;
 				break;
 			case level.space:
+				playerSpawnPoint = centerPlayerSpawnPoint;
 				audioManager.playMusic(musicLvl.space);
+				floorImg.enabled = false;
 				break;
 		}
 
@@ -417,9 +433,12 @@ public class gameController : MonoBehaviour
 	{
 		return FindObjectOfType<elevator>();
 	}
+	bool leavingCavern;
 	public void leaveCavern()
 	{
 		Debug.Log("byyye deadly cavern");
+
+		leavingCavern = true;
 
 		getElevator().closeDoors(false);
 		StartCoroutine(waitForDoorsToCloseAndGoToLab());
@@ -430,6 +449,8 @@ public class gameController : MonoBehaviour
 		{
 			yield return null;
 		}
+
+		// playerSpawnPoint = caveExitPlayerSpawnPoint;
 
 		// getElevator().openDoors(false);
 
