@@ -10,6 +10,8 @@ public class missionMenu : MonoBehaviour
     public TMP_Text txtTitle;
     public TMP_Text txtDescription;
 
+    public Transform m_solitaire;
+
     missionManager missionManager;
 
     void Awake()
@@ -24,6 +26,11 @@ public class missionMenu : MonoBehaviour
     {
         // Debug.Log($"cm: {missionManager.allMissions[missionManager.currentMission]}, {missionManager.currentMission}");
         displayMission(missionManager.allMissions[missionManager.currentMission]);
+
+        int rnd = Random.Range(0, 100);
+        if (rnd > 90)
+            m_solitaire.gameObject.SetActive(true);
+        else m_solitaire.gameObject.SetActive(false);
     }
 
     public void displayMission(missionSO mission)
