@@ -26,7 +26,7 @@ public class missionManager : MonoBehaviour
     {
         // restartMissions(); //! tmp. testing space mission
 
-        checkRndMission();
+        // checkRndMission();
         // Debug.Log($"current mission: {currentMission}");
         // Debug.Log($"current call: {allMissions[currentMission].currentCall}");
         //! tmp v v v
@@ -113,6 +113,13 @@ public class missionManager : MonoBehaviour
         foreach (missionSO mission in allMissions)
         {
             mission.currentCall = 0;
+            if (mission.missionID != -1) // not for tutorial
+            {
+                // mission.requiredItems = new List<item>();
+                Debug.LogWarning($"clearing req list");
+                mission.requiredItems.Clear();
+                Debug.LogWarning($"req list length: {mission.requiredItems.Count}");
+            }
         }
 
         // Debug.Log($"dm: {deathMission}");
@@ -141,6 +148,8 @@ public class missionManager : MonoBehaviour
         // FindObjectOfType<missionManager>().m_afterTutorialInv();
         FindObjectOfType<inventoryManager>().m_afterTutorialInv();
 
+        checkRndMission();
+
         // PlayerPrefs.SetInt("jumpWarn", 1);
         // PlayerPrefs.Save();
     }
@@ -151,21 +160,32 @@ public class missionManager : MonoBehaviour
         {
             Debug.Log($"random mission");
             // generate random items
-            rndMission.requiredItems.Clear();
+            // rndMission.requiredItems.Clear();
 
-            List<item> allMissionItems = menuManager.inventoryManager.inventoryDefinitions.missionItems;
-            for (int i = 0; i < rndMission.howManyItems; i++)
+            // if (rndMission.requiredItems.Count > 0) // fucking hell....
+            if (rndMission.requiredItems.Count == 0)
             {
-                int rndIndex = Random.Range(0, allMissionItems.Count);
-                item rndItem = allMissionItems[rndIndex];
+                Debug.LogWarning($"req items empty - generating new");
 
-                rndMission.requiredItems.Add(rndItem);
+                List<item> allMissionItems = menuManager.inventoryManager.inventoryDefinitions.missionItems;
+                for (int i = 0; i < rndMission.howManyItems; i++)
+                {
+                    int rndIndex = Random.Range(0, allMissionItems.Count);
+                    item rndItem = allMissionItems[rndIndex];
 
-                Debug.Log($"generating item {i}: {rndItem}");
+                    rndMission.requiredItems.Add(rndItem);
+
+                    Debug.Log($"generating item {i}: {rndItem}");
+                }
+                menuManager.inventoryManager.sortInventory(ref rndMission.requiredItems);
+                Debug.Log($"req items generated:");
+                menuManager.inventoryManager.printInventory(rndMission.requiredItems);
             }
-            menuManager.inventoryManager.sortInventory(ref rndMission.requiredItems);
-            Debug.Log($"req items generated:");
-            menuManager.inventoryManager.printInventory(rndMission.requiredItems);
+            else
+            {
+                Debug.LogWarning($"req items not empty - keeping:");
+                menuManager.inventoryManager.printInventory(rndMission.requiredItems);
+            }
         }
     }
 

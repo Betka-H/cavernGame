@@ -156,7 +156,7 @@ public class roomController : MonoBehaviour
 	[HideInInspector] public bool labFirst;
 	public void generateLevel(gameController.level lvl)
 	{
-		Debug.LogWarning($"=============================... generating new level ({lvl})...=======================================");
+		// Debug.LogWarning($"=============================... generating new level ({lvl})...=======================================");
 		clearRoom();
 
 		currentLevel = lvl;
@@ -400,7 +400,7 @@ public class roomController : MonoBehaviour
 	}
 	public void killTrader()
 	{
-		FindObjectOfType<announcerManager>().announceMessage($"murdering trader", true);
+		// FindObjectOfType<announcerManager>().announceMessage($"murdering trader", true);
 
 		clearParent(traderParent);
 

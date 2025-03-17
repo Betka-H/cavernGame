@@ -42,5 +42,7 @@ public class mainMenuController : MonoBehaviour
         PlayerPrefs.DeleteAll();
         FindObjectOfType<audioManager>().saveVolumeSettings();
         PlayerPrefs.Save();
+
+        // gameController.resetEvent();
     }
 }

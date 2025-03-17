@@ -50,6 +50,7 @@ public class gameController : MonoBehaviour
 		{
 			if (PlayerPrefs.GetInt("HasStarted", 0) == 0)
 			{
+				resetEvent(); //! testing
 				PlayerPrefs.SetInt("HasStarted", 1); // Save that the game has started
 				PlayerPrefs.Save();
 			}
@@ -142,12 +143,13 @@ public class gameController : MonoBehaviour
 		SceneManager.LoadScene(0);
 	}
 
-	public void resetEvent()
+	public void resetEvent() // called by ????? < lets try at start from new game
 	{
 		// genAndSpawn(level.lab);
+		Debug.LogWarning($"reset event: restarting missions");
 		missionManager.restartMissions();
 		inventoryManager.resetInventories();
-		saveAndGoToMainMenu();
+		// saveAndGoToMainMenu();
 	}
 
 	public void genAndSpawn(level lvl)
@@ -210,7 +212,7 @@ public class gameController : MonoBehaviour
 		}
 		else if (missionManager.checkCurrentMission(0, 0))
 		{
-			Debug.LogWarning("BYEAH");
+			// Debug.LogWarning("BYEAH");
 
 			//? roomController.clearRoom(); /?! what
 			getElevator().isFirst = true;

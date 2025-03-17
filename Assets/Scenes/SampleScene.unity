@@ -10825,9 +10825,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allMissions:
   - {fileID: 11400000, guid: a23eed4daad9b2e488eb5dd02f8532c9, type: 2}
-  - {fileID: 11400000, guid: a14c2d2975e4a9b41be7483d4a0bac1f, type: 2}
-  - {fileID: 11400000, guid: 2811ce3f6a5ccd049a0271db705aab97, type: 2}
-  - {fileID: 11400000, guid: e7b34d493e03b464aa6d7172298eb188, type: 2}
+  - {fileID: 11400000, guid: 1a93a150bca46bd4dbaae3ed788ef5ee, type: 2}
+  - {fileID: 11400000, guid: 59d4962d8de34a944bf632d8b89c2a28, type: 2}
+  - {fileID: 11400000, guid: 5ec8a61a93e5053408558abdec4db584, type: 2}
   deathMission: {fileID: 11400000, guid: a3ccff35b61dfb44ba7fd61ceacc7847, type: 2}
   jumpMission: {fileID: 11400000, guid: c33568d037a8fda438165e6761886e9c, type: 2}
   traderMission: {fileID: 11400000, guid: 5a30c846c1387434985a273b573ba0be, type: 2}
