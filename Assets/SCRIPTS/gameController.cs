@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -44,10 +45,7 @@ public class gameController : MonoBehaviour
 
 		roomController.labFirst = true;
 
-		// clearMenus();
-
 		//! tmp, use this>>>>
-		// if (PlayerPrefs.GetInt("HasStarted", 0) == 0)
 		if (missionManager.checkCurrentMission(-1, 0)) // if first call is tutorial space call
 		{
 			if (PlayerPrefs.GetInt("HasStarted", 0) == 0)
@@ -64,9 +62,6 @@ public class gameController : MonoBehaviour
 			genAndSpawn(level.lab);
 			getElevator().isFirst = true;
 		}
-		// genAndSpawn(level.space); //! delet this line
-
-		// clearMenus();
 	}
 
 	void Update()
@@ -131,6 +126,10 @@ public class gameController : MonoBehaviour
 
 	public void m_endOfIntroCall()
 	{
+		Invoke("endIntroCall", 5f);
+	}
+	public void endIntroCall()
+	{
 		Debug.LogError($"end of intro call");
 		roomController.labFirst = true;
 		genAndSpawn(level.lab);
@@ -188,8 +187,9 @@ public class gameController : MonoBehaviour
 		// if (lvl == level.space)
 		if (missionManager.checkCurrentMission(-1, 0))
 		{
-			Debug.LogWarning("gennspawn: starting space call");
-			callManager.startCall(getCurrentMission());
+			Debug.LogWarning("invoking space call");
+			// callManager.startCall(getCurrentMission());
+			Invoke("startNextMainMissionCall", 5f);
 		}
 		else if (missionManager.checkCurrentMission(-1, 1))
 		{
@@ -225,9 +225,9 @@ public class gameController : MonoBehaviour
 	{
 		FindObjectOfType<playerMovement>().speed = FindObjectOfType<playerMovement>().defaultSpeed;
 	}
-	public void m_metTrader()
+	public void m_metTrader() // called at end of trader mission
 	{
-		FindObjectOfType<announcerManager>().announceMessage($"has met trader", true);
+		// FindObjectOfType<announcerManager>().announceMessage($"has met trader", true);
 		PlayerPrefs.SetInt("hasMetTrader", 1);
 		PlayerPrefs.Save();
 	}
@@ -237,11 +237,16 @@ public class gameController : MonoBehaviour
 		/* FindObjectOfType<announcerManager>().announceMessage($"skipping the tutorial! and checking cm+cc");
 		missionManager.checkCurrentMission(0, -1);
 		 */
-		FindObjectOfType<announcerManager>().announceMessage($"skipping the tutorial!");
+		FindObjectOfType<announcerManager>().announceMessage($"ending the tutorial!");
 
-		roomController.labFirst = false;
-		genAndSpawn(level.lab);
-		getElevator().isFirst = false;
+		if (!missionManager.checkCurrentMission(-1, -1))
+		{
+			Debug.Log($"skipping tutorial");
+			roomController.labFirst = false;
+			genAndSpawn(level.lab);
+			getElevator().isFirst = false;
+		}
+		else Debug.Log($"is in -1st mission. not moving");
 		// getElevator().openDoors(true);
 	}
 
@@ -448,8 +453,21 @@ public class gameController : MonoBehaviour
 	public void transferToLabAndMissionInventory()
 	{
 		List<item> caveInv = menuManager.inventoryManager.caveInventory;
+		List<item> requiredInv = missionManager.allMissions[missionManager.currentMission].requiredItems;
+
+		foreach (item it in requiredInv) // for all current mission items
+		{
+			// add the item to the mission inv and remove it from the cave inv
+			if (caveInv.Contains(it))
+			{
+				menuManager.inventoryManager.missionInventory.Add(it);
+				caveInv.Remove(it);
+			}
+		}
+
+		// add the rest of cave inv to lab inv
 		menuManager.inventoryManager.labInventory.AddRange(caveInv);
-		menuManager.inventoryManager.missionInventory.AddRange(caveInv);
+
 		menuManager.inventoryManager.caveInventory.Clear();
 	}
 

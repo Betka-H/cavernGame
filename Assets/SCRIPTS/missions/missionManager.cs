@@ -29,6 +29,9 @@ public class missionManager : MonoBehaviour
         checkRndMission();
         // Debug.Log($"current mission: {currentMission}");
         // Debug.Log($"current call: {allMissions[currentMission].currentCall}");
+        //! tmp v v v
+        /* Debug.LogError($"setting call to 13");
+        allMissions[0].currentCall = 13; */
     }
 
     void Update()
@@ -39,19 +42,19 @@ public class missionManager : MonoBehaviour
     // -1 to not check call
     public bool checkCurrentMission(int wantedMissionID, int wantedCallID)
     {
-        Debug.Log($"checking mission state as {wantedMissionID}, {wantedCallID}");
+        // Debug.Log($"checking mission state as {wantedMissionID}, {wantedCallID}");
         missionSO currentMissionSO = allMissions[currentMission];
 
-        Debug.Log($"current mission: {currentMissionSO} ({currentMissionSO.missionID}), current call: {currentMissionSO.currentCall}");
+        // Debug.Log($"current mission: {currentMissionSO} ({currentMissionSO.missionID}), current call: {currentMissionSO.currentCall}");
 
         if (currentMissionSO.missionID == wantedMissionID && (currentMissionSO.currentCall == wantedCallID || wantedCallID == -1))
         {
-            Debug.Log($"right mission");
+            // Debug.Log($"right mission");
             return true;
         }
         else
         {
-            Debug.Log($"not the right mission");
+            // Debug.Log($"not the right mission");
             return false;
         }
     }
@@ -61,10 +64,10 @@ public class missionManager : MonoBehaviour
         missionSO cm = allMissions[currentMission];
         if (menuManager.inventoryManager.checkResources(menuManager.inventoryManager.missionInventory, cm.requiredItems))
         {
-            FindObjectOfType<announcerManager>().announceMessage($"all items collected");
+            FindObjectOfType<announcerManager>().announceMessage($"all items collected! go to MG for a new mission");
             if (cm.missionID == -1)
             {
-                Debug.LogWarning("collected all items for tutorial mission");
+                // Debug.LogWarning("collected all items for tutorial mission");
                 callManager.startCall(cm);
             }
 
@@ -86,9 +89,10 @@ public class missionManager : MonoBehaviour
 
     public void newMission()
     {
+        FindObjectOfType<inventoryManager>().missionInventory.Clear();
+
         if (currentMission + 1 < allMissions.Length)
         {
-            // Debug.Log("new mission!");
             FindObjectOfType<announcerManager>().announceMessage("you have a new mission!");
             currentMission++;
 
@@ -96,8 +100,8 @@ public class missionManager : MonoBehaviour
         }
         else
         {
-            // Debug.Log("no more missions!");
-            FindObjectOfType<announcerManager>().announceMessage("there are no more missions!");
+            Debug.LogError($"all missions completed!");
+            FindObjectOfType<announcerManager>().announceMessage("all missions completed!");
         }
         allMissions[currentMission].currentCall = 0;
     }
@@ -124,9 +128,9 @@ public class missionManager : MonoBehaviour
     {
         FindObjectOfType<announcerManager>().announceMessage($"skipping the tutorial");
 
-        callManager.endCall(false);
-
         missionSO tutorialMission = allMissions[0];
+
+        callManager.endCall(false);
 
         restartMissions();
         currentMission = 1;

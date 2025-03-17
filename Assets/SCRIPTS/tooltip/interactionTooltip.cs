@@ -18,6 +18,11 @@ public class interactionTooltip : MonoBehaviour
 	[Header("equip workshop event")][SerializeField] private UnityEvent equipWorkshopEvent;
 	[Header("mission workshop event")][SerializeField] private UnityEvent missionWorkshopEvent;
 
+	/* void Update()
+	{
+		Debug.LogWarning($"tooltip locked? {locked}");
+	} */
+
 	public void showTooltip(KeyCode key, tooltipKind tk, Vector3 pos)
 	{
 		if (tk != tooltipKind.trader || FindObjectOfType<roomController>().m_hasIntroducedTrader) // only if knows about the trader
@@ -58,7 +63,7 @@ public class interactionTooltip : MonoBehaviour
 		else
 		{
 			locked = true;
-			FindObjectOfType<announcerManager>().announceMessage("doesnt know trader", true);
+			// FindObjectOfType<announcerManager>().announceMessage("doesnt know trader", true);
 		}
 	}
 

@@ -222,9 +222,29 @@ public class audioManager : MonoBehaviour
 
         if (musicSlider != null && sfxSlider != null)
         {
+            Debug.LogError($"setting slider values");
             musicSlider.value = musicVolume;
             sfxSlider.value = sfxVolume;
         }
+    }
+    public void saveVolumeSettings()
+    {
+        Debug.LogError($"TRYING saving volume settings");
+
+        musicSlider = GameObject.Find("music slider").GetComponent<Slider>();
+        sfxSlider = GameObject.Find("sfx slider").GetComponent<Slider>();
+        Debug.LogError($"ms: {musicSlider}, ss: {sfxSlider}");
+        if (musicSlider != null && sfxSlider != null)
+        {
+            Debug.LogError($"saving volume settings");
+            PlayerPrefs.SetFloat("musicVolume", musicSlider.value);
+            PlayerPrefs.SetFloat("SFXvolume", sfxSlider.value);
+        }
+    }
+
+    void OnApplicationQuit()
+    {
+        saveVolumeSettings();
     }
 }
 /* //? for sliders

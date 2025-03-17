@@ -40,6 +40,7 @@ public class mainMenuController : MonoBehaviour
     {
         Debug.Log("try to not delete settings?");
         PlayerPrefs.DeleteAll();
+        FindObjectOfType<audioManager>().saveVolumeSettings();
         PlayerPrefs.Save();
     }
 }

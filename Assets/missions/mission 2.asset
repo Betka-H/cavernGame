@@ -15,5 +15,10 @@ MonoBehaviour:
   missionID: 2
   missionTitle: drei
   missionDescription: do nothign!?!?
-  requiredItems: []
+  endOnAllItems: 1
+  endOnAllCalls: 0
+  requiredItems:
+  - {fileID: 11400000, guid: 93f8c0fb24728db45ae7422c4e692dfa, type: 2}
   calls: []
+  currentCall: 0
+  endEventValuesList: []

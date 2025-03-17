@@ -20,6 +20,6 @@ MonoBehaviour:
   - Crafting lab assistant
   messages:
   - Neat! That's all from me for now.
-  - You can equip the shoes at the lab nextdoors.
+  - You can equip the shoes at the locker room nextdoors.
   currentMessage: 0
   endEventValuesList: []

@@ -79,14 +79,14 @@ public class roomController : MonoBehaviour
 
 		//! temp trader spawn value
 		//! place trader into remote locations on maps - 5s trader call delay
-		traderSpawnChance = 100;
+		traderSpawnChance = 50;
 		//! temp item spawn value
-		itemSpawnRate = 100;
+		itemSpawnRate = 50;
 
 		//! temp room amount value
 		// maxCavernRoomsNr = cavernRooms.Length;
-		minCavernRoomsNr = 5;
-		maxCavernRoomsNr = 8;
+		minCavernRoomsNr = 8;
+		maxCavernRoomsNr = 15;
 
 		darknessOverlay = FindObjectOfType<darknessOL>();
 		inventory = FindObjectOfType<inventoryManager>();
@@ -361,13 +361,13 @@ public class roomController : MonoBehaviour
 
 			//
 			//! TEMP FOR TESTING. forces trader to spawn in entrance room
-			Debug.LogWarning("trader should spawn elsewhere");
+			/* Debug.LogWarning("trader should spawn elsewhere");
 			if (entranceRoom is room_cavern traderEntrRoom)
 			{
 				traderSpawnRoomPool.Clear();
 				traderEntrRoom.setTraderSpawn();
 				traderSpawnRoomPool.Add(traderEntrRoom);
-			}
+			} */
 			//
 
 

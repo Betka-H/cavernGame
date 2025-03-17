@@ -245,14 +245,26 @@ public class menuManager : MonoBehaviour
             anotherMenuOpen = onOff;
             // menuOpen = openMenu.craft;
 
-            if (missionManager.checkCurrentMission(-1, 7)) //! testing
+            if (missionManager.checkCurrentMission(-1, -1)) // if in tutorial
             {
-                /* onOff = toggleMenu(toolWorkstationMenu.gameObject);
-                toggleToolWorkstationMenu(onOff);
-                anotherMenuOpen = onOff; */
+                // if 7th: should access room
+                if (missionManager.checkCurrentMission(-1, 7)) //! testing
+                {
+                    callManager.startCall(getCurrentMission());
+                }
+                else if (missionManager.checkCurrentMission(-1, 8) || missionManager.checkCurrentMission(-1, 9) || missionManager.checkCurrentMission(-1, 10) || missionManager.checkCurrentMission(-1, 11) || missionManager.checkCurrentMission(-1, 12) || missionManager.checkCurrentMission(-1, 13) || missionManager.checkCurrentMission(-1, 14))
+                {
+                    Debug.LogWarning($"in tutorial, not locked");
+                } //! HELP
+                else // if in tutorial, but not supposed to go in at the moment
+                {
+                    onOff = toggleMenu(toolWorkstationMenu.gameObject);
+                    toggleLabItemMenu(onOff);
+                    toggleToolWorkstationMenu(onOff);
+                    anotherMenuOpen = onOff;
 
-                callManager.startCall(getCurrentMission());
-                // startNextMainMissionCall();
+                    FindObjectOfType<announcerManager>().announceMessage($"this room is locked");
+                }
             }
         }
     }
@@ -273,21 +285,31 @@ public class menuManager : MonoBehaviour
             anotherMenuOpen = onOff;
 
 
-            if (missionManager.checkCurrentMission(-1, 10)) //! testing
+            if (missionManager.checkCurrentMission(-1, -1)) // if in tutorial
             {
-                Debug.LogWarning("advancing from 10th to 11th call");
-                missionManager.allMissions[missionManager.currentMission].currentCall++;
-            }
-            if (missionManager.checkCurrentMission(-1, 11)) //! DONT ELSE THIS
-            {
-                /* onOff = toggleMenu(equipWorkstation.gameObject);
-                toggleLabItemMenu(onOff);
-                toggleEquipmentWorkstationMenu(onOff);
-                anotherMenuOpen = onOff; */
+                // if 10th or 11th: should access room
+                if (missionManager.checkCurrentMission(-1, 10))
+                {
+                    Debug.LogWarning("advancing from 10th to 11th call");
+                    missionManager.allMissions[missionManager.currentMission].currentCall++;
+                }
+                if (missionManager.checkCurrentMission(-1, 11)) //! DONT ELSE THIS
+                {
+                    callManager.startCall(getCurrentMission());
+                }
+                else if (missionManager.checkCurrentMission(-1, 12) || missionManager.checkCurrentMission(-1, 13) || missionManager.checkCurrentMission(-1, 14))
+                {
+                    Debug.LogWarning($"in tutorial, not locked");
+                } //! HELP
+                else // if in tutorial, but not supposed to go in at the moment
+                {
+                    onOff = toggleMenu(equipWorkstation.gameObject);
+                    toggleLabItemMenu(onOff);
+                    toggleEquipmentWorkstationMenu(onOff);
+                    anotherMenuOpen = onOff;
 
-                callManager.startCall(getCurrentMission());
-                // missionManager.checkMissionItems();
-                // startNextMainMissionCall();
+                    FindObjectOfType<announcerManager>().announceMessage($"this room is locked");
+                }
             }
         }
     }
@@ -314,6 +336,14 @@ public class menuManager : MonoBehaviour
                 callManager.startCall(getCurrentMission());
                 // hasTalkedBeforeFirstCave = true;
             }
+            else if (missionManager.checkCurrentMission(-1, 4))
+            {
+                onOff = toggleMenu(missionMenu.gameObject);
+                toggleMissionWorkstationMenu(onOff);
+                anotherMenuOpen = onOff;
+
+                FindObjectOfType<announcerManager>().announceMessage($"go into the elevator!");
+            }
             else if (missionManager.checkCurrentMission(-1, 6)) //! testing
             {
                 onOff = toggleMenu(missionMenu.gameObject);
@@ -339,25 +369,35 @@ public class menuManager : MonoBehaviour
                 onOff = toggleMenu(missionMenu.gameObject);
                 toggleMissionWorkstationMenu(onOff);
                 anotherMenuOpen = onOff;
+                if (inventoryManager.checkEquipment(inventoryManager.inventoryDefinitions.shoes))
+                {
+                    callManager.startCall(getCurrentMission());
 
-                callManager.startCall(getCurrentMission());
-
-                StartCoroutine(showFirstMission());
+                    StartCoroutine(showFirstMission());
+                }
+                else
+                {
+                    FindObjectOfType<announcerManager>().announceMessage($"equip shoes first");
+                    // Debug.LogWarning("no shoes! equip shoes first");
+                }
             }
             /* if (onOff && !hasTalkedBeforeFirstCave)
-            {
-                onOff = toggleMenu(missionMenu.gameObject);
-                toggleMissionWorkstationMenu(onOff);
-                anotherMenuOpen = onOff;
+    {
+        onOff = toggleMenu(missionMenu.gameObject);
+        toggleMissionWorkstationMenu(onOff);
+        anotherMenuOpen = onOff;
 
-                // callManager.startCall(getCurrentMission()); //?
-            } */
+        // callManager.startCall(getCurrentMission()); //?
+    } */
         }
     }
     IEnumerator showFirstMission()
     {
         while (gameController.isCalling)
+        {
+            Debug.Log($"calling: {gameController.isCalling}");
             yield return null;
+        }
 
         toggleToggleMissionWorkstationMenu();
     }
