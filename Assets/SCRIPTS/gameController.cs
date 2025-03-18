@@ -211,7 +211,7 @@ public class gameController : MonoBehaviour
 		{
 			Debug.LogWarning("invoking space call");
 			// callManager.startCall(getCurrentMission());
-			Invoke("startNextMainMissionCall", 5f);
+			Invoke("startNextMainMissionCall", 5f); // space call delay 5f
 		}
 		else if (missionManager.checkCurrentMission(-1, 1))
 		{
@@ -268,6 +268,7 @@ public class gameController : MonoBehaviour
 			leavingCavern = true;
 			genAndSpawn(level.lab);
 			getElevator().isFirst = false;
+			m_unlockCavern(); // cavern is locked from collecting all tutorial items
 		}
 		else Debug.Log($"is in -1st mission. not moving");
 		// getElevator().openDoors(true);
@@ -505,13 +506,15 @@ public class gameController : MonoBehaviour
 
 	bool cavernLocked = false; // defaultly open
 	public void m_lockCavern()
-	// called at end of space call. locks the cavern cause tutorial
 	{
+		// called at end of space call. locks the cavern cause tutorial
+		// also called when collecting all items for the tutorial mission
 		cavernLocked = true;
 	}
 	public void m_unlockCavern()
-	// called at end of 3rd(?) tutorial call (when u finish talking to MG at his outpost before entering the elevator for the first time)
 	{
+		// called at end of 3rd(?) tutorial call (when u finish talking to MG at his outpost before entering the elevator for the first time)
+		// also called at end of tutorial lol
 		cavernLocked = false;
 	}
 

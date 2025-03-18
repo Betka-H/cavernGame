@@ -40,6 +40,12 @@ public class callScreen : MonoBehaviour
     {
         // gameObject.SetActive(true);
         // if (call.messages.Length > 0)
+        if (missionManager.checkCurrentMission(-1, 0)) // if in space call
+        {
+            // gameObject.SetActive(false);
+            Debug.LogWarning($"spaaaace!!1!1");
+        }
+        // else
         {
             // Debug.Log($"trying to talk! ({call.currentMessage})");
             int currentMsg = call.currentMessage;
@@ -47,6 +53,8 @@ public class callScreen : MonoBehaviour
             speakerSpriteRenderer.sprite = call.talkSprites[currentMsg];
             txtSpeakerName.text = call.speakerNames[currentMsg];
             txtMessage.text = call.messages[currentMsg];
+
+            gameObject.SetActive(true);
         }
         // else Debug.Log("empty call!");
     }

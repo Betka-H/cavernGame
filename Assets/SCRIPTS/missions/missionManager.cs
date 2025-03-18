@@ -70,6 +70,7 @@ public class missionManager : MonoBehaviour
             if (cm.missionID == -1)
             {
                 // Debug.LogWarning("collected all items for tutorial mission");
+                gameController.m_lockCavern();
                 callManager.startCall(cm);
             }
 
