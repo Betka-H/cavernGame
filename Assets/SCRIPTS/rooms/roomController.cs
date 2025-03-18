@@ -189,7 +189,7 @@ public class roomController : MonoBehaviour
 	{
 		if (inventory.checkEquipment(inventory.inventoryDefinitions.nightVisionGoggles))
 		{
-			chosenDarkness = darknessOverlay.darknessOverlayNV;
+			chosenDarkness = darknessOverlay.darknessOverlayNightVis;
 		}
 		else
 		{
@@ -202,8 +202,10 @@ public class roomController : MonoBehaviour
 	{
 		clearParent(itemParent);
 		killTrader();
-		if (chosenDarkness != null)
+		if (chosenDarkness != null) // doesnt clear if restarting from darkness //?
 			chosenDarkness.gameObject.SetActive(false);
+		/* darknessOverlay.darknessOverlayNormal.gameObject.SetActive(false);
+		darknessOverlay.darknessOverlayNightVis.gameObject.SetActive(false); */
 	}
 
 	string logCavernRooms()

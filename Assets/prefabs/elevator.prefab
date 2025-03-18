@@ -192,6 +192,7 @@ MonoBehaviour:
   walls: {fileID: 8072533048029525694}
   isClosed: 0
   isLab: 0
+  isMainEntrance: 0
   isFirst: 0
 --- !u!1 &3606934818156101240
 GameObject:
@@ -487,6 +488,10 @@ PrefabInstance:
       propertyPath: m_SortingLayer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5656839710849729295, guid: 4e021b43ca5214f4ea4af938ffc8dad4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6002713779907587604, guid: 4e021b43ca5214f4ea4af938ffc8dad4, type: 3}
       propertyPath: m_LocalScale.x
       value: 15.386863
@@ -497,7 +502,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6002713779907587604, guid: 4e021b43ca5214f4ea4af938ffc8dad4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 200.787
+      value: 163
       objectReference: {fileID: 0}
     - target: {fileID: 6002713779907587604, guid: 4e021b43ca5214f4ea4af938ffc8dad4, type: 3}
       propertyPath: m_LocalPosition.y
@@ -581,6 +586,10 @@ PrefabInstance:
       propertyPath: m_SortingLayer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5656839710849729295, guid: 4e021b43ca5214f4ea4af938ffc8dad4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6002713779907587604, guid: 4e021b43ca5214f4ea4af938ffc8dad4, type: 3}
       propertyPath: m_LocalScale.x
       value: 18.863619
@@ -591,7 +600,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6002713779907587604, guid: 4e021b43ca5214f4ea4af938ffc8dad4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -204.0742
+      value: -163
       objectReference: {fileID: 0}
     - target: {fileID: 6002713779907587604, guid: 4e021b43ca5214f4ea4af938ffc8dad4, type: 3}
       propertyPath: m_LocalPosition.y

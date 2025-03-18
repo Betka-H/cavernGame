@@ -27,12 +27,15 @@ public class missionMenu : MonoBehaviour
         // Debug.Log($"cm: {missionManager.allMissions[missionManager.currentMission]}, {missionManager.currentMission}");
         displayMission(missionManager.allMissions[missionManager.currentMission]);
 
-        if (m_solitaire != null)
+        if (!missionManager.checkCurrentMission(-1, -1)) // only out of tutorial
         {
-            int rnd = Random.Range(0, 100);
-            if (rnd > 90)
-                m_solitaire.gameObject.SetActive(true);
-            else m_solitaire.gameObject.SetActive(false);
+            if (m_solitaire != null)
+            {
+                int rnd = Random.Range(0, 100);
+                if (rnd > 90)
+                    m_solitaire.gameObject.SetActive(true);
+                else m_solitaire.gameObject.SetActive(false);
+            }
         }
     }
 
