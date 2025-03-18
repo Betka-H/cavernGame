@@ -229,15 +229,15 @@ public class audioManager : MonoBehaviour
     }
     public void saveVolumeSettings()
     {
-        Debug.LogError($"TRYING saving volume settings");
+        // Debug.LogError($"TRYING saving volume settings");
 
         //! tmp - does not get inactive objects (i think???)
         musicSlider = GameObject.Find("music slider").GetComponent<Slider>();
         sfxSlider = GameObject.Find("sfx slider").GetComponent<Slider>();
-        Debug.LogError($"ms: {musicSlider}, ss: {sfxSlider}");
+        // Debug.LogError($"ms: {musicSlider}, ss: {sfxSlider}");
         if (musicSlider != null && sfxSlider != null)
         {
-            Debug.LogError($"saving volume settings");
+            // Debug.LogError($"saving volume settings");
             PlayerPrefs.SetFloat("musicVolume", musicSlider.value);
             PlayerPrefs.SetFloat("SFXvolume", sfxSlider.value);
         }

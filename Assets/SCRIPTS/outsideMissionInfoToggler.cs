@@ -4,10 +4,10 @@ public class outsideMissionInfoToggler : MonoBehaviour
 {
     outsideMissionInfo outsideMissionInfoObj;
 
-    void Start()
+    /* void Start()
     {
         OnEnable();
-    }
+    } */
 
     void OnEnable()
     {

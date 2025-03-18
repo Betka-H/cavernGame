@@ -11,13 +11,16 @@ public abstract class itemMenu : MonoBehaviour
     [HideInInspector] public bool isAwake;
     protected void Awake()
     {
-        // Debug.Log("awaking itemmenu");
         regularSlots = gridSlotsParent.GetComponentsInChildren<invItem>(true);
-        Debug.LogWarning($"reg slots: {regularSlots.Length}");
+        Debug.LogWarning($"found slots: {regularSlots.Length}");
         inventoryScript = FindObjectOfType<inventoryManager>();
         isAwake = true;
+        Debug.LogWarning($"awaking 2");
     }
-
+    public void wakeUp()
+    {
+        Awake();
+    }
     void OnEnable()
     {
         // if (isAwake)

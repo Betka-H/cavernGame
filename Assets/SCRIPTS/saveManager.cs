@@ -63,9 +63,9 @@ public class saveManager : MonoBehaviour
         data.missionInvSaveList.AddRange(menuManager.inventoryManager.missionInventory);
         data.rndMissionReqList = new List<item>();
         data.rndMissionReqList.AddRange(missionManager.allMissions[missionManager.currentMission].requiredItems);
-        Debug.LogWarning($"saving cm req items: v v v");
-        menuManager.inventoryManager.printInventory(data.rndMissionReqList);
-        menuManager.inventoryManager.printInventory(missionManager.allMissions[missionManager.currentMission].requiredItems);
+        /*  Debug.LogWarning($"saving cm req items: v v v");
+         menuManager.inventoryManager.printInventory(data.rndMissionReqList);
+         menuManager.inventoryManager.printInventory(missionManager.allMissions[missionManager.currentMission].requiredItems); */
         // data.hasWarnedAboutJumping = roomController.hasMentionedJumping;
 
         // missions + calls
@@ -81,7 +81,7 @@ public class saveManager : MonoBehaviour
 
         PlayerPrefs.Save();
 
-        Debug.LogWarning($"saved: last mission: {missionManager.currentMission} ({missionManager.allMissions[missionManager.currentMission].requiredItems.Count} req items), last mission call: {missionManager.allMissions[missionManager.currentMission].currentCall}, last death mission call: {missionManager.deathMission.currentCall}");
+        // Debug.LogWarning($"saved: last mission: {missionManager.currentMission} ({missionManager.allMissions[missionManager.currentMission].requiredItems.Count} req items), last mission call: {missionManager.allMissions[missionManager.currentMission].currentCall}, last death mission call: {missionManager.deathMission.currentCall}");
     }
 
     void load()
@@ -126,9 +126,9 @@ public class saveManager : MonoBehaviour
             menuManager.inventoryManager.missionInventory.AddRange(data.missionInvSaveList);
             missionManager.allMissions[missionManager.currentMission].requiredItems = new List<item>();
             missionManager.allMissions[missionManager.currentMission].requiredItems.AddRange(data.rndMissionReqList);
-            Debug.LogWarning($"loading cm req items: v v v");
+            /* Debug.LogWarning($"loading cm req items: v v v");
             menuManager.inventoryManager.printInventory(data.rndMissionReqList);
-            menuManager.inventoryManager.printInventory(missionManager.allMissions[missionManager.currentMission].requiredItems);
+            menuManager.inventoryManager.printInventory(missionManager.allMissions[missionManager.currentMission].requiredItems); */
             // roomController.hasMentionedJumping = data.hasWarnedAboutJumping;
         }
 

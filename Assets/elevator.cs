@@ -69,7 +69,7 @@ public class elevator : MonoBehaviour
             }
         }
 
-        Debug.LogWarning("dont run this!! lol");
+        // Debug.LogWarning("dont run this!! lol");
         //! delete
         walls.gameObject.SetActive(false);
         //! ^^^
@@ -184,7 +184,7 @@ public class elevator : MonoBehaviour
         doorL.position = doorLStartPos;
         doorR.position = doorRStartPos;
 
-        Debug.LogWarning($"walls should be true");
+        // Debug.LogWarning($"walls should be true");
         //! walls.gameObject.SetActive(true);
 
         isClosed = true;
