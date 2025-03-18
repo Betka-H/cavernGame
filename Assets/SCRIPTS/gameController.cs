@@ -400,8 +400,9 @@ public class gameController : MonoBehaviour
 				currentDeathCall++;
 			} */
 			missionSO deathMission = missionManager.deathMission;
-			if (deathMission.calls.Length > deathMission.currentCall)
+			if (deathMission.currentCall < deathMission.calls.Length)
 				callManager.startCall(deathMission);
+			else Debug.LogWarning($"no death call remaining");
 
 			deathScreen.SetActive(true);
 

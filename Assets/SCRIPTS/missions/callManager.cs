@@ -100,8 +100,9 @@ public class callManager : MonoBehaviour
         else if (selectedMission.endOnAllCalls)
         {
             selectedMission.calls[selectedMission.currentCall].endCall();
+            selectedMission.currentCall++; //! testing
             selectedMission.endMission();
-            if (missionManager.allMissions.Contains(selectedMission))
+            if (missionManager.allMissions.Contains(selectedMission)) // if this is a main mission
                 missionManager.newMission();
         }
 
