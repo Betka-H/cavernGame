@@ -22,7 +22,6 @@ public class outsideMissionInfo : MonoBehaviour
         itemGrid.wakeUp();
         itemGrid.refreshItems(itemGrid.regularSlots, inventoryManager.missionInventory, missionManager.allMissions[missionManager.currentMission].requiredItems);
         gameObject.SetActive(true);
-        Debug.LogWarning($"ig: {itemGrid}, rs: {itemGrid.regularSlots.Length}, im: {inventoryManager}, imm: {inventoryManager.missionInventory.Count}, rqi: {missionManager.allMissions[missionManager.currentMission].requiredItems.Count}");
     }
 
     public void hide()

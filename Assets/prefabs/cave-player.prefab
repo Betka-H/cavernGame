@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6671086058882828424}
   - component: {fileID: 8704279720620584640}
   - component: {fileID: 1943822340829843969}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -128,7 +128,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9163591151191938081}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: arms
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -161,7 +161,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5703532176802897843}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: arm (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -192,7 +192,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 971934193257437485}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -226,7 +226,7 @@ GameObject:
   - component: {fileID: 2453926673175596032}
   - component: {fileID: 2041706101789367381}
   - component: {fileID: 464341278159563756}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: cave-player
   m_TagString: player
   m_Icon: {fileID: 0}
@@ -360,7 +360,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1965521005522208259}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: foot
   m_TagString: Untagged
   m_Icon: {fileID: 0}

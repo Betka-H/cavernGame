@@ -12,6 +12,17 @@ public class button : MonoBehaviour
         audioManager = FindObjectOfType<audioManager>();
     }
 
+    /* void Update()
+    { // chatgpt
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, 100f, LayerMask.GetMask("UI")))
+        {
+            Debug.Log("Clicked UI Element: " + hit.collider.name);
+        }
+    } */
+
     void OnMouseEnter()
     {
         // audioManager.playSfx(audioManager.uiSfxSource, audioManager.uiButtonMouseover, true);

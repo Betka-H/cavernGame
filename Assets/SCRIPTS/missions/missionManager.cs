@@ -98,7 +98,9 @@ public class missionManager : MonoBehaviour
             FindObjectOfType<announcerManager>().announceMessage("you have a new mission!");
             currentMission++;
 
-            checkRndMission();
+            FindObjectOfType<outsideMissionInfo>().show();
+
+            // checkRndMission();
         }
         else
         {

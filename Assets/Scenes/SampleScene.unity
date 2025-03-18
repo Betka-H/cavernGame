@@ -1844,7 +1844,7 @@ GameObject:
   - component: {fileID: 120835708}
   - component: {fileID: 120835707}
   - component: {fileID: 120835709}
-  m_Layer: 18
+  m_Layer: 19
   m_Name: reset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2597,7 +2597,7 @@ GameObject:
   - component: {fileID: 158657636}
   - component: {fileID: 158657638}
   - component: {fileID: 158657637}
-  m_Layer: 18
+  m_Layer: 19
   m_Name: unequip btn (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3786,7 +3786,7 @@ GameObject:
   - component: {fileID: 241996507}
   - component: {fileID: 241996506}
   - component: {fileID: 241996505}
-  m_Layer: 18
+  m_Layer: 19
   m_Name: skip tutorial btn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6489,7 +6489,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6290580510115616178, guid: 89fc98d0c39c85e478de54201232a181, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7627337195764278914, guid: 89fc98d0c39c85e478de54201232a181, type: 3}
       propertyPath: m_Layer
@@ -7230,7 +7230,7 @@ GameObject:
   - component: {fileID: 496043998}
   - component: {fileID: 496044000}
   - component: {fileID: 496043999}
-  m_Layer: 18
+  m_Layer: 19
   m_Name: equip btn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7675,6 +7675,7 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420033}
+  - component: {fileID: 519420034}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -7776,6 +7777,22 @@ MonoBehaviour:
   letterBoxCameraColor: {r: 0, g: 0, b: 0, a: 1}
   cameras: []
   letterBoxCamera: {fileID: 0}
+--- !u!114 &519420034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56666c5a40171f54783dd416a44f42bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EventMask:
+    serializedVersion: 2
+    m_Bits: 524288
+  m_MaxRayIntersections: 0
 --- !u!1 &533830516
 GameObject:
   m_ObjectHideFlags: 0
@@ -8118,7 +8135,7 @@ GameObject:
   - component: {fileID: 553795161}
   - component: {fileID: 553795160}
   - component: {fileID: 553795159}
-  m_Layer: 18
+  m_Layer: 19
   m_Name: back to main
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8181,10 +8198,10 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_LayerOverridePriority: 3
   m_ForceSendLayers:
     serializedVersion: 2
@@ -8194,14 +8211,14 @@ BoxCollider2D:
     m_Bits: 4294967295
   m_ContactCaptureLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
   m_CallbackLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -2.666687, y: -5.3333626}
+  m_Offset: {x: 2.612854, y: -0.9337692}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -8212,7 +8229,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 587.66675, y: 182.3334}
+  m_Size: {x: 658.0603, y: 233.3687}
   m_EdgeRadius: 0
 --- !u!114 &553795161
 MonoBehaviour:
@@ -10662,7 +10679,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 734519571}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -12416,7 +12433,7 @@ GameObject:
   - component: {fileID: 951805299}
   - component: {fileID: 951805301}
   - component: {fileID: 951805300}
-  m_Layer: 18
+  m_Layer: 19
   m_Name: unequip btn (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15470,7 +15487,7 @@ GameObject:
   - component: {fileID: 1181956724}
   - component: {fileID: 1181956726}
   - component: {fileID: 1181956725}
-  m_Layer: 6
+  m_Layer: 2
   m_Name: floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16811,7 +16828,7 @@ GameObject:
   - component: {fileID: 1294662926}
   - component: {fileID: 1294662925}
   - component: {fileID: 1294662924}
-  m_Layer: 18
+  m_Layer: 19
   m_Name: continnue button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18132,7 +18149,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1395541474}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -18540,7 +18557,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1398591182}
   - component: {fileID: 1398591183}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: graphic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21155,7 +21172,7 @@ GameObject:
   - component: {fileID: 1580145720}
   - component: {fileID: 1580145721}
   m_Layer: 0
-  m_Name: mission info
+  m_Name: world mission info
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21770,7 +21787,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1626682170}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -23712,7 +23729,7 @@ GameObject:
   - component: {fileID: 1705737777}
   - component: {fileID: 1705737779}
   - component: {fileID: 1705737778}
-  m_Layer: 18
+  m_Layer: 19
   m_Name: craft button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24265,7 +24282,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1770494596}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -24441,7 +24458,7 @@ GameObject:
   - component: {fileID: 1854100582}
   - component: {fileID: 1854100584}
   - component: {fileID: 1854100583}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: ceiling
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26593,7 +26610,7 @@ GameObject:
   - component: {fileID: 2035486529}
   - component: {fileID: 2035486528}
   - component: {fileID: 2035486530}
-  m_Layer: 18
+  m_Layer: 19
   m_Name: trade button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
