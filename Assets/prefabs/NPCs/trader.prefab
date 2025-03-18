@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: -3725059227418358219}
   - component: {fileID: 1011795411703474659}
   - component: {fileID: 9008060062607203274}
+  - component: {fileID: 6728266480298878756}
   m_Layer: 0
   m_Name: trader
   m_TagString: Untagged
@@ -127,6 +128,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.5935842, y: 2.1691096}
   m_EdgeRadius: 0
+--- !u!210 &6728266480298878756
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2371283748658875608}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 13
+  m_SortAtRoot: 0
 --- !u!1 &5013087943340637201
 GameObject:
   m_ObjectHideFlags: 0
