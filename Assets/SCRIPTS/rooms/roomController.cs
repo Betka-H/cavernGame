@@ -153,6 +153,8 @@ public class roomController : MonoBehaviour
 		return FindObjectOfType<playerMovement>();
 	}
 
+	public Transform spaceStuff;
+
 	[HideInInspector] public bool labFirst;
 	public void generateLevel(gameController.level lvl)
 	{
@@ -167,13 +169,16 @@ public class roomController : MonoBehaviour
 				Instantiate(enclosure_walls_lab, enclosureParent);
 				generateLab(labFirst);
 				if (labFirst) labFirst = false;
+				spaceStuff.gameObject.SetActive(false);
 				break;
 			case gameController.level.space:
 				clearParent(enclosureParent);
 				Instantiate(enclosure_walls_space, enclosureParent);
+				spaceStuff.gameObject.SetActive(true);
 				generateSpace();
 				break;
 			case gameController.level.cavern:
+				spaceStuff.gameObject.SetActive(false);
 				clearParent(enclosureParent);
 				Instantiate(enclosure_walls_cave, enclosureParent);
 				generateCavern();

@@ -13,6 +13,7 @@ public class missionManager : MonoBehaviour
 
     menuManager menuManager;
     callManager callManager;
+    gameController gameController;
 
     [HideInInspector] public int currentMission;
 
@@ -20,6 +21,7 @@ public class missionManager : MonoBehaviour
     {
         menuManager = FindObjectOfType<menuManager>();
         callManager = FindObjectOfType<callManager>();
+        gameController = FindObjectOfType<gameController>();
     }
 
     void Start()
@@ -137,6 +139,7 @@ public class missionManager : MonoBehaviour
 
         missionSO tutorialMission = allMissions[0];
 
+        // if (gameController.isCalling)
         callManager.endCall(false);
 
         restartMissions();

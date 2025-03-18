@@ -265,6 +265,7 @@ public class gameController : MonoBehaviour
 		{
 			Debug.Log($"skipping tutorial");
 			roomController.labFirst = false;
+			leavingCavern = true;
 			genAndSpawn(level.lab);
 			getElevator().isFirst = false;
 		}

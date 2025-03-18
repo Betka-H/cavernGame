@@ -25,8 +25,15 @@ public class callScreen : MonoBehaviour
     {
         // if (missionManager.currentMission == 0) // if in tutorial
         if (missionManager.checkCurrentMission(-1, 0)) // if in tutorial
+        {
             skipTutorialBtn.gameObject.SetActive(true);
-        else skipTutorialBtn.gameObject.SetActive(false);
+            // spaceStuff.gameObject.SetActive(true);
+        }
+        else
+        {
+            skipTutorialBtn.gameObject.SetActive(false);
+            // spaceStuff.gameObject.SetActive(false);
+        }
     }
 
     public void talk(callSO call)
