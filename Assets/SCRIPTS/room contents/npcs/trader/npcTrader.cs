@@ -17,6 +17,7 @@ public class npcTrader : NPC
 	void Start()
 	{
 		rollTraderInventory();
+		//! move trader down to nearest ground
 	}
 
 	/* void Update()

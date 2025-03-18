@@ -12,7 +12,8 @@ public abstract class itemMenu : MonoBehaviour
     protected void Awake()
     {
         // Debug.Log("awaking itemmenu");
-        regularSlots = gridSlotsParent.GetComponentsInChildren<invItem>();
+        regularSlots = gridSlotsParent.GetComponentsInChildren<invItem>(true);
+        Debug.LogWarning($"reg slots: {regularSlots.Length}");
         inventoryScript = FindObjectOfType<inventoryManager>();
         isAwake = true;
     }
