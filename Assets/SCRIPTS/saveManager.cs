@@ -58,6 +58,8 @@ public class saveManager : MonoBehaviour
 
         // inventories 
         data.itemsSaveList = new List<item>();
+        menuManager.inventoryManager.labInventory.AddRange(menuManager.inventoryManager.equippedItems);
+        Debug.Log($"merging eq into lab inv");
         data.itemsSaveList.AddRange(menuManager.inventoryManager.labInventory);
         data.missionInvSaveList = new List<item>();
         data.missionInvSaveList.AddRange(menuManager.inventoryManager.missionInventory);

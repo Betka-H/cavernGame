@@ -23,7 +23,7 @@ public class spikes : MonoBehaviour
 	{
 		if (other.gameObject.CompareTag("player"))
 		{
-			die();
+			//! die();
 		}
 	}
 

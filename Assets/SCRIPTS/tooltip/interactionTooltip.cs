@@ -43,13 +43,13 @@ public class interactionTooltip : MonoBehaviour
 					action = "exit the cavern";
 					break;
 				case tooltipKind.toolWorkshop:
-					action = "craft tools";
+					action = "enter crafting lab";
 					break;
 				case tooltipKind.equipWorkshop:
-					action = "equip equipment";
+					action = "enter locker room";
 					break;
 				case tooltipKind.missionWorkshop:
-					action = "open mission menu";
+					action = "see current mission";
 					break;
 			}
 

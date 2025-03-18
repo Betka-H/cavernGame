@@ -31,6 +31,7 @@ public class equipWorkstation : MonoBehaviour
             if (menuManager.inventoryManager.equippedItems.Count > i)
             {
                 selItem = menuManager.inventoryManager.equippedItems[i];
+                Debug.LogWarning($"selitem: {selItem.itemName}");
                 infoDisplays[i].selectedItem = selItem;
                 if (unequipButtons.Length > 0)
                     unequipButtons[i].gameObject.SetActive(true);

@@ -16,8 +16,8 @@ public class itemInfoDisplay : MonoBehaviour
 
     void OnEnable()
     {
-        selectedItem = null;
-        setInfo(null);
+        // selectedItem = null; //!
+        // setInfo(null); //* 
     }
 
     public void setInfo(item it)

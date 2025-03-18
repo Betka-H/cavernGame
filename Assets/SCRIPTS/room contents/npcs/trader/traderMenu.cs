@@ -41,6 +41,8 @@ public class traderMenu : MonoBehaviour
 
 	void OnEnable()
 	{
+		menuManager.itemInfoDisplay.setInfo(null);
+
 		clearLHand();
 		updateHands();
 	}

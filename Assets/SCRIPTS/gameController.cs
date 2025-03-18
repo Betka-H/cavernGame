@@ -586,7 +586,8 @@ public class gameController : MonoBehaviour
 		}
 		else
 		{
-			FindObjectOfType<announcerManager>().announceMessage($"cavern locked! go talk to MG first");
+			// FindObjectOfType<announcerManager>().announceMessage($"cavern locked! go talk to MG first");
+			FindObjectOfType<announcerManager>().announceMessage($"cavern locked!");
 
 			/* //? if (missionManager.checkCurrentMission(-1, 4))
 			{

@@ -253,6 +253,7 @@ public class menuManager : MonoBehaviour
                     callManager.startCall(getCurrentMission());
                 }
                 else if (missionManager.checkCurrentMission(-1, 8) || missionManager.checkCurrentMission(-1, 9) || missionManager.checkCurrentMission(-1, 10) || missionManager.checkCurrentMission(-1, 11) || missionManager.checkCurrentMission(-1, 12) || missionManager.checkCurrentMission(-1, 13) || missionManager.checkCurrentMission(-1, 14))
+                // else if (missionManager.checkCurrentMission(-1, 8) || missionManager.checkCurrentMission(-1, 9))
                 {
                     Debug.LogWarning($"in tutorial, not locked");
                 } //! HELP
@@ -304,6 +305,7 @@ public class menuManager : MonoBehaviour
                     callManager.startCall(getCurrentMission());
                 }
                 else if (missionManager.checkCurrentMission(-1, 12) || missionManager.checkCurrentMission(-1, 13) || missionManager.checkCurrentMission(-1, 14))
+                // else if (missionManager.checkCurrentMission(-1, 12))
                 {
                     Debug.LogWarning($"in tutorial, not locked");
                 } //! HELP
@@ -323,6 +325,8 @@ public class menuManager : MonoBehaviour
     // bool hasTalkedBeforeFirstCave = true;
     public void toggleToggleMissionWorkstationMenu()
     {
+        Debug.LogWarning($"trying to toggle mission menu");
+
         // if (menuOpen == null || menuOpen == openMenu.misison)
         // if (!anotherMenuOpen && !escMenu.gameObject.activeSelf)
         if (!escMenu.gameObject.activeSelf && !callScreen.gameObject.activeSelf)
@@ -345,23 +349,32 @@ public class menuManager : MonoBehaviour
                 callManager.startCall(getCurrentMission());
                 // hasTalkedBeforeFirstCave = true;
             }
-            else if (missionManager.checkCurrentMission(-1, 4))
+            /* else if (missionManager.checkCurrentMission(-1, 4) || missionManager.checkCurrentMission(-1, 5)) // in case of death
             {
                 onOff = toggleMenu(missionMenu.gameObject);
                 toggleMissionWorkstationMenu(onOff);
                 anotherMenuOpen = onOff;
 
                 FindObjectOfType<announcerManager>().announceMessage($"go into the elevator!");
-            }
+            } */
             else if (missionManager.checkCurrentMission(-1, 6)) //! testing
+            {
+                /* onOff = toggleMenu(missionMenu.gameObject);
+                toggleMissionWorkstationMenu(onOff);
+                anotherMenuOpen = onOff; */
+
+                // callManager.startCall(getCurrentMission());
+                FindObjectOfType<announcerManager>().announceMessage($"have you got everything?");
+                missionManager.checkMissionItems(); //? why?
+                // startNextMainMissionCall();
+            }
+            else if (missionManager.checkCurrentMission(-1, 7) || missionManager.checkCurrentMission(-1, 8) || missionManager.checkCurrentMission(-1, 9))
             {
                 onOff = toggleMenu(missionMenu.gameObject);
                 toggleMissionWorkstationMenu(onOff);
                 anotherMenuOpen = onOff;
 
-                // callManager.startCall(getCurrentMission());
-                missionManager.checkMissionItems();
-                // startNextMainMissionCall();
+                FindObjectOfType<announcerManager>().announceMessage($"go to the crafting lab!");
             }
             else if (missionManager.checkCurrentMission(-1, 10)) //! testing
             {
@@ -372,6 +385,14 @@ public class menuManager : MonoBehaviour
                 anotherMenuOpen = onOff;
 
                 callManager.startCall(getCurrentMission());
+            }
+            else if (missionManager.checkCurrentMission(-1, 11) || missionManager.checkCurrentMission(-1, 12))
+            {
+                onOff = toggleMenu(missionMenu.gameObject);
+                toggleMissionWorkstationMenu(onOff);
+                anotherMenuOpen = onOff;
+
+                FindObjectOfType<announcerManager>().announceMessage($"go to the locker room!");
             }
             else if (missionManager.checkCurrentMission(-1, 13)) //! testing
             {

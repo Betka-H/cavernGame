@@ -14,6 +14,10 @@ public class toolWorkstationMenu : MonoBehaviour
     public Transform[] recipeSpawnPoints;
     public GameObject physicalPrefab;
 
+    public SpriteRenderer craftBtnBg;
+    public Color craftBtnUnableColor;
+    public Color craftBtnAbleColor;
+
     scrap assignedScrap;
     public SpriteRenderer scrapSpriteRenderer;
     public SpriteRenderer resultSpriteRenderer;
@@ -30,11 +34,14 @@ public class toolWorkstationMenu : MonoBehaviour
 
     void OnEnable()
     {
+        menuManager.itemInfoDisplay.setInfo(null);
         assignScrap(null);
+        craftBtnBg.color = craftBtnUnableColor;
     }
 
     public void assignScrap(scrap scrap)
     {
+        craftBtnBg.color = craftBtnUnableColor;
         if (!isDropping)
         {
             assignedScrap = scrap;
@@ -50,6 +57,12 @@ public class toolWorkstationMenu : MonoBehaviour
                     callManager callManager = FindObjectOfType<callManager>();
                     callManager.startCall(callManager.currentMainMission());
                     // startNextMainMissionCall();
+                }
+
+                if (menuManager.inventoryManager.checkResources(menuManager.inventoryManager.labInventory, assignedScrap.wholeGear.cost.ToList()))
+                {
+                    // highlight craft button
+                    craftBtnBg.color = craftBtnAbleColor;
                 }
             }
             else

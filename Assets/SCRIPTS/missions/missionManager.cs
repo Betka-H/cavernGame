@@ -44,10 +44,10 @@ public class missionManager : MonoBehaviour
     // -1 to not check call
     public bool checkCurrentMission(int wantedMissionID, int wantedCallID)
     {
-        // Debug.Log($"checking mission state as {wantedMissionID}, {wantedCallID}");
+        Debug.Log($"checking mission state as {wantedMissionID}, {wantedCallID}");
         missionSO currentMissionSO = allMissions[currentMission];
 
-        // Debug.Log($"current mission: {currentMissionSO} ({currentMissionSO.missionID}), current call: {currentMissionSO.currentCall}");
+        Debug.Log($"current mission: {currentMissionSO} ({currentMissionSO.missionID}), current call: {currentMissionSO.currentCall}");
 
         if (currentMissionSO.missionID == wantedMissionID && (currentMissionSO.currentCall == wantedCallID || wantedCallID == -1))
         {
@@ -66,7 +66,7 @@ public class missionManager : MonoBehaviour
         missionSO cm = allMissions[currentMission];
         if (menuManager.inventoryManager.checkResources(menuManager.inventoryManager.missionInventory, cm.requiredItems))
         {
-            FindObjectOfType<announcerManager>().announceMessage($"all items collected! go to MG for a new mission");
+            // FindObjectOfType<announcerManager>().announceMessage($"all items collected! go to MG for a new mission");
             if (cm.missionID == -1)
             {
                 // Debug.LogWarning("collected all items for tutorial mission");
@@ -105,7 +105,7 @@ public class missionManager : MonoBehaviour
         }
         else
         {
-            Debug.LogError($"all missions completed!");
+            // Debug.LogError($"all missions completed!");
             FindObjectOfType<announcerManager>().announceMessage("all missions completed!");
         }
         allMissions[currentMission].currentCall = 0;

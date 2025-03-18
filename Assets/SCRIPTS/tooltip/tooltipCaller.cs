@@ -14,6 +14,7 @@ public class tooltipCaller : MonoBehaviour
 	void Awake()
 	{
 		tooltipObj = FindObjectOfType<interactionTooltip>(true);
+		keyToInteract = KeyCode.E;
 	}
 
 	public void disable()

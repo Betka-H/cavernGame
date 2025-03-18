@@ -21,5 +21,7 @@ MonoBehaviour:
   messages:
   - Neat! That's all from me for now.
   - You can equip the shoes at the locker room nextdoors.
-  currentMessage: 0
-  endEventValuesList: []
+  currentMessage: 1
+  endEventValuesList:
+  - objName: MENU CANVAS
+    methodName: toggleToggletoolWorkstationMenuScreen

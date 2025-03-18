@@ -15,7 +15,7 @@ MonoBehaviour:
   itemId: 6
   itemName: shoes
   itemDescription: makes u walk faster
-  itemSprite: {fileID: 639530761, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
+  itemSprite: {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
   cost:
   - {fileID: 11400000, guid: 93f8c0fb24728db45ae7422c4e692dfa, type: 2}
   - {fileID: 11400000, guid: 93f8c0fb24728db45ae7422c4e692dfa, type: 2}
