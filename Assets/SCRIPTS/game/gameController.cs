@@ -372,6 +372,7 @@ public class gameController : MonoBehaviour
 
 			audioManager.worldSfxSource.Stop();
 
+			Debug.LogWarning($"test this");
 			roomController.clearRoom(); //? why?
 			genAndSpawn(level.lab);
 
@@ -436,6 +437,7 @@ public class gameController : MonoBehaviour
 
 				audioManager.worldSfxSource.Stop();
 
+				Debug.LogWarning($"test this");
 				roomController.clearRoom(); //? why?
 				genAndSpawn(level.cavern);
 
