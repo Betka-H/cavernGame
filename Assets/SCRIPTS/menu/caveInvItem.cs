@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class caveInvItem : invItem
 {
 	new void OnMouseDown()
@@ -7,9 +5,7 @@ public class caveInvItem : invItem
 		base.OnMouseDown();
 
 		if (menuManager.traderMenu.gameObject.activeSelf)
-		{
 			menuManager.traderMenu.offer();
-		}
 	}
 
 	new public void assignItem(item it)

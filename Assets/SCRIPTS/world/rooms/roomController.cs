@@ -66,8 +66,6 @@ public class roomController : MonoBehaviour
 	public GameObject itemPrefab;
 	private int itemSpawnRate;
 
-	[HideInInspector] public Transform player;
-
 	public SpriteRenderer colorBg;
 
 	public bool hasMentionedJumping = true;

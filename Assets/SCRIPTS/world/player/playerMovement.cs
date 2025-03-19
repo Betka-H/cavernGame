@@ -14,7 +14,7 @@ public class playerMovement : MonoBehaviour
 	[HideInInspector] public bool isAlive;
 
 	bool hasJumped;
-	float coyoteTime = 0.2f; // time allowed to cj
+	float coyoteTime = 0.15f; // time allowed to cj
 	float coyoteTimeElapsed;
 	int wallJumps;
 

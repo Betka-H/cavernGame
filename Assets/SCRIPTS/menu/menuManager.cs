@@ -9,7 +9,7 @@ public class menuManager : MonoBehaviour
     public inventoryManager inventoryManager;
     public missionManager missionManager;
     public callManager callManager;
-    public deathScreen deathScreen;
+    public GameObject deathScreen;
 
     public caveItemMenu caveItemMenu;
     public missionMenu missionMenu;
@@ -28,6 +28,7 @@ public class menuManager : MonoBehaviour
 
     void Awake()
     {
+        Debug.LogError($"reassign death screen");
         // menuOpen = null;
         // Debug.Log($"mo: {menuOpen}");
         // hideMenus();
@@ -36,7 +37,7 @@ public class menuManager : MonoBehaviour
     bool anotherMenuOpen = false;
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q) && !gameController.isDead)
         {
             // Debug.Log($"mo: {menuOpen}");
             // if (menuOpen == null || menuOpen == openMenu.item)
@@ -46,7 +47,7 @@ public class menuManager : MonoBehaviour
                 switch (gameController.roomController.currentLevel)
                 {
                     case gameController.level.lab:
-                        //? toggleLabMenuScreen();
+                        toggleLabMenuScreen();
                         break;
                     case gameController.level.cavern:
                         toggleCaveGameplayMenuScreen();
@@ -83,7 +84,7 @@ public class menuManager : MonoBehaviour
         toggleToolWorkstationMenu(false);
         toggleEquipmentWorkstationMenu(false);
         toggleMissionWorkstationMenu(false);
-        deathScreen.gameObject.SetActive(false);
+        deathScreen.SetActive(false);
         toggleEsc(false);
 
         ingameMissionMenu.gameObject.SetActive(false);
