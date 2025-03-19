@@ -28,6 +28,15 @@ public class playerMovement : MonoBehaviour
 		hasJumped = false;
 		wallJumps = 0;
 		isAlive = true;
+
+		string oldMovementKey = "oldMovement";
+		if (PlayerPrefs.GetInt(oldMovementKey) == 1)
+		{
+			oldMovement = true;
+		}
+		else
+			oldMovement = false;
+
 		speed = defaultSpeed;
 	}
 
@@ -42,24 +51,27 @@ public class playerMovement : MonoBehaviour
 		walk();
 		jump();
 	}
+	bool oldMovement;
 	void walk()
 	{
 		float moveDir;
-		switch (gameController.oldMovement)
+
+		switch (oldMovement)
 		{
 			case true:
-				moveDir = Input.GetAxisRaw("Horizontal");
+				moveDir = Input.GetAxis("Horizontal");
+				if (gameController.roomController.currentLevel == gameController.level.cavern)
+					speed = 8;
 				rb.velocity = new Vector2(moveDir * speed, rb.velocity.y);
 				break;
 			case false:
 				moveDir = Input.GetAxisRaw("Horizontal");
-				// chatgpt
 				if (moveDir != 0)
 					rb.velocity = new Vector2(moveDir * speed, rb.velocity.y);
 				else
 				{
 					if (rb.velocity.magnitude > 0.5f)
-						rb.velocity = new Vector2(rb.velocity.x * 0.9f, rb.velocity.y);
+						rb.velocity = new Vector2(rb.velocity.x * 0.9f, rb.velocity.y); // chatgpt
 					else rb.velocity = Vector3.zero;
 				}
 				break;

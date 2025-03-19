@@ -19,8 +19,6 @@ public class gameController : MonoBehaviour
 	public GameObject cavePlayerPrefab;
 	public GameObject spacePlayerPrefab;
 
-	[HideInInspector] public bool oldMovement;
-
 	[HideInInspector] public roomController roomController;
 
 	public SpriteRenderer floorImg;
