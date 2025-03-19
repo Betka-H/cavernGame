@@ -6,11 +6,11 @@ public enum tooltipKind { enter, exit, item, trader, toolWorkshop, equipWorkshop
 
 public class interactionTooltip : MonoBehaviour
 {
-	bool locked;
-	public TMP_Text textDisplay;
+	public TMP_Text txtDisplay;
 
-	[Header("interact functions")]
-	// [Header("item pickup event")][SerializeField] private UnityEvent itemPickupEvent;
+	bool isLocked;
+
+	[Header("interaction events")]
 	[Header("trader event")][SerializeField] private UnityEvent traderEvent;
 	[Header("cavern enter event")][SerializeField] private UnityEvent enterEvent;
 	[Header("cavern exit event")][SerializeField] private UnityEvent exitEvent;
@@ -18,62 +18,54 @@ public class interactionTooltip : MonoBehaviour
 	[Header("equip workshop event")][SerializeField] private UnityEvent equipWorkshopEvent;
 	[Header("mission workshop event")][SerializeField] private UnityEvent missionWorkshopEvent;
 
-	/* void Update()
+	// called on tooltip caller enter
+	public void showTooltip(KeyCode key, tooltipKind tk)
 	{
-		Debug.LogWarning($"tooltip locked? {locked}");
-	} */
-
-	public void showTooltip(KeyCode key, tooltipKind tk, Vector3 pos)
-	{
-		if (tk != tooltipKind.trader || FindObjectOfType<roomController>().m_hasIntroducedTrader) // only if knows about the trader
+		string action = "";
+		switch (tk)
 		{
-			string action = "";
-			switch (tk)
-			{
-				case tooltipKind.item:
-					action = "pick up item";
-					break;
-				case tooltipKind.trader:
+			case tooltipKind.item:
+				action = "pick up item";
+				break;
+			case tooltipKind.trader:
+
+				// only if knows about the trader
+				if (FindObjectOfType<roomController>().m_hasIntroducedTrader)
 					action = "trade";
-					break;
-				case tooltipKind.enter:
-					action = "enter the cavern";
-					break;
-				case tooltipKind.exit:
-					action = "exit the cavern";
-					break;
-				case tooltipKind.toolWorkshop:
-					action = "enter crafting lab";
-					break;
-				case tooltipKind.equipWorkshop:
-					action = "enter locker room";
-					break;
-				case tooltipKind.missionWorkshop:
-					action = "see current mission";
-					break;
-			}
+				else isLocked = true;
 
-			textDisplay.text = $"press {key} to {action}";
-
-			// transform.localPosition = pos;
-
-			locked = false;
-			gameObject.SetActive(true);
+				break;
+			case tooltipKind.enter:
+				action = "enter the cavern";
+				break;
+			case tooltipKind.exit:
+				action = "exit the cavern";
+				break;
+			case tooltipKind.toolWorkshop:
+				action = "enter crafting lab";
+				break;
+			case tooltipKind.equipWorkshop:
+				action = "enter locker room";
+				break;
+			case tooltipKind.missionWorkshop:
+				action = "see current mission";
+				break;
 		}
-		else
-		{
-			locked = true;
-			// FindObjectOfType<announcerManager>().announceMessage("doesnt know trader", true);
-		}
+
+		txtDisplay.text = $"press {key} to {action}";
+
+		isLocked = false;
+		gameObject.SetActive(true);
 	}
 
+	// called from tooltip caller interaction
 	public void action(tooltipKind tooltipKind)
 	{
-		if (!locked)
+		if (!isLocked)
 			switch (tooltipKind)
 			{
 				case tooltipKind.item:
-					// itemPickupEvent.Invoke();
+					// nothign
 					break;
 				case tooltipKind.trader:
 					traderEvent.Invoke();
@@ -93,9 +85,13 @@ public class interactionTooltip : MonoBehaviour
 				case tooltipKind.missionWorkshop:
 					missionWorkshopEvent.Invoke();
 					break;
+				default:
+					Debug.LogError($"invalid tk");
+					break;
 			}
 	}
 
+	// called on tooltip caller exit & game controller menu clear
 	public void hideTooltip()
 	{
 		if (this != null)

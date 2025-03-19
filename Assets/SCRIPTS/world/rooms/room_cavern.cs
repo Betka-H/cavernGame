@@ -15,8 +15,8 @@ public class room_cavern : roomSO
     [HideInInspector] public bool hasTrader;
     [HideInInspector] public Transform chosenTraderSpawn;
 
-    public void setLoot(int chance)
     // called when generating cavern
+    public void setLoot(int chance)
     {
         if (!isEntryRoom && allLootSpawnLocations.Length > 0 && lootThatCanSpawnInThisRoom.Count > 0)
         // spawn nothing in entry room and if the room has no item spawnpoints or loot to spawn 
@@ -71,8 +71,19 @@ public class room_cavern : roomSO
         }
     }
 
-    public void spawnItems(GameObject prefab, Transform parent)
+    // called when generating cavern
+    public void setTraderSpawn()
+    {
+        Transform[] allTraderSpawnLocations = roomPrefab.GetComponent<caveRoomObj>().getTraderSpawnpoints();
+        if (allTraderSpawnLocations.Length > 0)
+        {
+            int rnd = new System.Random().Next(allTraderSpawnLocations.Length);
+            chosenTraderSpawn = allTraderSpawnLocations[rnd];
+        }
+    }
+
     // called on room change
+    public void spawnItems(GameObject prefab, Transform parent)
     {
         if (chosenLootSpawnLocations.Count > 0 && chosenLoot.Count > 0)
             for (int i = 0; i < chosenLootSpawnLocations.Count; i++)
@@ -90,19 +101,8 @@ public class room_cavern : roomSO
         }
     }
 
-    public void setTraderSpawn()
-    // called when generating cavern
-    {
-        Transform[] allTraderSpawnLocations = roomPrefab.GetComponent<caveRoomObj>().getTraderSpawnpoints();
-        if (allTraderSpawnLocations.Length > 0)
-        {
-            int rnd = new System.Random().Next(allTraderSpawnLocations.Length);
-            chosenTraderSpawn = allTraderSpawnLocations[rnd];
-        }
-    }
-
-    public void removeItemSpawn(loot item, Transform spawn)
     // called on world item pickup
+    public void removeItemSpawn(loot item, Transform spawn)
     {
         chosenLootSpawnLocations.Remove(spawn);
         chosenLoot.Remove(item);

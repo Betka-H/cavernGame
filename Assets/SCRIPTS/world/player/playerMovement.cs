@@ -3,35 +3,36 @@ using UnityEngine;
 public class playerMovement : MonoBehaviour
 {
 	public Rigidbody2D rb;
-	[HideInInspector] public bool isAlive;
-
-	[Header("collision types or smthing")]
-	public LayerMask ground;
-	public LayerMask wall;
-
-	audioManager audioManager;
+	public audioManager audioManager;
 
 	[Header("movement stats")]
 	public float defaultSpeed;
-	public float speed; // 5f
+	[HideInInspector] public float speed;
 	public float bounciness; // jump height
-	public float agility; // wall jump cap (0 - no jumping allowed >:[)
+	public float agility; // wall jump cap
+
+	[Header("collision layers")]
+	public LayerMask ground;
+	public LayerMask wall;
 
 	[Header("ground check")]
-	public Transform feet;
+	public Transform feetTransform;
 	public float feetSize = 0.3f;
 
 	[Header("wall check")]
-	public Transform arms;
+	public Transform armsTransform;
 	public float armSize = 0.2f;
 
-	private bool hasJumped;
-	private float coyoteTime = 0.2f; // time allowed to cj
-	private float coyoteTimeElapsed;
-	private int wallJumps;
+	[HideInInspector] public bool isAlive;
+
+	bool hasJumped;
+	float coyoteTime = 0.2f; // time allowed to cj
+	float coyoteTimeElapsed;
+	int wallJumps;
 
 	void Awake()
 	{
+		Debug.LogError($"assign audioman in inspector");
 		audioManager = FindObjectOfType<audioManager>();
 
 		Debug.LogError($"fix slidy movement");
@@ -66,7 +67,7 @@ public class playerMovement : MonoBehaviour
 	}
 	void jump()
 	{
-		dogStuff();
+		dogStuff(); // runs cj timer
 		if (Input.GetButtonDown("Jump") && (isOnGround() || coyoteCheck() || squirrelCheck()))
 		{
 			hasJumped = true;
@@ -76,8 +77,8 @@ public class playerMovement : MonoBehaviour
 
 	bool isOnGround()
 	{
-		bool touchingGround = Physics2D.OverlapCircle(feet.position, feetSize, ground);
-		bool touchingWall = Physics2D.OverlapCircle(feet.position, feetSize, wall);
+		bool touchingGround = Physics2D.OverlapCircle(feetTransform.position, feetSize, ground);
+		bool touchingWall = Physics2D.OverlapCircle(feetTransform.position, feetSize, wall);
 
 		if (touchingGround || touchingWall)
 		{
@@ -97,7 +98,7 @@ public class playerMovement : MonoBehaviour
 
 		bool isOnWall()
 		{
-			foreach (Transform arm in arms.GetComponentsInChildren<Transform>())
+			foreach (Transform arm in armsTransform.GetComponentsInChildren<Transform>())
 			{
 				if (Physics2D.OverlapCircle(arm.position, armSize, wall) && hasJumped)
 				{
@@ -114,8 +115,7 @@ public class playerMovement : MonoBehaviour
 			hasJumped = false;
 			coyoteTimeElapsed = coyoteTime;
 		}
-		else
-			coyoteTimeElapsed -= Time.deltaTime;
+		else coyoteTimeElapsed -= Time.deltaTime; //? idk why its based on - not +
 	}
 	bool coyoteCheck()
 	{
