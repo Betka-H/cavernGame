@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class gameState : MonoBehaviour
 {
-	public enum gameStates { mainMenu, playing, paused };
+	//? whats this
+	/* public enum gameStates { mainMenu, playing, paused };
 	private static gameStates state;
 	public static gameStates State
 	{
@@ -34,5 +35,5 @@ public class gameState : MonoBehaviour
 		{ 
 			// Time.timeScale = 1;
 		}
-	}
+	} */
 }

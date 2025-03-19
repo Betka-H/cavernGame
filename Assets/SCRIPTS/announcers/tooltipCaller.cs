@@ -41,7 +41,7 @@ public class tooltipCaller : MonoBehaviour
 		if (isExitPoint) isExitPoint = false;
 		else if (other.gameObject.CompareTag("player"))
 		{
-			tooltipObj.showTooltip(keyToInteract, tooltipKind, new Vector3(transform.localPosition.x, transform.localPosition.y + 150, 0f));
+			tooltipObj.showTooltip(keyToInteract, tooltipKind);
 
 			isEnabled = true;
 		}

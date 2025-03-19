@@ -4,31 +4,22 @@ using UnityEngine.SceneManagement;
 
 public class gameStartController : MonoBehaviour
 {
-    int gameSceneIndex = 1;
     bool hasStarted;
-    public TMP_Text startTxt;
 
     void OnEnable()
     {
         changeBtnTitle();
     }
-
+    public TMP_Text startTxt;
     void changeBtnTitle()
     {
         loadStartPref();
         if (hasStarted)
-            startTxt.text = "continue game";
-        else startTxt.text = "start game";
+            startTxt.text = "Continue game";
+        else startTxt.text = "New game";
     }
 
-    /* void Start()
-    {
-        loadStartPref();
-        if (hasStarted)
-            startTxt.text = "continue game";
-        else startTxt.text = "start game";
-    } */
-
+    int gameSceneIndex = 1;
     public void startGame()
     {
         SceneManager.LoadScene(gameSceneIndex);

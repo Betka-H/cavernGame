@@ -11,18 +11,6 @@ public class playerMovement : MonoBehaviour
 	public float bounciness; // jump height
 	public float agility; // wall jump cap
 
-	[Header("collision layers")]
-	public LayerMask ground;
-	public LayerMask wall;
-
-	[Header("ground check")]
-	public Transform feetTransform;
-	public float feetSize = 0.3f;
-
-	[Header("wall check")]
-	public Transform armsTransform;
-	public float armSize = 0.2f;
-
 	[HideInInspector] public bool isAlive;
 
 	bool hasJumped;
@@ -75,6 +63,12 @@ public class playerMovement : MonoBehaviour
 		}
 	}
 
+	[Header("collision layers")]
+	public LayerMask ground;
+	public LayerMask wall;
+	[Header("ground check")]
+	public Transform feetTransform;
+	public float feetSize = 0.3f;
 	bool isOnGround()
 	{
 		bool touchingGround = Physics2D.OverlapCircle(feetTransform.position, feetSize, ground);
@@ -87,6 +81,10 @@ public class playerMovement : MonoBehaviour
 		}
 		else return false;
 	}
+
+	[Header("wall check")]
+	public Transform armsTransform;
+	public float armSize = 0.2f;
 	bool squirrelCheck()
 	{
 		if (isOnWall() && wallJumps < agility)
