@@ -16,10 +16,10 @@ public class announcerObj : MonoBehaviour
     void Start()
     {
         canvasGroup = gameObject.AddComponent<CanvasGroup>(); // canvas group allows fading
-        StartCoroutine(AnimateText());
+        StartCoroutine(animate());
     }
 
-    IEnumerator AnimateText()
+    IEnumerator animate()
     {
         float timer = 0f;
 

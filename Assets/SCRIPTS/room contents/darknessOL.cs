@@ -10,15 +10,14 @@ public class darknessOL : MonoBehaviour
 	public void setPlayer()
 	{
 		player = FindObjectOfType<playerMovement>().transform;
-		// Debug.Log($"darkness player set to {player}");
 	}
 
+	//* check for player when null instead?
 	void Update()
 	{
 		if ((darknessOverlayNormal.gameObject.activeSelf || darknessOverlayNightVis.gameObject.activeSelf) && player != null)
 		{
 			transform.position = player.position;
-			// Debug.Log($"pos: {transform.position}");
 		}
 	}
 }

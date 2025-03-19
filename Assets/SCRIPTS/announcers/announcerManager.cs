@@ -12,7 +12,8 @@ public class announcerManager : MonoBehaviour
     Color debugColor = Color.red;
 
     GameObject newAnnouncer;
-    public void announceMessage(string message) // base announcement
+    public void announceMessage(string message)
+    // base announcement
     {
         Debug.LogWarning($"announcer: \"{message}\"");
 
@@ -29,7 +30,8 @@ public class announcerManager : MonoBehaviour
         }
         else newAnnouncer = null;
     }
-    public void announceMessage(string message, bool debug) // overload - changes color
+    public void announceMessage(string message, bool debug)
+    // overload - changes color
     {
         // make an announcement
         announceMessage(message);

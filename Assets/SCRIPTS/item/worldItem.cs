@@ -2,19 +2,23 @@ using UnityEngine;
 
 public class worldItem : MonoBehaviour
 {
-	SpriteRenderer spriteRenderer;
-	private inventoryManager inventoryManager;
-	private caveItemMenu caveItemMenu;
 	audioManager audioManager;
+	inventoryManager inventoryManager;
+	caveItemMenu caveItemMenu;
 
+	public SpriteRenderer spriteRenderer;
 	loot assignedItem;
-	[HideInInspector] public Transform assignedSpawnTransform;
+
+	[HideInInspector] public Transform assignedSpawnPoint;
 	[HideInInspector] public room_cavern assignedRoomSO;
 
 	void Awake()
 	{
 		audioManager = FindObjectOfType<audioManager>();
-		spriteRenderer = GetComponent<SpriteRenderer>();
+
+		Debug.LogError($"assign sr manually");
+		spriteRenderer = GetComponent<SpriteRenderer>(); //!
+
 		inventoryManager = FindObjectOfType<inventoryManager>();
 		caveItemMenu = FindObjectOfType<caveItemMenu>(true);
 	}
@@ -26,13 +30,17 @@ public class worldItem : MonoBehaviour
 
 	public void updateItem(loot it)
 	{
-		assignedItem = it;
 		if (it != null)
 		{
+			assignedItem = it;
 			gameObject.SetActive(true);
-			updateSprite();
 		}
 		else Destroy(gameObject);
+	}
+
+	void OnEnable()
+	{
+		updateSprite();
 	}
 	void updateSprite()
 	{
@@ -40,27 +48,18 @@ public class worldItem : MonoBehaviour
 			spriteRenderer.sprite = assignedItem.itemSprite;
 	}
 
-	/* void OnTriggerEnter2D(Collider2D other)
-	{
-		if (other.gameObject.CompareTag("player"))
-		{
-			pickUp();
-		}
-	} */
 	public void pickUp()
 	{
 		if (inventoryManager.caveInventory.Count < caveItemMenu.slotLimit)
+		// if there are less items in the inventory than the max amount
 		{
 			audioManager.playSfx(audioManager.worldSfxSource, audioManager.itemPickup);
 
+			// collect and destroy
 			inventoryManager.addItem(assignedItem, inventoryManager.caveInventory);
-			assignedRoomSO.removeItemSpawn(assignedItem, assignedSpawnTransform);
+			assignedRoomSO.removeItemSpawn(assignedItem, assignedSpawnPoint);
 			updateItem(null);
 		}
-		else
-		{
-			// Debug.Log("inv full!"); }
-			FindObjectOfType<announcerManager>().announceMessage("inventory full!");
-		}
+		else FindObjectOfType<announcerManager>().announceMessage("inventory full!");
 	}
 }

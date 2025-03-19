@@ -9,14 +9,14 @@ public class caveRoomObj : MonoBehaviour
 
 	public Transform[] getLootSpawnpoints()
 	{
-		List<Transform> sps = itemSpawnpointParent.GetComponentsInChildren<Transform>().ToList();
-		sps.Remove(itemSpawnpointParent);
-		return sps.ToArray();
+		List<Transform> spawnPoints = itemSpawnpointParent.GetComponentsInChildren<Transform>().ToList();
+		spawnPoints.Remove(itemSpawnpointParent);
+		return spawnPoints.ToArray();
 	}
 	public Transform[] getTraderSpawnpoints()
 	{
-		List<Transform> tsps = traderSpawnpointParent.GetComponentsInChildren<Transform>().ToList();
-		tsps.Remove(traderSpawnpointParent);
-		return tsps.ToArray();
+		List<Transform> spawnPoints = traderSpawnpointParent.GetComponentsInChildren<Transform>().ToList();
+		spawnPoints.Remove(traderSpawnpointParent);
+		return spawnPoints.ToArray();
 	}
 }

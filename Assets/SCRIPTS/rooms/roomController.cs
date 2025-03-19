@@ -287,7 +287,7 @@ public class roomController : MonoBehaviour
 
 		setDarkRooms();
 
-		chooseItemSpawnLocations();
+		setLootAndTheirSpawnLocations();
 		chooseTraderSpawnLocation();
 
 		// Debug.Log(logCavernRooms());
@@ -339,7 +339,7 @@ public class roomController : MonoBehaviour
 		}
 	}
 
-	void chooseItemSpawnLocations()
+	void setLootAndTheirSpawnLocations()
 	{
 		foreach (room_cavern room in selectedRooms)
 		{

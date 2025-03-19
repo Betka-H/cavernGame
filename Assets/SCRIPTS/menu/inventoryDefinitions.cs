@@ -7,6 +7,8 @@ public class inventoryDefinitions : MonoBehaviour
 
     [Header("mission items")]
     public List<item> missionItems;
+    [Header("loot items")]
+    public List<item> lootItems;
 
     [Header("gems")]
     public item gemRed;
