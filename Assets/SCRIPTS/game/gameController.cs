@@ -19,7 +19,7 @@ public class gameController : MonoBehaviour
 	public GameObject cavePlayerPrefab;
 	public GameObject spacePlayerPrefab;
 
-
+	[HideInInspector] public bool oldMovement;
 
 	[HideInInspector] public roomController roomController;
 
@@ -135,13 +135,12 @@ public class gameController : MonoBehaviour
 	public void m_endOfIntroCall()
 	{
 		Invoke(nameof(endIntroCall), 5f);
-
-		void endIntroCall()
-		{
-			roomController.labFirst = true;
-			genAndSpawn(level.lab);
-			getElevator().isFirst = true;
-		}
+	}
+	void endIntroCall()
+	{
+		roomController.labFirst = true;
+		genAndSpawn(level.lab);
+		getElevator().isFirst = true;
 	}
 
 	public void saveAndGoToMainMenu()

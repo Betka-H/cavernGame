@@ -13,7 +13,8 @@ public class spikes : MonoBehaviour
 	{
 		if (other.gameObject.CompareTag("player"))
 		{
-			gameController.death();
+			Debug.LogError($"fuckinf died");
+			// gameController.death();
 		}
 	}
 }

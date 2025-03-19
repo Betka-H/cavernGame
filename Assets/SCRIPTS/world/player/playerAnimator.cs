@@ -8,18 +8,6 @@ public class playerAnimator : MonoBehaviour
 
 	private enum direction { idle, up, down, right, left, dead };
 
-	void Start()
-	{
-		Debug.LogError($"assign playermovement manually");
-		playerMovement = FindObjectOfType<playerMovement>();
-
-		Debug.LogError($"assign rb manually");
-		rb = GetComponentInParent<Rigidbody2D>();
-
-		Debug.LogError($"assign animator manually");
-		animator = GetComponentInParent<Animator>();
-	}
-
 	void FixedUpdate()
 	{
 		animate();

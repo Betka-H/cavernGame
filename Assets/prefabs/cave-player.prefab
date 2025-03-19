@@ -98,6 +98,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66cc9e61d35c6f74c933e52a7599812c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerMovement: {fileID: 2453926673175596032}
+  rb: {fileID: 2041706101789367381}
+  animator: {fileID: 1943822340829843969}
 --- !u!95 &1943822340829843969
 Animator:
   serializedVersion: 5
@@ -263,21 +266,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fe864d967ad877418171cf078223008, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 0}
-  alive: 0
+  rb: {fileID: 2041706101789367381}
+  defaultSpeed: 6
+  speed: 8
+  bounciness: 10
+  agility: 0
+  isAlive: 0
   ground:
     serializedVersion: 2
     m_Bits: 64
   wall:
     serializedVersion: 2
     m_Bits: 128
-  defaultSpeed: 8
-  speed: 8
-  bounciness: 10
-  agility: 0
-  feet: {fileID: 1965521005522208259}
+  feetTransform: {fileID: 1965521005522208259}
   feetSize: 0.4
-  arms: {fileID: 9163591151191938081}
+  armsTransform: {fileID: 9163591151191938081}
   armSize: 0.2
 --- !u!50 &2041706101789367381
 Rigidbody2D:
@@ -295,7 +298,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 3.14
-  m_Material: {fileID: 6200000, guid: 623744aa0bfeb514da787f4f1f6b754d, type: 2}
+  m_Material: {fileID: 6200000, guid: 3bb80c9264621d94f895622b8c6bd9f7, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

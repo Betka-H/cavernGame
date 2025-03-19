@@ -28,7 +28,6 @@ public class menuManager : MonoBehaviour
 
     void Awake()
     {
-        Debug.LogError($"reassign death screen");
         // menuOpen = null;
         // Debug.Log($"mo: {menuOpen}");
         // hideMenus();

@@ -8,11 +8,11 @@ public class labItemOutOfGrid : itemMenu
     {
         isAwake = true;
         base.Awake();
-        Debug.LogWarning($"awaking 1");
-        Debug.LogWarning($"got slots: {regularSlots.Length}");
+        // Debug.LogWarning($"awaking 1");
+        // Debug.LogWarning($"got slots: {regularSlots.Length}");
     }
 
-    
+
 
     public override void refreshItems(invItem[] cat, List<item> dog)
     {
@@ -22,7 +22,7 @@ public class labItemOutOfGrid : itemMenu
     {
         if (isAwake)
         {
-            Debug.LogWarning($"found slots: {regularSlots.Length}???????");
+            // Debug.LogWarning($"found slots: {regularSlots.Length}???????");
 
             inventoryScript.sortInventory(ref hasList);
             List<item> tempHasInv;
@@ -67,7 +67,7 @@ public class labItemOutOfGrid : itemMenu
         }
         else
         {
-            Debug.LogWarning($"FALSSSSE");
+            // Debug.LogWarning($"FALSSSSE");
             Awake();
         }
     }

@@ -44,10 +44,10 @@ public class missionManager : MonoBehaviour
     // -1 to not check call
     public bool checkCurrentMission(int wantedMissionID, int wantedCallID)
     {
-        Debug.Log($"checking mission state as {wantedMissionID}, {wantedCallID}");
+        // Debug.Log($"checking mission state as {wantedMissionID}, {wantedCallID}");
         missionSO currentMissionSO = allMissions[currentMission];
 
-        Debug.Log($"current mission: {currentMissionSO} ({currentMissionSO.missionID}), current call: {currentMissionSO.currentCall}");
+        // Debug.Log($"current mission: {currentMissionSO} ({currentMissionSO.missionID}), current call: {currentMissionSO.currentCall}");
 
         if (currentMissionSO.missionID == wantedMissionID && (currentMissionSO.currentCall == wantedCallID || wantedCallID == -1))
         {
@@ -164,14 +164,14 @@ public class missionManager : MonoBehaviour
     {
         if (allMissions[currentMission] is randomMissionSO rndMission)
         {
-            Debug.Log($"random mission");
+            //  Debug.Log($"random mission");
             // generate random items
             // rndMission.requiredItems.Clear();
 
             // if (rndMission.requiredItems.Count > 0) // fucking hell....
             if (rndMission.requiredItems.Count == 0)
             {
-                Debug.LogWarning($"req items empty - generating new");
+                // Debug.LogWarning($"req items empty - generating new");
 
                 List<item> allMissionItems = menuManager.inventoryManager.inventoryDefinitions.missionItems;
                 for (int i = 0; i < rndMission.howManyItems; i++)
@@ -184,12 +184,12 @@ public class missionManager : MonoBehaviour
                     // Debug.Log($"generating item {i}: {rndItem}");
                 }
                 menuManager.inventoryManager.sortInventory(ref rndMission.requiredItems);
-                Debug.Log($"req items generated:");
-                menuManager.inventoryManager.printInventory(rndMission.requiredItems);
+                // Debug.Log($"req items generated:");
+                // menuManager.inventoryManager.printInventory(rndMission.requiredItems);
             }
             else
             {
-                Debug.LogWarning($"req items not empty - keeping:");
+                // Debug.LogWarning($"req items not empty - keeping:");
                 menuManager.inventoryManager.printInventory(rndMission.requiredItems);
             }
         }

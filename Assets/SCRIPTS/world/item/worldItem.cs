@@ -16,9 +16,6 @@ public class worldItem : MonoBehaviour
 	{
 		audioManager = FindObjectOfType<audioManager>();
 
-		Debug.LogError($"assign sr manually");
-		spriteRenderer = GetComponent<SpriteRenderer>(); //!
-
 		inventoryManager = FindObjectOfType<inventoryManager>();
 		caveItemMenu = FindObjectOfType<caveItemMenu>(true);
 	}
@@ -34,19 +31,11 @@ public class worldItem : MonoBehaviour
 		{
 			assignedItem = it;
 			gameObject.SetActive(true);
+			spriteRenderer.sprite = assignedItem.itemSprite;
 		}
 		else Destroy(gameObject);
 	}
 
-	void OnEnable()
-	{
-		updateSprite();
-	}
-	void updateSprite()
-	{
-		if (assignedItem != null)
-			spriteRenderer.sprite = assignedItem.itemSprite;
-	}
 
 	public void pickUp()
 	{

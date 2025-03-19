@@ -43,7 +43,7 @@ public class callScreen : MonoBehaviour
         if (missionManager.checkCurrentMission(-1, 0)) // if in space call
         {
             // gameObject.SetActive(false);
-            Debug.LogWarning($"spaaaace!!1!1");
+            Debug.Log($"spaaaace!!1!1");
         }
         // else
         {

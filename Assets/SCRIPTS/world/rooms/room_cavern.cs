@@ -7,7 +7,7 @@ public class room_cavern : roomSO
     [HideInInspector] public bool isDark;
     public bool isEntryRoom;
 
-    public List<loot> lootThatCanSpawnInThisRoom = new List<loot>();
+    [HideInInspector] public List<loot> lootThatCanSpawnInThisRoom = new List<loot>();
     List<loot> chosenLoot = new List<loot>();
     Transform[] allLootSpawnLocations;
     List<Transform> chosenLootSpawnLocations = new List<Transform>();
@@ -18,11 +18,8 @@ public class room_cavern : roomSO
     // called when generating cavern
     public void setLoot(int chance)
     {
-        if (!isEntryRoom && allLootSpawnLocations.Length > 0 && lootThatCanSpawnInThisRoom.Count > 0)
-        // spawn nothing in entry room and if the room has no item spawnpoints or loot to spawn 
+        if (!isEntryRoom)
         {
-            Debug.LogError($"assign room loot in inv definitions inspector");
-
             inventoryDefinitions inventoryDefinitions = FindObjectOfType<inventoryDefinitions>();
             allLootSpawnLocations = roomPrefab.GetComponent<caveRoomObj>().getLootSpawnpoints();
 
@@ -31,43 +28,46 @@ public class room_cavern : roomSO
             foreach (item it in inventoryDefinitions.lootItems)
                 lootThatCanSpawnInThisRoom.Add(it as loot);
 
-            assignSpawnpoints();
-            assignLoot();
-        }
-
-        void assignSpawnpoints()
-        {
-            chosenLootSpawnLocations.Clear();
-
-            foreach (Transform loc in allLootSpawnLocations)
+            if (allLootSpawnLocations.Length > 0 && lootThatCanSpawnInThisRoom.Count > 0)
             {
-                int rnd = new System.Random().Next(100);
-                if (rnd <= chance)
-                    chosenLootSpawnLocations.Add(loc);
+                assignSpawnpoints();
+                assignLoot();
             }
-        }
-        void assignLoot()
-        {
-            chosenLoot.Clear();
 
-            loot[] lbr = lootByRarity();
-            for (int i = 0; i < chosenLootSpawnLocations.Count; i++)
-            // for each spawnpoint
+            void assignSpawnpoints()
             {
-                int rnd = new System.Random().Next(lbr.Length);
-                chosenLoot.Add(lbr[rnd]);
+                chosenLootSpawnLocations.Clear();
+
+                foreach (Transform loc in allLootSpawnLocations)
+                {
+                    int rnd = new System.Random().Next(100);
+                    if (rnd <= chance)
+                        chosenLootSpawnLocations.Add(loc);
+                }
             }
-        }
-        loot[] lootByRarity()
-        {
-            List<loot> lbr = new List<loot>();
+            void assignLoot()
+            {
+                chosenLoot.Clear();
 
-            // adds each loot as many times as it is rare
-            foreach (loot loot in lootThatCanSpawnInThisRoom)
-                for (int i = 1; i <= loot.rarity; i++)
-                    lbr.Add(loot);
+                loot[] lbr = lootByRarity();
+                for (int i = 0; i < chosenLootSpawnLocations.Count; i++)
+                // for each spawnpoint
+                {
+                    int rnd = new System.Random().Next(lbr.Length);
+                    chosenLoot.Add(lbr[rnd]);
+                }
+            }
+            loot[] lootByRarity()
+            {
+                List<loot> lbr = new List<loot>();
 
-            return lbr.ToArray();
+                // adds each loot as many times as it is rare
+                foreach (loot loot in lootThatCanSpawnInThisRoom)
+                    for (int i = 1; i <= loot.rarity; i++)
+                        lbr.Add(loot);
+
+                return lbr.ToArray();
+            }
         }
     }
 

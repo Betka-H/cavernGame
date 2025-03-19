@@ -278,7 +278,7 @@ public class roomController : MonoBehaviour
 				}
 
 				//! for testing
-				forceEntranceTrader();
+				// forceEntranceTrader();
 
 				if (traderSpawnRoomPool.Count > 0)
 				{
@@ -488,14 +488,14 @@ public class roomController : MonoBehaviour
 			}
 			else m_hasIntroducedTrader = true;
 
-			void startTraderCall()
-			{
-				m_hasIntroducedTrader = true;
-				callManager.startCall(missionManager.traderMission);
-			}
 
 			npcTrader.transform.localPosition = traderSpawnRoom.chosenTraderSpawn.position;
 			npcTrader.gameObject.SetActive(true);
 		}
+	}
+	void startTraderCall()
+	{
+		m_hasIntroducedTrader = true;
+		callManager.startCall(missionManager.traderMission);
 	}
 }

@@ -11,7 +11,7 @@ public class outsideMissionInfoToggler : MonoBehaviour
 
     void OnEnable()
     {
-        Debug.LogWarning($"ENABLING");
+        // Debug.LogWarning($"ENABLING");
         outsideMissionInfoObj = FindObjectOfType<outsideMissionInfo>(true);
         outsideMissionInfoObj.show();
     }

@@ -3,7 +3,7 @@ using UnityEngine;
 public class playerMovement : MonoBehaviour
 {
 	public Rigidbody2D rb;
-	public audioManager audioManager;
+	audioManager audioManager;
 
 	[Header("movement stats")]
 	public float defaultSpeed;
@@ -18,15 +18,12 @@ public class playerMovement : MonoBehaviour
 	float coyoteTimeElapsed;
 	int wallJumps;
 
+	gameController gameController;
+
 	void Awake()
 	{
-		Debug.LogError($"assign audioman in inspector");
 		audioManager = FindObjectOfType<audioManager>();
-
-		Debug.LogError($"fix slidy movement");
-
-		Debug.LogError($"assign rb in inspector");
-		rb = GetComponent<Rigidbody2D>();
+		gameController = FindObjectOfType<gameController>();
 
 		hasJumped = false;
 		wallJumps = 0;
@@ -47,8 +44,26 @@ public class playerMovement : MonoBehaviour
 	}
 	void walk()
 	{
-		float moveDir = Input.GetAxis("Horizontal");
-		rb.velocity = new Vector2(moveDir * speed, rb.velocity.y);
+		float moveDir;
+		switch (gameController.oldMovement)
+		{
+			case true:
+				moveDir = Input.GetAxisRaw("Horizontal");
+				rb.velocity = new Vector2(moveDir * speed, rb.velocity.y);
+				break;
+			case false:
+				moveDir = Input.GetAxisRaw("Horizontal");
+				// chatgpt
+				if (moveDir != 0)
+					rb.velocity = new Vector2(moveDir * speed, rb.velocity.y);
+				else
+				{
+					if (rb.velocity.magnitude > 0.5f)
+						rb.velocity = new Vector2(rb.velocity.x * 0.9f, rb.velocity.y);
+					else rb.velocity = Vector3.zero;
+				}
+				break;
+		}
 
 		if (isOnGround())
 			audioManager.playSfx(audioManager.playerSfxSource, audioManager.footSteps);

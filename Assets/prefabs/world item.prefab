@@ -99,7 +99,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95c9fac18de482b4498766b925d521f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  assignedSpawnTransform: {fileID: 0}
+  spriteRenderer: {fileID: 8360733481259930243}
+  assignedSpawnPoint: {fileID: 0}
   assignedRoomSO: {fileID: 0}
 --- !u!61 &461668264627488425
 BoxCollider2D:
@@ -160,3 +161,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tooltipKind: 2
   keyToInteract: 101
+  onlyActivateOncePerEnter: 0
+  isExitPoint: 0

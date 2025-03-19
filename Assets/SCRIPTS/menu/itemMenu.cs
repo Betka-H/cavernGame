@@ -12,10 +12,10 @@ public abstract class itemMenu : MonoBehaviour
     protected void Awake()
     {
         regularSlots = gridSlotsParent.GetComponentsInChildren<invItem>(true);
-        Debug.LogWarning($"found slots: {regularSlots.Length}");
+        // Debug.LogWarning($"found slots: {regularSlots.Length}");
         inventoryScript = FindObjectOfType<inventoryManager>();
         isAwake = true;
-        Debug.LogWarning($"awaking 2");
+        // Debug.LogWarning($"awaking 2");
     }
     public void wakeUp()
     {
