@@ -10,7 +10,3 @@ public class item : ScriptableObject
 	public string itemDescription;
 	public Sprite itemSprite;
 }
-
-// audioManager audioMan;
-// audioMan = FindObjectOfType<audioManager>();
-// audioMan.playSfx(audioMan.sfxItemPickUp);
