@@ -31,11 +31,11 @@ public class room_cavern : roomSO
             foreach (item it in inventoryDefinitions.lootItems)
                 lootThatCanSpawnInThisRoom.Add(it as loot);
 
-            assignSpawnpoints(chance);
+            assignSpawnpoints();
             assignLoot();
         }
 
-        void assignSpawnpoints(int chance)
+        void assignSpawnpoints()
         {
             chosenLootSpawnLocations.Clear();
 
@@ -76,9 +76,9 @@ public class room_cavern : roomSO
     {
         if (chosenLootSpawnLocations.Count > 0 && chosenLoot.Count > 0)
             for (int i = 0; i < chosenLootSpawnLocations.Count; i++)
-                spawn(prefab, parent, i);
+                spawn(i);
 
-        void spawn(GameObject prefab, Transform parent, int i)
+        void spawn(int i)
         {
             worldItem spawnedItem = Instantiate(prefab, parent).GetComponent<worldItem>();
 
