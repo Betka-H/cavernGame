@@ -349,26 +349,33 @@ public class menuManager : MonoBehaviour
                 callManager.startCall(getCurrentMission());
                 // hasTalkedBeforeFirstCave = true;
             }
-            /* else if (missionManager.checkCurrentMission(-1, 4) || missionManager.checkCurrentMission(-1, 5)) // in case of death
+            else if (missionManager.checkCurrentMission(-1, 4) || missionManager.checkCurrentMission(-1, 5)) // in case of death
             {
                 onOff = toggleMenu(missionMenu.gameObject);
                 toggleMissionWorkstationMenu(onOff);
                 anotherMenuOpen = onOff;
 
                 FindObjectOfType<announcerManager>().announceMessage($"go into the elevator!");
-            } */
+            }
             else if (missionManager.checkCurrentMission(-1, 6)) //! testing
             {
-                /* onOff = toggleMenu(missionMenu.gameObject);
-                toggleMissionWorkstationMenu(onOff);
-                anotherMenuOpen = onOff; */
-
-                // callManager.startCall(getCurrentMission());
-                FindObjectOfType<announcerManager>().announceMessage($"have you got everything?");
                 missionManager.checkMissionItems(); //? why?
+                if (gameController.isCalling) // if calling 6th
+                {
+                    // disable menu again
+                    onOff = toggleMenu(missionMenu.gameObject);
+                    toggleMissionWorkstationMenu(onOff);
+                    anotherMenuOpen = onOff;
+
+                    callManager.startCall(getCurrentMission());
+                }
+                else if (onOff) // if not calling and only on toggle on
+                    FindObjectOfType<announcerManager>().announceMessage($"have you got everything?");
+
                 // startNextMainMissionCall();
             }
-            else if (missionManager.checkCurrentMission(-1, 7) || missionManager.checkCurrentMission(-1, 8) || missionManager.checkCurrentMission(-1, 9))
+            // else if (missionManager.checkCurrentMission(-1, 7) || missionManager.checkCurrentMission(-1, 8) || missionManager.checkCurrentMission(-1, 9))
+            else if (missionManager.checkCurrentMission(-1, 8) || missionManager.checkCurrentMission(-1, 9))
             {
                 onOff = toggleMenu(missionMenu.gameObject);
                 toggleMissionWorkstationMenu(onOff);

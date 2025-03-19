@@ -69,7 +69,7 @@ public class missionManager : MonoBehaviour
             // FindObjectOfType<announcerManager>().announceMessage($"all items collected! go to MG for a new mission");
             if (cm.missionID == -1)
             {
-                // Debug.LogWarning("collected all items for tutorial mission");
+                Debug.LogWarning("collected all items for tutorial mission");
                 gameController.m_lockCavern();
                 callManager.startCall(cm);
             }
