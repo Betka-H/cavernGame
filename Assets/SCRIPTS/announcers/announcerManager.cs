@@ -31,8 +31,10 @@ public class announcerManager : MonoBehaviour
     }
     public void announceMessage(string message, bool debug) // overload - changes color
     {
+        // make an announcement
         announceMessage(message);
 
+        // color text
         if (newAnnouncer != null)
             if (debug)
                 newAnnouncer.GetComponent<TextMeshProUGUI>().color = debugColor;
