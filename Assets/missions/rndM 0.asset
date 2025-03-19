@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   missionID: 0
   missionTitle: rnd mission 0
-  missionDescription: random
+  missionDescription: random 5
   endOnAllItems: 1
   endOnAllCalls: 0
   requiredItems: []
   calls: []
   currentCall: 0
   endEventValuesList: []
-  howManyItems: 5
+  howManyItems: 2
   hasBeenAssigned: 0

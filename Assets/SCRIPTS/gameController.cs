@@ -160,8 +160,9 @@ public class gameController : MonoBehaviour
 
 	public void genAndSpawn(level lvl)
 	{
-		Debug.LogWarning($"gear?: v v v");
-		inventoryManager.printInventory(inventoryManager.equippedItems);
+		// Debug.LogWarning($"gear?: v v v");
+		// inventoryManager.printInventory(inventoryManager.equippedItems);
+		// clearMenus(); //?
 
 		switch (lvl)
 		{
@@ -271,6 +272,7 @@ public class gameController : MonoBehaviour
 			m_unlockCavern(); // cavern is locked from collecting all tutorial items
 		}
 		else Debug.Log($"is in -1st mission. not moving");
+		m_unlockCavern();
 		// getElevator().openDoors(true);
 	}
 
@@ -448,10 +450,13 @@ public class gameController : MonoBehaviour
 	}
 	IEnumerator waitForDoorsToCloseAndGoToLab()
 	{
+		Debug.LogWarning($"starting wait for doors to close and go to lab coroutine");
+
 		while (!getElevator().isClosed)
 		{
 			yield return null;
 		}
+		Debug.LogWarning($"door closed");
 
 		// playerSpawnPoint = caveExitPlayerSpawnPoint;
 
@@ -459,16 +464,19 @@ public class gameController : MonoBehaviour
 
 		Debug.LogWarning("wait for 3!!!");
 		yield return new WaitForSeconds(3); // keep this line
-											// yield return new WaitForSeconds(0.5f); //! delete this line
+		Debug.LogWarning($"waited 3 more seconds");
+		// yield return new WaitForSeconds(0.5f); //! delete this line
 
 		transferToLabAndMissionInventory();
-		missionManager.checkMissionItems();
+		//? missionManager.checkMissionItems(); //?
 
 		audioManager.worldSfxSource.Stop();
 		roomController.clearRoom();
 		// roomController.labFirst = true;
 		genAndSpawn(level.lab);
-		// getElevator().isFirst = true;
+
+		missionManager.checkMissionItems(); //?
+											// getElevator().isFirst = true;
 		Debug.LogWarning("door is first");
 
 		// getElevator().isFirst = true;
