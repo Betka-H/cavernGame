@@ -2,10 +2,8 @@ using UnityEngine;
 
 public class playerMovement : MonoBehaviour
 {
-	[HideInInspector]
 	public Rigidbody2D rb;
-	[HideInInspector]
-	public bool alive;
+	[HideInInspector] public bool isAlive;
 
 	[Header("collision types or smthing")]
 	public LayerMask ground;
@@ -36,66 +34,21 @@ public class playerMovement : MonoBehaviour
 	{
 		audioManager = FindObjectOfType<audioManager>();
 
+		Debug.LogError($"fix slidy movement");
+
+		Debug.LogError($"assign rb in inspector");
 		rb = GetComponent<Rigidbody2D>();
+
 		hasJumped = false;
 		wallJumps = 0;
-		alive = true;
+		isAlive = true;
 		speed = defaultSpeed;
 	}
-	void FixedUpdate()
-	{
-		// movement();
-		// Debug.LogWarning("player movement changed to fixedupdate. beware of weird shit");
-	}
+
 	void Update()
 	{
-		if (alive)
-		{
+		if (isAlive)
 			movement();
-			// Time.timeScale = 1;
-		}
-		else
-		{
-			// Time.timeScale = 0;
-		}
-	}
-
-	// if feet are within a distance from ground (or wall) layer
-	public bool groundCheck()
-	{
-		bool groundC = Physics2D.OverlapCircle(feet.position, feetSize, ground);
-		bool wallC = Physics2D.OverlapCircle(feet.position, feetSize, wall);
-
-		if (groundC || wallC)
-		{
-			wallJumps = 0;
-			return true;
-		}
-		else return false;
-	}
-	// if arms are within a distance from wall layer
-	bool wallsCheck()
-	{
-		// if arms are within a distance from wall layer
-		foreach (Transform arm in arms.GetComponentsInChildren<Transform>())
-		{
-			if (Physics2D.OverlapCircle(arm.position, armSize, wall) && hasJumped)
-			{
-				return true;
-			}
-		}
-		return false;
-	}
-
-	// draws debug gizmos
-	void OnDrawGizmosSelected()
-	{
-		Gizmos.color = Color.red;
-		Gizmos.DrawWireSphere(feet.position, feetSize);
-
-		Gizmos.color = Color.green;
-		foreach (Transform arm in arms.GetComponentsInChildren<Transform>())
-			Gizmos.DrawWireSphere(arm.position, armSize);
 	}
 
 	void movement()
@@ -103,49 +56,81 @@ public class playerMovement : MonoBehaviour
 		walk();
 		jump();
 	}
-
 	void walk()
 	{
 		float moveDir = Input.GetAxis("Horizontal");
 		rb.velocity = new Vector2(moveDir * speed, rb.velocity.y);
+
+		if (isOnGround())
+			audioManager.playSfx(audioManager.playerSfxSource, audioManager.footSteps);
 	}
 	void jump()
 	{
-		dogStuff(); // handles cj timer
-		if (Input.GetButtonDown("Jump") && (groundCheck() || coyoteCheck() || squirrelCheck())) // if the player is on the ground, can cj or can wj
+		dogStuff();
+		if (Input.GetButtonDown("Jump") && (isOnGround() || coyoteCheck() || squirrelCheck()))
 		{
 			hasJumped = true;
 			rb.velocity = new Vector2(rb.velocity.x, bounciness);
 		}
 	}
 
-	void dogStuff()
+	bool isOnGround()
 	{
-		// checks if the player is touching ground while not moving vertically (since feet have a radius idkk)
-		if (groundCheck() && rb.velocity.y <= 0)
+		bool touchingGround = Physics2D.OverlapCircle(feet.position, feetSize, ground);
+		bool touchingWall = Physics2D.OverlapCircle(feet.position, feetSize, wall);
+
+		if (touchingGround || touchingWall)
 		{
-			hasJumped = false;
-			coyoteTimeElapsed = coyoteTime;
-		}
-		else
-		{
-			coyoteTimeElapsed -= Time.deltaTime;
-		}
-	}
-	bool coyoteCheck()
-	{
-		// if the time limit for a coyote jump is not up yet and the player hasnt already jumped
-		if (coyoteTimeElapsed > 0f && !hasJumped)
+			wallJumps = 0;
 			return true;
+		}
 		else return false;
 	}
 	bool squirrelCheck()
 	{
-		if (wallsCheck() && wallJumps < agility)
+		if (isOnWall() && wallJumps < agility)
 		{
 			wallJumps++;
 			return true;
 		}
 		else return false;
+
+		bool isOnWall()
+		{
+			foreach (Transform arm in arms.GetComponentsInChildren<Transform>())
+			{
+				if (Physics2D.OverlapCircle(arm.position, armSize, wall) && hasJumped)
+				{
+					return true;
+				}
+			}
+			return false;
+		}
+	}
+	void dogStuff()
+	{
+		if (isOnGround() && rb.velocity.y <= 0) // < only if falling (prevents double jump)
+		{
+			hasJumped = false;
+			coyoteTimeElapsed = coyoteTime;
+		}
+		else
+			coyoteTimeElapsed -= Time.deltaTime;
+	}
+	bool coyoteCheck()
+	{
+		if (coyoteTimeElapsed > 0f && !hasJumped)
+			return true;
+		else return false;
+	}
+
+	void OnDrawGizmosSelected() // debug gizmos
+	{
+		/* Gizmos.color = Color.red;
+		Gizmos.DrawWireSphere(feet.position, feetSize);
+
+		Gizmos.color = Color.green;
+		foreach (Transform arm in arms.GetComponentsInChildren<Transform>())
+			Gizmos.DrawWireSphere(arm.position, armSize); */
 	}
 }

@@ -2,63 +2,33 @@ using UnityEngine;
 
 public class playerAnimator : MonoBehaviour
 {
-	private Rigidbody2D rb;
-	private Animator animator;
-	audioManager audioManager;
-	playerMovement playerMovement;
+	public playerMovement playerMovement;
+	public Rigidbody2D rb;
+	public Animator animator;
 
 	private enum direction { idle, up, down, right, left, dead };
-	private direction dir;
 
 	void Start()
 	{
+		Debug.LogError($"assign playermovement manually");
 		playerMovement = FindObjectOfType<playerMovement>();
-		audioManager = FindObjectOfType<audioManager>();
+
+		Debug.LogError($"assign rb manually");
 		rb = GetComponentInParent<Rigidbody2D>();
+
+		Debug.LogError($"assign animator manually");
 		animator = GetComponentInParent<Animator>();
 	}
 
 	void FixedUpdate()
 	{
-		// if (gameState.State == gameState.gameStates.playing)
-		{
-			getDir();
-			animations();
-		}
+		animate();
 	}
 
-	void getDir()
+	void animate()
 	{
-		if (!GetComponentInParent<playerMovement>().alive)
-		{
-			dir = direction.dead;
-		}
-		else if (rb.velocity.x == 0 && rb.velocity.y == 0)
-		{
-			dir = direction.idle;
-		}
-		else if (rb.velocity.y > 0)
-		{
-			dir = direction.up;
-		}
-		else if (rb.velocity.y < 0)
-		{
-			dir = direction.down;
-		}
-		else if (rb.velocity.x < 0)
-		{
-			dir = direction.left;
-		}
-		else if (rb.velocity.x > 0)
-		{
-			dir = direction.right;
-		}
-	}
-
-	void animations()
-	{
-		stop();
-		switch (dir)
+		stop(); //* only stop on dir change
+		switch (getDir()) //? combine?
 		{
 			case direction.idle:
 				animator.SetBool("idle", true);
@@ -70,13 +40,9 @@ public class playerAnimator : MonoBehaviour
 				animator.SetBool("down", true);
 				break;
 			case direction.right:
-				if (playerMovement.groundCheck())
-					audioManager.playSfx(audioManager.playerSfxSource, audioManager.footSteps);
 				animator.SetBool("right", true);
 				break;
 			case direction.left:
-				if (playerMovement.groundCheck())
-					audioManager.playSfx(audioManager.playerSfxSource, audioManager.footSteps);
 				animator.SetBool("left", true);
 				break;
 			case direction.dead:
@@ -91,6 +57,21 @@ public class playerAnimator : MonoBehaviour
 			animator.SetBool("up", false);
 			animator.SetBool("down", false);
 			animator.SetBool("dead", false);
+		}
+		direction getDir()
+		{
+			if (!playerMovement.isAlive)
+				return direction.dead;
+			else if (rb.velocity.x == 0 && rb.velocity.y == 0)
+				return direction.idle;
+			else if (rb.velocity.y > 0)
+				return direction.up;
+			else if (rb.velocity.y < 0)
+				return direction.down;
+			else if (rb.velocity.x < 0)
+				return direction.left;
+			else // if (rb.velocity.x > 0)
+				return direction.right;
 		}
 	}
 }

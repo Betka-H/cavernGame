@@ -316,7 +316,7 @@ public class gameController : MonoBehaviour
 		}
 		player = Instantiate(playerPrefab, playerParent.transform);
 		player.transform.position = playerSpawnPoint.position;
-		player.GetComponent<playerMovement>().alive = true;
+		player.GetComponent<playerMovement>().isAlive = true;
 		player.GetComponent<playerMovement>().rb.velocity = Vector3.zero;
 
 		roomController.player = player.GetComponent<Transform>();
@@ -410,7 +410,7 @@ public class gameController : MonoBehaviour
 			deathScreen.SetActive(true);
 
 			// destroyPlayer();
-			player.GetComponent<playerMovement>().alive = false;
+			player.GetComponent<playerMovement>().isAlive = false;
 			player.GetComponent<playerMovement>().rb.velocity = Vector3.zero;
 
 			// lose inventories
