@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public enum musicLvl { labRegular, caveRegular, caveEscape, death, mainMenu, call, walk, space }
 
-// chatgpt
+// chatgpt helped with base functionality
 public class audioManager : MonoBehaviour
 {
     public static audioManager instance;

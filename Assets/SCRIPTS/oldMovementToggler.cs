@@ -2,6 +2,7 @@ using TMPro;
 using UnityEngine;
 
 public class oldMovementToggler : MonoBehaviour
+// used in main menu to toggle between old and new player movement
 {
     string key = "oldMovement";
 

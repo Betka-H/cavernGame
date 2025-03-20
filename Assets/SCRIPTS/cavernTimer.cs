@@ -2,6 +2,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 
+//! deprecated
 public class cavernTimer : MonoBehaviour
 {
     [Min(5)]

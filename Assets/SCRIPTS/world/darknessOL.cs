@@ -16,8 +16,6 @@ public class darknessOL : MonoBehaviour
 	void Update()
 	{
 		if ((darknessOverlayNormal.gameObject.activeSelf || darknessOverlayNightVis.gameObject.activeSelf) && player != null)
-		{
-			transform.position = player.position;
-		}
+			transform.position = player.position; // move darkness over player pos
 	}
 }
