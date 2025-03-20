@@ -7,7 +7,7 @@ public class callManager : MonoBehaviour
     missionManager missionManager;
     menuManager menuManager;
     gameController gameController;
-    audioManager audioManager;
+    audioManager audioManager; // keep private
 
     void Awake()
     {

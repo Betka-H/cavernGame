@@ -45,27 +45,21 @@ public class audioManager : MonoBehaviour
     [HideInInspector] public musicLvl prevMusicLvl;
     public void playMusic(musicLvl lvl)
     {
-        // Debug.Log($"trying to play {lvl}");
-
         switch (lvl)
         {
             case musicLvl.labRegular:
-                // playMusic(labMusic);
                 selectedClips = labMusic;
                 prevMusicLvl = musicLvl.labRegular;
                 break;
             case musicLvl.caveRegular:
-                // playMusic(caveMusicRegular);
                 selectedClips = caveMusicRegular;
                 prevMusicLvl = musicLvl.caveRegular;
                 break;
             case musicLvl.caveEscape: // unused
-                // playMusic(caveMusicEscape);
                 selectedClips = caveMusicEscape;
                 prevMusicLvl = musicLvl.caveEscape;
                 break;
             case musicLvl.death:
-                // playMusic(caveMusicEscape);
                 selectedClips = deathMusic;
                 prevMusicLvl = musicLvl.death;
                 break;
@@ -76,7 +70,7 @@ public class audioManager : MonoBehaviour
             case musicLvl.call:
                 selectedClips = callBg;
                 break;
-            case musicLvl.walk:
+            case musicLvl.walk: // deprecated
                 selectedClips = footSteps;
                 break;
             case musicLvl.space:
@@ -164,6 +158,7 @@ public class audioManager : MonoBehaviour
         canPlaySfx = true;
     }
 
+    // called on slider change
     public void setMusicVolume(float volume)
     {
         musicVolume = volume;
@@ -172,6 +167,7 @@ public class audioManager : MonoBehaviour
         PlayerPrefs.Save();
     }
 
+    // called on slider change
     public void setSFXVolume(float volume)
     {
         sfxVolume = volume;

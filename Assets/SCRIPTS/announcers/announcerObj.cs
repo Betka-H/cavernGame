@@ -10,9 +10,11 @@ public class announcerObj : MonoBehaviour
     public float fadeSpeed;
     public float dontFadeFor;
 
+    public CanvasGroup canvasGroup;
+
     void Start()
     {
-        animate();
+        StartCoroutine(animate());
     }
 
     IEnumerator animate()
@@ -37,7 +39,7 @@ public class announcerObj : MonoBehaviour
             transform.localPosition += Vector3.up * speed * Time.unscaledDeltaTime;
 
             // fade
-            gameObject.GetComponent<CanvasGroup>().alpha = Mathf.Lerp(1f, 0f, timer / lifetime);
+            canvasGroup.alpha = Mathf.Lerp(1f, 0f, timer / lifetime);
 
             timer += Time.unscaledDeltaTime;
             yield return null;

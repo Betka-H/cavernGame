@@ -16,7 +16,7 @@ public class playerAnimator : MonoBehaviour
 	void animate()
 	{
 		stop(); //* only stop on dir change
-		switch (getDir()) //? combine?
+		switch (getDir()) //* combine
 		{
 			case direction.idle:
 				animator.SetBool("idle", true);

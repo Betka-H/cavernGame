@@ -111,7 +111,7 @@ GameObject:
   - component: {fileID: 4651959076849466642}
   - component: {fileID: 1550564679011952227}
   - component: {fileID: 382889521441692392}
-  - component: {fileID: 8407395811336082706}
+  - component: {fileID: -5724528188642081938}
   m_Layer: 0
   m_Name: announcer
   m_TagString: Untagged
@@ -252,7 +252,8 @@ MonoBehaviour:
   lifetime: 3
   fadeSpeed: 2
   dontFadeFor: 2
---- !u!225 &8407395811336082706
+  canvasGroup: {fileID: -5724528188642081938}
+--- !u!225 &-5724528188642081938
 CanvasGroup:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

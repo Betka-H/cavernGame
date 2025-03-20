@@ -4272,7 +4272,6 @@ Transform:
   m_Children:
   - {fileID: 699556568}
   - {fileID: 40118687}
-  - {fileID: 1858803448}
   - {fileID: 1343291601}
   - {fileID: 2105942178}
   - {fileID: 572282410}
@@ -10403,7 +10402,6 @@ MonoBehaviour:
   menuManager: {fileID: 1252296504}
   missionManager: {fileID: 892595347}
   callManager: {fileID: 1157321616}
-  audioManager: {fileID: 793757556}
   announcerManager: {fileID: 1041129260}
   saveManager: {fileID: 572282411}
   interactionTooltip: {fileID: 719104660}
@@ -24675,50 +24673,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1858803446
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1858803448}
-  - component: {fileID: 1858803447}
-  m_Layer: 0
-  m_Name: stateController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1858803447
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1858803446}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8cf5bd8c7cd3e546ae42baf27b07cc9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &1858803448
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1858803446}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 265201205}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1873958861
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class worldItem : MonoBehaviour
 {
-	audioManager audioManager;
+	audioManager audioManager; // keep private
 	inventoryManager inventoryManager;
 	caveItemGrid caveItemMenu;
 

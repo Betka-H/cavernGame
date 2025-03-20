@@ -88,8 +88,7 @@ public class saveManager : MonoBehaviour
             string json = PlayerPrefs.GetString(saveKeyString);
             SaveData data = JsonUtility.FromJson<SaveData>(json);
 
-            Debug.LogError($"loading mentioned jumping true for some reason");
-            roomController.hasMentionedJumping = true; //? why.
+            roomController.hasMentionedJumping = true; //* why?
 
             loadInventories();
             loadMissions();

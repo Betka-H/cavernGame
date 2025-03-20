@@ -7,7 +7,7 @@ public class mainMenuController : MonoBehaviour
     public Transform settingsMenu;
     public Transform creditsMenu;
 
-    audioManager audioManager;
+    audioManager audioManager; // keep private
 
     void Start()
     {

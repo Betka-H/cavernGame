@@ -3,7 +3,7 @@ using UnityEngine;
 public class playerMovement : MonoBehaviour
 {
 	public Rigidbody2D rb;
-	audioManager audioManager;
+	audioManager audioManager; // keep private
 
 	[Header("movement stats")]
 	public float defaultSpeed;
@@ -71,13 +71,13 @@ public class playerMovement : MonoBehaviour
 				else
 				{
 					if (rb.velocity.magnitude > 0.5f)
-						rb.velocity = new Vector2(rb.velocity.x * 0.9f, rb.velocity.y); // chatgpt
+						rb.velocity = new Vector2(rb.velocity.x * 0.9f, rb.velocity.y); // chatgpt helped
 					else rb.velocity = Vector3.zero;
 				}
 				break;
 		}
 
-		if (isOnGround())
+		if (isOnGround() && rb.velocity.magnitude > 0.5f)
 			audioManager.playSfx(audioManager.playerSfxSource, audioManager.footSteps);
 	}
 	void jump()
@@ -140,7 +140,7 @@ public class playerMovement : MonoBehaviour
 			hasJumped = false;
 			coyoteTimeElapsed = coyoteTime;
 		}
-		else coyoteTimeElapsed -= Time.deltaTime; //? idk why its based on - not +
+		else coyoteTimeElapsed -= Time.deltaTime; //* idk why its based on - and not +
 	}
 	bool coyoteCheck()
 	{

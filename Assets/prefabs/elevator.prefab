@@ -71,8 +71,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 100.3, y: -0.00079346}
-  m_SizeDelta: {x: 200.61, y: 499.56}
+  m_AnchoredPosition: {x: 120.074356, y: -0.00079346}
+  m_SizeDelta: {x: 259.9333, y: 499.56}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9155585632855329977
 CanvasRenderer:
@@ -191,9 +191,9 @@ MonoBehaviour:
   doorR: {fileID: 4476590573458177299}
   walls: {fileID: 8072533048029525694}
   isClosed: 0
-  isLab: 0
-  isMainEntrance: 0
   isFirst: 0
+  isMainEntrance: 0
+  isLab: 0
 --- !u!1 &3606934818156101240
 GameObject:
   m_ObjectHideFlags: 0
@@ -228,8 +228,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -100.31, y: -0.00039673}
-  m_SizeDelta: {x: 200.61, y: 499.56}
+  m_AnchoredPosition: {x: -122.203125, y: -0.00039673}
+  m_SizeDelta: {x: 261.3458, y: 499.56}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2124401234127625329
 CanvasRenderer:
