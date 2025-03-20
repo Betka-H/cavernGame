@@ -2,15 +2,15 @@ using UnityEngine;
 
 public class roomWarp : MonoBehaviour
 {
-	public Transform destination;
-	[Tooltip("is left")]
+	public Transform destination; // other side of the screen the player will be moved to
+	[Tooltip("left or right side of screen")]
 	public leftRight lr;
 
 	public roomController roomController;
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		//? check if player?
+		//* check if player?
 		warpTo();
 		roomController.changeRoom(lr);
 

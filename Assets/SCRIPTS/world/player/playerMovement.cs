@@ -57,21 +57,24 @@ public class playerMovement : MonoBehaviour
 		float moveDir;
 
 		switch (oldMovement)
+		//* should not be set on update
 		{
 			case true:
+				// old movement (i like it but others found it hard to play)
 				moveDir = Input.GetAxis("Horizontal");
 				if (gameController.roomController.currentLevel == gameController.level.cavern)
 					speed = 8;
 				rb.velocity = new Vector2(moveDir * speed, rb.velocity.y);
 				break;
 			case false:
+				// new movement
 				moveDir = Input.GetAxisRaw("Horizontal");
 				if (moveDir != 0)
 					rb.velocity = new Vector2(moveDir * speed, rb.velocity.y);
 				else
 				{
 					if (rb.velocity.magnitude > 0.5f)
-						rb.velocity = new Vector2(rb.velocity.x * 0.9f, rb.velocity.y); // chatgpt helped
+						rb.velocity = new Vector2(rb.velocity.x * 0.9f, rb.velocity.y); // chatgpt wrote this line
 					else rb.velocity = Vector3.zero;
 				}
 				break;

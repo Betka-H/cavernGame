@@ -7,37 +7,20 @@ using UnityEngine;
 
 public enum leftRight { left, right, entrance };
 
+//* i like this one
 public class roomController : MonoBehaviour
 {
-	public TMP_Text roomNumberTMP;
-
-	private darknessOL darknessOverlay;
-	private Transform chosenDarkness;
-	private int darknessChance; // % out of 100
-	[HideInInspector] public darknessLevel darknessLvl; // mainly for weather forecast
-
-	private inventoryManager inventory;
-	private gameController gameController;
-
-	[HideInInspector] public gameController.level currentLevel;
-
-	// enclosure
-	[Space]
 	public Transform roomParent;
 	public Transform enclosureParent;
 	public Transform doorBlockParent;
 	[Header("doorway blocks")]
 	public GameObject blockL;
 	public GameObject blockR;
-	[Header("doorway heights")]
+	[Header("ceiling blocks")]
 	public GameObject enclosure_walls_lab;
 	public GameObject enclosure_walls_space;
 	public GameObject enclosure_walls_cave;
 
-	missionManager missionManager;
-	callManager callManager;
-
-	// rooms
 	[Header("rooms")]
 	public int minCavernRoomsNr;
 	public int maxCavernRoomsNr;
@@ -45,52 +28,47 @@ public class roomController : MonoBehaviour
 	public roomSO[] labRooms;
 	public roomSO[] spaceRooms;
 	public room_cavern[] cavernRooms;
-	private roomSO entranceRoom;
+	roomSO entranceRoom;
 	[HideInInspector] public roomSO[] selectedRooms;
 
-	private int currentRoomNr;
-	private int roomLeft;
-	private int roomRight;
+	int currentRoomNr;
+	int roomLeft;
+	int roomRight;
 
-	// trader
-	[Header("trader")]
-	[HideInInspector] public int traderSpawnChance;
-	public Transform traderParent;
-	public GameObject traderPrefab;
-	private room_cavern traderSpawnRoom;
-	private npcTrader npcTrader;
-
-	// items
 	[Header("items")]
 	public Transform itemParent;
 	public GameObject itemPrefab;
-	private int itemSpawnRate;
+	[Range(0, 100)]
+	public int itemSpawnRate;
 
+	[Header("trader")]
+	[Range(0, 100)]
+	public int traderSpawnChance;
+	public Transform traderParent;
+	public GameObject traderPrefab;
+	room_cavern traderSpawnRoom;
+	npcTrader npcTrader;
+
+	[Header("darkness")]
+	public darknessOL darknessOverlay;
+	Transform chosenDarkness;
+	[Range(0, 100)]
+	public int darknessChance;
+	[HideInInspector] public darknessLevel darknessLvl; // mainly for weather forecast
+
+	[Space]
+	public TMP_Text roomNumberTMP;
 	public SpriteRenderer colorBg;
+	public Transform spaceStuff;
+
+	[Space]
+	public inventoryManager inventoryManager;
+	public missionManager missionManager;
+	public callManager callManager;
+
+	[HideInInspector] public gameController.level currentLevel;
 
 	public bool hasMentionedJumping = true;
-
-	void Start()
-	{
-		missionManager = FindObjectOfType<missionManager>();
-		callManager = FindObjectOfType<callManager>();
-
-		//! temp trader spawn value
-		//! place trader into remote locations on maps - 5s trader call delay
-		traderSpawnChance = 50;
-		//! temp item spawn value
-		itemSpawnRate = 50;
-
-		//! temp room amount value
-		// maxCavernRoomsNr = cavernRooms.Length;
-		minCavernRoomsNr = 8;
-		maxCavernRoomsNr = 15;
-
-		darknessOverlay = FindObjectOfType<darknessOL>();
-		inventory = FindObjectOfType<inventoryManager>();
-
-		gameController = FindObjectOfType<gameController>();
-	}
 
 	// called at end of jump warn call
 	public void m_resetPlayerBounciness()
@@ -114,8 +92,6 @@ public class roomController : MonoBehaviour
 	{
 		return FindObjectOfType<playerMovement>();
 	}
-
-	public Transform spaceStuff;
 
 	[HideInInspector] public bool labFirst;
 	public void generateLevel(gameController.level lvl)
@@ -248,7 +224,7 @@ public class roomController : MonoBehaviour
 		}
 		void chooseDarkness()
 		{
-			if (inventory.checkEquipment(inventory.inventoryDefinitions.nightVisionGoggles))
+			if (inventoryManager.checkEquipment(inventoryManager.inventoryDefinitions.nightVisionGoggles))
 				chosenDarkness = darknessOverlay.darknessOverlayNightVis;
 			else chosenDarkness = darknessOverlay.darknessOverlayNormal;
 		}
@@ -306,6 +282,7 @@ public class roomController : MonoBehaviour
 					}
 				}
 #pragma warning restore CS8321 // Local function is declared but never used
+
 			}
 			else traderSpawnRoom = null;
 

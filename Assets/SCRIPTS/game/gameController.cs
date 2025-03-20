@@ -430,7 +430,7 @@ public class gameController : MonoBehaviour
 				if (missionManager.checkCurrentMission(-1, 4))
 					Invoke(nameof(startNextMainMissionCall), 5f);
 
-				// chatgpt helped
+				// chatgpt helped with concept
 				StartCoroutine(WaitForCallToEndAndOpenDoors());
 				IEnumerator WaitForCallToEndAndOpenDoors()
 				{

@@ -22,7 +22,7 @@ public class announcerObj : MonoBehaviour
     {
         float timer = 0f;
 
-        // my dontFadeFor added by me
+        // dontFadeFor added by me
         while (timer < dontFadeFor)
         {
             // move up

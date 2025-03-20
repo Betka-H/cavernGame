@@ -44,7 +44,7 @@ public class announcerManager : MonoBehaviour
             else newAnnouncer.GetComponent<TextMeshProUGUI>().color = defaultColor;
     }
 
-    // chatgpt helped
+    // chatgpt helped with concept
     bool canAnnounce = true;
     float cooldown = 0.65f;
     IEnumerator announcerCooldown()
