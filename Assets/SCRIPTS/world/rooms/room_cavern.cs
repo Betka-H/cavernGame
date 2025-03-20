@@ -7,9 +7,7 @@ public class room_cavern : roomSO
     [HideInInspector] public bool isDark;
     public bool isEntryRoom;
 
-    [HideInInspector] public List<loot> lootThatCanSpawnInThisRoom = new List<loot>();
     List<loot> chosenLoot = new List<loot>();
-    Transform[] allLootSpawnLocations;
     List<Transform> chosenLootSpawnLocations = new List<Transform>();
 
     [HideInInspector] public bool hasTrader;
@@ -21,10 +19,10 @@ public class room_cavern : roomSO
         if (!isEntryRoom)
         {
             inventoryDefinitions inventoryDefinitions = FindObjectOfType<inventoryDefinitions>();
-            allLootSpawnLocations = roomPrefab.GetComponent<caveRoomObj>().getLootSpawnpoints();
+            Transform[] allLootSpawnLocations = roomPrefab.GetComponent<caveRoomObj>().getLootSpawnpoints();
 
             // set loot pool to definition
-            lootThatCanSpawnInThisRoom.Clear();
+            List<loot> lootThatCanSpawnInThisRoom = new List<loot>();
             foreach (item it in inventoryDefinitions.lootItems)
                 lootThatCanSpawnInThisRoom.Add(it as loot);
 

@@ -1,12 +1,11 @@
 using System.Collections.Generic;
-using Unity.Collections;
 using UnityEngine;
 
 public class missionManager : MonoBehaviour
 {
     public missionSO[] allMissions;
 
-    [Header("special missons")] // make sure to set call to 0
+    [Header("special missons")] // make sure to include in mission restart
     public missionSO deathMission;
     public missionSO jumpMission;
     public missionSO traderMission;
@@ -14,6 +13,7 @@ public class missionManager : MonoBehaviour
     menuManager menuManager;
     callManager callManager;
     gameController gameController;
+    inventoryManager inventoryManager;
 
     [HideInInspector] public int currentMission;
 
@@ -22,27 +22,11 @@ public class missionManager : MonoBehaviour
         menuManager = FindObjectOfType<menuManager>();
         callManager = FindObjectOfType<callManager>();
         gameController = FindObjectOfType<gameController>();
+        inventoryManager = FindObjectOfType<inventoryManager>();
     }
 
-    void Start()
-    {
-        // restartMissions(); //! tmp. testing space mission
-
-        // checkRndMission();
-        // Debug.Log($"current mission: {currentMission}");
-        // Debug.Log($"current call: {allMissions[currentMission].currentCall}");
-        //! tmp v v v
-        /* Debug.LogError($"setting call to 13");
-        allMissions[0].currentCall = 13; */
-    }
-
-    void Update()
-    {
-        // Debug.Log(currentMission);
-    }
-
-    // -1 to not check call
     public bool checkCurrentMission(int wantedMissionID, int wantedCallID)
+    // -1 to not check call
     {
         // Debug.Log($"checking mission state as {wantedMissionID}, {wantedCallID}");
         missionSO currentMissionSO = allMissions[currentMission];
@@ -50,26 +34,17 @@ public class missionManager : MonoBehaviour
         // Debug.Log($"current mission: {currentMissionSO} ({currentMissionSO.missionID}), current call: {currentMissionSO.currentCall}");
 
         if (currentMissionSO.missionID == wantedMissionID && (currentMissionSO.currentCall == wantedCallID || wantedCallID == -1))
-        {
-            // Debug.Log($"right mission");
             return true;
-        }
-        else
-        {
-            // Debug.Log($"not the right mission");
-            return false;
-        }
+        else return false;
     }
 
     public void checkMissionItems()
     {
         missionSO cm = allMissions[currentMission];
-        if (menuManager.inventoryManager.checkResources(menuManager.inventoryManager.missionInventory, cm.requiredItems))
+        if (inventoryManager.checkResources(inventoryManager.missionInventory, cm.requiredItems))
         {
-            // FindObjectOfType<announcerManager>().announceMessage($"all items collected! go to MG for a new mission");
-            if (cm.missionID == -1)
+            if (cm.missionID == -1) // if in tutorial
             {
-                Debug.LogWarning("collected all items for tutorial mission");
                 gameController.m_lockCavern();
                 callManager.startCall(cm);
             }
@@ -78,17 +53,9 @@ public class missionManager : MonoBehaviour
             {
                 cm.endMission();
                 newMission();
-                // endMission();
             }
         }
     }
-
-    /* public void endMission()
-    {
-
-        // runEndEvent();
-        newMission();
-    } */
 
     public void newMission()
     {
@@ -100,14 +67,9 @@ public class missionManager : MonoBehaviour
             currentMission++;
 
             FindObjectOfType<outsideMissionInfo>().show();
+        }
+        else FindObjectOfType<announcerManager>().announceMessage("all missions completed!");
 
-            // checkRndMission();
-        }
-        else
-        {
-            // Debug.LogError($"all missions completed!");
-            FindObjectOfType<announcerManager>().announceMessage("all missions completed!");
-        }
         allMissions[currentMission].currentCall = 0;
     }
 
@@ -119,15 +81,9 @@ public class missionManager : MonoBehaviour
         {
             mission.currentCall = 0;
             if (mission.missionID != -1) // not for tutorial
-            {
-                // mission.requiredItems = new List<item>();
-                // Debug.LogWarning($"clearing req list");
                 mission.requiredItems.Clear();
-                // Debug.LogWarning($"req list length: {mission.requiredItems.Count}");
-            }
         }
 
-        // Debug.Log($"dm: {deathMission}");
         deathMission.currentCall = 0;
         jumpMission.currentCall = 0;
         traderMission.currentCall = 0;
@@ -136,72 +92,42 @@ public class missionManager : MonoBehaviour
         menuManager.toggleCallScreen();
     }
 
-    public void skipTutorial() // called by skip tutorial btn
+    // called by skip tutorial btn
+    public void skipTutorial()
     {
         FindObjectOfType<announcerManager>().announceMessage($"skipping the tutorial");
 
         missionSO tutorialMission = allMissions[0];
 
-        // if (gameController.isCalling)
         callManager.endCall(false);
 
         restartMissions();
         currentMission = 1;
 
-        Debug.LogError($"ending tutorial mission");
         tutorialMission.endMission();
 
-        // FindObjectOfType<missionManager>().m_afterTutorialInv();
         FindObjectOfType<inventoryManager>().m_afterTutorialInv();
 
         checkRndMission();
-
-        // PlayerPrefs.SetInt("jumpWarn", 1);
-        // PlayerPrefs.Save();
     }
 
     public void checkRndMission()
     {
         if (allMissions[currentMission] is randomMissionSO rndMission)
         {
-            //  Debug.Log($"random mission");
-            // generate random items
-            // rndMission.requiredItems.Clear();
-
-            // if (rndMission.requiredItems.Count > 0) // fucking hell....
             if (rndMission.requiredItems.Count == 0)
             {
-                // Debug.LogWarning($"req items empty - generating new");
-
-                List<item> allMissionItems = menuManager.inventoryManager.inventoryDefinitions.missionItems;
+                List<item> allMissionItems = inventoryManager.inventoryDefinitions.missionItems;
                 for (int i = 0; i < rndMission.howManyItems; i++)
                 {
                     int rndIndex = Random.Range(0, allMissionItems.Count);
                     item rndItem = allMissionItems[rndIndex];
 
                     rndMission.requiredItems.Add(rndItem);
-
-                    // Debug.Log($"generating item {i}: {rndItem}");
                 }
-                menuManager.inventoryManager.sortInventory(ref rndMission.requiredItems);
-                // Debug.Log($"req items generated:");
-                // menuManager.inventoryManager.printInventory(rndMission.requiredItems);
-            }
-            else
-            {
-                // Debug.LogWarning($"req items not empty - keeping:");
-                menuManager.inventoryManager.printInventory(rndMission.requiredItems);
+                inventoryManager.sortInventory(ref rndMission.requiredItems);
             }
         }
     }
 
-    /* void runEndEvent()
-    {
-        foreach (var even in allMissions[currentMission].endEventValuesList)
-        {
-            // Debug.Log("found event");
-            GameObject gameObj = GameObject.Find(even.objName);
-            gameObj.SendMessage(even.methodName);
-        }
-    } */
 }

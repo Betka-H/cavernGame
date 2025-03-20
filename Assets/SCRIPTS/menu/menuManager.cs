@@ -334,8 +334,9 @@ public class menuManager : MonoBehaviour
             // menuOpen = openMenu.misison;
             bool onOff = toggleMenu(missionMenu.gameObject);
 
-            if (onOff)
-                missionManager.checkRndMission();
+            Debug.LogWarning($"rndM should be handled by outside info checking this?");
+            /* if (onOff)
+                missionManager.checkRndMission(); */
 
             toggleMissionWorkstationMenu(onOff);
             anotherMenuOpen = onOff;

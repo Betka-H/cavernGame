@@ -9,21 +9,7 @@ public class inventoryManager : MonoBehaviour
 	[HideInInspector] public List<item> equippedItems;
 	[HideInInspector] public List<item> missionInventory;
 
-	[HideInInspector] public inventoryDefinitions inventoryDefinitions;
-
-	/*//* private string savePath = "inventory-save.txt";
-	File.WriteAllText(savePath, string.Join(",", inventoryIds));
-	string[] invRead = File.ReadAllText(savePath).ToString().Split(',');
-	 foreach (string s in invRead)
-	{
-		inventoryIds.Add(int.Parse(s));
-	} */
-
-	void Awake()
-	{
-		// Debug.Log("starting invenmanager");
-		inventoryDefinitions = FindObjectOfType<inventoryDefinitions>();
-	}
+	public inventoryDefinitions inventoryDefinitions;
 
 	void beforeTutorialLabInv()
 	{
@@ -33,9 +19,9 @@ public class inventoryManager : MonoBehaviour
 		};
 		labInventory.AddRange(inventoryDefinitions.scrapShoes.wholeGear.cost);
 	}
-	public void m_afterTutorialInv() // after skipping tutorial
+	public void m_afterTutorialInv()
 	{
-		Debug.LogWarning("after tutorial inv"); // 34 + 22 = 56
+		Debug.LogWarning("after tutorial inv");
 		labInventory = new List<item>
 		{
 		inventoryDefinitions.shoes,
@@ -362,10 +348,7 @@ public class inventoryManager : MonoBehaviour
 	public bool checkEquipment(item it)
 	{
 		if (equippedItems.Contains(it))
-		{
-			// Debug.Log($"{it} is equipped");
 			return true;
-		}
 		else return false;
 	}
 	public bool checkResources(List<item> bigList, List<item> doesTheBigListContainThis)
@@ -376,28 +359,17 @@ public class inventoryManager : MonoBehaviour
 		{
 			foreach (item it in doesTheBigListContainThis)
 			{
-				// Debug.Log($"checking {it}");
 				if (checkInv.Contains(it))
-				{
-					// Debug.Log($"has {it}");
 					checkInv.Remove(it);
-				}
-				else
-				{
-					hasResources = false;
-					// Debug.Log($"has not {it}");
-				}
+				else hasResources = false;
 			}
 			break;
 		}
-		// Debug.Log($"resources? {hasResources}");
 		return hasResources;
 	}
 
 	public void sortInventory(ref List<item> inv)
 	{
-		// Debug.Log($"SORTING!?!??!?");
-		// printInventory(inv);
 		if (inv != null)
 			inv = inv.OrderBy(i => i.itemId).ToList();
 	}

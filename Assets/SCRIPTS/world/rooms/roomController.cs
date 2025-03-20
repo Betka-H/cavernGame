@@ -295,6 +295,7 @@ public class roomController : MonoBehaviour
 				}
 				else traderSpawnRoom = null;
 
+#pragma warning disable CS8321 // Local function is declared but never used
 				void forceEntranceTrader()
 				{
 					if (entranceRoom is room_cavern traderEntrRoom)
@@ -304,6 +305,7 @@ public class roomController : MonoBehaviour
 						traderSpawnRoomPool.Add(traderEntrRoom);
 					}
 				}
+#pragma warning restore CS8321 // Local function is declared but never used
 			}
 			else traderSpawnRoom = null;
 
@@ -349,10 +351,15 @@ public class roomController : MonoBehaviour
 	//* change room
 	public void changeRoom(leftRight isLeft)
 	{
-		setLeftAndRightRoomNumbers();
+		setLeftAndRightRooms();
+
+		// spawn room
 		clearParent(roomParent);
-		clearParent(doorBlockParent);
 		Instantiate(getRoom().roomPrefab.transform, roomParent);
+		// spawn door block
+		clearParent(doorBlockParent);
+		placeDoorwayBlock();
+
 		switch (currentLevel)
 		{
 			case gameController.level.lab:
@@ -362,11 +369,31 @@ public class roomController : MonoBehaviour
 				roomNumberTMP.text = $"cavern room {currentRoomNr} / {selectedRooms.Length - 1} {logCavernRooms()}";
 				break;
 		}
-		placeDoorwayBlock();
-
 		colorBg.color = selectedRooms[currentRoomNr].roomBgColor;
 
-		void setLeftAndRightRoomNumbers()
+		if (selectedRooms[currentRoomNr] is room_cavern cr)
+		{
+			toggleDarkness(cr);
+
+			// items
+			clearParent(itemParent);
+			cr.spawnItems(itemPrefab, itemParent);
+
+			// trader
+			if (cr.hasTrader)
+				summonTrader();
+			else if (npcTrader != null)
+				npcTrader.gameObject.SetActive(false);
+		}
+		else if (chosenDarkness != null) chosenDarkness.gameObject.SetActive(false);
+
+
+		if (missionManager.checkCurrentMission(-1, 5) && currentLevel == gameController.level.cavern && selectedRooms[currentRoomNr] != entranceRoom)
+		{
+			callManager.startCall(callManager.currentMainMission());
+		}
+
+		void setLeftAndRightRooms()
 		{
 			if (currentRoomNr == 0) // room is first
 			{
@@ -396,28 +423,6 @@ public class roomController : MonoBehaviour
 
 			if (selectedBlock != null)
 				Instantiate(selectedBlock, doorBlockParent);
-		}
-
-		if (selectedRooms[currentRoomNr] is room_cavern cr)
-		{
-			toggleDarkness(cr);
-
-			// items
-			clearParent(itemParent);
-			cr.spawnItems(itemPrefab, itemParent);
-
-			// trader
-			if (cr.hasTrader)
-				summonTrader();
-			else if (npcTrader != null)
-				npcTrader.gameObject.SetActive(false);
-		}
-		else if (chosenDarkness != null) chosenDarkness.gameObject.SetActive(false);
-
-
-		if (missionManager.checkCurrentMission(-1, 5) && currentLevel == gameController.level.cavern && selectedRooms[currentRoomNr] != entranceRoom)
-		{
-			callManager.startCall(callManager.currentMainMission());
 		}
 
 		string logCavernRooms()

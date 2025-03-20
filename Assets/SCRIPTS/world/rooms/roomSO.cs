@@ -7,3 +7,4 @@ public class roomSO : ScriptableObject
 
 	[HideInInspector] public int orderOnMap;
 }
+
