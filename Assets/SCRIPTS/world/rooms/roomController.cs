@@ -318,7 +318,7 @@ public class roomController : MonoBehaviour
 		}
 	}
 
-	public void clearRoom() // might be called unnecessarily in gamectrl
+	public void clearRoom() //* might be called unnecessarily in gamectrl
 	{
 		clearParent(itemParent);
 		killTrader();

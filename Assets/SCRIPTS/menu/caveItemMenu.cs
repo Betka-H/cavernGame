@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class caveItemMenu : itemMenu
+public class caveItemGrid : itemMenu
 {
+	// for backpack item
 	private bool _hasAllSlots;
 	public bool hasAllSlots
 	{
@@ -13,7 +14,6 @@ public class caveItemMenu : itemMenu
 			{
 				_hasAllSlots = value;
 
-				//! temp slot limit values
 				if (hasAllSlots)
 				{
 					slotLimit = 20;
@@ -24,7 +24,6 @@ public class caveItemMenu : itemMenu
 					slotLimit = 12;
 					slotCover.gameObject.SetActive(true);
 				}
-				// Debug.Log($"sl: {slotLimit}");
 			}
 		}
 	}
@@ -36,9 +35,9 @@ public class caveItemMenu : itemMenu
 		refreshItems(regularSlots, inventoryScript.caveInventory);
 	}
 
-	public override void refreshItems(invItem[] cat, List<item> dog, List<item> rat)
+	public override void refreshItems(invItem[] slots, List<item> hasList, List<item> neededList)
 	{
-		// bwomp
+		Debug.LogError($"invalid request");
 	}
 	public override void refreshItems(invItem[] slots, List<item> itemList)
 	{

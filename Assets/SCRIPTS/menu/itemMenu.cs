@@ -12,10 +12,8 @@ public abstract class itemMenu : MonoBehaviour
     protected void Awake()
     {
         regularSlots = gridSlotsParent.GetComponentsInChildren<invItem>(true);
-        // Debug.LogWarning($"found slots: {regularSlots.Length}");
         inventoryScript = FindObjectOfType<inventoryManager>();
         isAwake = true;
-        // Debug.LogWarning($"awaking 2");
     }
     public void wakeUp()
     {
@@ -23,11 +21,12 @@ public abstract class itemMenu : MonoBehaviour
     }
     void OnEnable()
     {
-        // if (isAwake)
         selectedItem = null;
     }
 
+    // for simple display
     public abstract void refreshItems(invItem[] slots, List<item> itemList);
+    // for out of display
     public abstract void refreshItems(invItem[] slots, List<item> hasList, List<item> neededList);
 
     /* private List<item> groupItems(List<item> itemList, itemDispType dt)

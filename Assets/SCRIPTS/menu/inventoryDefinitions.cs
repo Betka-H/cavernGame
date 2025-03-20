@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class inventoryDefinitions : MonoBehaviour
 {
-    public List<item> allItems; //! check ???
-
     [Header("mission items")]
     public List<item> missionItems;
     [Header("loot items")]
@@ -22,16 +20,16 @@ public class inventoryDefinitions : MonoBehaviour
 
     [Header("gear")]
     public gear nightVisionGoggles;
-    public gear vial;
-    public gear pickaxe;
+    public gear vial; // unused
+    public gear pickaxe; // unused
     public gear backpack;
     public gear shoes;
     public gear harderHat;
 
     [Header("scrap")]
     public scrap scrapGoggles;
-    public scrap scrapVial;
-    public scrap scrapPickaxe;
+    public scrap scrapVial; // unused
+    public scrap scrapPickaxe; // unused
     public scrap scrapBackpack;
     public scrap scrapShoes;
     public scrap scrapHarderHat;

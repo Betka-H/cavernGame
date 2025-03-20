@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 public class labItemGrid : itemMenu
 {
@@ -9,9 +10,9 @@ public class labItemGrid : itemMenu
         base.Awake();
     }
 
-    public override void refreshItems(invItem[] cat, List<item> dog, List<item> rat)
+    public override void refreshItems(invItem[] slots, List<item> hasList, List<item> neededList)
     {
-        // shut uuup
+        Debug.LogError($"invalid request");
     }
     public override void refreshItems(invItem[] slots, List<item> itemList)
     {

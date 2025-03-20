@@ -1,8 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-//* use itween for this?
-// chatgpt
+// chatgpt helped with concept
 public class announcerObj : MonoBehaviour
 {
     // 50, 0.5, 3, 1.5
@@ -11,19 +10,17 @@ public class announcerObj : MonoBehaviour
     public float fadeSpeed;
     public float dontFadeFor;
 
-    private CanvasGroup canvasGroup;
-
     void Start()
     {
-        canvasGroup = gameObject.AddComponent<CanvasGroup>(); // canvas group allows fading
-        StartCoroutine(animate());
+        animate();
     }
 
     IEnumerator animate()
+    //* use itween for this?
     {
         float timer = 0f;
 
-        // my part lol
+        // my dontFadeFor added by me
         while (timer < dontFadeFor)
         {
             // move up
@@ -40,7 +37,7 @@ public class announcerObj : MonoBehaviour
             transform.localPosition += Vector3.up * speed * Time.unscaledDeltaTime;
 
             // fade
-            canvasGroup.alpha = Mathf.Lerp(1f, 0f, timer / lifetime);
+            gameObject.GetComponent<CanvasGroup>().alpha = Mathf.Lerp(1f, 0f, timer / lifetime);
 
             timer += Time.unscaledDeltaTime;
             yield return null;

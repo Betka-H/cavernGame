@@ -11,7 +11,7 @@ public class menuManager : MonoBehaviour
     public callManager callManager;
     public GameObject deathScreen;
 
-    public caveItemMenu caveItemMenu;
+    public caveItemGrid caveItemMenu;
     public missionMenu missionMenu;
     public missionMenu ingameMissionMenu;
     public callScreen callScreen;
@@ -432,10 +432,7 @@ public class menuManager : MonoBehaviour
     IEnumerator showFirstMission()
     {
         while (gameController.isCalling)
-        {
-            Debug.Log($"calling: {gameController.isCalling}");
             yield return null;
-        }
 
         toggleToggleMissionWorkstationMenu();
     }

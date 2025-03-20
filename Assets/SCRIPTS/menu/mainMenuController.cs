@@ -31,7 +31,6 @@ public class mainMenuController : MonoBehaviour
         mainMenu.gameObject.SetActive(false);
         settingsMenu.gameObject.SetActive(false);
         creditsMenu.gameObject.SetActive(false);
-        // Debug.Log("deactivating all menus????");
 
         // activate chosen menu
         menu.gameObject.SetActive(true);
@@ -39,11 +38,8 @@ public class mainMenuController : MonoBehaviour
 
     public void resetSave()
     {
-        Debug.Log("try to not delete settings?");
         PlayerPrefs.DeleteAll();
         FindObjectOfType<audioManager>().saveVolumeSettings();
         PlayerPrefs.Save();
-
-        // gameController.resetEvent();
     }
 }

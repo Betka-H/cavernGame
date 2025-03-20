@@ -19,39 +19,28 @@ public class gameController : MonoBehaviour
 	public GameObject cavePlayerPrefab;
 	public GameObject spacePlayerPrefab;
 
-	[HideInInspector] public roomController roomController;
 
-	public SpriteRenderer floorImg;
+	public roomController roomController;
+	public inventoryManager inventoryManager;
+	public menuManager menuManager;
+	public missionManager missionManager;
+	public callManager callManager;
+	audioManager audioManager; // keep private! comes from main menu
+	public announcerManager announcerManager;
+	public saveManager saveManager;
 
+	public interactionTooltip interactionTooltip;
 
+	public SpriteRenderer floorImg; // stone floor texture
 
-	missionManager missionManager;
-	audioManager audioManager;
-	announcerManager announcerManager;
-	menuManager menuManager;
-	callManager callManager;
-	inventoryManager inventoryManager;
-	saveManager saveManager;
-
+	//* move to callmanager
 	[HideInInspector] public bool isCalling;
-
-	interactionTooltip interactionTooltip;
-
 
 	public enum level { lab, cavern, space };
 
 	void Start()
 	{
-		saveManager = FindObjectOfType<saveManager>();
-		roomController = FindObjectOfType<roomController>();
-		interactionTooltip = FindObjectOfType<interactionTooltip>(true);
-		menuManager = FindObjectOfType<menuManager>();
-		missionManager = FindObjectOfType<missionManager>();
-		callManager = FindObjectOfType<callManager>();
-		inventoryManager = FindObjectOfType<inventoryManager>();
 		audioManager = FindObjectOfType<audioManager>();
-
-		announcerManager = FindObjectOfType<announcerManager>();
 
 		roomController.labFirst = true;
 
@@ -110,7 +99,7 @@ public class gameController : MonoBehaviour
 			return true;
 		else return false;
 	}
-	public bool m_hasWarnedJump = false;
+	[HideInInspector] public bool m_hasWarnedJump = false;
 	void startJumpCall()
 	{
 		if (roomController.currentLevel == level.lab)
@@ -141,12 +130,14 @@ public class gameController : MonoBehaviour
 		getElevator().isFirst = true;
 	}
 
+	// called from esc menu button
 	public void saveAndGoToMainMenu()
 	{
 		saveManager.save();
 		SceneManager.LoadScene(0);
 	}
 
+	// generates rooms and spawns player
 	public void genAndSpawn(level lvl)
 	{
 		spawnPlayer();
@@ -304,9 +295,10 @@ public class gameController : MonoBehaviour
 	}
 
 	public GameObject deathScreen;
-	public bool isDead;
+	[HideInInspector] public bool isDead;
 	public void death()
 	{
+		// check for hard hat equip
 		if (!inventoryManager.checkEquipment(inventoryManager.inventoryDefinitions.harderHat))
 		{
 			announcerManager.announceMessage($"you died!");
@@ -314,10 +306,10 @@ public class gameController : MonoBehaviour
 			audioManager.playSfx(audioManager.worldSfxSource, audioManager.deathImpale);
 			audioManager.playMusic(musicLvl.death);
 
+			// start death call
 			missionSO deathMission = missionManager.deathMission;
 			if (deathMission.currentCall < deathMission.calls.Length)
 				callManager.startCall(deathMission);
-			else Debug.Log($"no death call remaining");
 
 			deathScreen.SetActive(true);
 
@@ -332,14 +324,9 @@ public class gameController : MonoBehaviour
 		}
 		else
 		{
-			announcerManager.announceMessage($"you lost the harder hat! be careful");
 			inventoryManager.removeItem(inventoryManager.inventoryDefinitions.harderHat, inventoryManager.equippedItems);
+			announcerManager.announceMessage($"you lost the harder hat! be careful");
 		}
-	}
-
-	public void testMethod()
-	{
-		Debug.LogWarning("test");
 	}
 
 	elevator getElevator()
@@ -364,16 +351,14 @@ public class gameController : MonoBehaviour
 
 			yield return new WaitForSeconds(3);
 
-			transferInventory();
-			//? missionManager.checkMissionItems(); //?
-
 			audioManager.worldSfxSource.Stop();
 
-			Debug.LogWarning($"test this");
-			roomController.clearRoom(); //? why?
+			transferInventory();
+
+			roomController.clearRoom(); //* why?
 			genAndSpawn(level.lab);
 
-			missionManager.checkMissionItems(); //?
+			missionManager.checkMissionItems(); //* does it have to be here?
 
 			void transferInventory()
 			{
@@ -394,23 +379,21 @@ public class gameController : MonoBehaviour
 
 				// add the rest of cave inv to lab inv
 				menuManager.inventoryManager.labInventory.AddRange(caveInv);
-
 				menuManager.inventoryManager.caveInventory.Clear();
 			}
 		}
 	}
-
 	bool cavernLocked = false; // defaultly open
 	public void m_lockCavern()
 	{
-		// called at end of space call. locks the cavern cause tutorial
+		// called at end of space call. locks the cavern because tutorial
 		// also called when collecting all items for the tutorial mission
 		cavernLocked = true;
 	}
 	public void m_unlockCavern()
 	{
-		// called at end of 3rd(?) tutorial call (when u finish talking to MG at his outpost before entering the elevator for the first time)
-		// also called at end of tutorial lol
+		// called at end of 3rd tutorial call (when you finish talking to MG at his outpost before entering the elevator for the first time)
+		// also called at end of tutorial
 		cavernLocked = false;
 	}
 
@@ -418,7 +401,7 @@ public class gameController : MonoBehaviour
 	{
 		if (!cavernLocked)
 		{
-			Debug.Log("helloooo deadly cavern");
+			// Debug.Log("helloooo deadly cavern");
 
 			getElevator().closeDoors(false);
 
@@ -447,12 +430,13 @@ public class gameController : MonoBehaviour
 				if (missionManager.checkCurrentMission(-1, 4))
 					Invoke(nameof(startNextMainMissionCall), 5f);
 
-				// chatgpt i guess
+				// chatgpt helped
 				StartCoroutine(WaitForCallToEndAndOpenDoors());
 				IEnumerator WaitForCallToEndAndOpenDoors()
 				{
 					while (isCalling)
 					{
+						Debug.LogWarning($"calling; door closed");
 						yield return null;
 					}
 

@@ -2914,7 +2914,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: ae048e1814f33894088de2ea6da8a4f9, type: 3}
   mainMenuMusic:
   - {fileID: 8300000, guid: d926e737758111c4d9245de5682e98d1, type: 3}
-  spaceMusic: []
+  spaceMusic:
+  - {fileID: 8300000, guid: 252241041a967cd49894e23159c56660, type: 3}
   itemPickup:
   - {fileID: 8300000, guid: 69cd76c2b478fef4c9cca38e624593a3, type: 3}
   footSteps:
@@ -4566,7 +4567,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 803551184}
         m_TargetAssemblyTypeName: audioManager, Assembly-CSharp
-        m_MethodName: SetSFXVolume
+        m_MethodName: setSFXVolume
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6722,7 +6723,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 803551184}
         m_TargetAssemblyTypeName: audioManager, Assembly-CSharp
-        m_MethodName: SetMusicVolume
+        m_MethodName: setMusicVolume
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

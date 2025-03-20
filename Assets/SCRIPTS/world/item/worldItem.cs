@@ -4,7 +4,7 @@ public class worldItem : MonoBehaviour
 {
 	audioManager audioManager;
 	inventoryManager inventoryManager;
-	caveItemMenu caveItemMenu;
+	caveItemGrid caveItemMenu;
 
 	public SpriteRenderer spriteRenderer;
 	loot assignedItem;
@@ -17,7 +17,7 @@ public class worldItem : MonoBehaviour
 		audioManager = FindObjectOfType<audioManager>();
 
 		inventoryManager = FindObjectOfType<inventoryManager>();
-		caveItemMenu = FindObjectOfType<caveItemMenu>(true);
+		caveItemMenu = FindObjectOfType<caveItemGrid>(true);
 	}
 
 	public loot checkItem()

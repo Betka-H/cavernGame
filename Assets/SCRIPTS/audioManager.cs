@@ -30,17 +30,15 @@ public class audioManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject); // Keep this object across scenes //? yeah okay
-            // Debug.Log("ddol!");
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
             Destroy(gameObject);
-            // Debug.LogError("destroyed audioman");
             return;
         }
 
-        LoadVolumeSettings();
+        loadVolumeSettings();
     }
 
     AudioClip[] selectedClips;
@@ -48,6 +46,7 @@ public class audioManager : MonoBehaviour
     public void playMusic(musicLvl lvl)
     {
         // Debug.Log($"trying to play {lvl}");
+
         switch (lvl)
         {
             case musicLvl.labRegular:
@@ -60,7 +59,7 @@ public class audioManager : MonoBehaviour
                 selectedClips = caveMusicRegular;
                 prevMusicLvl = musicLvl.caveRegular;
                 break;
-            case musicLvl.caveEscape:
+            case musicLvl.caveEscape: // unused
                 // playMusic(caveMusicEscape);
                 selectedClips = caveMusicEscape;
                 prevMusicLvl = musicLvl.caveEscape;
@@ -108,13 +107,10 @@ public class audioManager : MonoBehaviour
         CancelInvoke("playMusic");
 
         // select random track
-        if (selectedClips.Length > 0) // (but only if there are clips lol) (just in case)
+        if (selectedClips.Length > 0) // (but only if there are clips) (just in case)
         {
             if (selectedClips.Length == 1) // if there is just one song, play the one song
-            {
-                // Debug.Log("yeah happening");
                 trackNumber = 0;
-            }
             else // otherwise check for repeats
             {
                 while (trackNumber == prevTrackNumber)
@@ -133,18 +129,14 @@ public class audioManager : MonoBehaviour
 
             // play + repeat
             musicSource.Play();
-            Invoke("playMusic", musicSource.clip.length); // when its done, play again
-
-            // log
-            // Debug.LogWarning("playing music track " + trackNumber + ": " + musicSource.clip.name);
-            // FindObjectOfType<announcerManager>().announceMessage($"playing music track {trackNumber}: {musicSource.clip.name}");
+            Invoke("playMusic", musicSource.clip.length); // when its done, play again //* sometimes ends song early?
         }
     }
 
     [Header("sfx clips")]
     public AudioClip[] footSteps;
     public AudioClip[] deathImpale;
-    public AudioClip[] callBg; // actually just one. but idk easier to input into existing music looping system
+    public AudioClip[] callBg;
     public AudioClip[] callAdvance;
     public AudioClip[] callEnd;
     public AudioClip[] uiButtonMouseover;
@@ -156,7 +148,6 @@ public class audioManager : MonoBehaviour
     bool canPlaySfx = true;
     public void playSfx(AudioSource source, AudioClip[] clips)
     {
-        // if ((!source.isPlaying || allowOverlap) && clips.Length > 0)
         if (canPlaySfx && clips.Length > 0)
         {
             int rnd = UnityEngine.Random.Range(0, clips.Length);
@@ -164,24 +155,8 @@ public class audioManager : MonoBehaviour
             source.PlayOneShot(clips[rnd]);
 
             StartCoroutine(sfxCooldown());
-            // Debug.LogWarning("playing sound effect: " + clips[rnd].name);
         }
-        // else Debug.LogError($"no clip assigned or banning multiple");
     }
-    /* public void playSfx(AudioSource source, AudioClip[] clips, bool allowOverlap)
-    {
-        // if ((!source.isPlaying || allowOverlap) && clips.Length > 0)
-        if ((canPlaySfx || allowOverlap) && clips.Length > 0)
-        {
-            int rnd = UnityEngine.Random.Range(0, clips.Length);
-
-            source.PlayOneShot(clips[rnd]);
-
-            StartCoroutine(sfxCooldown());
-            // Debug.LogWarning("playing sound effect: " + clips[rnd].name);
-        }
-        // else Debug.LogError($"no clip assigned or banning multiple");
-    } */
     IEnumerator sfxCooldown()
     {
         canPlaySfx = false;
@@ -189,26 +164,25 @@ public class audioManager : MonoBehaviour
         canPlaySfx = true;
     }
 
-    // 🎚 Set music volume
-    public void SetMusicVolume(float volume)
+    public void setMusicVolume(float volume)
     {
         musicVolume = volume;
         musicSource.volume = musicVolume;
         PlayerPrefs.SetFloat("musicVolume", musicVolume);
+        PlayerPrefs.Save();
     }
 
-    // 🎚 Set SFX volume
-    public void SetSFXVolume(float volume)
+    public void setSFXVolume(float volume)
     {
         sfxVolume = volume;
         playerSfxSource.volume = sfxVolume;
         worldSfxSource.volume = sfxVolume;
         uiSfxSource.volume = sfxVolume;
         PlayerPrefs.SetFloat("SFXvolume", sfxVolume);
+        PlayerPrefs.Save();
     }
 
-    // 💾 Load saved volume settings
-    private void LoadVolumeSettings()
+    private void loadVolumeSettings()
     {
         musicVolume = PlayerPrefs.GetFloat("musicVolume", 0.75f);
         sfxVolume = PlayerPrefs.GetFloat("SFXvolume", 1f);
@@ -222,16 +196,12 @@ public class audioManager : MonoBehaviour
 
         if (musicSlider != null && sfxSlider != null)
         {
-            Debug.LogError($"setting slider values");
             musicSlider.value = musicVolume;
             sfxSlider.value = sfxVolume;
         }
     }
     public void saveVolumeSettings()
     {
-        // Debug.LogError($"TRYING saving volume settings");
-
-        //! tmp - does not get inactive objects (i think???)
         try
         {
             musicSlider = GameObject.Find("music slider").GetComponent<Slider>();
@@ -242,10 +212,8 @@ public class audioManager : MonoBehaviour
             Debug.LogWarning($"found no sliders");
             // throw;
         }
-        // Debug.LogError($"ms: {musicSlider}, ss: {sfxSlider}");
         if (musicSlider != null && sfxSlider != null)
         {
-            // Debug.LogError($"saving volume settings");
             PlayerPrefs.SetFloat("musicVolume", musicSlider.value);
             PlayerPrefs.SetFloat("SFXvolume", sfxSlider.value);
         }
@@ -256,15 +224,3 @@ public class audioManager : MonoBehaviour
         saveVolumeSettings();
     }
 }
-/* //? for sliders
-public void OnMusicSliderChange(float value)
-{
-    AudioManager.instance.SetMusicVolume(value);
-}
-
-public void OnSFXSliderChange(float value)
-{
-    AudioManager.instance.SetSFXVolume(value);
-}
-
-  */
