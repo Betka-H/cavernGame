@@ -286,9 +286,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 297f1b7c90d531045adb0ad0094cd12e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomNumberTMP: {fileID: 439360304}
-  darknessLvl: 0
-  currentLevel: 0
   roomParent: {fileID: 1837799390}
   enclosureParent: {fileID: 1689111313}
   doorBlockParent: {fileID: 1698097974}
@@ -329,14 +326,23 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 770f086e90cde9545a13174d760585b6, type: 2}
   - {fileID: 11400000, guid: ce3c3c668775c3946ad1a54a9af68cae, type: 2}
   selectedRooms: []
-  traderSpawnChance: 0
-  traderParent: {fileID: 1700384801}
-  traderPrefab: {fileID: 2371283748658875608, guid: ca18b40640066974b8a56ea24c543e97, type: 3}
   itemParent: {fileID: 879594647}
   itemPrefab: {fileID: 4990905397584942865, guid: dc0dd59358eccea4994f4d139ac2ea02, type: 3}
+  itemSpawnRate: 51
+  traderSpawnChance: 51
+  traderParent: {fileID: 1700384801}
+  traderPrefab: {fileID: 2371283748658875608, guid: ca18b40640066974b8a56ea24c543e97, type: 3}
+  darknessOverlay: {fileID: 1021697125}
+  darknessChance: 50
+  darknessLvl: 0
+  roomNumberTMP: {fileID: 439360304}
   colorBg: {fileID: 486764289}
-  hasMentionedJumping: 1
   spaceStuff: {fileID: 1585081964}
+  inventoryManager: {fileID: 1343291602}
+  missionManager: {fileID: 892595347}
+  callManager: {fileID: 1157321616}
+  currentLevel: 0
+  hasMentionedJumping: 1
   labFirst: 0
   m_hasIntroducedTrader: 1
 --- !u!4 &40118687

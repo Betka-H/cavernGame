@@ -68,7 +68,7 @@ public class roomController : MonoBehaviour
 
 	[HideInInspector] public gameController.level currentLevel;
 
-	public bool hasMentionedJumping = true;
+	[HideInInspector] public bool hasMentionedJumping = true;
 
 	// called at end of jump warn call
 	public void m_resetPlayerBounciness()
@@ -315,7 +315,7 @@ public class roomController : MonoBehaviour
 
 	public enum darknessLevel { light, midLight, midDark, dark };
 
-	public bool m_hasIntroducedTrader = true;
+	[HideInInspector] public bool m_hasIntroducedTrader = true;
 
 	void clearParent(Transform parent)
 	{
