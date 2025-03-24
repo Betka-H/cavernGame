@@ -325,7 +325,7 @@ public class menuManager : MonoBehaviour
     // bool hasTalkedBeforeFirstCave = true;
     public void toggleToggleMissionWorkstationMenu()
     {
-        Debug.LogWarning($"trying to toggle mission menu");
+        // Debug.LogWarning($"trying to toggle mission menu");
 
         // if (menuOpen == null || menuOpen == openMenu.misison)
         // if (!anotherMenuOpen && !escMenu.gameObject.activeSelf)
@@ -334,7 +334,7 @@ public class menuManager : MonoBehaviour
             // menuOpen = openMenu.misison;
             bool onOff = toggleMenu(missionMenu.gameObject);
 
-            Debug.LogWarning($"rndM should be handled by outside info checking this?");
+            // Debug.LogWarning($"rndM should be handled by outside info checking this?");
             /* if (onOff)
                 missionManager.checkRndMission(); */
 
@@ -418,6 +418,14 @@ public class menuManager : MonoBehaviour
                     FindObjectOfType<announcerManager>().announceMessage($"equip shoes first");
                     // Debug.LogWarning("no shoes! equip shoes first");
                 }
+            }
+            else if (missionManager.checkCurrentMission(1001, -1))
+            {
+                onOff = toggleMenu(missionMenu.gameObject);
+                toggleMissionWorkstationMenu(onOff);
+                anotherMenuOpen = onOff;
+
+                callManager.startCall(getCurrentMission());
             }
             /* if (onOff && !hasTalkedBeforeFirstCave)
     {

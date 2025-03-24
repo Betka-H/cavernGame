@@ -266,7 +266,7 @@ public class roomController : MonoBehaviour
 					rc.hasTrader = true;
 
 					//create trader
-					npcTrader = Instantiate(traderPrefab, traderParent).GetComponent<npcTrader>();
+					npcTrader = Instantiate(traderPrefab, traderParent).GetComponentInChildren<npcTrader>();
 					npcTrader.gameObject.SetActive(false);
 				}
 				else traderSpawnRoom = null;
@@ -471,7 +471,7 @@ public class roomController : MonoBehaviour
 			else m_hasIntroducedTrader = true;
 
 
-			npcTrader.transform.localPosition = traderSpawnRoom.chosenTraderSpawn.position;
+			npcTrader.gameObject.transform.localPosition = traderSpawnRoom.chosenTraderSpawn.position;
 			npcTrader.gameObject.SetActive(true);
 		}
 	}

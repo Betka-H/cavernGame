@@ -67,6 +67,8 @@ public class saveManager : MonoBehaviour
 
             // current mission required items
             data.missionReqList = new List<item>(missionManager.allMissions[missionManager.currentMission].requiredItems);
+            Debug.LogWarning($"saved mission inv for mid: {missionManager.allMissions[missionManager.currentMission].missionID} with v v v");
+            menuManager.inventoryManager.printInventory(missionManager.allMissions[missionManager.currentMission].requiredItems);
         }
         void saveMissions()
         {
@@ -74,7 +76,8 @@ public class saveManager : MonoBehaviour
             data.currentMainMission = missionManager.currentMission;
 
             // current main mission call
-            data.mainMissionCall = missionManager.allMissions[missionManager.currentMission].currentCall;
+            // data.mainMissionCall = missionManager.allMissions[missionManager.currentMission].currentCall;
+            data.mainMissionCall = 0;
 
             // current death call
             data.deathCall = missionManager.deathMission.currentCall;
@@ -90,8 +93,8 @@ public class saveManager : MonoBehaviour
 
             roomController.hasMentionedJumping = true; //* why?
 
+            loadMissions(); // load missions first! > prevents overwriting rnd mission req items
             loadInventories();
-            loadMissions();
 
             void loadInventories()
             {
@@ -104,6 +107,8 @@ public class saveManager : MonoBehaviour
 
                 // current mission required items
                 missionManager.allMissions[missionManager.currentMission].requiredItems = new List<item>(data.missionReqList);
+                Debug.LogWarning($"loaded mission inv for mid: {missionManager.allMissions[missionManager.currentMission].missionID} with v v v");
+                menuManager.inventoryManager.printInventory(missionManager.allMissions[missionManager.currentMission].requiredItems);
             }
             void loadMissions()
             {

@@ -60,6 +60,11 @@ public class gameController : MonoBehaviour
 
 			genAndSpawn(level.space);
 		}
+		else if (missionManager.checkCurrentMission(1001, -1))
+		// if end call
+		{
+			genAndSpawn(level.space);
+		}
 		else
 		{
 			roomController.labFirst = true;
@@ -164,9 +169,28 @@ public class gameController : MonoBehaviour
 		}
 
 		// missions
-		if (missionManager.checkCurrentMission(-1, 0)) // space call
+		if (lvl == level.space)
 		{
-			Invoke(nameof(startNextMainMissionCall), 5f);
+			if (missionManager.checkCurrentMission(-1, 0)) // space call
+			{
+				Debug.LogWarning($"SPACE CALL");
+				GameObject spaceExplosionObj = FindObjectOfType<spaceExplosion>(true).gameObject;
+				if (spaceExplosionObj != null)
+					spaceExplosionObj.SetActive(false);
+
+				Invoke(nameof(startNextMainMissionCall), 5f);
+			}
+			else if (missionManager.checkCurrentMission(1001, -1))
+			// last mission
+			{
+				Debug.LogWarning($"LAST CALL");
+				GameObject spaceShipObj = FindObjectOfType<spaceshipMovement>(true).gameObject;
+				if (spaceShipObj != null)
+					spaceShipObj.SetActive(false);
+				FindObjectOfType<spaceExplosion>(true).ignite();
+
+				Invoke(nameof(startNextMainMissionCall), 5f);
+			}
 		}
 		else if (missionManager.checkCurrentMission(-1, 1)) // first tutorial call
 		{
@@ -247,6 +271,11 @@ public class gameController : MonoBehaviour
 	public void startNextMainMissionCall()
 	{
 		callManager.startCall(getCurrentMission());
+	}
+
+	public void m_finishMissions()
+	{
+		genAndSpawn(level.space);
 	}
 
 	// called at end of tmc 2
@@ -417,7 +446,6 @@ public class gameController : MonoBehaviour
 
 				audioManager.worldSfxSource.Stop();
 
-				Debug.LogWarning($"test this");
 				roomController.clearRoom(); //? why?
 				genAndSpawn(level.cavern);
 

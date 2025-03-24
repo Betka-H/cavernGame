@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 36436616039158821}
-  - component: {fileID: -3725059227418358219}
   - component: {fileID: 1011795411703474659}
   - component: {fileID: 9008060062607203274}
   - component: {fileID: 6728266480298878756}
@@ -40,33 +39,6 @@ Transform:
   - {fileID: 8501633760174276756}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-3725059227418358219
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2371283748658875608}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f5309f8cb5eea34097624f78e0c3d36, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  traderItemPool:
-  - {fileID: 11400000, guid: 09beaca968880f7449e06c9b67e05643, type: 2}
-  - {fileID: 11400000, guid: efe3ff3737876564f8c0aa7130051258, type: 2}
-  - {fileID: 11400000, guid: ab0e1471363c9ab42a2e91281c3e9a2c, type: 2}
-  - {fileID: 11400000, guid: 93f8c0fb24728db45ae7422c4e692dfa, type: 2}
-  - {fileID: 11400000, guid: 855f72286b24ad8488e6984db26b4f9f, type: 2}
-  - {fileID: 11400000, guid: 7f25d53e75e5d964da68252c81eca281, type: 2}
-  - {fileID: 11400000, guid: 4f151ca1cf2d4f04ca332d49694124e6, type: 2}
-  - {fileID: 11400000, guid: 339f8e52414bc414c943c6f213a335fb, type: 2}
-  traderScrapPool:
-  - {fileID: 11400000, guid: 2eacc2c6f1934ce41a7f83a454297fc0, type: 2}
-  - {fileID: 11400000, guid: 78adb72ace7c4ef43a6abcaaa3b6fd01, type: 2}
-  - {fileID: 11400000, guid: 52acd9585188b6845b5c6600a5ff0315, type: 2}
-  - {fileID: 11400000, guid: e3bac1d0fab6ab240b32c5e17c66450b, type: 2}
-  scrapChance: 100
 --- !u!114 &1011795411703474659
 MonoBehaviour:
   m_ObjectHideFlags: 0

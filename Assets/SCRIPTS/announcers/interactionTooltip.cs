@@ -21,6 +21,7 @@ public class interactionTooltip : MonoBehaviour
 	// called on tooltip caller enter
 	public void showTooltip(KeyCode key, tooltipKind tk)
 	{
+		isLocked = false;
 		string action = "";
 		switch (tk)
 		{
@@ -52,10 +53,13 @@ public class interactionTooltip : MonoBehaviour
 				break;
 		}
 
-		txtDisplay.text = $"press {key} to {action}";
+		if (!isLocked)
+		{
+			txtDisplay.text = $"press {key} to {action}";
 
-		isLocked = false;
-		gameObject.SetActive(true);
+			// isLocked = false;
+			gameObject.SetActive(true);
+		}
 	}
 
 	// called from tooltip caller interaction

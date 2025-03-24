@@ -26,7 +26,7 @@ public class labItemOutOfGrid : itemMenu
             tempHasInv = new List<item>();
         else tempHasInv = new List<item>(hasList);
 
-        Debug.LogWarning($"haslist? {hasList.Count}");
+        // Debug.LogWarning($"haslist? {hasList.Count}");
         inventoryScript.sortInventory(ref neededList);
         List<item> tempNeedsInv;
         if (neededList == null)

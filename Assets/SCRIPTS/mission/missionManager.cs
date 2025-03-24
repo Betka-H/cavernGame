@@ -23,13 +23,24 @@ public class missionManager : MonoBehaviour
         callManager = FindObjectOfType<callManager>();
         gameController = FindObjectOfType<gameController>();
         inventoryManager = FindObjectOfType<inventoryManager>();
+
+        if (currentMission > allMissions.Length)
+        {
+            Debug.LogWarning($"invalid mission id!");
+            currentMission = 0;
+        }
     }
 
     public bool checkCurrentMission(int wantedMissionID, int wantedCallID)
     // -1 to not check call
     {
         // Debug.Log($"checking mission state as {wantedMissionID}, {wantedCallID}");
-        missionSO currentMissionSO = allMissions[currentMission];
+        missionSO currentMissionSO = allMissions[0];
+        try
+        {
+            currentMissionSO = allMissions[currentMission];
+        }
+        catch (System.Exception) { Debug.LogWarning($"invalid check"); }
 
         // Debug.Log($"current mission: {currentMissionSO} ({currentMissionSO.missionID}), current call: {currentMissionSO.currentCall}");
 
@@ -61,16 +72,23 @@ public class missionManager : MonoBehaviour
     {
         FindObjectOfType<inventoryManager>().missionInventory.Clear();
 
+        currentMission++;
         if (currentMission + 1 < allMissions.Length)
+        // if (currentMission < allMissions.Length)
         {
             FindObjectOfType<announcerManager>().announceMessage("you have a new mission!");
-            currentMission++;
+            // currentMission++;
+            allMissions[currentMission].currentCall = 0;
 
             FindObjectOfType<outsideMissionInfo>().show();
         }
-        else FindObjectOfType<announcerManager>().announceMessage("all missions completed!");
+        else
+        {
+            FindObjectOfType<announcerManager>().announceMessage("all missions completed! go talk to MG");
+            Debug.LogWarning($"cm: {currentMission}, {allMissions[currentMission].missionID}");
+            // gameController.finishMissions();
+        }
 
-        allMissions[currentMission].currentCall = 0;
     }
 
     public void restartMissions()
@@ -113,16 +131,19 @@ public class missionManager : MonoBehaviour
 
     public void checkRndMission()
     {
+        Debug.LogWarning($"checking rnd mission (cm: {currentMission}, mid: {allMissions[currentMission].missionID})");
         if (allMissions[currentMission] is randomMissionSO rndMission)
         {
-            if (rndMission.requiredItems.Count == 0)
+            Debug.LogWarning($"current mission is rnd ({rndMission.howManyItems} items)");
+            if (rndMission.requiredItems.Count == 0 || rndMission.requiredItems.Count > rndMission.howManyItems)
+            // the mission has no items - generating new items
             {
+                Debug.LogWarning($"the missions has no or wrong req items - generating new items");
                 List<item> allMissionItems = inventoryManager.inventoryDefinitions.missionItems;
                 for (int i = 0; i < rndMission.howManyItems; i++)
                 {
                     int rndIndex = Random.Range(0, allMissionItems.Count);
                     item rndItem = allMissionItems[rndIndex];
-
                     rndMission.requiredItems.Add(rndItem);
                 }
                 inventoryManager.sortInventory(ref rndMission.requiredItems);

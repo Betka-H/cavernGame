@@ -9,17 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bff8bd200c870c94c8f690b64752f36e, type: 3}
-  m_Name: rndM 0
+  m_Script: {fileID: 11500000, guid: 2aa9bd2290040f740b1590610b914dff, type: 3}
+  m_Name: ending mission
   m_EditorClassIdentifier: 
-  missionID: 0
-  missionTitle: rnd mission 0
-  missionDescription: random 5
-  endOnAllItems: 1
+  missionID: 1001
+  missionTitle: ending
+  missionDescription: no mission
+  endOnAllItems: 0
   endOnAllCalls: 0
   requiredItems: []
-  calls: []
+  calls:
+  - {fileID: 11400000, guid: dcb352086a2a97546833fc7484a92958, type: 2}
+  - {fileID: 11400000, guid: 9ae2a73ef0a27f342a8df2dde6ed8770, type: 2}
   currentCall: 0
   endEventValuesList: []
-  howManyItems: 1
-  hasBeenAssigned: 0
