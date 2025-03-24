@@ -9,7 +9,7 @@ public class itemInfoDisplay : MonoBehaviour
     public TMP_Text invTxt_itemName;
     public TMP_Text invTxt_itemDescription;
 
-    [Header("placeholders")] //! set placeholders
+    [Header("placeholders")]
     public Sprite placeholderItemSprite;
     public string placeholderItemName;
     [TextArea] public string placeholderItemDescription;

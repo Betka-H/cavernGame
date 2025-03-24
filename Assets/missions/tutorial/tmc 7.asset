@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: tmc 7
   m_EditorClassIdentifier: 
   talkSprites:
-  - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
-  - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
-  - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
-  - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
-  - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
-  - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
-  - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
+  - {fileID: 21300000, guid: 1a3f3764ca816474ead2de13c50c97ef, type: 3}
+  - {fileID: 21300000, guid: 1a3f3764ca816474ead2de13c50c97ef, type: 3}
+  - {fileID: 21300000, guid: 1a3f3764ca816474ead2de13c50c97ef, type: 3}
+  - {fileID: 21300000, guid: 1a3f3764ca816474ead2de13c50c97ef, type: 3}
+  - {fileID: 21300000, guid: 1a3f3764ca816474ead2de13c50c97ef, type: 3}
+  - {fileID: 21300000, guid: 1a3f3764ca816474ead2de13c50c97ef, type: 3}
+  - {fileID: 21300000, guid: 312c18868cedbd64f92d1e6297ad9e6f, type: 3}
   speakerNames:
   - Crafting lab assistant
   - Crafting lab assistant

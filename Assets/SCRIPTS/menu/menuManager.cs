@@ -220,8 +220,8 @@ public class menuManager : MonoBehaviour
             if (onOff && missionManager.checkCurrentMission(-1, 3))
             {
                 onOff = showMenuScreen(labMissionMenu.gameObject);
-                labMissionMenu.gameObject.SetActive(onOff);
-                anotherMenuOpen = onOff;
+                labMissionMenu.gameObject.SetActive(onOff);  
+                anotherMenuOpen = onOff;     
 
                 callManager.startCall(getCurrentMission());
             }

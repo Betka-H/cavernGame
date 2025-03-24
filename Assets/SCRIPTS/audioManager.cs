@@ -24,9 +24,6 @@ public class audioManager : MonoBehaviour
 
     void Awake()
     {
-        //! check Debug.LogWarning($"credit sound sources!!!");
-        //! check Debug.LogWarning($"also delete unused cause these files are huuuuge");
-
         if (instance == null)
         {
             instance = this;

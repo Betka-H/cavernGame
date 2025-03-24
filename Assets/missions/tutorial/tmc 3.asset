@@ -13,36 +13,36 @@ MonoBehaviour:
   m_Name: tmc 3
   m_EditorClassIdentifier: 
   talkSprites:
-  - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
-  - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
-  - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
-  - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
-  - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
-  - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
-  - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
-  - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
-  - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
-  - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
-  - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
-  - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
-  - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
+  - {fileID: 21300000, guid: 30caae248ee78d94d8bee3048663c009, type: 3}
+  - {fileID: 21300000, guid: 30caae248ee78d94d8bee3048663c009, type: 3}
+  - {fileID: 21300000, guid: 30caae248ee78d94d8bee3048663c009, type: 3}
+  - {fileID: 21300000, guid: 30caae248ee78d94d8bee3048663c009, type: 3}
+  - {fileID: 21300000, guid: 30caae248ee78d94d8bee3048663c009, type: 3}
+  - {fileID: 21300000, guid: 30caae248ee78d94d8bee3048663c009, type: 3}
+  - {fileID: 21300000, guid: 30caae248ee78d94d8bee3048663c009, type: 3}
+  - {fileID: 21300000, guid: 30caae248ee78d94d8bee3048663c009, type: 3}
+  - {fileID: 21300000, guid: 30caae248ee78d94d8bee3048663c009, type: 3}
+  - {fileID: 21300000, guid: 30caae248ee78d94d8bee3048663c009, type: 3}
+  - {fileID: 21300000, guid: 30caae248ee78d94d8bee3048663c009, type: 3}
+  - {fileID: 21300000, guid: 30caae248ee78d94d8bee3048663c009, type: 3}
+  - {fileID: 21300000, guid: 30caae248ee78d94d8bee3048663c009, type: 3}
   speakerNames:
-  - '[mission guy]'
-  - '[mission guy]'
-  - '[mission guy]'
-  - '[mission guy]'
-  - '[mission guy]'
-  - '[mission guy]'
-  - '[mission guy]'
-  - '[mission guy]'
-  - '[mission guy]'
-  - '[mission guy]'
-  - '[mission guy]'
-  - '[mission guy]'
-  - '[mission guy]'
+  - MG
+  - MG
+  - MG
+  - MG
+  - MG
+  - MG
+  - MG
+  - MG
+  - MG
+  - MG
+  - MG
+  - MG
+  - MG
   messages:
   - Welcome once again!
-  - I forgot to introduce myself. My name's [name], but everyone calls me MG.
+  - I forgot to introduce myself. My name's Michael, but everyone calls me MG.
   - Short for Mission Guy. Yup.
   - Anyway, like I said, it's my duty to show you around today.
   - The rooms you just walked past are the research labs. That's where you will hand

@@ -13,23 +13,23 @@ MonoBehaviour:
   m_Name: tmc 2
   m_EditorClassIdentifier: 
   talkSprites:
-  - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
-  - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
-  - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
-  - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
-  - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
-  - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
-  - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
-  - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
+  - {fileID: 21300000, guid: ee14eca928739754389a6bcd780daa45, type: 3}
+  - {fileID: 21300000, guid: ee14eca928739754389a6bcd780daa45, type: 3}
+  - {fileID: 21300000, guid: ee14eca928739754389a6bcd780daa45, type: 3}
+  - {fileID: 21300000, guid: ee14eca928739754389a6bcd780daa45, type: 3}
+  - {fileID: 21300000, guid: ee14eca928739754389a6bcd780daa45, type: 3}
+  - {fileID: 21300000, guid: ee14eca928739754389a6bcd780daa45, type: 3}
+  - {fileID: 21300000, guid: ee14eca928739754389a6bcd780daa45, type: 3}
+  - {fileID: 21300000, guid: ee14eca928739754389a6bcd780daa45, type: 3}
   speakerNames:
-  - '[mission guy]'
-  - '[mission guy]'
-  - '[mission guy]'
-  - '[mission guy]'
-  - '[mission guy]'
-  - '[mission guy]'
-  - '[mission guy]'
-  - '[mission guy]'
+  - MG
+  - MG
+  - MG
+  - MG
+  - MG
+  - MG
+  - MG
+  - MG
   messages:
   - Oh, and if you're having trouble moving around, that's because the gravity here
     is a bit messed up.

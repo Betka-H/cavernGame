@@ -2678,11 +2678,11 @@ MonoBehaviour:
   craftBtnBg: {fileID: 1318889433}
   craftBtnUnableColor: {r: 0.5849056, g: 0.20692417, b: 0.20692417, a: 1}
   craftBtnAbleColor: {r: 0.20784312, g: 0.58431375, b: 0.32788745, a: 1}
-  requiredItemsGrid: {fileID: 0}
-  scrapInputSpriteRenderer: {fileID: 0}
+  requiredItemsGrid: {fileID: 1640088919}
+  scrapInputSpriteRenderer: {fileID: 1541727260}
   resultSpriteRenderer: {fileID: 1241050575}
-  placeholderScrapItemSprite: {fileID: 1854333662, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
-  placeholderResultItemSprite: {fileID: 639530761, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
+  placeholderScrapItemSprite: {fileID: 0}
+  placeholderResultItemSprite: {fileID: 0}
   menuManager: {fileID: 1252296504}
   callManager: {fileID: 1157321616}
   announcerManager: {fileID: 1041129260}
@@ -3796,7 +3796,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3804,7 +3804,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &255374807
@@ -4140,7 +4140,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 1854333662, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4148,7 +4148,7 @@ SpriteRenderer:
   m_Size: {x: 1.28, y: 1.28}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &264148721
@@ -5371,9 +5371,9 @@ MonoBehaviour:
   invSprite_itemSprite: {fileID: 1325511138}
   invTxt_itemName: {fileID: 94113306}
   invTxt_itemDescription: {fileID: 972670620}
-  placeholderItemSprite: {fileID: 639530761, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
+  placeholderItemSprite: {fileID: 0}
   placeholderItemName: item info
-  placeholderItemDescription: '[equip an item]'
+  placeholderItemDescription: '[equip an item to show it''s description]'
 --- !u!4 &330117552
 Transform:
   m_ObjectHideFlags: 0
@@ -11306,7 +11306,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 1854333662, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -11314,7 +11314,7 @@ SpriteRenderer:
   m_Size: {x: 1.28, y: 1.28}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &791283184
@@ -11652,7 +11652,7 @@ MonoBehaviour:
   invSprite_itemSprite: {fileID: 69681121}
   invTxt_itemName: {fileID: 2099471848}
   invTxt_itemDescription: {fileID: 498894887}
-  placeholderItemSprite: {fileID: 639530761, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
+  placeholderItemSprite: {fileID: 0}
   placeholderItemName: item info
   placeholderItemDescription: click an item to show its info
 --- !u!210 &811950247
@@ -11844,6 +11844,9 @@ MonoBehaviour:
   handL: {fileID: 317342422}
   handR: {fileID: 264148722}
   bagHand: {fileID: 1901312961}
+  menuManager: {fileID: 1252296504}
+  inventoryManager: {fileID: 1343291602}
+  announcerManager: {fileID: 1041129260}
   timesTradedInfoDisp: {fileID: 1901541731}
 --- !u!210 &829627199
 SortingGroup:
@@ -12242,7 +12245,7 @@ MonoBehaviour:
   invTxt_itemDescription: {fileID: 962613843}
   placeholderItemSprite: {fileID: 639530761, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
   placeholderItemName: item info
-  placeholderItemDescription: '[equip an item]'
+  placeholderItemDescription: '[equip an item to show it''s description]'
 --- !u!4 &875075917
 Transform:
   m_ObjectHideFlags: 0
@@ -13013,8 +13016,8 @@ Transform:
   m_GameObject: {fileID: 961733595}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -421.3825, y: 23.675049, z: 0}
-  m_LocalScale: {x: 200, y: 200, z: 1}
+  m_LocalPosition: {x: -413, y: -13, z: 0}
+  m_LocalScale: {x: 100, y: 100, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1980269335}
@@ -13060,7 +13063,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 67a1f8667657d024390d286ceb99fd8f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -13211,7 +13214,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[Equip an item to show it''s description.]'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -13345,7 +13348,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '[Equip an item to show it''s description.]'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -13493,8 +13496,8 @@ MonoBehaviour:
   - {fileID: 649568964}
   - {fileID: 2091724596}
   unequipButtons: []
-  menuManager: {fileID: 0}
-  announcerManager: {fileID: 0}
+  menuManager: {fileID: 1252296504}
+  announcerManager: {fileID: 1041129260}
 --- !u!210 &977803848
 SortingGroup:
   m_ObjectHideFlags: 0
@@ -15866,7 +15869,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 253ba1149c9cdce4ca1aeea707dbece8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  callScreen: {fileID: 0}
+  callScreen: {fileID: 1980269337}
+  missionManager: {fileID: 892595347}
+  menuManager: {fileID: 1252296504}
+  gameController: {fileID: 699556567}
+  audioManager: {fileID: 793757556}
 --- !u!1 &1163605773
 GameObject:
   m_ObjectHideFlags: 0
@@ -18489,7 +18496,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -18497,7 +18504,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1001 &1331070391
@@ -26531,7 +26538,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2035486527}
   - component: {fileID: 2035486529}
-  - component: {fileID: 2035486528}
   - component: {fileID: 2035486530}
   - component: {fileID: 2035486531}
   m_Layer: 19
@@ -26558,18 +26564,6 @@ Transform:
   - {fileID: 1623300295}
   m_Father: {fileID: 829627197}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2035486528
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2035486526}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d55ea01f69f49145892a5b7574e80c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &2035486529
 BoxCollider2D:
   m_ObjectHideFlags: 0

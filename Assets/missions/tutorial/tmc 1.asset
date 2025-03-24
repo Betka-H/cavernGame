@@ -13,25 +13,25 @@ MonoBehaviour:
   m_Name: tmc 1
   m_EditorClassIdentifier: 
   talkSprites:
-  - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
-  - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
-  - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
-  - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
-  - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
-  - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
-  - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 21300000, guid: ee14eca928739754389a6bcd780daa45, type: 3}
+  - {fileID: 21300000, guid: ee14eca928739754389a6bcd780daa45, type: 3}
+  - {fileID: 21300000, guid: ee14eca928739754389a6bcd780daa45, type: 3}
+  - {fileID: 21300000, guid: ee14eca928739754389a6bcd780daa45, type: 3}
+  - {fileID: 21300000, guid: ee14eca928739754389a6bcd780daa45, type: 3}
   speakerNames:
   - 
   - 
-  - '[mission guy]'
-  - '[mission guy]'
-  - '[mission guy]'
-  - '[mission guy]'
-  - '[mission guy]'
+  - MG
+  - MG
+  - MG
+  - MG
+  - MG
   messages:
   - '[you hear a beep from your communicator device]'
   - '[you have incoming messages]'
-  - Heey! Welcome to [space base]!
+  - Heey! Welcome to Geology research station B-512!
   - Since you're one of the new guys, it is my duty to show you around a bit and
     get you familiar with the place.
   - We can start right away!

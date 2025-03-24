@@ -1,13 +1,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class npcTrader : NPC
+public class npcTrader : MonoBehaviour
 {
 	[Space]
 	public item[] traderItemPool;
 	public item[] traderScrapPool;
 
 	private item[] traderInventory;
+
+	menuManager menuManager;
 
 	[Space]
 	[Tooltip("chance of the trader offering a piece of scrap")]
@@ -16,18 +18,11 @@ public class npcTrader : NPC
 
 	void Start()
 	{
-		rollTraderInventory();
-		//! move trader down to nearest ground
-	}
+		menuManager = FindObjectOfType<menuManager>();
 
-	/* void Update()
-	{
-		if (Input.GetKeyDown(tooltipCaller.keyToInteract))
-		{
-			Debug.Log("hi im the trader npc. kys unity");
-			toggleMenu();
-		}
-	} */
+		rollTraderInventory();
+		//* move trader down to nearest ground
+	}
 
 	item mainItem;
 	void rollTraderInventory()
@@ -51,7 +46,6 @@ public class npcTrader : NPC
 
 		// logTraderInventory();
 
-		// Debug.Log($"mm: {menuManager}");
 		menuManager.traderMenu.setInventory(traderInventory, mainItem);
 	}
 

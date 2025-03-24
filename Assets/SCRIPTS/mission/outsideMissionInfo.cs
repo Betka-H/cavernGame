@@ -10,10 +10,6 @@ public class outsideMissionInfo : MonoBehaviour
     public inventoryManager inventoryManager;
 
     //! keep disabled in inspector
-    /* void Start()
-    {
-        gameObject.SetActive(false);
-    } */
 
     public void show()
     {

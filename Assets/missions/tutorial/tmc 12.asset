@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: tmc 12
   m_EditorClassIdentifier: 
   talkSprites:
-  - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
-  - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
-  - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
-  - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
+  - {fileID: 21300000, guid: db209cdb2881be0429b2dcdbd791b1a6, type: 3}
+  - {fileID: 21300000, guid: db209cdb2881be0429b2dcdbd791b1a6, type: 3}
+  - {fileID: 21300000, guid: db209cdb2881be0429b2dcdbd791b1a6, type: 3}
+  - {fileID: 21300000, guid: db209cdb2881be0429b2dcdbd791b1a6, type: 3}
   speakerNames:
-  - '[mission guy]'
-  - '[mission guy]'
-  - '[mission guy]'
-  - '[mission guy]'
+  - Locker room guy
+  - Locker room guy
+  - Locker room guy
+  - Locker room guy
   messages:
   - Fancy.
   - The guys nextdoors are like magicians with that crafting machine of theirs, I'm

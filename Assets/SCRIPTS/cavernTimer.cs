@@ -2,8 +2,8 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 
-//! deprecated
 public class cavernTimer : MonoBehaviour
+// unused
 {
     [Min(5)]
     public int initialTimeMin = 5;
@@ -53,14 +53,12 @@ public class cavernTimer : MonoBehaviour
 
     void endInitialTimer()
     {
-        //! Debug.Log("initial timer ended");
-        //! Debug.Log("cue cave-ins");
         // FindObjectOfType<announcerManager>().announceMessage("timer finished :33", true);
         // StartCoroutine(StartRandomTimer());
     }
 }
 
-//! chatgpt
+// chatgpt
 /* using System.Collections;
 using UnityEngine;
 
