@@ -10,11 +10,11 @@ public class labInvItem : invItem
 	{
 		base.OnMouseDown();
 
-		if (menuManager.toolWorkstationMenu.gameObject.activeSelf)
+		if (menuManager.craftingWorkstationMenu.gameObject.activeSelf)
 		{
 			if (assignedItem is scrap scrap)
-				menuManager.toolWorkstationMenu.assignScrap(scrap);
-			else menuManager.toolWorkstationMenu.assignScrap(null);
+				menuManager.craftingWorkstationMenu.assignScrap(scrap);
+			else menuManager.craftingWorkstationMenu.assignScrap(null);
 		}
 	}
 	public void assignItem(item it, int amount)

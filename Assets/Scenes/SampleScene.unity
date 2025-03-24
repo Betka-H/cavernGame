@@ -2668,7 +2668,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   recipeGridSlots: []
-  requiredItemsMenu: {fileID: 1640088919}
   recipeSpawnPoints:
   - {fileID: 1013318006}
   - {fileID: 1899832782}
@@ -2679,10 +2678,14 @@ MonoBehaviour:
   craftBtnBg: {fileID: 1318889433}
   craftBtnUnableColor: {r: 0.5849056, g: 0.20692417, b: 0.20692417, a: 1}
   craftBtnAbleColor: {r: 0.20784312, g: 0.58431375, b: 0.32788745, a: 1}
-  scrapSpriteRenderer: {fileID: 1541727260}
+  requiredItemsGrid: {fileID: 0}
+  scrapInputSpriteRenderer: {fileID: 0}
   resultSpriteRenderer: {fileID: 1241050575}
   placeholderScrapItemSprite: {fileID: 1854333662, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
   placeholderResultItemSprite: {fileID: 639530761, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
+  menuManager: {fileID: 1252296504}
+  callManager: {fileID: 1157321616}
+  announcerManager: {fileID: 1041129260}
 --- !u!210 &157139071
 SortingGroup:
   m_ObjectHideFlags: 0
@@ -13490,6 +13493,8 @@ MonoBehaviour:
   - {fileID: 649568964}
   - {fileID: 2091724596}
   unequipButtons: []
+  menuManager: {fileID: 0}
+  announcerManager: {fileID: 0}
 --- !u!210 &977803848
 SortingGroup:
   m_ObjectHideFlags: 0
@@ -13954,6 +13959,8 @@ MonoBehaviour:
   unequipButtons:
   - {fileID: 951805299}
   - {fileID: 158657636}
+  menuManager: {fileID: 1252296504}
+  announcerManager: {fileID: 1041129260}
 --- !u!1 &1016834114
 GameObject:
   m_ObjectHideFlags: 0
@@ -16568,7 +16575,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72c1c009b8a0dc94a9d3b79c4798a895, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventoryScript: {fileID: 0}
+  inventoryManager: {fileID: 0}
   gridSlotsParent: {fileID: 1187531095}
   regularSlots: []
   selectedItem: {fileID: 0}
@@ -17148,23 +17155,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f0364d3f1e17144eb8e6bc9dc7cdcd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuBg: {fileID: 2102197490}
   inventoryManager: {fileID: 1343291602}
   missionManager: {fileID: 892595347}
   callManager: {fileID: 1157321616}
-  deathScreen: {fileID: 1246856623}
-  caveItemMenu: {fileID: 1621603476}
-  missionMenu: {fileID: 310504277}
-  ingameMissionMenu: {fileID: 1679852455}
+  gameController: {fileID: 699556567}
+  announcerManager: {fileID: 1041129260}
+  labItemGrid: {fileID: 106371185}
+  caveItemGrid: {fileID: 1621603476}
+  itemInfoDisplay: {fileID: 811950246}
+  caveMissionMenu: {fileID: 1679852455}
+  labMissionMenu: {fileID: 310504277}
   callScreen: {fileID: 1980269337}
   traderMenu: {fileID: 829627198}
-  labItemMenu: {fileID: 106371185}
-  toolWorkstationMenu: {fileID: 157139070}
-  equipWorkstation: {fileID: 1015604241}
-  ingameEquipWorkstation: {fileID: 977803847}
+  craftingWorkstationMenu: {fileID: 157139070}
+  equipWorkstationMenu: {fileID: 1015604241}
+  caveEquipWorkstationMenu: {fileID: 977803847}
   escMenu: {fileID: 1556129457}
-  itemInfoDisplay: {fileID: 811950246}
-  gameController: {fileID: 699556567}
+  deathScreen: {fileID: 1246856623}
+  menuBg: {fileID: 2102197490}
 --- !u!1001 &1253650370
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22240,7 +22248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31ca64122f611a34d807c4148db95424, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventoryScript: {fileID: 0}
+  inventoryManager: {fileID: 0}
   gridSlotsParent: {fileID: 1620344208}
   regularSlots: []
   selectedItem: {fileID: 0}
@@ -22275,7 +22283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 558405b61adbd1b408f859cda6968be5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventoryScript: {fileID: 0}
+  inventoryManager: {fileID: 0}
   gridSlotsParent: {fileID: 1000994816}
   regularSlots: []
   selectedItem: {fileID: 0}
@@ -22773,7 +22781,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72c1c009b8a0dc94a9d3b79c4798a895, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventoryScript: {fileID: 0}
+  inventoryManager: {fileID: 0}
   gridSlotsParent: {fileID: 1640088917}
   regularSlots: []
   selectedItem: {fileID: 0}
@@ -26003,7 +26011,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72c1c009b8a0dc94a9d3b79c4798a895, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventoryScript: {fileID: 0}
+  inventoryManager: {fileID: 0}
   gridSlotsParent: {fileID: 1968781348}
   regularSlots: []
   selectedItem: {fileID: 0}
@@ -27291,7 +27299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72c1c009b8a0dc94a9d3b79c4798a895, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventoryScript: {fileID: 0}
+  inventoryManager: {fileID: 0}
   gridSlotsParent: {fileID: 2096859511}
   regularSlots: []
   selectedItem: {fileID: 0}

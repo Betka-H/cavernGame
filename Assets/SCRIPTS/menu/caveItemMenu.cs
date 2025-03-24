@@ -32,7 +32,7 @@ public class caveItemGrid : itemMenu
 
 	void OnEnable()
 	{
-		refreshItems(regularSlots, inventoryScript.caveInventory);
+		refreshItems(regularSlots, inventoryManager.caveInventory);
 	}
 
 	public override void refreshItems(invItem[] slots, List<item> hasList, List<item> neededList)
@@ -41,17 +41,16 @@ public class caveItemGrid : itemMenu
 	}
 	public override void refreshItems(invItem[] slots, List<item> itemList)
 	{
-		inventoryScript.sortInventory(ref itemList);
+		inventoryManager.sortInventory(ref itemList);
 
 		if (regularSlots != null)
 		{
-			for (int i = 0; i < regularSlots.Length; i++) // for each slot
+			for (int i = 0; i < regularSlots.Length; i++)
+			// for each slot
 			{
 				caveInvItem currentItem = regularSlots[i] as caveInvItem;
 				if (i < itemList.Count)
-				{
 					currentItem.assignItem(itemList[i]);
-				}
 				else currentItem.assignItem(null);
 			}
 		}

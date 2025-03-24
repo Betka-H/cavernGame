@@ -1,35 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class toolWorkstationMenu : MonoBehaviour
 {
-    // public Transform recipeGridTransform;
     [HideInInspector] public labInvItem[] recipeGridSlots;
 
-    public itemMenu requiredItemsMenu;
-
+    [Header("item animation")]
     public Transform[] recipeSpawnPoints;
     public GameObject physicalPrefab;
 
+    [Header("craft button")]
     public SpriteRenderer craftBtnBg;
     public Color craftBtnUnableColor;
     public Color craftBtnAbleColor;
 
+    [Header("displays")]
+    public itemMenu requiredItemsGrid;
     scrap assignedScrap;
-    public SpriteRenderer scrapSpriteRenderer;
+    public SpriteRenderer scrapInputSpriteRenderer;
     public SpriteRenderer resultSpriteRenderer;
-    menuManager menuManager;
     public Sprite placeholderScrapItemSprite;
     public Sprite placeholderResultItemSprite;
 
+    public menuManager menuManager;
+    public callManager callManager;
+    public announcerManager announcerManager;
+
     void Awake()
     {
-        menuManager = FindObjectOfType<menuManager>();
-        // recipeGridSlots = recipeGridTransform.GetComponentsInChildren<labInvItem>(true);
-        isDropping = false;
+        isAnimatingRecipeDrop = false;
     }
 
     void OnEnable()
@@ -42,21 +43,19 @@ public class toolWorkstationMenu : MonoBehaviour
     public void assignScrap(scrap scrap)
     {
         craftBtnBg.color = craftBtnUnableColor;
-        if (!isDropping)
+        if (!isAnimatingRecipeDrop)
         {
             assignedScrap = scrap;
             if (assignedScrap != null)
             {
-                scrapSpriteRenderer.sprite = assignedScrap.itemSprite;
+                scrapInputSpriteRenderer.sprite = assignedScrap.itemSprite;
                 resultSpriteRenderer.sprite = assignedScrap.wholeGear.itemSprite;
-                //??? menuManager.labItemMenu.itemGrid.refreshItems(recipeGridSlots, assignedScrap.wholeGear.cost.ToList());
-                requiredItemsMenu.refreshItems(requiredItemsMenu.regularSlots, menuManager.inventoryManager.labInventory, assignedScrap.wholeGear.cost.ToList());
+                requiredItemsGrid.refreshItems(requiredItemsGrid.regularSlots, menuManager.inventoryManager.labInventory, assignedScrap.wholeGear.cost.ToList());
 
-                if (FindObjectOfType<missionManager>().checkCurrentMission(-1, 8)) //! testing
+                if (FindObjectOfType<missionManager>().checkCurrentMission(-1, 8))
+                // for tutorial
                 {
-                    callManager callManager = FindObjectOfType<callManager>();
                     callManager.startCall(callManager.currentMainMission());
-                    // startNextMainMissionCall();
                 }
 
                 if (menuManager.inventoryManager.checkResources(menuManager.inventoryManager.labInventory, assignedScrap.wholeGear.cost.ToList()))
@@ -67,17 +66,16 @@ public class toolWorkstationMenu : MonoBehaviour
             }
             else
             {
-                scrapSpriteRenderer.sprite = placeholderScrapItemSprite;
+                scrapInputSpriteRenderer.sprite = placeholderScrapItemSprite;
                 resultSpriteRenderer.sprite = placeholderResultItemSprite;
-                //??? menuManager.labItemMenu.itemGrid.refreshItems(recipeGridSlots, new List<item>());
-                requiredItemsMenu.refreshItems(requiredItemsMenu.regularSlots, menuManager.inventoryManager.labInventory, new List<item>());
+                requiredItemsGrid.refreshItems(requiredItemsGrid.regularSlots, menuManager.inventoryManager.labInventory, new List<item>());
             }
         }
     }
 
     public void createWorkshopGear()
     {
-        if (!isDropping)
+        if (!isAnimatingRecipeDrop)
         {
             if (assignedScrap != null)
             {
@@ -89,79 +87,42 @@ public class toolWorkstationMenu : MonoBehaviour
                     menuManager.inventoryManager.removeItem(assignedScrap, menuManager.inventoryManager.labInventory);
 
                     StartCoroutine(dropRecipe(assignedScrap.wholeGear.cost));
-
-                    /*//? // remove all recipe resources
-                    foreach (item it in assignedScrap.wholeGear.cost)
-                        menuManager.inventoryManager.removeItem(it, menuManager.inventoryManager.labInventory);
-
-                    // clear scrap and recipe displays
-                    assignScrap(null);
-                    menuManager.labItemMenu.itemGrid.refreshItems(menuManager.labItemMenu.itemGrid.regularSlots, menuManager.inventoryManager.labInventory);
-                    //??? menuManager.labItemMenu.itemGrid.refreshItems(recipeGridSlots, null);
-                    requiredItemsMenu.refreshItems(requiredItemsMenu.regularSlots, menuManager.inventoryManager.labInventory, new List<item>());
-
-                    // menuManager.itemInfoDisplay.selectedItem = null;
-                    menuManager.itemInfoDisplay.setInfo(null);
-
-                    if (FindObjectOfType<missionManager>().checkCurrentMission(-1, 9)) //! testing
-                    {
-                        callManager callManager = FindObjectOfType<callManager>();
-                        callManager.startCall(callManager.currentMainMission());
-                        menuManager.toggleToggletoolWorkstationMenuScreen();
-                        // startNextMainMissionCall();
-                    } */
                 }
-                else
-                    FindObjectOfType<announcerManager>().announceMessage($"you do not have the required materials!");
+                else announcerManager.announceMessage($"you do not have the required materials!");
             }
-            else
-            {
-                // Debug.Log("no offer or not enough resources");
-                FindObjectOfType<announcerManager>().announceMessage($"no item selected!");
-            }
+            else announcerManager.announceMessage($"no item selected!");
         }
     }
-
-    bool isDropping;
+    bool isAnimatingRecipeDrop; // prevents actions during crafting animation
     IEnumerator dropRecipe(item[] recipeItems)
     {
-        isDropping = true;
+        // animate recipe items dropping
+        isAnimatingRecipeDrop = true;
         int i = recipeItems.Length + 1;
         foreach (item it in recipeItems)
         {
             i--;
-            yield return new WaitForSecondsRealtime(Random.Range(0.5f / i, 0.75f / i));
-            // yield return new WaitForSecondsRealtime(0.15f);
+            yield return new WaitForSecondsRealtime(Random.Range(0.5f / i, 0.75f / i)); // drop intervals get longer the less items there are
             GameObject ingredient = Instantiate(physicalPrefab, recipeSpawnPoints[Random.Range(0, recipeSpawnPoints.Length)]);
             ingredient.GetComponent<SpriteRenderer>().sprite = it.itemSprite;
 
             menuManager.inventoryManager.removeItem(it, menuManager.inventoryManager.labInventory);
         }
         yield return new WaitForSecondsRealtime(Random.Range(0.25f, 1f));
-        isDropping = false;
-
-        // remove all recipe resources
-        /* foreach (item it in assignedScrap.wholeGear.cost)
-        {
-            Debug.LogWarning($"removing item {it.itemName} from inv");
-            menuManager.inventoryManager.removeItem(it, menuManager.inventoryManager.labInventory);
-        } */
+        isAnimatingRecipeDrop = false;
 
         // clear scrap and recipe displays
         assignScrap(null);
-        menuManager.labItemMenu.itemGrid.refreshItems(menuManager.labItemMenu.itemGrid.regularSlots, menuManager.inventoryManager.labInventory);
-        //??? menuManager.labItemMenu.itemGrid.refreshItems(recipeGridSlots, null);
-        requiredItemsMenu.refreshItems(requiredItemsMenu.regularSlots, menuManager.inventoryManager.labInventory, new List<item>());
+        menuManager.labItemGrid.itemGrid.refreshItems(menuManager.labItemGrid.itemGrid.regularSlots, menuManager.inventoryManager.labInventory);
+        requiredItemsGrid.refreshItems(requiredItemsGrid.regularSlots, menuManager.inventoryManager.labInventory, new List<item>());
 
-        // menuManager.itemInfoDisplay.selectedItem = null;
         menuManager.itemInfoDisplay.setInfo(null);
 
-        if (FindObjectOfType<missionManager>().checkCurrentMission(-1, 9)) //! testing
+        if (FindObjectOfType<missionManager>().checkCurrentMission(-1, 9))
+        // for tutorial
         {
-            callManager callManager = FindObjectOfType<callManager>();
             callManager.startCall(callManager.currentMainMission());
-            menuManager.toggleToggletoolWorkstationMenuScreen();
-            // startNextMainMissionCall();
+            menuManager.toggleToolWorkstationMenuScreen();
         }
     }
 }

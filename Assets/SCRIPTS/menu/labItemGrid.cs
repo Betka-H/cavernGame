@@ -18,7 +18,7 @@ public class labItemGrid : itemMenu
     {
         if (isAwake)
         {
-            inventoryScript.sortInventory(ref itemList);
+            inventoryManager.sortInventory(ref itemList);
             List<item> tempInv;
             if (itemList == null)
                 tempInv = new List<item>();

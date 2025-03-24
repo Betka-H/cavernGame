@@ -2,11 +2,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class inventoryDefinitions : MonoBehaviour
+// enables checking for specific items
 {
     [Header("mission items")]
-    public List<item> missionItems;
+    public List<item> missionItems; // mission item pool
     [Header("loot items")]
-    public List<item> lootItems;
+    public List<item> lootItems; // cave loot item pool
 
     [Header("gems")]
     public item gemRed;

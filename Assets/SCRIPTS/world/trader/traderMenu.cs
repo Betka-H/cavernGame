@@ -98,7 +98,7 @@ public class traderMenu : MonoBehaviour
 
 				// itemMenu.addItem(tradedItem);
 				inventoryManager.addItem(currentlyTradedItem, inventoryManager.caveInventory);
-				menuManager.caveItemMenu.refreshItems(menuManager.caveItemMenu.regularSlots, inventoryManager.caveInventory);
+				menuManager.caveItemGrid.refreshItems(menuManager.caveItemGrid.regularSlots, inventoryManager.caveInventory);
 				traderInv.RemoveAt(0);
 				if (traderInv.Count > 0)
 				{

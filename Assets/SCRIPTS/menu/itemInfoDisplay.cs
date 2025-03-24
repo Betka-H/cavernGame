@@ -9,16 +9,10 @@ public class itemInfoDisplay : MonoBehaviour
     public TMP_Text invTxt_itemName;
     public TMP_Text invTxt_itemDescription;
 
-    [Header("placeholders")]
+    [Header("placeholders")] //! set placeholders
     public Sprite placeholderItemSprite;
     public string placeholderItemName;
     [TextArea] public string placeholderItemDescription;
-
-    void OnEnable()
-    {
-        // selectedItem = null; //!
-        // setInfo(null); //* 
-    }
 
     public void setInfo(item it)
     {

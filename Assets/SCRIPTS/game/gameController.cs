@@ -452,8 +452,8 @@ public class gameController : MonoBehaviour
 				getElevator().isFirst = true;
 
 				if (menuManager.inventoryManager.checkEquipment(menuManager.inventoryManager.inventoryDefinitions.backpack))
-					menuManager.caveItemMenu.hasAllSlots = true;
-				else menuManager.caveItemMenu.hasAllSlots = false;
+					menuManager.caveItemGrid.hasAllSlots = true;
+				else menuManager.caveItemGrid.hasAllSlots = false;
 
 				if (missionManager.checkCurrentMission(-1, 4))
 					Invoke(nameof(startNextMainMissionCall), 5f);

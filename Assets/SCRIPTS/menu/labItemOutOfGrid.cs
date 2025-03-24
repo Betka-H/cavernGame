@@ -10,8 +10,6 @@ public class labItemOutOfGrid : itemMenu
         base.Awake();
     }
 
-
-
     public override void refreshItems(invItem[] slots, List<item> itemList)
     {
         Debug.LogError($"invalid request");
@@ -20,14 +18,14 @@ public class labItemOutOfGrid : itemMenu
     {
         if (!isAwake) Awake();
 
-        inventoryScript.sortInventory(ref hasList);
+        inventoryManager.sortInventory(ref hasList);
         List<item> tempHasInv;
         if (hasList == null)
             tempHasInv = new List<item>();
         else tempHasInv = new List<item>(hasList);
 
         // Debug.LogWarning($"haslist? {hasList.Count}");
-        inventoryScript.sortInventory(ref neededList);
+        inventoryManager.sortInventory(ref neededList);
         List<item> tempNeedsInv;
         if (neededList == null)
             tempNeedsInv = new List<item>();

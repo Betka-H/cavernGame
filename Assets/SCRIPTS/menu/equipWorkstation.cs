@@ -2,21 +2,11 @@ using UnityEngine;
 
 public class equipWorkstation : MonoBehaviour
 {
-    // public SpriteRenderer[] slotRenderers;
     public itemInfoDisplay[] infoDisplays;
     public Transform[] unequipButtons;
-    menuManager menuManager;
 
-    void Awake()
-    {
-        menuManager = FindObjectOfType<menuManager>();
-    }
-
-    /* public void clearSlots()
-    {
-        for (int i = 0; i < slotRenderers.Length; i++)
-            slotRenderers[i].sprite = null;
-    } */
+    public menuManager menuManager;
+    public announcerManager announcerManager;
 
     void OnEnable()
     {
@@ -26,12 +16,12 @@ public class equipWorkstation : MonoBehaviour
     void displayEquipment()
     {
         for (int i = 0; i < infoDisplays.Length; i++)
+        // for all eq slots
         {
             item selItem;
             if (menuManager.inventoryManager.equippedItems.Count > i)
             {
                 selItem = menuManager.inventoryManager.equippedItems[i];
-                Debug.LogWarning($"selitem: {selItem.itemName}");
                 infoDisplays[i].selectedItem = selItem;
                 if (unequipButtons.Length > 0)
                     unequipButtons[i].gameObject.SetActive(true);
@@ -45,77 +35,49 @@ public class equipWorkstation : MonoBehaviour
             }
             infoDisplays[i].setInfo(selItem);
         }
-        /* for (int i = 0; i < slotRenderers.Length; i++)
-        {
-            item selItem;
-            if (menuManager.inventoryManager.equippedItems.Count > i)
-            {
-                selItem = menuManager.inventoryManager.equippedItems[i];
-                slotRenderers[i].sprite = selItem.itemSprite;
-            }
-            else
-            {
-                selItem = null;
-                slotRenderers[i].sprite = null;
-            }
-            infoDisplays[i].setInfo(selItem);
-        } */
     }
 
     public void equip()
     {
         item equippingItem = menuManager.itemInfoDisplay.selectedItem;
-        // Debug.Log($"eq: {equippingItem}");
         if (equippingItem != null)
+        // item cant be null
         {
             if (equippingItem is gear gear)
+            // item has to be gear
             {
                 if (menuManager.inventoryManager.equippedItems.Count + 1 <= infoDisplays.Length)
+                // there cant be more eq items than there are slots
                 {
                     if (!menuManager.inventoryManager.equippedItems.Contains(equippingItem))
+                    // cant eq same item twice
                     {
                         menuManager.inventoryManager.addItem(gear, menuManager.inventoryManager.equippedItems);
                         menuManager.inventoryManager.removeItem(gear, menuManager.inventoryManager.labInventory);
 
-                        // menuManager.itemInfoDisplay.selectedItem = null;
+                        // deselect
                         menuManager.itemInfoDisplay.setInfo(null);
 
-                        // refresh item displays
                         refreshItemDisplays();
 
-                        if (FindObjectOfType<missionManager>().checkCurrentMission(-1, 12)) //! testing
+                        if (FindObjectOfType<missionManager>().checkCurrentMission(-1, 12))
+                        // tutorial
                         {
                             callManager callManager = FindObjectOfType<callManager>();
                             callManager.startCall(callManager.currentMainMission());
-                            menuManager.toggleToggleEquipmentWorkstationMenu();
-                            // startNextMainMissionCall();
+                            menuManager.toggleEquipmentWorkstationMenu();
                         }
                     }
-                    else
-                    {
-                        FindObjectOfType<announcerManager>().announceMessage($"you cannot equip the same item twice!");
-                    }
+                    else announcerManager.announceMessage($"you cannot equip the same item twice!");
                 }
-                else
-                {
-                    FindObjectOfType<announcerManager>().announceMessage($"not enough space to equip item!");
-                }
+                else announcerManager.announceMessage($"not enough space to equip item!");
             }
-            else
-            {
-                FindObjectOfType<announcerManager>().announceMessage($"this item is not gear!");
-            }
+            else announcerManager.announceMessage($"this item is not gear!");
         }
-        else
-        {
-            FindObjectOfType<announcerManager>().announceMessage($"no item selected!");
-        }
-        // else Debug.Log("item not gear, not enough space or twice");
-        // Debug.LogWarning("show err messages for these cases");
+        else announcerManager.announceMessage($"no item selected!");
     }
     public void unEquip(int pos)
     {
-        // Debug.Log($"item? {menuManager.inventoryManager.equippedItems[pos]}");
         if (menuManager.inventoryManager.equippedItems.Count > pos)
         {
             item gear = menuManager.inventoryManager.equippedItems[pos];
@@ -123,21 +85,15 @@ public class equipWorkstation : MonoBehaviour
             menuManager.inventoryManager.removeItem(gear, menuManager.inventoryManager.equippedItems);
             refreshItemDisplays();
         }
-        else
-        {
-            // Debug.Log("no item to remove");
-            FindObjectOfType<announcerManager>().announceMessage($"no item to unequip!");
-        }
+        else announcerManager.announceMessage($"no item to unequip!");
     }
-
-    /* void OnApplicationQuit()
-    {
-        menuManager.inventoryManager.labInventory.AddRange(menuManager.inventoryManager.equippedItems);
-    } */
 
     void refreshItemDisplays()
     {
-        menuManager.labItemMenu.itemGrid.refreshItems(menuManager.labItemMenu.itemGrid.regularSlots, menuManager.inventoryManager.labInventory);
+        // refresh lab inv item grid
+        menuManager.labItemGrid.itemGrid.refreshItems(menuManager.labItemGrid.itemGrid.regularSlots, menuManager.inventoryManager.labInventory);
+
+        // refresh eq disp
         displayEquipment();
     }
 }
