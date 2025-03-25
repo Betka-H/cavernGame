@@ -109,7 +109,6 @@ public class gameController : MonoBehaviour
 	{
 		if (roomController.currentLevel == level.lab)
 		{
-			Debug.LogError($"test jump call in cave");
 			callManager.startCall(missionManager.jumpMission);
 
 			PlayerPrefs.SetInt("jumpWarn", 1);
@@ -173,7 +172,7 @@ public class gameController : MonoBehaviour
 		{
 			if (missionManager.checkCurrentMission(-1, 0)) // space call
 			{
-				Debug.LogWarning($"SPACE CALL");
+				// Debug.LogWarning($"SPACE CALL");
 				GameObject spaceExplosionObj = FindObjectOfType<spaceExplosion>(true).gameObject;
 				if (spaceExplosionObj != null)
 					spaceExplosionObj.SetActive(false);
@@ -183,7 +182,7 @@ public class gameController : MonoBehaviour
 			else if (missionManager.checkCurrentMission(1001, -1))
 			// last mission
 			{
-				Debug.LogWarning($"LAST CALL");
+				// Debug.LogWarning($"LAST CALL");
 				GameObject spaceShipObj = FindObjectOfType<spaceshipMovement>(true).gameObject;
 				if (spaceShipObj != null)
 					spaceShipObj.SetActive(false);
@@ -303,7 +302,7 @@ public class gameController : MonoBehaviour
 			getElevator().isFirst = false;
 			m_unlockCavern(); // cavern is locked from collecting all tutorial items
 		}
-		else Debug.Log($"is in tutorial. not moving");
+		// else Debug.Log($"is in tutorial. not moving");
 		m_unlockCavern();
 	}
 
@@ -319,7 +318,6 @@ public class gameController : MonoBehaviour
 
 	void OnApplicationQuit()
 	{
-		Debug.LogError($"add quit button!");
 		Debug.Log("quitting app");
 	}
 
@@ -430,8 +428,6 @@ public class gameController : MonoBehaviour
 	{
 		if (!cavernLocked)
 		{
-			// Debug.Log("helloooo deadly cavern");
-
 			getElevator().closeDoors(false);
 
 			StartCoroutine(waitForDoorsToCloseAndGoToCave());
@@ -463,10 +459,7 @@ public class gameController : MonoBehaviour
 				IEnumerator WaitForCallToEndAndOpenDoors()
 				{
 					while (isCalling)
-					{
-						Debug.LogWarning($"calling; door closed");
 						yield return null;
-					}
 
 					getElevator().openDoors(false);
 				}

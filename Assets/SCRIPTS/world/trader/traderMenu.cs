@@ -94,7 +94,7 @@ public class traderMenu : MonoBehaviour
 		}
 		else announcerManager.announceMessage("no offer!");
 
-		Debug.LogWarning($"times traded: {timesTraded}, trader inv: {invLength}");
+		// Debug.LogWarning($"times traded: {timesTraded}, trader inv: {invLength}");
 		if (timesTraded > invLength)
 			StartCoroutine(flee());
 	}
@@ -137,7 +137,7 @@ public class traderMenu : MonoBehaviour
 		traderInv = inv.ToList();
 		handR.assignItem(traderInv[0]);
 		bagHand.assignItem(traderInv[1]);
-		Debug.LogWarning("trader inv:");
-		inventoryManager.printInventory(traderInv);
+		// Debug.LogWarning("trader inv:");
+		// inventoryManager.printInventory(traderInv);
 	}
 }

@@ -63,12 +63,11 @@ public class callManager : MonoBehaviour
         {
             // Debug.Log("setting next call");
             selectedMission.currentCall++;
-            Debug.Log($"next call is {selectedMission.calls[selectedMission.currentCall]} in mission {selectedMission.name}");
+            // Debug.Log($"next call is {selectedMission.calls[selectedMission.currentCall]} in mission {selectedMission.name}");
 
             if (advance)
             {
-                // Debug.LogWarning("ending call");
-                Debug.Log($"ending event for m: {selectedMission.name}, c: {selectedMission.currentCall}");
+                // Debug.Log($"ending m {selectedMission.name} c {selectedMission.currentCall}");
                 selectedMission.calls[selectedMission.currentCall - 1].endCall();
             }
         }

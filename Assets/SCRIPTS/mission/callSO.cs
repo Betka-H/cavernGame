@@ -11,7 +11,6 @@ public class callSO : ScriptableObject
     [TextArea]
     public string[] messages;
     [HideInInspector] public int currentMessage = 0;
-    // public UnityEvent callEndEvent;
 
     [System.Serializable]
     public struct endEventValue
@@ -27,7 +26,6 @@ public class callSO : ScriptableObject
         if (endEventValuesList != null)
             foreach (var even in endEventValuesList)
             {
-                // Debug.Log("found event");
                 GameObject gameObj = GameObject.Find(even.objName);
                 gameObj.SendMessage(even.methodName);
             }

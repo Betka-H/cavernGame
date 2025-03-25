@@ -192,7 +192,7 @@ public class menuManager : MonoBehaviour
                 }
                 else if (missionManager.checkCurrentMission(-1, 12) || missionManager.checkCurrentMission(-1, 13) || missionManager.checkCurrentMission(-1, 14))
                 {
-                    Debug.LogWarning($"in tutorial, not locked");
+                    // Debug.LogWarning($"in tutorial, not locked");
                 }
                 else
                 {
@@ -209,7 +209,6 @@ public class menuManager : MonoBehaviour
 
     public void toggleMissionWorkstationMenu()
     {
-        Debug.LogWarning($"trying to toggle mission menu");
         if (!escMenu.gameObject.activeSelf && !callScreen.gameObject.activeSelf)
         {
             bool onOff = showMenuScreen(labMissionMenu.gameObject);

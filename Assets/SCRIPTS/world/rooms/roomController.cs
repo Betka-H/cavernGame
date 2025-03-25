@@ -73,13 +73,13 @@ public class roomController : MonoBehaviour
 	// called at end of jump warn call
 	public void m_resetPlayerBounciness()
 	{
-		Debug.LogError($"resetting bounce");
+		// Debug.LogError($"resetting bounce");
 		getPlayerMovement().bounciness = 0;
 	}
 	// called at end of space call
 	public void m_setPlayerBounciness()
 	{
-		Debug.LogError($"setting bounce");
+		// Debug.LogError($"setting bounce");
 		getPlayerMovement().bounciness = 7.5f;
 	}
 	// called at end of some tutorial call
@@ -160,9 +160,9 @@ public class roomController : MonoBehaviour
 			}
 
 			// fix missing entrance
-			if (!selectedRooms.Contains(entranceRoom)) // if the entrance room isnt there already
+			if (!selectedRooms.Contains(entranceRoom))
+			// if the entrance room isnt there already
 			{
-				// Debug.LogWarning("the impostorrr");
 				selectedRooms[rndForRoom.Next(selectedRooms.Length)] = entranceRoom; // insert entrance room instead of one random room
 			}
 
@@ -200,25 +200,21 @@ public class roomController : MonoBehaviour
 				{
 					darknessLvl = darknessLevel.light;
 					darknessChance = 0;
-					// Debug.Log("light shines through the dungeon (light)");
 				}
 				else if (n <= 20)
 				{
 					darknessLvl = darknessLevel.dark;
 					darknessChance = 100;
-					// Debug.Log("dungeon is drowning in darkness (dark)");
 				}
 				else if (n <= 50)
 				{
 					darknessLvl = darknessLevel.midDark;
 					darknessChance = 69;
-					// Debug.Log("its kinda dark in the dungeon (midDark)");
 				}
 				else
 				{
 					darknessLvl = darknessLevel.midLight;
 					darknessChance = 21;
-					// Debug.Log("its kinda light in the dungeon (midLight)");
 				}
 			}
 		}

@@ -12,7 +12,7 @@ public class labItemOutOfGrid : itemMenu
 
     public override void refreshItems(invItem[] slots, List<item> itemList)
     {
-        Debug.LogError($"invalid request");
+        Debug.LogError($"invalid item refresh request");
     }
     public override void refreshItems(invItem[] slots, List<item> hasList, List<item> neededList)
     {

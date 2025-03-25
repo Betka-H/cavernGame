@@ -26,7 +26,7 @@ public class missionManager : MonoBehaviour
 
         if (currentMission > allMissions.Length)
         {
-            Debug.LogWarning($"invalid mission id!");
+            Debug.LogError($"got invalid mission id!");
             currentMission = 0;
         }
     }
@@ -85,7 +85,7 @@ public class missionManager : MonoBehaviour
         else
         {
             FindObjectOfType<announcerManager>().announceMessage("all missions completed! go talk to MG");
-            Debug.LogWarning($"cm: {currentMission}, {allMissions[currentMission].missionID}");
+            // Debug.LogWarning($"cm: {currentMission}, {allMissions[currentMission].missionID}");
             // gameController.finishMissions();
         }
 
@@ -93,7 +93,7 @@ public class missionManager : MonoBehaviour
 
     public void restartMissions()
     {
-        Debug.LogError($"restarting missions");
+        // Debug.LogError($"restarting missions");
         currentMission = 0;
         foreach (missionSO mission in allMissions)
         {
@@ -105,7 +105,6 @@ public class missionManager : MonoBehaviour
         deathMission.currentCall = 0;
         jumpMission.currentCall = 0;
         traderMission.currentCall = 0;
-        Debug.Log($"restarting missions: deathm: {deathMission.currentCall}, jumpm: {jumpMission.currentCall}, traderm: {traderMission.currentCall}");
 
         menuManager.toggleCallScreen();
     }
@@ -131,14 +130,14 @@ public class missionManager : MonoBehaviour
 
     public void checkRndMission()
     {
-        Debug.LogWarning($"checking rnd mission (cm: {currentMission}, mid: {allMissions[currentMission].missionID})");
+        // Debug.LogWarning($"checking mission (cm: {currentMission}, mid: {allMissions[currentMission].missionID}) for rnd");
         if (allMissions[currentMission] is randomMissionSO rndMission)
         {
-            Debug.LogWarning($"current mission is rnd ({rndMission.howManyItems} items)");
+            // Debug.LogWarning($"current mission is rnd ({rndMission.howManyItems} items)");
             if (rndMission.requiredItems.Count == 0 || rndMission.requiredItems.Count > rndMission.howManyItems)
             // the mission has no items - generating new items
             {
-                Debug.LogWarning($"the missions has no or wrong req items - generating new items");
+                // Debug.LogWarning($"the missions has no or wrong req items - generating new items");
                 List<item> allMissionItems = inventoryManager.inventoryDefinitions.missionItems;
                 for (int i = 0; i < rndMission.howManyItems; i++)
                 {

@@ -29,7 +29,8 @@ public class missionMenu : MonoBehaviour
 
         if (m_solitaire != null)
         {
-            if (!missionManager.checkCurrentMission(-1, -1)) // only out of tutorial
+            if (!missionManager.checkCurrentMission(-1, -1))
+            // only out of tutorial
             {
                 int rnd = Random.Range(0, 100);
                 // Debug.LogWarning($"solitaire change was {rnd}");
@@ -48,7 +49,6 @@ public class missionMenu : MonoBehaviour
         // txtTitle.text = mission.missionTitle;
         txtTitle.text = (mission.missionID + 1).ToString();
         txtDescription.text = mission.missionDescription;
-        // requiredItemsMenu.refreshItems(requiredItemsMenu.regularSlots, menuManager.inventoryManager.missionInventory);
         requiredItemsMenu.refreshItems(requiredItemsMenu.regularSlots, menuManager.inventoryManager.missionInventory, missionManager.allMissions[missionManager.currentMission].requiredItems);
     }
 }

@@ -249,11 +249,11 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 206637500}
         m_TargetAssemblyTypeName: mainMenuController, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 2
+        m_MethodName: quitGame
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 1790557999}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2630,7 +2630,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 764249521}
         m_TargetAssemblyTypeName: gameStartController, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: startGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3542,7 +3542,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 206637500}
         m_TargetAssemblyTypeName: mainMenuController, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: openMenu
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1790557999}
@@ -6062,7 +6062,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 206637500}
         m_TargetAssemblyTypeName: mainMenuController, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: openMenu
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 773067148}

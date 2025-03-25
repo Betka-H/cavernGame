@@ -4,26 +4,16 @@ public class spaceExplosion : MonoBehaviour
 {
     public gameController gameController;
 
-    /*  void OnEnable()
-     {
-         gameObject.SetActive(false);
-         if (gameController.missionManager.checkCurrentMission(1001, -1))
-         // if in last mission
-         {
-             ignite();
-         }
-     } */
-
     public void ignite()
     {
-        Debug.LogWarning($"EXPLOSION START");
+        // Debug.Log($"EXPLOSION START");
         gameObject.SetActive(false);
-        Invoke(nameof(kaboom), 7f);
+        Invoke(nameof(explode), 7f);
     }
 
-    void kaboom()
+    void explode()
     {
         gameObject.SetActive(true);
-        Debug.LogError($"explosion");
+        // Debug.Log($"explosion");
     }
 }

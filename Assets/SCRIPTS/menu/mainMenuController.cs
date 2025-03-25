@@ -41,4 +41,9 @@ public class mainMenuController : MonoBehaviour
         FindObjectOfType<audioManager>().saveVolumeSettings();
         PlayerPrefs.Save();
     }
+
+    public void quitGame()
+    {
+        Application.Quit();
+    }
 }

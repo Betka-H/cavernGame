@@ -37,7 +37,7 @@ public class caveItemGrid : itemMenu
 
 	public override void refreshItems(invItem[] slots, List<item> hasList, List<item> neededList)
 	{
-		Debug.LogError($"invalid request");
+		Debug.LogError($"invalid item refresh request");
 	}
 	public override void refreshItems(invItem[] slots, List<item> itemList)
 	{

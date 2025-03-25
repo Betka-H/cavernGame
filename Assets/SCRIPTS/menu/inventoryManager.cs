@@ -66,19 +66,20 @@ public class inventoryManager : MonoBehaviour
 	}
 
 	public void addItem(item it, List<item> inventory)
+	//* unnecessary
 	{
 		inventory.Add(it);
 	}
 	public void removeItem(item it, List<item> inventory)
+	//* unnecessary
 	{
 		if (inventory.Contains(it))
 			inventory.Remove(it);
-		else Debug.Log($"cannot remove item {it} cause its not in the inventory");
 	}
 
 	public void resetInventories()
 	{
-		Debug.LogError($"clearing inventories");
+		// Debug.LogError($"clearing inventories");
 
 		beforeTutorialLabInv();
 

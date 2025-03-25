@@ -15,7 +15,7 @@ public class announcerManager : MonoBehaviour
     // base announcement
     public void announceMessage(string message)
     {
-        Debug.LogWarning($"announcer: \"{message}\"");
+        Debug.Log($"announcer: \"{message}\"");
 
         if (canAnnounce)
         // when cooldown is up

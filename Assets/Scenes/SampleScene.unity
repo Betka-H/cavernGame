@@ -26359,6 +26359,7 @@ MonoBehaviour:
   txtSpeakerName: {fileID: 296513936}
   txtMessage: {fileID: 124533505}
   skipTutorialBtn: {fileID: 241996504}
+  missionManager: {fileID: 892595347}
 --- !u!1 &1996097895
 GameObject:
   m_ObjectHideFlags: 0

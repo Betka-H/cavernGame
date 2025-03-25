@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: jmc 0
   m_EditorClassIdentifier: 
   talkSprites:
-  - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
-  - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
-  - {fileID: 1046963228, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
+  - {fileID: 21300000, guid: 67a1f8667657d024390d286ceb99fd8f, type: 3}
+  - {fileID: 21300000, guid: 67a1f8667657d024390d286ceb99fd8f, type: 3}
+  - {fileID: 21300000, guid: 67a1f8667657d024390d286ceb99fd8f, type: 3}
   speakerNames:
   - '[Electronic announcer]'
   - '[Electronic announcer]'

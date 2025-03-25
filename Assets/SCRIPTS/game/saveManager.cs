@@ -67,8 +67,8 @@ public class saveManager : MonoBehaviour
 
             // current mission required items
             data.missionReqList = new List<item>(missionManager.allMissions[missionManager.currentMission].requiredItems);
-            Debug.LogWarning($"saved mission inv for mid: {missionManager.allMissions[missionManager.currentMission].missionID} with v v v");
-            menuManager.inventoryManager.printInventory(missionManager.allMissions[missionManager.currentMission].requiredItems);
+            // Debug.LogWarning($"saved mission inv for mid: {missionManager.allMissions[missionManager.currentMission].missionID} with v v v");
+            // menuManager.inventoryManager.printInventory(missionManager.allMissions[missionManager.currentMission].requiredItems);
         }
         void saveMissions()
         {
@@ -107,8 +107,8 @@ public class saveManager : MonoBehaviour
 
                 // current mission required items
                 missionManager.allMissions[missionManager.currentMission].requiredItems = new List<item>(data.missionReqList);
-                Debug.LogWarning($"loaded mission inv for mid: {missionManager.allMissions[missionManager.currentMission].missionID} with v v v");
-                menuManager.inventoryManager.printInventory(missionManager.allMissions[missionManager.currentMission].requiredItems);
+                // Debug.LogWarning($"loaded mission inv for mid: {missionManager.allMissions[missionManager.currentMission].missionID} with v v v");
+                // menuManager.inventoryManager.printInventory(missionManager.allMissions[missionManager.currentMission].requiredItems);
             }
             void loadMissions()
             {
@@ -124,7 +124,7 @@ public class saveManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("no save present! creating empty save");
+            Debug.LogWarning("no game save present! creating empty save");
 
             menuManager.inventoryManager.resetInventories();
             missionManager.restartMissions();
