@@ -568,6 +568,14 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 0.516543
       objectReference: {fileID: 0}
+    - target: {fileID: 5102856153980885215, guid: 04abac738fd78fe4c964f6b51512ed65, type: 3}
+      propertyPath: m_Size.x
+      value: 2.3703203
+      objectReference: {fileID: 0}
+    - target: {fileID: 5102856153980885215, guid: 04abac738fd78fe4c964f6b51512ed65, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.22528699
+      objectReference: {fileID: 0}
     - target: {fileID: 5496287214850122491, guid: 04abac738fd78fe4c964f6b51512ed65, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.31709987

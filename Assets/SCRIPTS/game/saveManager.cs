@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.Collections;
 using UnityEngine;
 
 [System.Serializable]
@@ -28,7 +29,7 @@ public class saveManager : MonoBehaviour
         missionManager = FindObjectOfType<missionManager>();
         roomController = FindObjectOfType<roomController>();
 
-        load();
+        loadSave();
     }
 
     public void clearPrefs()
@@ -85,7 +86,7 @@ public class saveManager : MonoBehaviour
         }
     }
 
-    void load()
+    public void loadSave()
     {
         if (PlayerPrefs.HasKey(saveKeyString))
         {

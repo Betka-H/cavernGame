@@ -20,6 +20,7 @@ public class spaceExplosion : MonoBehaviour
     void endGame()
     {
         gameController.saveManager.clearPrefs();
+        gameController.saveManager.loadSave();
         gameController.saveAndGoToMainMenu();
     }
 }

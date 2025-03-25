@@ -106,7 +106,8 @@ public class missionManager : MonoBehaviour
         jumpMission.currentCall = 0;
         traderMission.currentCall = 0;
 
-        menuManager.toggleCallScreen();
+        // menuManager.toggleCallScreen();
+        menuManager.callScreen.gameObject.SetActive(false);
     }
 
     // called by skip tutorial btn
