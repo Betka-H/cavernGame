@@ -15,5 +15,11 @@ public class spaceExplosion : MonoBehaviour
     {
         gameObject.SetActive(true);
         // Debug.Log($"explosion");
+        Invoke(nameof(endGame), 3.5f);
+    }
+    void endGame()
+    {
+        gameController.saveManager.clearPrefs();
+        gameController.saveAndGoToMainMenu();
     }
 }

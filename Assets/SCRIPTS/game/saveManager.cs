@@ -31,7 +31,8 @@ public class saveManager : MonoBehaviour
         load();
     }
 
-    void clearPrefs()
+    public void clearPrefs()
+    // called at end of last ending call
     {
         Debug.Log($"clearing save");
         PlayerPrefs.DeleteAll();
