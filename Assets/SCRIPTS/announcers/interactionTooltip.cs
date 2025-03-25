@@ -87,6 +87,7 @@ public class interactionTooltip : MonoBehaviour
 					equipWorkshopEvent.Invoke();
 					break;
 				case tooltipKind.missionWorkshop:
+					Debug.LogWarning($"trying to open mission menu");
 					missionWorkshopEvent.Invoke();
 					break;
 				default:

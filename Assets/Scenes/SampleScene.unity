@@ -10791,7 +10791,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1252296504}
         m_TargetAssemblyTypeName: menuManager, Assembly-CSharp
-        m_MethodName: toggleToggletoolWorkstationMenuScreen
+        m_MethodName: toggleToolWorkstationMenuScreen
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10806,7 +10806,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1252296504}
         m_TargetAssemblyTypeName: menuManager, Assembly-CSharp
-        m_MethodName: toggleToggleEquipmentWorkstationMenu
+        m_MethodName: toggleEquipmentWorkstationMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10821,7 +10821,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1252296504}
         m_TargetAssemblyTypeName: menuManager, Assembly-CSharp
-        m_MethodName: toggleToggleMissionWorkstationMenu
+        m_MethodName: toggleMissionWorkstationMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -13016,8 +13016,8 @@ Transform:
   m_GameObject: {fileID: 961733595}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -413, y: -13, z: 0}
-  m_LocalScale: {x: 100, y: 100, z: 1}
+  m_LocalPosition: {x: -408, y: -4, z: 0}
+  m_LocalScale: {x: 56.88, y: 56.88, z: 0.56880003}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1980269335}
@@ -15873,7 +15873,6 @@ MonoBehaviour:
   missionManager: {fileID: 892595347}
   menuManager: {fileID: 1252296504}
   gameController: {fileID: 699556567}
-  audioManager: {fileID: 793757556}
 --- !u!1 &1163605773
 GameObject:
   m_ObjectHideFlags: 0

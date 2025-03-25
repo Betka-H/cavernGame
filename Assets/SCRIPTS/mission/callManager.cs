@@ -7,10 +7,11 @@ public class callManager : MonoBehaviour
     public missionManager missionManager;
     public menuManager menuManager;
     public gameController gameController;
-    public audioManager audioManager; // keep private
+    audioManager audioManager; // keep private
 
     void Awake()
     {
+        audioManager = FindObjectOfType<audioManager>();
         gameController.isCalling = false;
     }
 

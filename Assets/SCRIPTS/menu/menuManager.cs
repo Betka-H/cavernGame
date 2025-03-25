@@ -209,6 +209,7 @@ public class menuManager : MonoBehaviour
 
     public void toggleMissionWorkstationMenu()
     {
+        Debug.LogWarning($"trying to toggle mission menu");
         if (!escMenu.gameObject.activeSelf && !callScreen.gameObject.activeSelf)
         {
             bool onOff = showMenuScreen(labMissionMenu.gameObject);
@@ -220,8 +221,8 @@ public class menuManager : MonoBehaviour
             if (onOff && missionManager.checkCurrentMission(-1, 3))
             {
                 onOff = showMenuScreen(labMissionMenu.gameObject);
-                labMissionMenu.gameObject.SetActive(onOff);  
-                anotherMenuOpen = onOff;     
+                labMissionMenu.gameObject.SetActive(onOff);
+                anotherMenuOpen = onOff;
 
                 callManager.startCall(getCurrentMission());
             }

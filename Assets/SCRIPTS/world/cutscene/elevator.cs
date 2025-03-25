@@ -81,7 +81,7 @@ public class elevator : MonoBehaviour
         else
         {
             audioManager.playSfx(audioManager.worldSfxSource, audioManager.elevatorMove);
-            FindObjectOfType<announcerManager>().announceMessage($"opening elevator doors", true);
+            // FindObjectOfType<announcerManager>().announceMessage($"opening elevator doors", true);
 
             iTween.MoveBy(doorL.gameObject, iTween.Hash("x", -moveAmount, "speed", 0.5, "easeType", "easeInOutExpo", "delay", 4));
             iTween.MoveBy(doorR.gameObject, iTween.Hash("x", moveAmount, "speed", 0.5, "easeType", "easeInOutExpo", "delay", 4));
@@ -116,7 +116,7 @@ public class elevator : MonoBehaviour
                 iTween.MoveBy(doorL.gameObject, iTween.Hash("x", moveAmount, "speed", 0.5, "easeType", "easeInOutExpo"));
                 iTween.MoveBy(doorR.gameObject, iTween.Hash("x", -moveAmount, "speed", 0.5, "easeType", "easeInOutExpo"));
 
-                FindObjectOfType<announcerManager>().announceMessage($"closing elevator doors", true);
+                // FindObjectOfType<announcerManager>().announceMessage($"closing elevator doors", true);
 
                 StartCoroutine(closeWalls());
             }

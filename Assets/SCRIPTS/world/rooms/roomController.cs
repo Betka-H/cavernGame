@@ -85,7 +85,7 @@ public class roomController : MonoBehaviour
 	// called at end of some tutorial call
 	public void m_mentionJumping()
 	{
-		FindObjectOfType<announcerManager>().announceMessage($"mentioned jumping", true);
+		// FindObjectOfType<announcerManager>().announceMessage($"mentioned jumping", true);
 		hasMentionedJumping = true;
 	}
 	playerMovement getPlayerMovement()
