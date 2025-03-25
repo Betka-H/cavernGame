@@ -10,6 +10,7 @@ public class equipWorkstation : MonoBehaviour
 
     void OnEnable()
     {
+        menuManager.itemInfoDisplay.setInfo(null);
         displayEquipment();
     }
 

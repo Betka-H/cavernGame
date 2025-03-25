@@ -86,9 +86,4 @@ public class inventoryManager : MonoBehaviour
 		equippedItems.Clear();
 		missionInventory.Clear();
 	}
-
-	void OnApplicationQuit()
-	{
-		equippedItems.Clear();
-	}
 }

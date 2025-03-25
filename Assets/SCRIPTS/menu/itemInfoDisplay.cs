@@ -14,6 +14,8 @@ public class itemInfoDisplay : MonoBehaviour
     public string placeholderItemName;
     [TextArea] public string placeholderItemDescription;
 
+    //! do not set null on enable
+
     public void setInfo(item it)
     {
         selectedItem = it;

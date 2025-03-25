@@ -157,8 +157,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 4.1, y: 7.9}
-  m_SizeDelta: {x: 6.0249, y: 1.0332}
+  m_AnchoredPosition: {x: 3.91, y: 7.88}
+  m_SizeDelta: {x: 5.0259, y: 1.0183}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &21991349
 MonoBehaviour:
@@ -180,7 +180,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: equipped items
+  m_text: 'Equipped gear:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1396,7 +1396,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: save mission progress and go back to main menu
+  m_text: Save mission progress and go back to the main menu
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2765,7 +2765,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.1526674, y: 0.15266767}
+  m_Offset: {x: 0.15266728, y: 0.107937396}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -2776,7 +2776,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.1039047, y: 1.3523102}
+  m_Size: {x: 2.4915657, y: 1.56105}
   m_EdgeRadius: 0
 --- !u!114 &158657638
 MonoBehaviour:
@@ -3698,7 +3698,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.70449066, y: -0.000022888184}
+  m_Offset: {x: -8.905014, y: -7.455078}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -3709,7 +3709,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 454.25122, y: 113.72565}
+  m_Size: {x: 521.34656, y: 185.294}
   m_EdgeRadius: 0
 --- !u!210 &241996507
 SortingGroup:
@@ -7709,7 +7709,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.008041143, y: -0.0815717}
+  m_Offset: {x: -0.015496016, y: -0.08157146}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -7720,7 +7720,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.1621008, y: 2.636502}
+  m_Size: {x: 3.3559313, y: 2.8750627}
   m_EdgeRadius: 0
 --- !u!114 &496044000
 MonoBehaviour:
@@ -8543,7 +8543,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 2.612854, y: -0.9337692}
+  m_Offset: {x: 4.1038513, y: -0.1882782}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -8554,7 +8554,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 658.0603, y: 233.3687}
+  m_Size: {x: 714.71857, y: 297.4819}
   m_EdgeRadius: 0
 --- !u!114 &553795161
 MonoBehaviour:
@@ -9728,9 +9728,9 @@ MonoBehaviour:
   invSprite_itemSprite: {fileID: 1873958863}
   invTxt_itemName: {fileID: 275434745}
   invTxt_itemDescription: {fileID: 1163605775}
-  placeholderItemSprite: {fileID: 639530761, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
+  placeholderItemSprite: {fileID: 0}
   placeholderItemName: item info
-  placeholderItemDescription: '[equip an item]'
+  placeholderItemDescription: '[you can equip gear in the lab]'
 --- !u!1 &655824275
 GameObject:
   m_ObjectHideFlags: 0
@@ -10853,7 +10853,6 @@ GameObject:
   m_Component:
   - component: {fileID: 734519572}
   - component: {fileID: 734519574}
-  - component: {fileID: 734519573}
   m_Layer: 18
   m_Name: green scree (1)
   m_TagString: Untagged
@@ -10876,51 +10875,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1640088917}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &734519573
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 734519571}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!212 &734519574
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12243,7 +12197,7 @@ MonoBehaviour:
   invSprite_itemSprite: {fileID: 253691302}
   invTxt_itemName: {fileID: 344636439}
   invTxt_itemDescription: {fileID: 962613843}
-  placeholderItemSprite: {fileID: 639530761, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
+  placeholderItemSprite: {fileID: 0}
   placeholderItemName: item info
   placeholderItemDescription: '[equip an item to show it''s description]'
 --- !u!4 &875075917
@@ -12791,7 +12745,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.1526674, y: 0.15266767}
+  m_Offset: {x: 0.15266752, y: 0.12284753}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -12802,7 +12756,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.1039047, y: 1.3523102}
+  m_Size: {x: 2.4617462, y: 1.650511}
   m_EdgeRadius: 0
 --- !u!114 &951805301
 MonoBehaviour:
@@ -17656,7 +17610,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.70454407, y: -0.000022888184}
+  m_Offset: {x: 1.5319519, y: 0.7454796}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -17667,7 +17621,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 239.13281, y: 113.72565}
+  m_Size: {x: 264.47986, y: 139.07272}
   m_EdgeRadius: 0
 --- !u!210 &1294662926
 SortingGroup:
@@ -19102,7 +19056,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1395541475}
   - component: {fileID: 1395541478}
-  - component: {fileID: 1395541476}
   m_Layer: 18
   m_Name: green scree
   m_TagString: Untagged
@@ -19125,51 +19078,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1699748043}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &1395541476
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1395541474}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!212 &1395541478
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -19484,8 +19392,8 @@ Transform:
   m_GameObject: {fileID: 1398591181}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.01989, y: 0.02, z: 0}
-  m_LocalScale: {x: 0.16185078, y: 0.68686175, z: 1}
+  m_LocalPosition: {x: -0.024, y: 0.06, z: 0}
+  m_LocalScale: {x: 0.16185078, y: 0.5174817, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1181956724}
@@ -22419,7 +22327,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1626682171}
   - component: {fileID: 1626682174}
-  - component: {fileID: 1626682172}
   m_Layer: 18
   m_Name: scrap slot bg
   m_TagString: Untagged
@@ -22442,51 +22349,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1143694320}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &1626682172
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1626682170}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!212 &1626682174
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -24462,7 +24324,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1770494597}
   - component: {fileID: 1770494600}
-  - component: {fileID: 1770494598}
   m_Layer: 18
   m_Name: result displ bg
   m_TagString: Untagged
@@ -24485,51 +24346,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1699748043}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &1770494598
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1770494596}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!212 &1770494600
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -26596,7 +26412,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.018844604, y: -0.0054404736}
+  m_Offset: {x: -0.025885344, y: 0.002014339}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -26607,7 +26423,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.8219724, y: 1.6599753}
+  m_Size: {x: 4.1499934, y: 1.9730855}
   m_EdgeRadius: 0
 --- !u!114 &2035486530
 MonoBehaviour:
@@ -27056,9 +26872,9 @@ MonoBehaviour:
   invSprite_itemSprite: {fileID: 1334633512}
   invTxt_itemName: {fileID: 2130277809}
   invTxt_itemDescription: {fileID: 117531465}
-  placeholderItemSprite: {fileID: 639530761, guid: 006e7e361496da8469af8bf3e377e2fa, type: 3}
+  placeholderItemSprite: {fileID: 0}
   placeholderItemName: item info
-  placeholderItemDescription: '[equip an item]'
+  placeholderItemDescription: '[you can equip gear in the lab]'
 --- !u!1001 &2093031444
 PrefabInstance:
   m_ObjectHideFlags: 0
