@@ -195,6 +195,7 @@ public class gameController : MonoBehaviour
 		{
 			FindObjectOfType<playerMovement>().speed = 3.5f;
 			roomController.hasMentionedJumping = false;
+			PlayerPrefs.SetInt("jumpWarn", 0); // reset jump warn
 			getElevator().isFirst = true;
 
 			float callDelay = 8f;
@@ -301,6 +302,7 @@ public class gameController : MonoBehaviour
 			genAndSpawn(level.lab);
 			getElevator().isFirst = false;
 			m_unlockCavern(); // cavern is locked from collecting all tutorial items
+			PlayerPrefs.SetInt("jumpWarn", 0); // reset jump warn
 		}
 		// else Debug.Log($"is in tutorial. not moving");
 		m_unlockCavern();
