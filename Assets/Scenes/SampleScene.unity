@@ -12381,6 +12381,8 @@ MonoBehaviour:
   allMissions:
   - {fileID: 11400000, guid: a23eed4daad9b2e488eb5dd02f8532c9, type: 2}
   - {fileID: 11400000, guid: 1a93a150bca46bd4dbaae3ed788ef5ee, type: 2}
+  - {fileID: 11400000, guid: 59d4962d8de34a944bf632d8b89c2a28, type: 2}
+  - {fileID: 11400000, guid: 5ec8a61a93e5053408558abdec4db584, type: 2}
   - {fileID: 11400000, guid: 4f940b4a45445784db07181a7d8ac9dd, type: 2}
   deathMission: {fileID: 11400000, guid: a3ccff35b61dfb44ba7fd61ceacc7847, type: 2}
   jumpMission: {fileID: 11400000, guid: c33568d037a8fda438165e6761886e9c, type: 2}
