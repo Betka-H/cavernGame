@@ -17,29 +17,17 @@ MonoBehaviour:
   - {fileID: 21300000, guid: ee14eca928739754389a6bcd780daa45, type: 3}
   - {fileID: 21300000, guid: ee14eca928739754389a6bcd780daa45, type: 3}
   - {fileID: 21300000, guid: ee14eca928739754389a6bcd780daa45, type: 3}
-  - {fileID: 21300000, guid: ee14eca928739754389a6bcd780daa45, type: 3}
-  - {fileID: 21300000, guid: ee14eca928739754389a6bcd780daa45, type: 3}
-  - {fileID: 21300000, guid: ee14eca928739754389a6bcd780daa45, type: 3}
-  - {fileID: 21300000, guid: ee14eca928739754389a6bcd780daa45, type: 3}
   speakerNames:
-  - MG
-  - MG
-  - MG
-  - MG
   - MG
   - MG
   - MG
   - MG
   messages:
   - Oh, and if you're having trouble moving around, that's because the gravity here
-    is a bit messed up.
-  - But don't worry, you'll get used to it.
-  - Just use the [A] key to go left, [D] to go right and jump with [spacebar].
+    is messed up.
+  - You'll be fine in no time. Just use the [A] key to go left, [D] to go right and jump with [spacebar].
   - No jumping allowed up here in the lab though.
-  - Sorry.
-  - I don't make the rules.
-  - '[...]'
-  - Whatever, hurry over so we can get started properly!
+  - Sorry. I don't make the rules.
   currentMessage: 7
   endEventValuesList:
   - objName: roomController

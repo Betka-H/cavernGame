@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1240595257560634305}
   - component: {fileID: 4688480191510841248}
   - component: {fileID: 1566842985170563977}
+  - component: {fileID: 2913070337227639055}
   - component: {fileID: 3907137128709265498}
   m_Layer: 18
   m_Name: recipe obj
@@ -29,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.78125, y: 0.78125, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -46,8 +47,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 454138e7e3e849a45ab5cebecc9b7736, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  recipeDestroyCollider: {fileID: 0}
-  rb: {fileID: 3907137128709265498}
 --- !u!212 &1566842985170563977
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -100,6 +99,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2913070337227639055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5110002386771300257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bc16b709f76aea43b731188fb07d8b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 1566842985170563977}
+  targetSpriteSize: {x: 1, y: 1}
 --- !u!50 &3907137128709265498
 Rigidbody2D:
   serializedVersion: 4

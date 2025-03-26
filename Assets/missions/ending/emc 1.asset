@@ -17,9 +17,9 @@ MonoBehaviour:
   - {fileID: 0}
   speakerNames:
   - MG
-  - BH
+  - 
   messages:
   - What a sad life it was.
-  - Wow this ending is so deep and philosophical.
+  - This ending is so deep and philosophical.
   currentMessage: 1
   endEventValuesList: []

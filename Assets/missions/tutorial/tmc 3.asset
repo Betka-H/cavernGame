@@ -24,11 +24,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 30caae248ee78d94d8bee3048663c009, type: 3}
   - {fileID: 21300000, guid: 30caae248ee78d94d8bee3048663c009, type: 3}
   - {fileID: 21300000, guid: 30caae248ee78d94d8bee3048663c009, type: 3}
-  - {fileID: 21300000, guid: 30caae248ee78d94d8bee3048663c009, type: 3}
-  - {fileID: 21300000, guid: 30caae248ee78d94d8bee3048663c009, type: 3}
   speakerNames:
-  - MG
-  - MG
   - MG
   - MG
   - MG
@@ -42,20 +38,17 @@ MonoBehaviour:
   - MG
   messages:
   - Welcome once again!
-  - I forgot to introduce myself. My name's Michael, but everyone calls me MG.
-  - Short for Mission Guy. Yup.
-  - Anyway, like I said, it's my duty to show you around today.
-  - The rooms you just walked past are the research labs. That's where you will hand
-    over the stuff you find in the cave.
-  - That will allow the lab boys to do science research and you will be able to use
-    the materials to craft gear to use in your next expeditions.
+  - I forgot to introduce myself. My name's Michael, but everyone here calls me MG.
+    Short for Mission Guy.
+  - My role is to introduce you to this place and then assign you missions.
+  - The rooms you just walked past are the labs. There, you will craft and equip
+    gear to help you with your expeditions.
   - Don't worry, they'll walk you through the whole process when the time comes.
-    For now, just note that we have labs here. Yup.
-  - But now, we've got some cave exploration to do!
-  - Head over to that elevator and call me once you're downstairs.
+  - But now, you've got some cave exploration to do!
+  - Head over to that elevator and call me once you're in the cave.
   - '[...]'
   - Huh? Why don't I accompany you downstairs?
-  - Simply put, I'm only the mission guy here. I'm not authorised to go down there.
+  - Simply put, I'm only the mission guy here. I'm not authorised to go down.
   - But you are! Lucky you. Now, get going! We haven't got time to spare.
   currentMessage: 10
   endEventValuesList:

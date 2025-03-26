@@ -22,10 +22,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: ee14eca928739754389a6bcd780daa45, type: 3}
   - {fileID: 21300000, guid: ee14eca928739754389a6bcd780daa45, type: 3}
   - {fileID: 21300000, guid: ee14eca928739754389a6bcd780daa45, type: 3}
-  - {fileID: 21300000, guid: ee14eca928739754389a6bcd780daa45, type: 3}
-  - {fileID: 21300000, guid: ee14eca928739754389a6bcd780daa45, type: 3}
-  - {fileID: 21300000, guid: ee14eca928739754389a6bcd780daa45, type: 3}
-  - {fileID: 21300000, guid: ee14eca928739754389a6bcd780daa45, type: 3}
   speakerNames:
   - MG
   - MG
@@ -36,27 +32,19 @@ MonoBehaviour:
   - MG
   - MG
   - MG
-  - MG
-  - MG
-  - MG
-  - MG
   messages:
-  - By the way, don't worry if you don't find anything the first time around.
-  - Just keep coming back and eventually something'll pop up.
+  - By the way, don't worry if you don't find all of the items in one go.
+  - You will hand over what you've got and return back to the cave until you gather
+    all of them.
   - '[...]'
-  - Hm? 'Won't that be sort of pointless?'
-  - '[...]'
-  - Oh!!
-  - I KNEW i forgot to mention something important!
-  - Right. So, this cave. Not your usual cave complex, as you might be used to from
-    Earth, no.
-  - The interesting thing about this cave is that every few hours or so, there is
-    an earthquake, and the entire Cavern starts shifting!
-  - Every time that happens, it's an entirely new place down there. We've barely
-    managed to secure a safe access point.
-  - So, don't worry if you won't be able to find all of the mission items in one
-    trip. You can just come back a bit later and find the rest.
-  - '[...]'
-  - Ok, that really should be everything! Good luck! I'll be waiting upstairs.
+  - Oh!! I KNEW I forgot to mention something important!
+  - This cave is special.
+  - Every few hours or so, there is an earthquake, and the entire cave starts moving
+    around.
+  - Each time that happens, it's an entirely new place. We've barely managed to secure
+    a safe access point.
+  - So, if you can't find some items for your mission, come back a bit later and
+    try again.
+  - Ok, that really should be everything. Good luck! I'll be waiting upstairs.
   currentMessage: 0
   endEventValuesList: []

@@ -50,6 +50,7 @@ public class toolWorkstationMenu : MonoBehaviour
             {
                 scrapInputSpriteRenderer.sprite = assignedScrap.itemSprite;
                 resultSpriteRenderer.sprite = assignedScrap.wholeGear.itemSprite;
+
                 requiredItemsGrid.refreshItems(requiredItemsGrid.regularSlots, menuManager.inventoryManager.labInventory, assignedScrap.wholeGear.cost.ToList());
 
                 if (FindObjectOfType<missionManager>().checkCurrentMission(-1, 8))
@@ -70,6 +71,8 @@ public class toolWorkstationMenu : MonoBehaviour
                 resultSpriteRenderer.sprite = placeholderResultItemSprite;
                 requiredItemsGrid.refreshItems(requiredItemsGrid.regularSlots, menuManager.inventoryManager.labInventory, new List<item>());
             }
+            // FindObjectOfType<spriteSizeController>().setFixedSize(scrapInputSpriteRenderer, 100); // chatgpt
+            // FindObjectOfType<spriteSizeController>().setFixedSize(resultSpriteRenderer, 100); // chatgpt
         }
     }
 
@@ -105,6 +108,7 @@ public class toolWorkstationMenu : MonoBehaviour
             yield return new WaitForSecondsRealtime(Random.Range(0.5f / i, 0.75f / i)); // drop intervals get longer the less items there are
             GameObject ingredient = Instantiate(physicalPrefab, recipeSpawnPoints[Random.Range(0, recipeSpawnPoints.Length)]);
             ingredient.GetComponent<SpriteRenderer>().sprite = it.itemSprite;
+            // FindObjectOfType<spriteSizeController>().setFixedSize(ingredient.GetComponent<SpriteRenderer>(), 100); // chatgpt
 
             menuManager.inventoryManager.removeItem(it, menuManager.inventoryManager.labInventory);
         }

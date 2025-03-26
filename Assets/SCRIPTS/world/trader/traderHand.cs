@@ -12,6 +12,7 @@ public class traderHand : MonoBehaviour
 		{
 			// Debug.Log($"{name}'s item is: {assignedItem.name} ({assignedItem})");
 			slotSpriteRenderer.sprite = assignedItem.itemSprite;
+			// FindObjectOfType<spriteSizeController>().setFixedSize(slotSpriteRenderer, 100); // chatgpt
 		}
 		else
 		{

@@ -27,6 +27,8 @@ public class callScreen : MonoBehaviour
         int currentMsg = call.currentMessage;
 
         speakerSpriteRenderer.sprite = call.talkSprites[currentMsg];
+        // FindObjectOfType<spriteSizeController>().setFixedSize(speakerSpriteRenderer, 100); // chatgpt
+
         txtSpeakerName.text = call.speakerNames[currentMsg];
         txtMessage.text = call.messages[currentMsg];
 

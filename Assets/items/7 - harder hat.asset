@@ -15,7 +15,8 @@ MonoBehaviour:
   itemId: 7
   itemName: harder hat
   itemDescription: u can survive 1 spike
-  itemSprite: {fileID: -905338050, guid: 6204d8d4992cf9f42a02ed66e489639a, type: 3}
+  itemSprite: {fileID: -1085538544, guid: 4f1f3884b09f56a4589d3203a8893604, type: 3}
   cost:
-  - {fileID: 11400000, guid: 855f72286b24ad8488e6984db26b4f9f, type: 2}
-  - {fileID: 11400000, guid: 855f72286b24ad8488e6984db26b4f9f, type: 2}
+  - {fileID: 11400000, guid: efe3ff3737876564f8c0aa7130051258, type: 2}
+  - {fileID: 11400000, guid: ab0e1471363c9ab42a2e91281c3e9a2c, type: 2}
+  - {fileID: 11400000, guid: ab0e1471363c9ab42a2e91281c3e9a2c, type: 2}

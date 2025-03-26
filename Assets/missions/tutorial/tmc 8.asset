@@ -15,14 +15,11 @@ MonoBehaviour:
   talkSprites:
   - {fileID: 21300000, guid: 1a3f3764ca816474ead2de13c50c97ef, type: 3}
   - {fileID: 21300000, guid: 1a3f3764ca816474ead2de13c50c97ef, type: 3}
-  - {fileID: 21300000, guid: 1a3f3764ca816474ead2de13c50c97ef, type: 3}
   speakerNames:
-  - Crafting lab assistant
   - Crafting lab assistant
   - Crafting lab assistant
   messages:
   - The machine automatically calculates the cost of the reconstruction.
-  - Thanks to your last expedition, we now have enough materials to craft this item.
-  - Just push the big button and the machine will do it's thing.
+  - Just push the big button and watch the magic happen.
   currentMessage: 0
   endEventValuesList: []

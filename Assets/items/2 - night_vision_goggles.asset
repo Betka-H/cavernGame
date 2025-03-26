@@ -15,20 +15,8 @@ MonoBehaviour:
   itemId: 2
   itemName: night vision goggles
   itemDescription: you can see in the dark
-  itemSprite: {fileID: 21300000, guid: 3200daa516fd32a4ab702ecb9f9a0b32, type: 3}
+  itemSprite: {fileID: -250778855, guid: 4f1f3884b09f56a4589d3203a8893604, type: 3}
   cost:
-  - {fileID: 11400000, guid: 09beaca968880f7449e06c9b67e05643, type: 2}
-  - {fileID: 11400000, guid: 09beaca968880f7449e06c9b67e05643, type: 2}
-  - {fileID: 11400000, guid: 09beaca968880f7449e06c9b67e05643, type: 2}
-  - {fileID: 11400000, guid: 09beaca968880f7449e06c9b67e05643, type: 2}
-  - {fileID: 11400000, guid: 09beaca968880f7449e06c9b67e05643, type: 2}
-  - {fileID: 11400000, guid: 09beaca968880f7449e06c9b67e05643, type: 2}
   - {fileID: 11400000, guid: 93f8c0fb24728db45ae7422c4e692dfa, type: 2}
-  - {fileID: 11400000, guid: 93f8c0fb24728db45ae7422c4e692dfa, type: 2}
-  - {fileID: 11400000, guid: 93f8c0fb24728db45ae7422c4e692dfa, type: 2}
-  - {fileID: 11400000, guid: 93f8c0fb24728db45ae7422c4e692dfa, type: 2}
-  - {fileID: 11400000, guid: 93f8c0fb24728db45ae7422c4e692dfa, type: 2}
-  - {fileID: 11400000, guid: 93f8c0fb24728db45ae7422c4e692dfa, type: 2}
-  - {fileID: 11400000, guid: 93f8c0fb24728db45ae7422c4e692dfa, type: 2}
-  - {fileID: 11400000, guid: 93f8c0fb24728db45ae7422c4e692dfa, type: 2}
-  - {fileID: 11400000, guid: 93f8c0fb24728db45ae7422c4e692dfa, type: 2}
+  - {fileID: 11400000, guid: 855f72286b24ad8488e6984db26b4f9f, type: 2}
+  - {fileID: 11400000, guid: 7f25d53e75e5d964da68252c81eca281, type: 2}

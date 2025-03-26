@@ -16,17 +16,13 @@ MonoBehaviour:
   - {fileID: 21300000, guid: db209cdb2881be0429b2dcdbd791b1a6, type: 3}
   - {fileID: 21300000, guid: db209cdb2881be0429b2dcdbd791b1a6, type: 3}
   - {fileID: 21300000, guid: db209cdb2881be0429b2dcdbd791b1a6, type: 3}
-  - {fileID: 21300000, guid: db209cdb2881be0429b2dcdbd791b1a6, type: 3}
   speakerNames:
   - Locker room guy
   - Locker room guy
   - Locker room guy
-  - Locker room guy
   messages:
-  - Fancy.
-  - The guys nextdoors are like magicians with that crafting machine of theirs, I'm
-    telling 'ya.
-  - Anyway, no time to waste!
+  - Fancy!
+  - Anyway, no time to waste.
   - Go talk to MG about your next assignment.
   currentMessage: 3
   endEventValuesList:

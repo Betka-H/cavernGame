@@ -15,5 +15,5 @@ MonoBehaviour:
   itemId: 1.1
   itemName: red gem
   itemDescription: gem that is red
-  itemSprite: {fileID: 139969388, guid: 6204d8d4992cf9f42a02ed66e489639a, type: 3}
+  itemSprite: {fileID: -466588387, guid: 33f1b99d83a332046919cfc5e3811729, type: 3}
   rarity: 100

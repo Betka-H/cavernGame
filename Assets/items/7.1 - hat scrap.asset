@@ -15,5 +15,5 @@ MonoBehaviour:
   itemId: 7.1
   itemName: hat scrap
   itemDescription: piece of hat
-  itemSprite: {fileID: 1549073800, guid: 6204d8d4992cf9f42a02ed66e489639a, type: 3}
+  itemSprite: {fileID: -1840816911, guid: 4f1f3884b09f56a4589d3203a8893604, type: 3}
   wholeGear: {fileID: 11400000, guid: 58de281c09c73ac4ebaf8fa0238282be, type: 2}

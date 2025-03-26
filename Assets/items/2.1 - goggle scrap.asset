@@ -15,5 +15,5 @@ MonoBehaviour:
   itemId: 2.1
   itemName: goggle scrap
   itemDescription: piece of night vision goggles
-  itemSprite: {fileID: 21300000, guid: 8fce939ca7796aa4280b6d2ef7a1151b, type: 3}
+  itemSprite: {fileID: 1409353494, guid: 4f1f3884b09f56a4589d3203a8893604, type: 3}
   wholeGear: {fileID: 11400000, guid: e4277719df81ea04c95be8a3b56f4a66, type: 2}

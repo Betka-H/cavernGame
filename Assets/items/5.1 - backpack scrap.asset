@@ -15,5 +15,5 @@ MonoBehaviour:
   itemId: 5.1
   itemName: backpack scrap
   itemDescription: piece of backpack
-  itemSprite: {fileID: 21300000, guid: e52cd10459b57fb41a73198c6cab997e, type: 3}
+  itemSprite: {fileID: -697422856, guid: 4f1f3884b09f56a4589d3203a8893604, type: 3}
   wholeGear: {fileID: 11400000, guid: 7f0d007b8c9ac0446bf8e387971f3f7e, type: 2}

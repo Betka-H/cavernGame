@@ -19,8 +19,12 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 1a3f3764ca816474ead2de13c50c97ef, type: 3}
   - {fileID: 21300000, guid: 1a3f3764ca816474ead2de13c50c97ef, type: 3}
   - {fileID: 21300000, guid: 1a3f3764ca816474ead2de13c50c97ef, type: 3}
+  - {fileID: 21300000, guid: 1a3f3764ca816474ead2de13c50c97ef, type: 3}
+  - {fileID: 21300000, guid: 1a3f3764ca816474ead2de13c50c97ef, type: 3}
   - {fileID: 21300000, guid: 312c18868cedbd64f92d1e6297ad9e6f, type: 3}
   speakerNames:
+  - Crafting lab assistant
+  - Crafting lab assistant
   - Crafting lab assistant
   - Crafting lab assistant
   - Crafting lab assistant
@@ -36,7 +40,10 @@ MonoBehaviour:
   - Ahem, let's get started.
   - This machine is able to reconstruct a piece of gear from just a part of it and
     a handful of extra material.
-  - We already have an item scrap in the lab stash, so insert that by clicking on
-    it.
+  - Thanks to your last expedition, we now have enough materials in the lab stash
+    to craft an item.
+  - Usually, you would not be able to use scraps and rocks from the lab stash to
+    craft your equipment, but because it's your first time, we'll make an exception.
+  - You can insert the scrap by selecting it from your inventory on the left side.
   currentMessage: 0
   endEventValuesList: []

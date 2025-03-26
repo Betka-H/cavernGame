@@ -15,22 +15,10 @@ MonoBehaviour:
   talkSprites:
   - {fileID: 21300000, guid: ee14eca928739754389a6bcd780daa45, type: 3}
   - {fileID: 21300000, guid: ee14eca928739754389a6bcd780daa45, type: 3}
-  - {fileID: 21300000, guid: ee14eca928739754389a6bcd780daa45, type: 3}
-  - {fileID: 21300000, guid: ee14eca928739754389a6bcd780daa45, type: 3}
-  - {fileID: 21300000, guid: ee14eca928739754389a6bcd780daa45, type: 3}
-  - {fileID: 21300000, guid: ee14eca928739754389a6bcd780daa45, type: 3}
   speakerNames:
   - MG
   - MG
-  - MG
-  - MG
-  - MG
-  - MG
   messages:
-  - Yo! Are you okay?!?!
-  - Hello?!?
-  - '[...]'
-  - Shit.
   - '[...]'
   - Probably should've mentioned the spikes...
   currentMessage: 5

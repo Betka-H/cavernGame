@@ -20,7 +20,6 @@ MonoBehaviour:
   - MG
   messages:
   - Got everything? Great!
-  - Bring it over to the crafting lab and the science assistant will instruct you
-    further.
+  - Bring it over to the crafting lab and the assistant there will instruct you further.
   currentMessage: 0
   endEventValuesList: []

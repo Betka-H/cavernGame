@@ -32,6 +32,7 @@ public class worldItem : MonoBehaviour
 			assignedItem = it;
 			gameObject.SetActive(true);
 			spriteRenderer.sprite = assignedItem.itemSprite;
+			// FindObjectOfType<spriteSizeController>().setFixedSize(spriteRenderer, 100); // chatgpt
 		}
 		else Destroy(gameObject);
 	}

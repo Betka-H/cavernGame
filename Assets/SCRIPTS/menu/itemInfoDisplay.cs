@@ -24,6 +24,7 @@ public class itemInfoDisplay : MonoBehaviour
         {
             invSprite_itemSprite.sprite = sprite;
             invTxt_itemName.SetText(name);
+            // FindObjectOfType<spriteSizeController>().setFixedSize(invSprite_itemSprite, 100); // chatgpt
             invTxt_itemDescription.SetText(description);
         }
 

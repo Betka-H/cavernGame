@@ -15,16 +15,10 @@ MonoBehaviour:
   talkSprites:
   - {fileID: 21300000, guid: 30caae248ee78d94d8bee3048663c009, type: 3}
   - {fileID: 21300000, guid: 30caae248ee78d94d8bee3048663c009, type: 3}
-  - {fileID: 21300000, guid: 30caae248ee78d94d8bee3048663c009, type: 3}
-  - {fileID: 21300000, guid: 30caae248ee78d94d8bee3048663c009, type: 3}
   speakerNames:
   - MG
   - MG
-  - MG
-  - MG
   messages:
-  - Cool, what did you get?
-  - '[...]'
   - Oh! Shoes. Pretty good.
   - Go equip them at the locker room and come back for your first real mission!
   currentMessage: 0

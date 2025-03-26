@@ -18,25 +18,17 @@ MonoBehaviour:
   - {fileID: 21300000, guid: ee14eca928739754389a6bcd780daa45, type: 3}
   - {fileID: 21300000, guid: ee14eca928739754389a6bcd780daa45, type: 3}
   - {fileID: 21300000, guid: ee14eca928739754389a6bcd780daa45, type: 3}
-  - {fileID: 21300000, guid: ee14eca928739754389a6bcd780daa45, type: 3}
-  - {fileID: 21300000, guid: ee14eca928739754389a6bcd780daa45, type: 3}
   speakerNames:
   - 
   - 
   - MG
   - MG
   - MG
-  - MG
-  - MG
   messages:
   - '[you hear a beep from your communicator device]'
   - '[you have incoming messages]'
-  - Heey! Welcome to Geology research station B-512!
-  - Since you're one of the new guys, it is my duty to show you around a bit and
-    get you familiar with the place.
-  - We can start right away!
-  - You will find me by the cave elevator. It's just down the hall from the main
-    entrance.
-  - Can't miss it.
+  - Heey! Welcome to Geology B-512!
+  - I'm here to give you instructions.
+  - Find me by the cave elevator and we'll talk more!
   currentMessage: 5
   endEventValuesList: []

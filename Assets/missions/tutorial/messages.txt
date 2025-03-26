@@ -140,3 +140,145 @@
   - [...]
   - Just kidding... I'ts about average.
   - Here you go! Good luck.
+
+
+
+
+
+
+
+
+
+NEW >
+
+  - '[bzzt]
+
+    Dear passengers, we are about to arrive to Geology research station B-512.'
+  - 'Please have your communicator devices ready, as you will receive more instructions
+    shortly after landing.
+
+    [bzzt]'
+
+
+
+  - '[you hear a beep from your communicator device]'
+  - '[you have incoming messages]'
+  - Heey! Welcome to Geology B-512!
+  - I'm here to give you instructions.
+  - Find me by the cave elevator and we'll talk more!
+
+
+
+  - Oh, and if you're having trouble moving around, that's because the gravity here
+    is messed up.
+  - You'll be fine in no time. Just use the [A] key to go left, [D] to go right and jump with [spacebar].
+  - No jumping allowed up here in the lab though.
+  - Sorry. I don't make the rules.
+
+
+
+  - Welcome once again!
+  - I forgot to introduce myself. My name's Michael, but everyone here calls me MG. Short for Mission Guy.
+  - My role is to introduce you to this place and then assign you missions.
+  - The rooms you just walked past are the labs. There, you will craft and equip gear to help you with your expeditions.
+  - Don't worry, they'll walk you through the whole process when the time comes.
+  - But now, you've got some cave exploration to do!
+  - Head over to that elevator and call me once you're in the cave.
+  - '[...]'
+  - Huh? Why don't I accompany you downstairs?
+  - Simply put, I'm only the mission guy here. I'm not authorised to go down.
+  - But you are! Lucky you. Now, get going! We haven't got time to spare.
+
+
+
+  - Alright! Welcome to the cavern.
+  - Your first mission is to find some rocks. You will need them for a new piece of equipment.
+  - When you find the required items, go back to the lab and the lab boys will collect what you got.
+  - You can press [Q] to see your inventory and mission progress.
+
+
+
+  - By the way, don't worry if you don't find all of the items in one go.
+  - You will hand over what you've got and return back to the cave until you gather all of them.
+  - '[...]'
+  - Oh!! I KNEW I forgot to mention something important!
+  - This cave is special.
+  - Every few hours or so, there is an earthquake, and the entire cave starts moving around.
+  - Each time that happens, it's an entirely new place. We've barely managed to secure a safe access point.
+  - So, if you can't find some items for your mission, come back a bit later and try again.
+  - Ok, that really should be everything. Good luck! I'll be waiting upstairs.
+
+
+
+  - Got everything? Great!
+  - Bring it over to the crafting lab and the assistant there will instruct you further.
+
+
+
+  - Hey! Nice to have you here.
+  - And the rocks you brought from the underground.
+  - Nice to have them too.
+  - [...]
+  - Ahem, let's get started.
+  - This machine is able to reconstruct a piece of gear from just a part of it and a handful of extra material.
+  - Thanks to your last expedition, we now have enough materials in the lab stash to craft an item.
+  - Usually, you would not be able to use scraps and rocks from the lab stash to craft your equipment, but because it's your first time, we'll make an exception.
+  - You can insert the scrap by selecting it from your inventory on the left side.
+
+
+
+  - The machine automatically calculates the cost of the reconstruction.
+  - Just push the big button and watch the magic happen.
+
+
+
+  - Neat! That's all from me for now.
+  - You can equip the shoes at the locker room nextdoors.
+
+
+(if gone to MG first)
+  - Oh! Shoes. Pretty good.
+  - Go equip them at the locker room and come back for your first real mission!
+
+
+(at eq lab. skip prev call if first)
+  - Hey, new guy!
+  - What've you got?
+  - [...]
+  - Shoes? Alright!
+  - Go ahead, try them on!
+
+
+
+  - Fancy!
+  - Anyway, no time to waste.
+  - Go talk to MG about your next assignment.
+
+
+
+  - Hey! These shoes look good on you!
+  - They compliment the uhh...
+  - The orange.
+  - [...]
+  - Man, I wish they'd give ME some new shoes every once in a while.
+  - I've had these ones since i came here!
+  - And that's been...
+  - A while.
+  - [...]
+  - Anyway!
+  - You've successfully completed the first misson.
+  - Nice job! It only gets worse from here.
+  - [...]
+  - Just kidding... I'ts about average.
+  - Here you go! Good luck.
+
+
+
+
+
+//* trader chance 0 in tutorial?
+
+  - Oh! Seems you've ran into the Trader.
+  - It's a critter that collects junk in the caves and offers it in exchange for other cave junk.
+  - It even sells gear scraps sometimes! That's the only way you can get them.
+  - Just watch your pockets. That thing can disappear in the blink of an eye, along with half your belongings.

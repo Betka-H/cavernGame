@@ -53,6 +53,7 @@ public class invItem : MonoBehaviour
         {
             assignedItem = it;
             spriteRenderer.sprite = assignedItem.itemSprite;
+            // FindObjectOfType<spriteSizeController>().setFixedSize(spriteRenderer, 100); // chatgpt
             gameObject.SetActive(true);
         }
         else gameObject.SetActive(false); // makes it unclickable

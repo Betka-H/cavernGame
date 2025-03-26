@@ -19,10 +19,8 @@ MonoBehaviour:
   - '[Electronic announcer]'
   - '[Electronic announcer]'
   messages:
-  - '[bzzt]
-
-    Dear passengers, we are about to arrive to Geology research station
-    B-512.'
+  - "[bzzt]\r\n\rDear passengers, we are about to arrive to Geology research station
+    B-512."
   - 'Please have your communicator devices ready, as you will receive more instructions
     shortly after landing.
 

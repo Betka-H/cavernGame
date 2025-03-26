@@ -17,21 +17,15 @@ MonoBehaviour:
   - {fileID: 21300000, guid: ee14eca928739754389a6bcd780daa45, type: 3}
   - {fileID: 21300000, guid: ee14eca928739754389a6bcd780daa45, type: 3}
   - {fileID: 21300000, guid: ee14eca928739754389a6bcd780daa45, type: 3}
-  - {fileID: 21300000, guid: ee14eca928739754389a6bcd780daa45, type: 3}
   speakerNames:
   - MG
   - MG
   - MG
   - MG
-  - MG
   messages:
-  - Oh! Seems you've ran into what we call the Trader.
-  - It's just this critter that shows up in the Complex every once in a while. Mostly
-    harmless.
-  - Gotta watch your pockets though. That thing tends to disappear as quickly as
-    it appears, along with your wallet.
-  - Other than that though, it's actually a pretty decent source of materials when
-    you trade with it.
-  - C'mon, go ahead and see what it's offering!
+  - Oh! Seems you've ran into the Trader.
+  - It's a critter that collects junk in the caves and offers it in exchange for other cave junk.
+  - It even sells gear scraps sometimes! That's the only way you can get them.
+  - Just watch your pockets. That thing can disappear in the blink of an eye, along with half your belongings.
   currentMessage: 3
   endEventValuesList: []
