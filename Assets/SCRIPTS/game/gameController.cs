@@ -384,10 +384,10 @@ public class gameController : MonoBehaviour
 
 			transferInventory();
 
-			roomController.clearRoom(); //* why?
+			roomController.clearRoom(); //? why?
 			genAndSpawn(level.lab);
 
-			missionManager.checkMissionItems(); //* does it have to be here?
+			missionManager.checkMissionItems(); //? does it have to be here?
 
 			void transferInventory()
 			{

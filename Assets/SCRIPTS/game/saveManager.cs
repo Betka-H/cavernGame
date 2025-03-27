@@ -7,7 +7,7 @@ public class SaveData
 {
     public List<item> itemsSaveList;
     public List<item> missionInvSaveList;
-    public List<item> missionReqList; //* unnecessary with non-random missions
+    public List<item> missionReqList; //? unnecessary with non-random missions
 
     public int currentMainMission;
     public int mainMissionCall;
