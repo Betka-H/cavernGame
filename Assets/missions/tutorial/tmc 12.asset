@@ -24,7 +24,7 @@ MonoBehaviour:
   - Fancy!
   - Anyway, no time to waste.
   - Go talk to MG about your next assignment.
-  currentMessage: 3
+  currentMessage: 2
   endEventValuesList:
   - objName: MENU CANVAS
-    methodName: toggleToggleEquipmentWorkstationMenu
+    methodName: toggleEquipmentWorkstationMenu

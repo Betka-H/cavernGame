@@ -21,7 +21,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 1a3f3764ca816474ead2de13c50c97ef, type: 3}
   - {fileID: 21300000, guid: 1a3f3764ca816474ead2de13c50c97ef, type: 3}
   - {fileID: 21300000, guid: 1a3f3764ca816474ead2de13c50c97ef, type: 3}
-  - {fileID: 21300000, guid: 312c18868cedbd64f92d1e6297ad9e6f, type: 3}
+  - {fileID: -1538748862, guid: 4f1f3884b09f56a4589d3203a8893604, type: 3}
   speakerNames:
   - Crafting lab assistant
   - Crafting lab assistant

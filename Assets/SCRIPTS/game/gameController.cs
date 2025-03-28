@@ -49,14 +49,13 @@ public class gameController : MonoBehaviour
 		{
 			if (PlayerPrefs.GetInt("HasStarted", 0) == 0)
 			{
-				//? why?
-				missionManager.restartMissions();
-				inventoryManager.resetInventories();
-				//?
-
 				PlayerPrefs.SetInt("HasStarted", 1);
 				PlayerPrefs.Save();
 			}
+
+			// if coming back from middle of tutorial
+			saveManager.clearPrefs();
+			saveManager.loadSave();
 
 			genAndSpawn(level.space);
 		}

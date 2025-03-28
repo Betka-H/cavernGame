@@ -42,7 +42,8 @@ public class menuManager : MonoBehaviour
             switch (gameController.roomController.currentLevel)
             {
                 case gameController.level.lab:
-                    toggleLabMenuScreen();
+                    if (!missionManager.checkCurrentMission(-1, -1)) // only if not in tutorial
+                        toggleLabMenuScreen();
                     break;
                 case gameController.level.cavern:
                     toggleCaveGameplayMenuScreen();

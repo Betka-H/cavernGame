@@ -24,4 +24,4 @@ MonoBehaviour:
   currentMessage: 1
   endEventValuesList:
   - objName: MENU CANVAS
-    methodName: toggleToggletoolWorkstationMenuScreen
+    methodName: toggleToolWorkstationMenuScreen
